@@ -53,7 +53,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'view_usproductbacklog' and Proyecto.estado != 'E' %}
+                {% if i.codename == 'view_us' and Proyecto.estado != 'E' %}
                     {% block backlog %}
                         <a href="{% url 'us' Proyecto.id %}">
                             <div class="opcion">
