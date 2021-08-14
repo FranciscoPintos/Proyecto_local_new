@@ -1,9 +1,12 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,redirect
+from django.contrib.auth import logout, authenticate
+
 
 
 # Create your views here.
-def home(request):
-    return render(request,"loginSSO/login.html")
+def login(request):
+    return render(request, "login.html")
 
 def pantalla(request):
-    return render(request,"loginSSO/pantalla.html")
+    return render(request, "pantalla.html")
+
