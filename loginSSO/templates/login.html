@@ -1,0 +1,29 @@
+
+{% load socialaccount %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+        <title>Iniciar Sesion</title>
+            <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
+  </head>
+  <body>
+    <div class="center">
+        {% if user.is_authenticated %}
+            <p>Sigue logueado</p>
+        {% endif %}
+        <h1>Bienvenido</h1>
+            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
+                <br>
+                    <p>Puedes iniciar sesión con:</p>
+                        <input type="submit" value="Google"/>
+                    <p><br></p>
+            </form>
+
+    </div>
+  </body>
+</html>
+
+
