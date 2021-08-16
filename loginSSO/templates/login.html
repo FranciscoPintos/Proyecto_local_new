@@ -12,8 +12,15 @@
   <body>
     <div class="center">
         {% if user.is_authenticated %}
-            <p>Sigue logueado</p>
-        {% endif %}
+            <p>Está logueado con este usuario: {{ user.username   }} </p>
+            <h1>Bienvenido</h1>
+            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
+                <br>
+                    <p>Iniciar sesión con otra cuenta:</p>
+                        <input type="submit" value="Google"/>
+                    <p><br></p>
+            </form>
+        {% else %}
         <h1>Bienvenido</h1>
             <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
                 <br>
@@ -21,6 +28,7 @@
                         <input type="submit" value="Google"/>
                     <p><br></p>
             </form>
+        {% endif %}
 
     </div>
   </body>
