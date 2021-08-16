@@ -6,7 +6,7 @@ SQLITE = {
     }
 }
 
-
+#como puta no les funciona
 
 
 
