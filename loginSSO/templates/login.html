@@ -6,6 +6,7 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
+
         <title>Iniciar Sesion</title>
             <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
   </head>
@@ -24,9 +25,10 @@
         <h1>Bienvenido</h1>
             <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
                 <br>
-                    <p>Puedes iniciar sesión con:</p>
-                        <input type="submit" value="Google"/>
-                    <p><br></p>
+                <p>Puedes iniciar sesión con:</p>
+                <!-- Añadir boton de inicio con google-->
+                  <input type="submit" value="Google"/>
+                <p><br></p>
             </form>
         {% endif %}
 

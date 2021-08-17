@@ -160,5 +160,5 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 SITE_ID = 3
 
-LOGIN_REDIRECT_URL = reverse_lazy('pantalla')
+LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')

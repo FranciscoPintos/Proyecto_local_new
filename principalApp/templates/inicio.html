@@ -6,15 +6,13 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
-
-
   </head>
   <body>
 
 
 
     <div class="center">
-        <h1> PANTALLA PRINCIPAL</h1>
+        <h1>  inicio del sistema</h1>
          {% if user.is_authenticated %}
             <p>Inicio de sesión este usuario: {{ user.username   }}</p>
 

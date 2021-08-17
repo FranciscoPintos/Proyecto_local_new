@@ -105,6 +105,7 @@ input[type="submit"]{
 }
 input[type="submit"]:hover{
   border-color: #2691d9;
+
   transition: .5s;
 }
 .signup_link{
