@@ -11,6 +11,7 @@ SQLITE = {
     }
 }
 
+# Conexion a la base de datos de postgresql
 POSTGRESQL = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
