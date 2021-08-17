@@ -136,7 +136,11 @@ input[type="submit"]:hover{
   text-decoration: underline;
 }
 
-
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
 @font-face {
   font-family: 'Noto Sans';
   font-style: normal;
