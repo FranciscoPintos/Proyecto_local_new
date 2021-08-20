@@ -5,7 +5,8 @@
 <html lang="es" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
+    <link rel="stylesheet" href="../static/principalApp/css/style.css">
+    <title>Gestor de Proyecto</title>
   </head>
   <body>
      {% if user.is_authenticated %}
@@ -13,9 +14,9 @@
             <div class="padre">
                 <div class="hijo">
                     <nav>
-                        <a class="boton-nav" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
+                        <a class="boton-nav" href="#">{{ user.first_name }}</a>
                         <a class="boton-nav" href="inicio">Inicio</a>
-                        <a class="boton-nav" href="/proyecto/nuevoProyecto/{{ user.id }}">Mis proyectos</a>
+                        <a class="boton-nav" href="#">Mis proyectos</a>
                         <a class="boton-nav" href="#">Calendario</a>
                         <a class="boton-nav" href="/accounts/logout/">Cerrar Sesión</a>
                     </nav>
