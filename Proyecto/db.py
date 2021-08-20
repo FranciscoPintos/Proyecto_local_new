@@ -18,7 +18,7 @@ POSTGRESQL = {
         'NAME': 'desarrollo',
         'USER': 'postgres',
         'PASSWORD': 'admin',
-        'HOST': 'djangoproject.localhost',
+        'HOST': 'localhost',
         'PORT': '5432'
 
 
