@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'Proyecto.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = db.SQLITE
+DATABASES = db.POSTGRESQL
 
 
 # Password validation
@@ -162,3 +162,5 @@ SITE_ID = 3
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
