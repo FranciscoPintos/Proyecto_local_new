@@ -15,3 +15,13 @@ class Usuario(models.Model):
 
     class Meta:
         db_table = 'usuario'
+
+class Proyecto(models.Model):
+    name = models.CharField(max_length=50, verbose_name='Nombre')
+    creator = models.IntegerField( verbose_name='Creador')
+
+    def __str__(self):
+        return self.name + ' ' + self.creator.__str__()
+
+    class Meta:
+        db_table = 'proyecto'

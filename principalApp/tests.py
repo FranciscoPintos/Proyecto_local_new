@@ -15,7 +15,7 @@ p1.ci = '1111116'
 p1.fecha_nac = d
 p1.lastname = 'Test'
 
-p1.save()
+#p1.save()
 
 # Visualizar datos
 print(Usuario.objects.all())
