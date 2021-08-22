@@ -25,3 +25,10 @@ class Proyecto(models.Model):
 
     class Meta:
         db_table = 'proyecto'
+
+def set_can_buy_beer(sender, instance, **kwargs):
+    ''' Trigger body '''
+    if instance.age >= 21:
+        instance.can_buy_beer = True
+    else:
+        instance.can_buy_beer = False
