@@ -1,4 +1,3 @@
-from django.contrib.auth.models import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 #from allauth.socialaccount.models import
@@ -101,10 +100,10 @@ class Usuario(AbstractUser):
     def __str__(self):
         return self.username + ' ' + self.email
 
-    def has_module_perms(self, app_label):
+    def has_perm(self, perm, obj=None):
         return True
 
-    def has_perm(self, perm, obj=None):
+    def has_module_perms(self, app_label):
         return True
 
     @property
