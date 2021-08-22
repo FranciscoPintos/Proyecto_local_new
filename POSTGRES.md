@@ -26,7 +26,7 @@ Ingresar la contraseña de su usuario
 ###Crear base de datos "Desarrollo"  
 Ingresar el comando  
 ````
-CREATE DATABASE desarrollo
+CREATE DATABASE desarrollo;
 ````
 Dar privilegios a ```Postgres```  
 ````
