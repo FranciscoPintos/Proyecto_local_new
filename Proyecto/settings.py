@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     #APPS del proyecto
     'loginSSO',
     'principalApp',
+    'usuario'
 ]
 
 MIDDLEWARE = [
