@@ -163,3 +163,5 @@ SITE_ID = 3
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+AUTH_USER_MODEL = 'usuario.Usuario'
