@@ -1,35 +1,26 @@
+{% load socialaccount %}
+{% load static %}
+
 <!DOCTYPE html>
-
-{% load static%}
-<html lang="en">
-<head>
-  {% block title %}<title>Sistem Web</title>{% endblock %}
-  <meta charset="utf-8">
-
-
-  <!-- Add additional CSS in static file -->
-
-  <link rel="stylesheet" href="{% static 'principalApp/css/style.css' %}">
-</head>
-
-<body>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-2">
-          {% block sidebar %}
-              <ul class="sidebar-nav">
-                <li><a href="{% url 'inicio' %}">Home</a></li>
-                <li><a href="">All books</a></li>
-                <li><a href="">All authors</a></li>
-              </ul>
-          {% endblock %}
-      </div>
-      <div class="col-sm-10 ">
-        {% block content %}
-            Contenido cambiante
-        {% endblock %}
-      </div>
-    </div>
-  </div>
-</body>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../static/principalApp/css/estilos_base.css">
+    <title>Gestor de Proyecto</title>
+  </head>
+  <body>
+     {% if user.is_authenticated %}
+        <div class="padre">
+            <div class="hijo">
+                <nav>
+                    <a class="boton-nav" href="#">{{ user.first_name }}</a>
+                    <a class="boton-nav" href="inicio">Inicio</a>
+                    <a class="boton-nav" href="#">Mis proyectos</a>
+                    <a class="boton-nav" href="#">Calendario</a>
+                    <a class="boton-nav" href="/accounts/logout/">Cerrar Sesión</a>
+                </nav>
+            </div>
+        </div>
+    {% endif %}
+  </body>
 </html>
