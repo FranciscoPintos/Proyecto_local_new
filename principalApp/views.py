@@ -8,6 +8,8 @@ def inico(request):
 def base(request):
     return render(request,"principalApp/base.html")
 
+def pr(request):
+    return render(request,"principalApp/pr.html")
 
 def crearProyecto(request):
     data = {
