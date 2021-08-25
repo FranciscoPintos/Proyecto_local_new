@@ -1,3 +1,4 @@
+from django.contrib.auth.models import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 #from allauth.socialaccount.models import
@@ -35,6 +36,51 @@ class UsuarioManager(BaseUserManager):
         usuario.save()
         return usuario
 
+    def has_perm(self, perm, obj=None):
+        return True
+
+class RolSistema(models.Model):
+    name = models.CharField(max_length=60)
+    permisos = models.ManyToManyField(Permission)
+
+    def add_pemission(self, new):
+        self.permisos.add(new)
+
+    """
+    Asigna un permiso al rol
+    
+    Parameters
+    ----------
+    new: str
+    Cadena que representa un permiso con la columna 'codename' de la tabla auth_permission
+    """
+    def add_pemission_str(self, new):
+        self.permisos.add(Permission.objects.get(codename=new))
+
+    def has_permission(self,new):
+        for i in self.permisos.all():
+            if i == new:
+                return True
+        return False
+
+    def has_permission_str(self,new):
+        for i in self.permisos.all():
+            if i.codename == new:
+                return True
+        return False
+
+    def view_permission(self):
+        return self.permisos
+
+    def view_all_permission(self):
+        return self.permisos.all()
+
+    def __str__(self):
+        return self.name + ' ' + self.permisos.all()
+
+    class Meta:
+        db_table = 'rol_sistema'
+
 class Usuario(AbstractUser):
     username = models.CharField('Nombre de usuario', unique=True, max_length=50)
     names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
@@ -46,7 +92,7 @@ class Usuario(AbstractUser):
     fecha_deleted = models.DateField(null=True, blank=True)
     usuario_activo = models.BooleanField(default=True, null=True, blank=True)
     usuario_administrador = models.BooleanField(default=False, null=True, blank=True)
-    #rol = models.IntegerField(blank=True)
+    rol = models.ForeignKey(RolSistema, on_delete=models.CASCADE, blank=True, null=True)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'username'
@@ -55,12 +101,16 @@ class Usuario(AbstractUser):
     def __str__(self):
         return self.username + ' ' + self.email
 
-    def has_perm(self, perm, obj=None):
+    def has_module_perms(self, app_label):
         return True
 
-    def has_module_perms(self, app_label):
+    def has_perm(self, perm, obj=None):
         return True
 
     @property
     def is_staff(self):
         return self.usuario_administrador
+
+    def add_rol(self, new):
+        self.rol = new
+        self.save()

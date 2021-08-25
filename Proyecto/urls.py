@@ -24,4 +24,5 @@ urlpatterns = [
     path('',include('loginSSO.urls')),
     path('', include('principalApp.urls')),
     path('', include('usuario.urls')),
+    path('', include('proyecto.urls'))
 ]

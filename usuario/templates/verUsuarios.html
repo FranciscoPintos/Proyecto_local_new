@@ -5,16 +5,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/principalApp/css/style.css">
     <title>Usuario</title>
 </head>
 <body>
-    {% for foo in name %}
-        {% if user.id == foo.id %}
-            {{ foo.first_name }} {{ foo.email }}<br>
+    <!--% for foo in name %}-->
+        {% if user.id == name.id %}
+            {{ name.first_name }} {{ name.email }}<br>
         {% endif %}
 
-    {% endfor %}
+    <!--% endfor %}-->
     {{ user.first_name }}
+    {{ user.id }}
 
 </body>
 </html>

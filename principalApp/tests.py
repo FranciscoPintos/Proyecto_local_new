@@ -3,7 +3,7 @@ from Proyecto.wsgi import *
 from principalApp.models import *
 
 import datetime
-
+"""
 # creating an instance of
 # datetime.date
 d = datetime.date(1997, 10, 14) # %y/$m/%d
@@ -25,3 +25,4 @@ print(Usuario.objects.all())
 pr1 = Proyecto()
 pr1.name = 'Proyecto01'
 pr1.creator = 1
+"""

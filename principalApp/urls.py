@@ -10,5 +10,4 @@ urlpatterns = [
         path('principalApp/inicio', TemplateView.as_view(template_name="inicio.html"),name='inicio'),
         path('principalApp/base', TemplateView.as_view(template_name="base.html"), name='base'),
 
-
 ]
