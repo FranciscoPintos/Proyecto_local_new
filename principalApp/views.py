@@ -9,7 +9,7 @@ def inico(request):
     return render(request,"principalApp/inicio.html")
 
 def base(request):
-    return render(request,"principalApp/base.html")
+    return render(request,"base.html")
 
 
 def crearProyecto(request):
