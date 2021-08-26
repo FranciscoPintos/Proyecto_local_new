@@ -87,7 +87,12 @@
 
       </div>
 
-      <main>
+
+
+      <main class="main">
+          <div class="vacio">
+            <p><br><br><br><br><br><br></p>
+          </div>
           {% if user.id == name.id %}
             {{ name.first_name }} {{ name.email }}<br>
           {% endif %}
