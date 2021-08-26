@@ -1,4 +1,3 @@
-
 {% load socialaccount %}
 {% load static %}
 
@@ -22,9 +21,17 @@
                     <p><br></p>
             </form>
         {% else %}
-        <h1>Bienvenido</h1>
-            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
+            <h1>Bienvenido</h1>
+
+            <div class="boton_super">
                 <br>
+                <p>Ingresar como súper usuario</p>
+                <a class="a_boton_super" href="login_super_user.html">
+                    <input type="submit" value="Iniciar">
+                </a>
+            </div>
+
+            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
                 <p>Puedes iniciar sesión con:</p>
                 <!-- Añadir boton de inicio con google-->
                   <input type="submit" value="Google"/>

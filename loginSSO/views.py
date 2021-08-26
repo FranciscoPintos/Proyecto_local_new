@@ -10,3 +10,6 @@ def login(request):
 def pantalla(request):
     return render(request, "pantalla.html")
 
+def login_super_usuario(request):
+    return render(request, "login_super_user.html")
+

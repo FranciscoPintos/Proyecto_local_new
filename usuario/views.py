@@ -10,3 +10,6 @@ def verUsuario(request, id):
         #'Categoria': Proyecto.objects.all()
     }
     return render(request, "verUsuarios.html", data)
+
+def inicio(request):
+    return render(request, "inicio.html")
