@@ -42,47 +42,85 @@
       <div class="menu__side" id="menu__side">
 
         <div class="name__menu">
-          <i class="fas fa-inbox"></i>
-          <h4>Menú</h4>
+          {% if user.is_staff %}
+            <i class="fas fa-tools"></i>
+            <h4>Menú.</h4>
+          {% else %}
+            <i class="fas fa-inbox"></i>
+            <h4>Menú</h4>
+          {% endif %}
         </div>
 
         <div class="opciones__menu">
           <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 1"></i>
-              <h4>Opción 1</h4>
-            </div>
+            {% if user.is_staff %}
+              <div class="opcion">
+                <i class="fas fa-user-tag" title="Gestionar roles de usuarios"></i>
+                <h4>Roles user</h4>
+              </div>
+            {% else %}
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 1"></i>
+                <h4>Opción 1</h4>
+              </div>
+            {% endif %}
           </a>
           <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 2"></i>
-              <h4>Opción 2</h4>
-            </div>
+            {% if user.is_staff %}
+              <div class="opcion">
+                <i class="fas fa-user-edit" title="Gestionar usuarios del sistema"></i>
+                <h4>Usuarios</h4>
+              </div>
+            {% else %}
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 2"></i>
+                <h4>Opción 2</h4>
+              </div>
+            {% endif %}
           </a>
           <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 3"></i>
-              <h4>Opción 3</h4>
-            </div>
+            {% if user.is_staff %}
+              <div class="opcion">
+                <i class="fas fa-project-diagram" title="Gestionar proyectos del sistema"></i>
+                <h4>Proyectos</h4>
+              </div>
+            {% else %}
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 3"></i>
+                <h4>Opción 3</h4>
+              </div>
+            {% endif %}
           </a>
-          <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 4"></i>
-              <h4>Opción 4</h4>
-            </div>
-          </a>
-          <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 5"></i>
-              <h4>Opción 5</h4>
-            </div>
-          </a>
-          <a href="#">
-            <div class="opcion">
-              <i class="fas fa-home" title="Opción 6"></i>
-              <h4>Opción 6</h4>
-            </div>
-          </a>
+          {% if user.is_staff %}
+
+          {% else %}
+            <a href="#">
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 4"></i>
+                <h4>Opción 4</h4>
+              </div>
+            </a>
+          {% endif %}
+          {% if user.is_staff %}
+
+          {% else %}
+            <a href="#">
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 5"></i>
+                <h4>Opción 5</h4>
+              </div>
+            </a>
+          {% endif %}
+          {% if user.is_staff %}
+
+          {% else %}
+            <a href="#">
+              <div class="opcion">
+                <i class="fas fa-home" title="Opción 6"></i>
+                <h4>Opción 6</h4>
+              </div>
+            </a>
+          {% endif %}
         </div>
 
       </div>
