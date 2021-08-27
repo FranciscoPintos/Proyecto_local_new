@@ -8,6 +8,9 @@ from usuario.views import verUsuario
 
 urlpatterns = [
         # Paths de views
+        path('usuario/ver', verUsuario),
+        path('list/',UserListView.as_view(),name='user_list'),
+
         path('usuario/<int:id>', verUsuario),
 
 

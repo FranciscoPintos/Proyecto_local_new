@@ -1,4 +1,5 @@
 from django.db import models
+<<<<<<< HEAD
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 #from allauth.socialaccount.models import
 
@@ -81,15 +82,16 @@ class RolSistema(models.Model):
         db_table = 'rol_sistema'
 
 class Usuario(AbstractUser):
-    username = models.CharField('Nombre de usuario', unique=True, max_length=50)
-    names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
-    lastname = models.CharField('Apellidos ', max_length=50, null=True, blank=True)
-    ci = models.CharField(max_length=10,unique=True,  verbose_name='Cedula', null=True, blank=True)
-    email = models.CharField(max_length=70, verbose_name='emaill', unique=True)
-    fecha_nac = models.DateField(null=True, blank=True)
-    fecha_created = models.DateField(null=True, blank=True)
-    fecha_deleted = models.DateField(null=True, blank=True)
-    usuario_activo = models.BooleanField(default=True, null=True, blank=True)
+    # role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default='')
+    # username = models.CharField('Nombre de usuario', unique=True, max_length=50)
+    # names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
+    # lastname = models.CharField('Apellidos ', max_length=50, null=True, blank=True)
+    # ci = models.CharField(max_length=10,unique=True,  verbose_name='Cedula', null=True, blank=True)
+    # email = models.CharField(max_length=70, verbose_name='emaill', unique=True)
+    # fecha_nac = models.DateField(null=True, blank=True)
+    # fecha_created = models.DateField(null=True, blank=True)
+    # fecha_deleted = models.DateField(null=True, blank=True)
+    # usuario_activo = models.BooleanField(default=True, null=True, blank=True)
     usuario_administrador = models.BooleanField(default=False, null=True, blank=True)
     rol = models.ForeignKey(RolSistema, on_delete=models.CASCADE, blank=True, null=True)
     objects = UsuarioManager()
@@ -110,6 +112,50 @@ class Usuario(AbstractUser):
     def is_staff(self):
         return self.usuario_administrador
 
+    # Funcion toJason Para que funcione la vista - FP
+    def toJSON(self):
+        item = model_to_dict(self, exclude=['password', 'user_permissions', 'last_login'])
+        if self.last_login:
+            item['last_login'] = self.last_login.strftime('%Y-%m-%d')
+        item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
+        item['full_name'] = self.get_full_name()
+        item['permission'] = self.get_all_permissions()
+        item['groups'] = [{'id': g.id, 'name': g.name} for g in self.groups.all()]
+        return item
+
+    # funcion para obtener un grupo de sesion -FP
+    def get_group_session(self):
+        try:
+            request = get_current_request()
+            groups = self.groups.all()
+            if groups.exists():
+                if 'group' not in request.session:
+                    request.session['group'] = groups[0]
+        except:
+            pass
+
+    # Redefinir el save para asignar el rol al usuario
+    def save(self, *args, **kwargs):
+        if not self.id:
+            super().save(*args, **kwargs)
+            if self.rol is not None:
+                grupo = Group.objects.filter(name=self.rol.rol).first()
+                if grupo:
+                    self.groups.add(grupo)
+                super().save(*args, **kwargs)
+        else:
+            if self.rol is not None:
+                grupo_ant = Usuario.objects.filter(id=self.id).values('rol__rol').first()
+                if grupo_ant['rol__rol'] == self.rol.rol:
+                    super().save(*args, **kwargs)
+                else:
+                    grupo_anterior = Group.objects.filter(name=grupo_ant['rol__rol']).first()
+                    if grupo_anterior:
+                        self.groups.remove(grupo_anterior)
+                    new_group = Group.objects.filter(name=self.rol.rol).first()
+                    if new_group:
+                        self.groups.add(new_group)
+                    super().save(*args, **kwargs)
     def add_rol(self, new):
         self.rol = new
         self.save()
