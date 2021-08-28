@@ -6,9 +6,13 @@ from roles.views import *
 
 urlpatterns = [
         # Paths de views
-        path('rol/',roles),
+        path('rol/base/', base_roles, name='base_roles'),
+        path('rol/',roles,name='roles'),
         path('crearRoles/', crear_rol.as_view(), name='crear_rol'),
-        path('creado', creado.as_view(), name='creado'),
+        path('eliminarRol/<int:pk>', RolDelete.as_view(),name='delete_rol'),
+        path('editarRol/<int:pk>', editRol.as_view(),name='edit_rol'),
+
+
 
 ]
 
