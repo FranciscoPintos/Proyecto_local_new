@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 # Create your models here.
@@ -28,7 +30,16 @@ class Proyecto(models.Model):
         self.save()
 
     class Meta:
-        db_table = 'proyecto'
+        db_table = 'project'
+
+    def save(self, *args, **kwargs):
+        if self.fecha_inicio is not None and self.fecha_fin is not None:
+            if self.fecha_inicio < datetime.date.today():
+                raise ValueError("Fecha" + self.fecha_inicio.__str__() + " no puede ser menor a la actual.")
+            if self.fecha_fin <= self.fecha_inicio:
+                raise  ValueError("Fecha" + self.fecha_fin.__str__() + " no puede ser menor a fecha de inicio."+ self.fecha_inicio.__str__())
+
+        super().save(*args, **kwargs)
 
 def set_can_buy_beer(sender, instance, **kwargs):
     ''' Trigger body '''
