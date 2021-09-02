@@ -4,6 +4,12 @@ from django.db import models
 from usuario.models import Usuario
 
 
+from django.db import models
+
+# Create your models here.
+from usuario.models import Usuario
+
+
 class Proyecto(models.Model):
     ESTADOS = (
         ('E', 'Espera'),
@@ -21,7 +27,7 @@ class Proyecto(models.Model):
 
 
     def __str__(self):
-        return self.name + ' ' + self.creator.__str__()
+        return self.name
 
     def delete(self):
         self.active = False
