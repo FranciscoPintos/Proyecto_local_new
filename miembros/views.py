@@ -44,7 +44,7 @@ def confirmaDelete(request, id):
         borrar.save()
         return redirect('verotravesmiembro', id=idProject)
     else:
-        return render(request, 'EliminarMiembro.html')
+        return render(request, 'eliminarMiembro.html')
 def borrarMiembro(request):
     if request.method == 'POST':
         FormularioProyecto = deleteMiembro(request.POST)
@@ -52,7 +52,7 @@ def borrarMiembro(request):
         form= FormularioProyecto.fields
         return redirect('verotravesmiembro')  # Este tiene que redirigir a proyecto
     else:
-        return render(request, 'EliminarMiembro.html')
+        return render(request, 'eliminarMiembro.html')
 
 
 #formaProyecto = CrearRol()

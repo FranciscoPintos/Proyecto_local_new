@@ -1,6 +1,10 @@
-{% extends 'base.html' %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VerMiembros</title>
+</head>
+<body>
 {% for r in ver %}
     <tr>
         <td><h5 class="card-title">{{ r.user }}</h5></td>
@@ -8,4 +12,5 @@
     </tr>
 
 {% endfor %}
-{% endblock %}
+</body>
+</html>
