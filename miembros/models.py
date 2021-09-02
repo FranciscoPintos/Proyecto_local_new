@@ -56,7 +56,7 @@ class Miembro(models.Model):# Meal
     horaTrabajo = models.IntegerField()
     activo= models.BooleanField(default=True)
     class Meta:
-        db_table = 'miembros'
+        db_table= 'miembros'
 
    # def retorna_permisos_especifico(self):# Para que rectone permisos especifico se debe agregar un parametro a la función
      #   return self.objects.filter(RolProyecto__permisos__icontains='Rol')

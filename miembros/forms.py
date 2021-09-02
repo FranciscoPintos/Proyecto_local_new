@@ -49,37 +49,6 @@ class deleteMiembro(forms.ModelForm):
         model = Miembro
         fields = []
 
-class modificarProject(forms.ModelForm):
-    class Meta:
-        model = Proyecto
-        fields = [
-            'name',
-            'fecha_inicio',
-            'fecha_fin',
-        ]
-        labels = {
-            'name': 'Nombre',
-            'fecha_inicio': 'Fecha de inicio',
-            'fecha_fin': 'Fecha de finalización',
-        }
-
-        widgets = {
-            'name': forms.TextInput(attrs={'type': 'text'}),
-            'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-        }
-
-class detalleprojecto(forms.ModelForm):
-    class Meta:
-        model = Proyecto
-        fields = ['name','fecha_inicio','fecha_fin', 'estado']
-
-    # name= forms.CharField
-    # fecha_inicio= forms.DateField
-    # fecha_fin = forms.DateField
-    # estado= forms.CharField
-
-
 """
     project = CustomMMCF2(
         queryset=Proyecto.objects.all(),

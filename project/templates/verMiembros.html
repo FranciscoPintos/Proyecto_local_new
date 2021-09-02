@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VerMiembros</title>
+</head>
+<body>
+{% for r in ver %}
+    <tr>
+        <td><h5 class="card-title">{{ r.user }}</h5></td>
+        <a class="boton-nav" href="/confirmarEliminado/{{ r.id }}">eliminar</a>
+    </tr>
+
+{% endfor %}
+</body>
+</html>
