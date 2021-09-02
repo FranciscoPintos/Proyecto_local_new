@@ -5,13 +5,17 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 
 
 # Create your views here.
-class loginView(TemplateView):
-    template_name='login.html'
+def loginView(request):
+    if request.user.is_authenticated:
+        return redirect('principalApp/inicio')
+    return render(request,"login.html")
 
 
 def pantalla(request):
     return render(request, "pantalla.html")
 
 def login_super_usuario(request):
+    if request.user.is_authenticated:
+        return redirect('principalApp/inicio')
     return render(request, "login_super_user.html")
 

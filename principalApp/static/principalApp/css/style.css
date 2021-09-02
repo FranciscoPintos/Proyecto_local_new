@@ -99,6 +99,7 @@ nav > ul > li > a:hover {
   padding: 10px;
   border-width: 2px;
   border-style: solid;
+  color: white;
 
 }
 /*este es el li que contiene cada item <a>*/

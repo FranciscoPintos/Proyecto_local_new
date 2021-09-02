@@ -54,7 +54,6 @@ INSTALLED_APPS = [
     'principalApp',
     'usuario',
     'roles',
-    'usuario',
     'proyecto'
 ]
 

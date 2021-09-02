@@ -59,38 +59,38 @@ class UserListView(LoginRequiredMixin, ListView):
         return context
 
 
-# LoginRequiredMixin redirecciona al usuario al login si no está logueado
-#@permission_required('usuario.view_usuario', '/inicio/')
-class UserListView(LoginRequiredMixin, ListView):
-    model = Usuario
-    template_name = 'roles.html'
-    permission_required = 'usuario.view_usuario'
-
-    @method_decorator(csrf_exempt)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'searchdata':
-                data = []
-                for i in Usuario.objects.all():
-                    data.append(i.toJSON())
-            else:
-                data['error'] = 'Ha ocurrido un error'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Roles'
-        context['create_url'] = ''  # reverse_lazy('user:user_create')
-        context['list_url'] = reverse_lazy('user_list')
-        context['entity'] = 'Usuarios'
-        return context
+# # LoginRequiredMixin redirecciona al usuario al login si no está logueado
+# #@permission_required('usuario.view_usuario', '/inicio/')
+# class UserListView(LoginRequiredMixin, ListView):
+#     model = Usuario
+#     template_name = 'roles.html'
+#     permission_required = 'usuario.view_usuario'
+#
+#     @method_decorator(csrf_exempt)
+#     def dispatch(self, request, *args, **kwargs):
+#         return super().dispatch(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         data = {}
+#         try:
+#             action = request.POST['action']
+#             if action == 'searchdata':
+#                 data = []
+#                 for i in Usuario.objects.all():
+#                     data.append(i.toJSON())
+#             else:
+#                 data['error'] = 'Ha ocurrido un error'
+#         except Exception as e:
+#             data['error'] = str(e)
+#         return JsonResponse(data, safe=False)
+#
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['title'] = 'Roles'
+#         context['create_url'] = ''  # reverse_lazy('user:user_create')
+#         context['list_url'] = reverse_lazy('user_list')
+#         context['entity'] = 'Usuarios'
+#         return context
 
 def inicio(request):
     return render(request, "inicio.html")

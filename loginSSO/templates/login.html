@@ -3,45 +3,35 @@
 
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
-  <head>
+<head>
     <meta charset="utf-8">
 
-        <title>Iniciar Sesion</title>
-            <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
-  </head>
-  <body>
-    <div class="center">
-        {% if user.is_authenticated %}
+    <title>Iniciar Sesion</title>
+    <link rel="stylesheet" href="{% static 'loginSSO/css/style.css' %}">
+</head>
+<body>
+<div class="center">
 
-            <p>Está logueado con este usuario: {{ user.username   }} </p>
-            <h1>Bienvenido</h1>
-            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
-                <br>
-                    <p>Iniciar sesión con otra cuenta:</p>
-                        <input type="submit" value="Google"/>
-                    <p><br></p>
-            </form>
-        {% else %}
-            <h1>Bienvenido</h1>
+    <h1>Bienvenido</h1>
 
-            <div class="boton_super">
-                <br>
-                <p>Ingresar como súper usuario</p>
-                <a class="a_boton_super" href="login_super_user.html">
-                    <input type="submit" value="Iniciar">
-                </a>
-            </div>
-
-            <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
-                <p>Puedes iniciar sesión con:</p>
-                <!-- Añadir boton de inicio con google-->
-                  <input type="submit" value="Google"/>
-                <p><br></p>
-            </form>
-        {% endif %}
-
+    <div class="boton_super">
+        <br>
+        <p>Ingresar como súper usuario</p>
+        <a class="a_boton_super" href="login_super_user.html">
+            <input type="submit" value="Iniciar">
+        </a>
     </div>
-  </body>
+
+    <form method="post" action="{% provider_login_url 'google' %}"> {% csrf_token %}
+        <p>Puedes iniciar sesión con:</p>
+        <!-- Añadir boton de inicio con google-->
+        <input type="submit" value="Google"/>
+        <p><br></p>
+    </form>
+
+
+</div>
+</body>
 </html>
 
 
