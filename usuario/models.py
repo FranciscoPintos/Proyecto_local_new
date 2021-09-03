@@ -5,6 +5,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 #from allauth.socialaccount.models import
 
 # Create your models here.
+from django.forms import model_to_dict
 
 
 class UsuarioManager(BaseUserManager):
@@ -32,7 +33,7 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-
+        usuario.is_superuser= True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -111,7 +112,7 @@ class Usuario(AbstractUser):
 
     @property
     def is_staff(self):
-        return self.usuario_administrador
+        return self.is_superuser
 
     # Funcion toJason Para que funcione la vista - FP
     def toJSON(self):
@@ -136,6 +137,7 @@ class Usuario(AbstractUser):
             pass
 
     # Redefinir el save para asignar el rol al usuario
+"""
     def save(self, *args, **kwargs):
         if not self.id:
             super().save(*args, **kwargs)
@@ -157,6 +159,4 @@ class Usuario(AbstractUser):
                     if new_group:
                         self.groups.add(new_group)
                     super().save(*args, **kwargs)
-    def add_rol(self, new):
-        self.rol = new
-        self.save()
+"""
