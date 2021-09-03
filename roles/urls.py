@@ -12,8 +12,8 @@ urlpatterns = [
         path('crearRoles/', crear_rol.as_view(), name='crear_rol'),
         path('eliminarRol/<int:pk>', RolDelete.as_view(),name='delete_rol'),
         path('editarRol/<int:pk>', editRol.as_view(),name='edit_rol'),
-
-
+        path('asignarRol/<int:id>', asignarRol, name='asignar_rol'),
+        path('listarUsuarios/', listarUsuarios, name="listar_usuarios"),
 
 ]
 

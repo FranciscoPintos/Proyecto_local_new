@@ -2,12 +2,12 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
-from django.http import JsonResponse, HttpResponseRedirect, HttpRequest
+from django.http import JsonResponse, HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View, TemplateView
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -44,7 +44,6 @@ class crear_rol(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
     template_name = 'create_rol.html'
     success_url = reverse_lazy('roles')
     url_redirect = success_url
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -85,3 +84,28 @@ class editRol(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
 
 class creado(TemplateView):
     template_name = 'Creado.html'
+
+
+def asignarRol(request, id):
+    usuario = Usuario.objects.get(id=id)
+    if request.method == 'POST':
+        FormularioProyecto = modificarRolUsuario(request.POST)
+        if FormularioProyecto.is_valid():
+            Pr = FormularioProyecto.save(commit=False)
+            usuario.rol = Pr.rol
+            usuario.save()
+            return redirect('listar_usuarios')
+
+        return redirect('asignar_rol', id=id)
+    if request.method == 'GET':
+        usuario = Usuario.objects.get(id=id)
+        FormularioProyecto = modificarRolUsuario(instance=usuario)
+
+    return render(request, 'asignar_rol.html', {'Usuarios': FormularioProyecto, 'Nombre': usuario.first_name})
+
+
+def listarUsuarios(request):
+
+    usuarios = Usuario.objects.all()
+
+    return render(request, 'listar_usuarios.html', {'Usuarios': usuarios})

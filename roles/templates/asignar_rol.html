@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">Usuarios</h3>
+                </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Escoger Rol</th>
+                        </tr>
+                        </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td><h5 class="card-title">{{ Nombre }}</h5> </td>
+
+                                    <form method="POST">{% csrf_token %}
+                                        <td><h5 class="card-title">{{ Usuarios }}</h5></td>
+                                        <button type="submit">Guardar</button>
+                                    </form>
+
+                                </tr>
+
+
+                                </tbody>
+
+                    </table>
+
+            </div>
+        </div>
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <a href="{% url 'inicio' %}" class="btn btn-lg btn-primary float-right">
+                    Atras
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

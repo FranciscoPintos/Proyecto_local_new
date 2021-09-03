@@ -8,6 +8,7 @@ from roles.models import Rol
 #from allauth.socialaccount.models import
 
 # Create your models here.
+from roles.models import Rol
 
 
 class UsuarioManager(BaseUserManager):
@@ -35,7 +36,8 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-        usuario.is_superuser=True
+
+        usuario.is_superuser = True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -76,7 +78,6 @@ class Usuario(AbstractUser):
                 if i.codename == perm:
                     return True
             return False
-
 
     @property
     def is_staff(self):

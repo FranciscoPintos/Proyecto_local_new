@@ -11,7 +11,8 @@
                     <h3 class="align-content-center ">Roles</h3>
                 </div>
                 {% if Rol %}
-                    <table class="table ">
+
+                    <table class="table">
                         <thead>
                         <tr>
                             <th>Rol</th>
@@ -32,6 +33,7 @@
                                 </td>
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
+
                                         <a href="{% url 'edit_rol' r.id %}" class="btn btn-info"><i
                                                 class="fas fa-edit"></i></a>
                                         <a type="submit" href="{% url 'delete_rol' r.id %}" class="btn btn-danger"><i
@@ -59,6 +61,25 @@
                 </div>
             </div>
         {% endif %}
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <table>
+                    <tr>
+                        <a href="{% url 'asignar_rol' %}" class="btn btn-lg btn-primary float-right">
+                            Asignar Rol
+                        </a>
+                    </tr>
+
+                    <tr>
+                        <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
+                            Crear Rol
+                        </a>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
     </div>
 
 
