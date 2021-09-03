@@ -47,10 +47,15 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'crispy_forms',
 
     #APPS del proyecto
     'loginSSO',
     'principalApp',
+    'usuario',
+    'roles',
+    'project',
+    'miembros',
 ]
 
 MIDDLEWARE = [
@@ -162,3 +167,9 @@ SITE_ID = 3
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+LOGIN_URL= reverse_lazy('login')
+
+AUTH_USER_MODEL = 'usuario.Usuario'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

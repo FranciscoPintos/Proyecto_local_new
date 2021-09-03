@@ -32,23 +32,5 @@ Dar privilegios a ```Postgres```
 ````
 grant all privileges on database desarrollo to postgres;
 ````
-
-Cambiar la contraseña de la base de datos
-````
-alter user postgres with password 'admin';
-````
-
 Desconectarse con ```\q```  
-Cerrar la terminal  
-
-Desde el entorno virtual realice 
-````
-python manage.py makemigrations
-python manage.py migrate
-````
-
-Cree un super usuario
-````
-python manage.py createsuperuser
-````
-Ejecute el servidor y en la consola de administración de Django añada su api de conexión 
+Cerrar la terminal
