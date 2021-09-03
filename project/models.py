@@ -23,7 +23,7 @@ class Proyecto(models.Model):
 
 
     def __str__(self):
-        return self.name + ' ' + self.creator.__str__()
+        return self.name
 
     def delete(self):
         self.active = False

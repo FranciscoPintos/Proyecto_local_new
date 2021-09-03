@@ -4,7 +4,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.forms import model_to_dict
 
-from roles.models import Rol
+from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
+
 #from allauth.socialaccount.models import
 
 # Create your models here.
