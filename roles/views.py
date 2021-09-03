@@ -20,11 +20,12 @@ from roles.forms import *
 
 @login_required(login_url='login')
 def roles(request):
-    rol=Rol.objects.all()
-    return render(request,'roles.html',{'Rol':rol})
+    rol = Rol.objects.all()
+    return render(request, 'roles.html', {'Rol': rol})
+
 
 def base_roles(request):
-    return render(request,'base_rol.html')
+    return render(request, 'base_rol.html')
 
 # Create your views here.
 
@@ -73,3 +74,28 @@ class editRol(LoginRequiredMixin,UpdateView):
 
 class creado(TemplateView):
     template_name = 'Creado.html'
+
+
+def asignarRol(request, id):
+    usuario = Usuario.objects.get(id=id)
+    if request.method == 'POST':
+        FormularioProyecto = modificarRolUsuario(request.POST)
+        if FormularioProyecto.is_valid():
+            Pr = FormularioProyecto.save(commit=False)
+            usuario.rol = Pr.rol
+            usuario.save()
+            return redirect('listar_usuarios')
+
+        return redirect('asignar_rol', id=id)
+    if request.method == 'GET':
+        usuario = Usuario.objects.get(id=id)
+        FormularioProyecto = modificarRolUsuario(instance=usuario)
+
+    return render(request, 'asignar_rol.html', {'Usuarios': FormularioProyecto, 'Nombre': usuario.first_name})
+
+
+def listarUsuarios(request):
+
+    usuarios = Usuario.objects.all()
+
+    return render(request, 'listar_usuarios.html', {'Usuarios': usuarios})

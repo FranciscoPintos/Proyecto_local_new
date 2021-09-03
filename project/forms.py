@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import Permission
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
-
+from usuario.models import Usuario
 from project.models import Proyecto
 
 
@@ -16,17 +16,27 @@ class ProyectoForm(forms.ModelForm):
             'name',
             'fecha_inicio',
             'fecha_fin',
+            'creator'
         ]
         labels = {
             'name': 'Nombre',
             'fecha_inicio': 'Fecha de inicio',
             'fecha_fin': 'Fecha de finalización',
         }
+
         widgets = {
             'name': forms.TextInput(attrs={'type': 'text'}),
             'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+
         }
+
+    creator = forms.Select(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
+
+    print(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
+
+
+
     """
     def clean_fecha_inicio(self):
         data = self.cleaned_data['fecha_inicio']

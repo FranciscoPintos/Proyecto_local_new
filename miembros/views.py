@@ -37,6 +37,13 @@ def verMiembro(request, id):
     print(ver)
     return render(request, 'verMiembros.html', {'ver': ver})
 
+def verRolesProyecto(request, id):
+    #recoge los roles cuyos id de la clase foranea project coinciden con el id del proyecto
+    roles = RolProyecto.objects.filter(project_id=id)
+    miembros = Miembro.objects.filter(rol__project_id=id)
+    print(id)
+    return render(request, 'listarRolesProyecto.html', {'Proyecto': roles, 'Miembros': miembros})
+
 def confirmaDelete(request, id):
     if request.method == 'POST':
         borrar= Miembro.objects.get(id=id)

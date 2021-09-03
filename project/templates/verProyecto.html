@@ -1,0 +1,88 @@
+{% extends 'baseProyecto.html' %}
+
+{% block content %}
+
+    {% if not iniciar_proyecto %}
+        {% block iniciarProyecto %}
+
+        {% endblock %}
+    {% endif %}
+
+    {% if not modificar_proyecto %}
+        {% block modificarProyecto %}
+
+        {% endblock %}
+    {% endif %}
+
+    {% if not agregar_miembro %}
+        {% block agregarMiembro %}
+
+        {% endblock %}
+    {% endif %}
+
+    {% if not listar_miembro %}
+        {% block listarMiembros %}
+
+        {% endblock %}
+    {% endif %}
+
+    {% if not crear_rol_proyecto %}
+        {% block crearRolProyecto %}
+
+        {% endblock %}
+    {% endif %}
+
+    {% if not cambiar_estado %}
+        {% block cambiarEstado %}
+
+        {% endblock %}
+    {% endif %}
+
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">{{ Proyecto.name }}</h3>
+                </div>
+                {% if Proyecto %}
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Fecha de inicio</td>
+                                <td>Fecha de fin</td>
+                                <td>Estado</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{Proyecto.fecha_inicio}}</td>
+                                <td>{{Proyecto.fecha_fin}}</td>
+                                <td>
+                                    {% if Proyecto.estado == 'E' %}Espera{% endif %}
+                                    {% if Proyecto.estado == 'I' %}Iniciado{% endif %}
+                                    {% if Proyecto.estado == 'P' %}Pausado{% endif %}
+                                    {% if Proyecto.estado == 'C' %}Cancelado{% endif %}
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                {% else %}
+                    <div class="alert alert-danger mt-4"> No tiene proyectos</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <a href="{% url 'inicio' %}" class="btn btn-lg btn-primary float-right">
+                    Atras
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

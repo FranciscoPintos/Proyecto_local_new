@@ -1,5 +1,5 @@
 from django import forms
-
+from usuario.models import Usuario
 from roles.models import *
 
 
@@ -38,3 +38,9 @@ class editRolForm(forms.ModelForm):
 #             'rol': forms.CheckboxSelectMultiple(),
 #         }
 #
+class modificarRolUsuario(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['rol']
+        aux = Rol.objects.all()
+        rol = forms.Select(choices=aux)

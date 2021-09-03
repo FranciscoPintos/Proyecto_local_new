@@ -2,7 +2,7 @@ from django.shortcuts import render, HttpResponse,redirect
 from django.contrib.auth import logout, authenticate
 from django.urls import reverse_lazy
 # from Proyecto_local_new.principalApp.views import inicio
-from .forms import PostLoginForm
+#from .forms import PostLoginForm
 from django.views.generic import ListView, CreateView
 
 # Create your views here.

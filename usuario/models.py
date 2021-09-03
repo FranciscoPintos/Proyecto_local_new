@@ -102,6 +102,10 @@ class Usuario(AbstractUser):
             pass
 
     # Redefinir el save para asignar el rol al usuario
+
+
+
+"""
     def save(self, *args, **kwargs):
         if not self.id:
             super().save(*args, **kwargs)
@@ -123,3 +127,4 @@ class Usuario(AbstractUser):
                     if new_group:
                         self.groups.add(new_group)
                     super().save(*args, **kwargs)
+"""
