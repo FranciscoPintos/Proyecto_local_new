@@ -6,12 +6,6 @@ from django.db import models
 from usuario.models import Usuario
 
 
-from django.db import models
-
-# Create your models here.
-from usuario.models import Usuario
-
-
 class Proyecto(models.Model):
     ESTADOS = (
         ('E', 'Espera'),
