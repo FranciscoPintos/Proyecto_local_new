@@ -1,10 +1,13 @@
+from crum import get_current_request
 from django.contrib.auth.models import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
+from django.forms import model_to_dict
+
+from roles.models import Rol
 #from allauth.socialaccount.models import
 
 # Create your models here.
-from roles.models import Rol
 
 
 class UsuarioManager(BaseUserManager):
@@ -32,8 +35,7 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-
-        usuario.is_superuser = True
+        usuario.is_superuser=True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -75,6 +77,7 @@ class Usuario(AbstractUser):
                     return True
             return False
 
+
     @property
     def is_staff(self):
         return self.is_superuser
@@ -102,24 +105,27 @@ class Usuario(AbstractUser):
             pass
 
     # Redefinir el save para asignar el rol al usuario
-    def save(self, *args, **kwargs):
-        if not self.id:
-            super().save(*args, **kwargs)
-            if self.rol is not None:
-                grupo = Group.objects.filter(name=self.rol.rol).first()
-                if grupo:
-                    self.groups.add(grupo)
-                super().save(*args, **kwargs)
-        else:
-            if self.rol is not None:
-                grupo_ant = Usuario.objects.filter(id=self.id).values('rol__rol').first()
-                if grupo_ant['rol__rol'] == self.rol.rol:
-                    super().save(*args, **kwargs)
-                else:
-                    grupo_anterior = Group.objects.filter(name=grupo_ant['rol__rol']).first()
-                    if grupo_anterior:
-                        self.groups.remove(grupo_anterior)
-                    new_group = Group.objects.filter(name=self.rol.rol).first()
-                    if new_group:
-                        self.groups.add(new_group)
-                    super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.id:
+    #         super().save(*args, **kwargs)
+    #         if self.rol is not None:
+    #             grupo = Group.objects.filter(name=self.rol.rol).first()
+    #             if grupo:
+    #                 self.groups.add(grupo)
+    #             super().save(*args, **kwargs)
+    #     else:
+    #         if self.rol is not None:
+    #             grupo_ant = Usuario.objects.filter(id=self.id).values('rol__rol').first()
+    #             if grupo_ant['rol__rol'] == self.rol.rol:
+    #                 super().save(*args, **kwargs)
+    #             else:
+    #                 grupo_anterior = Group.objects.filter(name=grupo_ant['rol__rol']).first()
+    #                 if grupo_anterior:
+    #                     self.groups.remove(grupo_anterior)
+    #                 new_group = Group.objects.filter(name=self.rol.rol).first()
+    #                 if new_group:
+    #                     self.groups.add(new_group)
+    #                 super().save(*args, **kwargs)
+    def add_rol(self, new):
+        self.rol = new
+        self.save()
