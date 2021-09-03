@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% for r in ver %}
+    <tr>
+        <td><h5 class="card-title">{{ r.user }}</h5></td>
+        <a class="boton-nav" href="/confirmarEliminado/{{ r.id }}">eliminar</a>
+    </tr>
+
+{% endfor %}
+{% endblock %}

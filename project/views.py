@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 # Create your views here.
 from django.views.generic import ListView, CreateView
 
+from miembros.models import Miembro
 from project.forms import CreateProyectoForm, ProyectoForm
 from project.models import Proyecto
 from usuario.models import Usuario
@@ -58,3 +59,11 @@ class ProyectoCreate(CreateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object
         form = self.form_class(request.POST)
+
+def verProyecto(request, id):
+    print(Usuario.objects.get(id=id).id)
+    user = request.user
+    miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
+    print(miembro.rol.project.id)
+    pr = Proyecto.objects.filter(id=miembro.rol.project.id)
+    return render(request, 'misPryectos.html',{'Proyecto':pr})

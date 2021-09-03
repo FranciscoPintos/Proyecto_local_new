@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'principalApp',
     'usuario',
     'roles',
-    'proyecto'
+    'project',
+    'miembros',
 ]
 
 MIDDLEWARE = [
