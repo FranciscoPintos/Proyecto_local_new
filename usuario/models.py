@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 #from allauth.socialaccount.models import
 
 # Create your models here.
-from roles.models import Rol
+from django.forms import model_to_dict
 
 
 class UsuarioManager(BaseUserManager):
@@ -32,8 +32,7 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-
-        usuario.is_superuser = True
+        usuario.is_superuser= True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -102,9 +101,6 @@ class Usuario(AbstractUser):
             pass
 
     # Redefinir el save para asignar el rol al usuario
-
-
-
 """
     def save(self, *args, **kwargs):
         if not self.id:
