@@ -31,7 +31,7 @@
 
 </head>
 <!--el id sirve para llamarlo despues en el js-->
-<body id="body" class="hold-transition ">
+<body id="body" class="hold-transition overflow-scroll">
     {% block header %}
         <header class="header navbar navbar-expand navbar-dark  flex-md-row  ">
                 <nav class="nav">
@@ -48,7 +48,7 @@
                             <a class="nav-menu-horizontal-link" href="inicio">Inicio</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/proyecto/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
+                            <a class="nav-menu-horizontal-link" href="/project/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
                             <a class="nav-menu-horizontal-link" href="#">Calendario</a>

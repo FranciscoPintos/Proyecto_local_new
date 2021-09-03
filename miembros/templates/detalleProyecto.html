@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">Detalle de Proyecto</h3>
+                </div>
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    {% if detalle %}
+                        {{detalle.name}}<br>
+                        {{detalle.fecha_inicio}}<br>
+                        {{detalle.fecha_fin}}<br>
+                        {{detalle.estado}}<br>
+                    {% else %}
+                        <div class="alert alert-danger mt-4"> No existe Roles</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
