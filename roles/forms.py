@@ -44,5 +44,5 @@ class modificarRolUsuario(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['rol']
-        aux = Rol.objects.all()
-        rol = forms.Select(choices=aux)
+        #aux = Rol.objects.all()
+        #rol = forms.Select(choices=aux)

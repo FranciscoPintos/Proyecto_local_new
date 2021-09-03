@@ -5,6 +5,7 @@ from django.contrib.auth.models import Permission
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from project.models import Proyecto
+from roles.forms import Rol
 
 
 class ProyectoForm(forms.ModelForm):
@@ -26,6 +27,13 @@ class ProyectoForm(forms.ModelForm):
             'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
             'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
+
+    #creator = forms.Select(list(Usuario.objects.filter(rol__rol='Scrum Master')))
+
+    #print(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
+
+
+
     """
     def clean_fecha_inicio(self):
         data = self.cleaned_data['fecha_inicio']
