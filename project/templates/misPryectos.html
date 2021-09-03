@@ -1,0 +1,62 @@
+{% extends 'baseProyecto.html' %}
+
+{% block content %}
+
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">Proyecto</h3>
+                </div>
+                {% if Proyecto %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Proyecto</th>
+                            {% if modificar %}<th>Editar</th>{% endif %}
+                            <th>Entrar</th>
+                        </tr>
+                        </thead>
+                        {% for r in Proyecto %}
+                            {% if r.active %}
+                                <tbody>
+                                <tr>
+                                    <td><h5 class="card-title">{{ r.name}}</h5> {{ user.id }} </td>
+
+                                    {% if modificar %}
+                                        <td class=" py-0 align-middle">
+                                            <a href="{% url 'modificar' r.id %}" class="btn btn-info"><i
+                                                        class="fas fa-edit"></i></a>
+                                        </td>
+                                    {% endif %}
+
+                                    <td>
+                                        <a type="submit" href="{% url 'verProyecto' r.id %}" class="btn btn-danger"><i class="fas fa-eye"></i></a>
+                                    </td>
+                                </tr>
+
+
+                                </tbody>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+
+                {% else %}
+                    <div class="alert alert-danger mt-4"> No tiene proyectos</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <a href="{% url 'inicio' %}" class="btn btn-lg btn-primary float-right">
+                    Atras
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

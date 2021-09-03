@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="card col-9 text-center offset-1 mt-3 row">
+    <br>
+    <br>
+    <br>
+    <div class="card col-9 text-center offset-1 mt-3 row " >
         <div class="col-8  offset-2 ">
             <div class="card-body p-0">
                 <div class="bg-gradient-indigo mt-5 col-5 offset-3">
@@ -23,9 +25,11 @@
                             <tr>
                                 <td><h5 class="card-title">{{ r.rol }}</h5></td>
                                 <td>
-                                    {% for p in r.permisos.all %}
-                                         {{ p.name }} <br>
-                                    {% endfor %}
+                                    <div class="card-primary ">
+                                        {% for p in r.permisos.all%}
+                                             {{ p.name }} <br>
+                                        {% endfor %}
+                                    </div>
                                 </td>
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
@@ -48,12 +52,31 @@
                 {% endif %}
             </div>
         </div>
+        {% if User %}
+            <div class="mt-6 mb-4 flex-md-row">
+                <div class="col-3 offset-9 mt-3">
+                    <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
+                        Crear Rol
+                    </a>
+                </div>
+            </div>
+        {% endif %}
 
         <div class="mt-6 mb-4 flex-md-row">
             <div class="col-3 offset-9 mt-3">
-                <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
-                    Crear Rol
-                </a>
+                <table>
+                    <tr>
+                        <a href="{% url 'listar_usuarios'  %}" class="btn btn-lg btn-primary float-right">
+                            Asignar Rol
+                        </a>
+                    </tr>
+
+                    <tr>
+                        <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
+                            Crear Rol
+                        </a>
+                    </tr>
+                </table>
             </div>
 
         </div>

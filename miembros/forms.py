@@ -86,7 +86,9 @@ class detalleprojecto(forms.ModelForm):
         widget=forms.Select
     )
 """
+
 """
+
 class ProyectoForm(forms.ModelForm):
 
     class Meta:
@@ -106,4 +108,5 @@ class ProyectoForm(forms.ModelForm):
             'fecha_inicio': forms.DateField(),
             'fecha_fin': forms.DateField(),
         }
+
 """

@@ -21,7 +21,15 @@ from roles.forms import *
 @login_required(login_url='login')
 def roles(request):
     rol=Rol.objects.all()
-    return render(request,'roles.html',{'Rol':rol})
+    user=request.user
+    context={
+        'Rol':rol,
+        'User':user
+    }
+    if request.user.has_perm('add_user'):
+        return render(request,'roles.html',context=context)
+    else:
+        return render(request,'roles.html',{'Rol':rol})
 
 def base_roles(request):
     return render(request,'base_rol.html')
@@ -29,7 +37,8 @@ def base_roles(request):
 # Create your views here.
 
 
-class crear_rol(LoginRequiredMixin,CreateView):
+class crear_rol(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
+    permission_required = 'add_rol'
     model = Rol
     form_class = crearRolForm
     template_name = 'create_rol.html'
@@ -45,7 +54,8 @@ class crear_rol(LoginRequiredMixin,CreateView):
         return context
 
 
-class RolDelete(LoginRequiredMixin,DeleteView):
+class RolDelete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
+    permission_required ='delete_rol'
     model = Rol
     template_name = 'delete.html'
     success_url = reverse_lazy('roles')
@@ -54,7 +64,8 @@ class RolDelete(LoginRequiredMixin,DeleteView):
 
 
 
-class editRol(LoginRequiredMixin,UpdateView):
+class editRol(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
+    permission_required = 'change_rol'
     model = Rol
     form_class = editRolForm
     template_name = 'editar_rol.html'
@@ -73,3 +84,28 @@ class editRol(LoginRequiredMixin,UpdateView):
 
 class creado(TemplateView):
     template_name = 'Creado.html'
+
+
+def asignarRol(request, id):
+    usuario = Usuario.objects.get(id=id)
+    if request.method == 'POST':
+        FormularioProyecto = modificarRolUsuario(request.POST)
+        if FormularioProyecto.is_valid():
+            Pr = FormularioProyecto.save(commit=False)
+            usuario.rol = Pr.rol
+            usuario.save()
+            return redirect('listar_usuarios')
+
+        return redirect('asignar_rol', id=id)
+    if request.method == 'GET':
+        usuario = Usuario.objects.get(id=id)
+        FormularioProyecto = modificarRolUsuario(instance=usuario)
+
+    return render(request, 'asignar_rol.html', {'Usuarios': FormularioProyecto, 'Nombre': usuario.first_name})
+
+
+def listarUsuarios(request):
+
+    usuarios = Usuario.objects.all()
+
+    return render(request, 'listar_usuarios.html', {'Usuarios': usuarios})

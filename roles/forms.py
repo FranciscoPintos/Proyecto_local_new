@@ -1,9 +1,10 @@
 from django import forms
-
+from usuario.models import Usuario
 from roles.models import *
 
 
 class crearRolForm(forms.ModelForm):
+
     class Meta:
         model = Rol
         fields = ['rol','permisos']
@@ -13,9 +14,10 @@ class crearRolForm(forms.ModelForm):
                     'placeholder': 'Ingrese Nombre del Rol',
                 }
             ),
-            'permisos.codename': forms.CheckboxSelectMultiple()
-
+            'permisos': forms.CheckboxSelectMultiple()
         }
+
+
 class editRolForm(forms.ModelForm):
     class Meta:
         model = Rol
@@ -26,7 +28,7 @@ class editRolForm(forms.ModelForm):
                     'placeholder': 'Ingrese Nombre del Rol',
                 }
             ),
-            'permisos.codename': forms.CheckboxSelectMultiple()
+            'permisos': forms.CheckboxSelectMultiple()
 
         }
 
@@ -38,3 +40,9 @@ class editRolForm(forms.ModelForm):
 #             'rol': forms.CheckboxSelectMultiple(),
 #         }
 #
+class modificarRolUsuario(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['rol']
+        #aux = Rol.objects.all()
+        #rol = forms.Select(choices=aux)

@@ -1,8 +1,6 @@
 /principalApp/migrations/
 /loginSSO/migrations/
-/principalApp/migrations/
 /usuario/migrations/
-/loginSSO/migrations/
-/principalApp/migrations/
-/usuario/migrations/
-/venv/
+/project/migrations/
+/miembros/migrations/
+/roles/migrations/

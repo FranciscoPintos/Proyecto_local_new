@@ -15,10 +15,3 @@ class baseview(TemplateView):
 
 def pr(request):
     return render(request,"principalApp/pr.html")
-
-def crearProyecto(request):
-    data = {
-        'name': 'Ever',
-        'Categoria': Proyecto.objects.all()
-    }
-    return render(request, "crearRolProyecto.html", data)

@@ -26,11 +26,14 @@
 
         <link rel="stylesheet" href="{% static 'principalApp/css/estilos_base.css' %}">
     {% endblock %}
+
+
+
 </head>
 <!--el id sirve para llamarlo despues en el js-->
 <body id="body" class="hold-transition overflow-scroll">
     {% block header %}
-        <header class="navbar navbar-expand navbar-dark fixed-top">
+        <header class="header navbar navbar-expand navbar-dark  flex-md-row  ">
                 <nav class="nav">
                     <!--Menu lateral-->
                     <div class="nav-menu-vertical">
@@ -42,10 +45,10 @@
                             <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
+                            <a class="nav-menu-horizontal-link" href="inicio">Inicio</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/project/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
+                            <a class="nav-menu-horizontal-link" href="/proyecto/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
                             <a class="nav-menu-horizontal-link" href="#">Calendario</a>
@@ -57,7 +60,8 @@
                 </nav>
 
         </header>
-        <div class="menu__side mt-5" id="menu__side">
+        {% block menuLateral %}
+        <div class="menu__side" id="menu__side">
 
             <div class="name__menu">
                 <i class="fas fa-inbox"></i>
@@ -65,46 +69,67 @@
             </div>
 
             <div class="opciones__menu">
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 1"></i>
-                        <h4>Opción 1</h4>
-                    </div>
-                </a>
-                <a href="{% url 'roles' %}">
-                    <div class="opcion">
+                {% block iniciarProyecto %}
+                    <a href="#">
+                        <div class="opcion" id="">
+                            <i class="fas fa-home" title="Poner en marcha el proyecto"></i>
+                            <h4>Iniciar Proyecto</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block modificarProyecto %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Modificar propiedades del proyecto"></i>
+                            <h4>Modificar Proyecto</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block agregarMiembro %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Agregar un miembro al proyecto"></i>
+                            <h4>Agregar Miembro</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block listarMiembros %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Muestra todos los miembros del proyecto para su gestión"></i>
+                            <h4>Listar Miembros</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block crearRolProyecto %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Crear un nuevo rol para el proyecto"></i>
+                            <h4>Crear Rol Proyecto</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block modificarRol %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Modificar los permisos de un rol de proyecto"></i>
+                            <h4>Modificar Rol Proyecto</h4>
+                        </div>
+                    </a>
+                {% endblock %}
+                {% block cambiarEstado %}
+                    <a href="#">
+                        <div class="opcion">
+                            <i class="fas fa-home" title="Cambiar el estado del proyecto"></i>
+                            <h4>Cambiar Estado</h4>
+                        </div>
+                    </a>
+                {% endblock %}
 
-                        <i class="fas fa-user-tag"></i>
-                        <h4>Roles</h4>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 3"></i>
-                        <h4>Opción 3</h4>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 4"></i>
-                        <h4>Opción 4</h4>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 5"></i>
-                        <h4>Opción 5</h4>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 6"></i>
-                        <h4>Opción 6</h4>
-                    </div>
-                </a>
             </div>
 
         </div>
+        {% endblock %}
     {% endblock %}
     {% block content %}
 

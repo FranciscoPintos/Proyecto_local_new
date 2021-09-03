@@ -1,4 +1,19 @@
+{% extends 'base.html' %}
 
+
+{% block content %}
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+{% comment %}
 {% load socialaccount %}
 
 {% load static %}
@@ -29,7 +44,7 @@
               <a class="nav-menu-horizontal-link" href="inicio">Inicio</a>
             </li>
             <li class="nav-menu-horizontal-item">
-              <a class="nav-menu-horizontal-link" href="/project/nuevoProyecto/{{user.id}}">Mis Proyectos</a>
+              <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{user.id}}">Mis Proyectos</a>
             </li>
             <li class="nav-menu-horizontal-item">
               <a class="nav-menu-horizontal-link" href="#">Calendario</a>
@@ -92,4 +107,4 @@
     {% endif %}
   </body>
 </html>
-
+{% endcomment %}
