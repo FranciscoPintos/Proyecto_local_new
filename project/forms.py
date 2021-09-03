@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 from django.forms import ModelForm
 from usuario.models import Usuario
 from project.models import Proyecto
+from roles.forms import Rol
 
 
 class ProyectoForm(forms.ModelForm):
@@ -31,9 +32,9 @@ class ProyectoForm(forms.ModelForm):
 
         }
 
-    creator = forms.Select(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
+    #creator = forms.Select(list(Usuario.objects.filter(rol__rol='Scrum Master')))
 
-    print(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
+    #print(list(Usuario.objects.filter(rol__rol__exact='Scrum Master')))
 
 
 
