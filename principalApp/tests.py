@@ -1,6 +1,6 @@
 from django.test import TestCase
 from Proyecto.wsgi import *
-from principalApp.models import Usuario
+from principalApp.models import *
 
 import datetime
 
@@ -22,3 +22,6 @@ print(Usuario.objects.all())
 
 # Create your tests here.
 
+pr1 = Proyecto()
+pr1.name = 'Proyecto01'
+pr1.creator = 1

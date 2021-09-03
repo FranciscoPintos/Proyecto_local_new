@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver Proyectos</title>
+</head>
+<body>
+    {% if object_list %}
+        <table>
+            {% for Proyecto in object_list %}
+            {{ Proyecto.name }} <br>
+            {{ Proyecto.estado }} <br>
+            {{ Proyecto.fecha_inicio }}
+            {% endfor %}
+        </table>
+
+    {% endif %}
+</body>
+</html>

@@ -1,30 +1,94 @@
-{% load socialaccount %}
-{% load static %}
 
+{% load socialaccount %}
+
+{% load static %}
 <!DOCTYPE html>
-<html lang="es" dir="ltr">
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="../static/principalApp/css/style.css">
+    <meta charset="UTF-8">
     <title>Gestor de Proyecto</title>
+    <link rel="stylesheet" href="../static/principalApp/css/style.css">
+
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
   </head>
-  <body>
-     {% if user.is_authenticated %}
-        <header>
-            <div class="padre">
-                <div class="hijo">
-                    <nav>
-                        <a class="boton-nav" href="#">{{ user.first_name }}</a>
-                        <a class="boton-nav" href="inicio">Inicio</a>
-                        <a class="boton-nav" href="#">Mis proyectos</a>
-                        <a class="boton-nav" href="#">Calendario</a>
-                        <a class="boton-nav" href="/accounts/logout/">Cerrar Sesión</a>
-                    </nav>
-                </div>
+  <!--el id sirve para llamarlo despues en el js-->
+  <body id="body">
+    {% if user.is_authenticated %}
+      <header class="header">
+        <nav class="nav">
+          <!--Menu lateral-->
+          <div class="nav-menu-vertical">
+            <i class="fas fa-bars" id="btn_open"></i>
+          </div>
+          <!--Menu horizontal-->
+          <ul class="nav-menu-horizontal">
+            <li class="nav-menu-horizontal-item">
+              <a class="nav-menu-horizontal-link" href="/usuario/{{user.id}}">{{ user.first_name }}</a>
+            </li>
+            <li class="nav-menu-horizontal-item">
+              <a class="nav-menu-horizontal-link" href="inicio">Inicio</a>
+            </li>
+            <li class="nav-menu-horizontal-item">
+              <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{user.id}}">Mis Proyectos</a>
+            </li>
+            <li class="nav-menu-horizontal-item">
+              <a class="nav-menu-horizontal-link" href="#">Calendario</a>
+            </li>
+            <li class="nav-menu-horizontal-item">
+              <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="menu__side" id="menu__side">
+
+        <div class="name__menu">
+          <i class="fas fa-inbox"></i>
+          <h4>Menú</h4>
+        </div>
+
+        <div class="opciones__menu">
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 1"></i>
+              <h4>Opción 1</h4>
             </div>
-        </header>
+          </a>
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 2"></i>
+              <h4>Opción 2</h4>
+            </div>
+          </a>
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 3"></i>
+              <h4>Opción 3</h4>
+            </div>
+          </a>
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 4"></i>
+              <h4>Opción 4</h4>
+            </div>
+          </a>
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 5"></i>
+              <h4>Opción 5</h4>
+            </div>
+          </a>
+          <a href="#">
+            <div class="opcion">
+              <i class="fas fa-home" title="Opción 6"></i>
+              <h4>Opción 6</h4>
+            </div>
+          </a>
+        </div>
+
+      </div>
+      <script src="../static/principalApp/js/plantilla_base.js"></script>
     {% endif %}
   </body>
 </html>
-
-

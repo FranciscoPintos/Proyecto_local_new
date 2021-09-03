@@ -12,10 +12,17 @@ python manage.py runserver
 
 ## Librerias
 
+libpq - requerimiento de psycopg2  
+````
+sudo apt-get install libpq-dev
+````
+
 psycopg2 - Usado para conectar a la base de datos de Postgresql
 ```
 pip install psycopg2
 ```
+
+Si no puede instalar por comandos, instale por Pycharm en su interprete
 
 ## Observaciones de implementación
 

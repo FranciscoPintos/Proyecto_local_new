@@ -23,4 +23,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('loginSSO.urls')),
     path('', include('principalApp.urls')),
+    path('', include('usuario.urls')),
+    path('', include('roles.urls')),
+    path('', include('project.urls')),
+    path('', include('miembros.urls')),
 ]

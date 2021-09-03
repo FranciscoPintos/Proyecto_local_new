@@ -47,10 +47,15 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
+    'crispy_forms',
 
     #APPS del proyecto
     'loginSSO',
     'principalApp',
+    'usuario',
+    'roles',
+    'project',
+    'miembros',
 ]
 
 MIDDLEWARE = [
@@ -68,7 +73,7 @@ ROOT_URLCONF = 'Proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'principalApp/templates')],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -158,9 +163,13 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-SITE_ID = 3
+SITE_ID = 4
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
-DATE_INPUT_FORMATS = ['%d/%m/%Y']
+LOGIN_URL= reverse_lazy('login')
+
+AUTH_USER_MODEL = 'usuario.Usuario'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

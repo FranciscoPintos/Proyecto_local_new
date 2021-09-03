@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<body>
+<form method="POST">
+    <table>
+            {{proyecto}}
+    </table>
+        <button type="submit">Guardar</button>
+        {% csrf_token %}
+</form>
+</body>
+{% endblock %}
