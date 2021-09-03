@@ -2,12 +2,12 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import Group
-from django.http import JsonResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponseRedirect, HttpRequest
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View, TemplateView
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -20,9 +20,16 @@ from roles.forms import *
 
 @login_required(login_url='login')
 def roles(request):
-    rol = Rol.objects.all()
-    return render(request, 'roles.html', {'Rol': rol})
-
+    rol=Rol.objects.all()
+    user=request.user
+    context={
+        'Rol':rol,
+        'User':user
+    }
+    if request.user.has_perm('add_user'):
+        return render(request,'roles.html',context=context)
+    else:
+        return render(request,'roles.html',{'Rol':rol})
 
 def base_roles(request):
     return render(request, 'base_rol.html')
@@ -30,12 +37,14 @@ def base_roles(request):
 # Create your views here.
 
 
-class crear_rol(LoginRequiredMixin,CreateView):
+class crear_rol(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
+    permission_required = 'add_rol'
     model = Rol
     form_class = crearRolForm
     template_name = 'create_rol.html'
     success_url = reverse_lazy('roles')
     url_redirect = success_url
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -46,7 +55,8 @@ class crear_rol(LoginRequiredMixin,CreateView):
         return context
 
 
-class RolDelete(LoginRequiredMixin,DeleteView):
+class RolDelete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
+    permission_required ='delete_rol'
     model = Rol
     template_name = 'delete.html'
     success_url = reverse_lazy('roles')
@@ -55,7 +65,8 @@ class RolDelete(LoginRequiredMixin,DeleteView):
 
 
 
-class editRol(LoginRequiredMixin,UpdateView):
+class editRol(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
+    permission_required = 'change_rol'
     model = Rol
     form_class = editRolForm
     template_name = 'editar_rol.html'

@@ -1,6 +1,9 @@
 from django.contrib.auth.models import *
 from django.db import models
-from django.contrib.auth.models import AbstractUser, BaseUserManager
+
+from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
+
+from roles.models import Rol
 #from allauth.socialaccount.models import
 
 # Create your models here.
@@ -32,7 +35,7 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-        usuario.is_superuser= True
+        usuario.is_superuser=True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -40,6 +43,41 @@ class UsuarioManager(BaseUserManager):
     def has_perm(self, perm, obj=None):
         return True
 
+class RolSistema(models.Model):
+    name = models.CharField(max_length=60)
+    permisos = models.ManyToManyField(Permission)
+
+    def add_pemission(self, new):
+        self.permisos.add(new)
+
+    """
+    Asigna un permiso al rol
+
+    Parameters
+    ----------
+    new: str
+    Cadena que representa un permiso con la columna 'codename' de la tabla auth_permission
+    """
+    def add_pemission_str(self, new):
+        self.permisos.add(Permission.objects.get(codename=new))
+
+    def has_permission(self,new):
+        for i in self.permisos.all():
+            if i == new:
+                return True
+        return False
+
+    def has_permission_str(self,new):
+        for i in self.permisos.all():
+            if i.codename == new:
+                return True
+        return False
+
+    def view_permission(self):
+        return self.permisos
+
+    def view_all_permission(self):
+        return self.permisos.all()
 
 
 class Usuario(AbstractUser):
@@ -47,7 +85,7 @@ class Usuario(AbstractUser):
     username = models.CharField('Nombre de usuario', unique=True, max_length=50)
     names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
     lastname = models.CharField('Apellidos ', max_length=50, null=True, blank=True)
-    ci = models.CharField(max_length=10,unique=True,  verbose_name='Cedula', null=True, blank=True)
+    ci = models.CharField(max_length=10, unique=True, verbose_name='Cedula', null=True, blank=True)
     email = models.CharField(max_length=70, verbose_name='emaill', unique=True)
     fecha_nac = models.DateField(null=True, blank=True)
     fecha_created = models.DateField(null=True, blank=True)
@@ -62,6 +100,15 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.username + ' ' + self.email
+
+    def has_perm(self, perm, obj=None):
+        if self.is_superuser:
+            return True
+        else:
+            for i in self.user_permissions.all():
+                if i.codename == perm:
+                    return True
+            return False
 
     def has_module_perms(self, app_label):
         return True
@@ -102,26 +149,27 @@ class Usuario(AbstractUser):
             pass
 
     # Redefinir el save para asignar el rol al usuario
-"""
-    def save(self, *args, **kwargs):
-        if not self.id:
-            super().save(*args, **kwargs)
-            if self.rol is not None:
-                grupo = Group.objects.filter(name=self.rol.rol).first()
-                if grupo:
-                    self.groups.add(grupo)
-                super().save(*args, **kwargs)
-        else:
-            if self.rol is not None:
-                grupo_ant = Usuario.objects.filter(id=self.id).values('rol__rol').first()
-                if grupo_ant['rol__rol'] == self.rol.rol:
-                    super().save(*args, **kwargs)
-                else:
-                    grupo_anterior = Group.objects.filter(name=grupo_ant['rol__rol']).first()
-                    if grupo_anterior:
-                        self.groups.remove(grupo_anterior)
-                    new_group = Group.objects.filter(name=self.rol.rol).first()
-                    if new_group:
-                        self.groups.add(new_group)
-                    super().save(*args, **kwargs)
-"""
+    # def save(self, *args, **kwargs):
+    #     if not self.id:
+    #         super().save(*args, **kwargs)
+    #         if self.rol is not None:
+    #             grupo = Group.objects.filter(name=self.rol.rol).first()
+    #             if grupo:
+    #                 self.groups.add(grupo)
+    #             super().save(*args, **kwargs)
+    #     else:
+    #         if self.rol is not None:
+    #             grupo_ant = Usuario.objects.filter(id=self.id).values('rol__rol').first()
+    #             if grupo_ant['rol__rol'] == self.rol.rol:
+    #                 super().save(*args, **kwargs)
+    #             else:
+    #                 grupo_anterior = Group.objects.filter(name=grupo_ant['rol__rol']).first()
+    #                 if grupo_anterior:
+    #                     self.groups.remove(grupo_anterior)
+    #                 new_group = Group.objects.filter(name=self.rol.rol).first()
+    #                 if new_group:
+    #                     self.groups.add(new_group)
+    #                 super().save(*args, **kwargs)
+    def add_rol(self, new):
+        self.rol = new
+        self.save()

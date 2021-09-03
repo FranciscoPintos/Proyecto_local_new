@@ -6,9 +6,11 @@ body{
   background: linear-gradient(120deg,hsla(204, 64%, 44%, 0.808), hsla(282, 44%, 47%, 0.89)), url('../img/scrum_7.jpg');
   background-size: cover;
   background-attachment: fixed;
-  overflow: hidden;
+
   margin-left: 100px;
   transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  /*-ms-scrollbar-base-color: orange;*/
+  /*margin-bottom: 200%;*/
 }
 /*estilos del header*/
 header{

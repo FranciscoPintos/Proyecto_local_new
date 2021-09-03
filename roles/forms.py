@@ -4,6 +4,7 @@ from roles.models import *
 
 
 class crearRolForm(forms.ModelForm):
+
     class Meta:
         model = Rol
         fields = ['rol','permisos']
@@ -13,9 +14,10 @@ class crearRolForm(forms.ModelForm):
                     'placeholder': 'Ingrese Nombre del Rol',
                 }
             ),
-            'permisos.codename': forms.CheckboxSelectMultiple()
-
+            'permisos': forms.CheckboxSelectMultiple()
         }
+
+
 class editRolForm(forms.ModelForm):
     class Meta:
         model = Rol
@@ -26,7 +28,7 @@ class editRolForm(forms.ModelForm):
                     'placeholder': 'Ingrese Nombre del Rol',
                 }
             ),
-            'permisos.codename': forms.CheckboxSelectMultiple()
+            'permisos': forms.CheckboxSelectMultiple()
 
         }
 

@@ -1,16 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-    <div class="card col-9 text-center offset-1 mt-3 row">
+    <br>
+    <br>
+    <br>
+    <div class="card col-9 text-center offset-1 mt-3 row " >
         <div class="col-8  offset-2 ">
             <div class="card-body p-0">
                 <div class="bg-gradient-indigo mt-5 col-5 offset-3">
                     <h3 class="align-content-center ">Roles</h3>
                 </div>
                 {% if Rol %}
-
-                    <table class="table">
+                    <table class="table ">
                         <thead>
                         <tr>
                             <th>Rol</th>
@@ -23,13 +24,14 @@
                             <tr>
                                 <td><h5 class="card-title">{{ r.rol }}</h5></td>
                                 <td>
-                                    {% for p in r.permisos.all %}
-                                         {{ p.name }} <br>
-                                    {% endfor %}
+                                    <div class="card-primary ">
+                                        {% for p in r.permisos.all%}
+                                             {{ p.name }} <br>
+                                        {% endfor %}
+                                    </div>
                                 </td>
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
-
                                         <a href="{% url 'edit_rol' r.id %}" class="btn btn-info"><i
                                                 class="fas fa-edit"></i></a>
                                         <a type="submit" href="{% url 'delete_rol' r.id %}" class="btn btn-danger"><i
@@ -48,6 +50,7 @@
                 {% endif %}
             </div>
         </div>
+<<<<<<< HEAD
 
         <div class="mt-6 mb-4 flex-md-row">
             <div class="col-3 offset-9 mt-3">
@@ -64,9 +67,17 @@
                         </a>
                     </tr>
                 </table>
+=======
+        {% if User %}
+            <div class="mt-6 mb-4 flex-md-row">
+                <div class="col-3 offset-9 mt-3">
+                    <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
+                        Crear Rol
+                    </a>
+                </div>
+>>>>>>> Permisos requeridos para vista roles agregados
             </div>
-
-        </div>
+        {% endif %}
     </div>
 
 
