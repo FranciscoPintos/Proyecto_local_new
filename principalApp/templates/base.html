@@ -26,14 +26,11 @@
 
         <link rel="stylesheet" href="{% static 'principalApp/css/estilos_base.css' %}">
     {% endblock %}
-
-
-
 </head>
 <!--el id sirve para llamarlo despues en el js-->
-<body id="body" class="hold-transition ">
+<body id="body" class="hold-transition overflow-scroll">
     {% block header %}
-        <header class="header navbar navbar-expand navbar-dark  flex-md-row  ">
+        <header class="navbar navbar-expand navbar-dark fixed-top">
                 <nav class="nav">
                     <!--Menu lateral-->
                     <div class="nav-menu-vertical">
@@ -45,7 +42,7 @@
                             <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="inicio">Inicio</a>
+                            <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
                             <a class="nav-menu-horizontal-link" href="/proyecto/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
@@ -60,7 +57,7 @@
                 </nav>
 
         </header>
-        <div class="menu__side" id="menu__side">
+        <div class="menu__side mt-5" id="menu__side">
 
             <div class="name__menu">
                 <i class="fas fa-inbox"></i>
@@ -74,10 +71,11 @@
                         <h4>Opción 1</h4>
                     </div>
                 </a>
-                <a href="#">
+                <a href="{% url 'roles' %}">
                     <div class="opcion">
-                        <i class="fas fa-home" title="Opción 2"></i>
-                        <h4>Opción 2</h4>
+
+                        <i class="fas fa-user-tag"></i>
+                        <h4>Roles</h4>
                     </div>
                 </a>
                 <a href="#">
