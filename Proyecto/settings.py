@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'roles',
     'project',
     'miembros',
+    'us',
 ]
 
 MIDDLEWARE = [
@@ -163,7 +164,7 @@ SOCIALACCOUNT_PROVIDERS = {
         }
     }
 }
-SITE_ID = 3
+SITE_ID = 4
 
 LOGIN_REDIRECT_URL = reverse_lazy('inicio')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
