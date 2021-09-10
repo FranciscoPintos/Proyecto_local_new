@@ -115,9 +115,12 @@ class Usuario(AbstractUser):
 
     def has_perm(self, perm, obj=None):
         if self.is_superuser:
+            print('es super')
             return True
         else:
+            print('no es super')
             for i in self.user_permissions.all():
+                print(i.codename, perm)
                 if i.codename == perm:
                     return True
             return False

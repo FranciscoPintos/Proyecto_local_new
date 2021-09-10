@@ -25,6 +25,6 @@ urlpatterns = [
     path('', include('principalApp.urls')),
     path('', include('usuario.urls')),
     path('', include('project.urls')),
-    path('', include('roles.urls')),
-    path('', include('miembros.urls')),
+    #path('', include('miembros.urls')),
+    path('', include('us.urls')),
 ]

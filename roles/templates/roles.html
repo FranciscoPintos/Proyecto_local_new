@@ -51,6 +51,7 @@
             </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         <div class="mt-6 mb-4 flex-md-row">
             <div class="col-3 offset-9 mt-3">
@@ -78,6 +79,22 @@
 >>>>>>> Permisos requeridos para vista roles agregados
             </div>
         {% endif %}
+=======
+        {% if User %}
+            <div class="mt-6 mb-4 flex-md-row">
+                <div class="col-3 offset-9 mt-3">
+                    <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
+                        Crear Rol
+                    </a>
+                    <a href="{% url 'listar_usuarios'  %}" class="btn btn-lg btn-primary float-right mt-3">
+                            Asignar Rol
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
+
+>>>>>>> Creacion del modelo US
     </div>
 
 

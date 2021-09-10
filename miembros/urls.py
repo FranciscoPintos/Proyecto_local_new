@@ -3,7 +3,7 @@
 from django.urls import path,include
 from django.views.generic import TemplateView
 
-from miembros.forms import detalleprojecto
+from miembros.forms import *
 from miembros.views import *
 
 from miembros import  *
