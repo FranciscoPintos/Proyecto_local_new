@@ -75,7 +75,7 @@ def verProyectos(request, id):
                     return render(request, 'misPryectos.html', {'Proyecto': pr, 'modificar':user.has_perm("change_proyecto")})
         return redirect('exceptMiembro')
 
-        miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
+        # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
         print(id)
     except ValueError as err:
         print("exec")

@@ -6,9 +6,19 @@
     <div class="card col-3 offset-4 mt-4">
         <div class="card-body p-0 mt-3 mb-3 align-middle text-center">
             <form method="post">{% csrf_token %}
-                <p>¿Estas seguro de eliminar "{{ object }}"? <i class="fas fa-exclamation-circle"></i></p>
-                <input  class="btn btn-danger" type="button" value="Cancelar">
-                <input  class="btn btn-danger" type="submit" value="Confirm">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <h1><i class="fas fa-exclamation-triangle"></i></h1>
+
+                    </div>
+                    <div class="card-title">
+                        <h4>¿Estas seguro de eliminar "{{ object }}"? </h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'us' proj.id %}" class="btn btn-danger" type="button">Cancelar</a>
+                        <input class="btn btn-danger" type="submit" value="Confirm">
+                    </div>
+                </div>
             </form>
         </div>
     </div>

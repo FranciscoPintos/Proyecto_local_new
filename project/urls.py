@@ -9,7 +9,7 @@ from project.views import *
 urlpatterns = [
         # Paths de views
         path('project/nuevoProyecto/<int:id>', nuevoProyecto, name='crearProyecto'),
-        path('project/listarProyectos', ProyectosView.as_view()),
+        path('project/listarProyectos/', ProyectosView.as_view()),
         path('project/misProyectos/<int:id>', verProyectos, name='misproyectos'),
         path('project/exceptMiembro', exceptMimebro, name="exceptMiembro"),
         path('project/verProyecto/<int:id>', verProyecto, name='verProyecto'),

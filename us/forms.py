@@ -6,7 +6,8 @@ from us.models import *
 class crearUsForm(forms.ModelForm):
     class Meta:
         model = Us
-        fields = ['name','descripcion','dificultad','estado']
+        fields = '__all__'
+        exclude=('project','user')
         widgets = {
             'name': forms.TextInput(
                 attrs={
@@ -18,7 +19,6 @@ class crearUsForm(forms.ModelForm):
                     'placeholder': 'Ingrese descripcion del User Story',
                 }
             ),
-            'estado': forms.Select(),
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
