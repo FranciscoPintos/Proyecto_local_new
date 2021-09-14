@@ -13,18 +13,17 @@
                     <div class="card-header bg-gradient-indigo text-center">
                         <h3> Crear User Story</h3>
                     </div>
+                    <p>{{obj}} </p>
                     <div class="card-body">
                         <div class="form-group col-8 offset-2">
                             <form action="" method="post">{% csrf_token %}
-                                <table>
                                     <div class="card mt-3 row">
                                         <div class="card-body">
                                             {{ form|crispy }}
                                         </div>
                                     </div>
-                                </table>
-                                <div class="text-center">
-                                    <a href="{% url 'us' %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
+                                 <div class="text-center">
+                                    <a href="{% url 'us' proj.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
                                     <input class="btn btn-primary" type="submit" value="Guardar">
                                 </div>
                             </form>

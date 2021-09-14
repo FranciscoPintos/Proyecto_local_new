@@ -1,6 +1,9 @@
 from django.db import models
 from django import forms
 from django.forms import model_to_dict
+
+from project.models import *
+from usuario.models import *
 # Create your models here.
 
 class Us(models.Model):
@@ -23,7 +26,8 @@ class Us(models.Model):
         choices=status,
         default= 1
     )
-
+    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=True)
+    user=models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
     def __str__(self):
         return '{}'.format(self.name)
 

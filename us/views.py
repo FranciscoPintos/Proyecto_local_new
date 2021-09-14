@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View, TemplateView
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
@@ -16,18 +16,22 @@ from roles.mixins import *
 from usuario.models import Usuario
 from us.models import *
 from us.forms import *
+from project.models import Proyecto
 
 
 # Create your views here.
 
 @login_required(login_url='login')
-def us(request):
-    us=Us.objects.all()
+def us(request,pk):
+    us=Us.objects.filter(project=pk)
+    proj=Proyecto.objects.get(id=pk)
     user=request.user
     context={
         'Us':us,
-        'User':user
+        'User':user,
+        'Proj':proj
     }
+    print (context)
     return render(request,'us.html',context=context)
 
 def view_us(request,pk):
@@ -40,53 +44,60 @@ class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
     model = Us
     form_class = crearUsForm
     template_name = 'create_us.html'
-    success_url = reverse_lazy('us')
-    url_redirect = success_url
 
+    def get_success_url(self):
+        proj_id= self.kwargs['pk']
+        return reverse_lazy('us', kwargs={'pk': proj_id})
+    def get_initial(self):
+        initial = super(crear_us, self).get_initial()
+        initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        return initial
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Crear User Story'
-        context['entity'] = 'Us'
-        context['list_url'] = self.success_url
-        context['action'] = 'edit'
+        context = super(crear_us, self).get_context_data(**kwargs)
+        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        print(context)
         return context
+
+
 
 
 class Us_Delete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
     permission_required ='delete_Us'
     model = Us
     template_name = 'delete_us.html'
-    success_url = reverse_lazy('us')
-    url_redirect = success_url
+    pk_sched_kwargs = 'us_pk'  # Definir el nombre del parametro obtenido en la url
 
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Us, pk=id)
+        return obj
 
+    def get_success_url(self):
+        proj_id = self.kwargs['pk']
+        return reverse_lazy('us', kwargs={'pk': proj_id})
+    def get_context_data(self, **kwargs):
+        context = super(Us_Delete, self).get_context_data(**kwargs)
+        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        print(context)
+        return context
 
 class editUs(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
     permission_required = 'change_Us'
     model = Us
     form_class = editUsForm
     template_name = 'editar_us.html'
-    success_url = reverse_lazy('us')
-    url_redirect = success_url
+    pk_sched_kwargs = 'us_pk' #Definir el nombre del parametro obtenido en la url
+
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Us, pk=id)
+        return obj
+
+    def get_success_url(self):
+        proj_id= self.kwargs['pk']
+        return reverse_lazy('us', kwargs={'pk': proj_id})
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Editar Us'
-        context['entity'] = 'Us'
-        context['list_url'] = self.success_url
-        context['action'] = 'edit'
+        context = super(editUs, self).get_context_data(**kwargs)
+        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         return context
-# class detalleUs(LoginRequiredMixin,ValidatePermissionRequiredMixin,ListView):
-#     permission_required = 'view_Us'
-#     model = Us
-#     form_class = viewUsForm
-#     template_name = 'detalle_us.html'
-#     success_url = reverse_lazy('us')
-#     url_redirect = success_url
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['title'] = 'Ver Us'
-#         context['entity'] = 'Us'
-#         context['list_url'] = self.success_url
-#         context['action'] = 'edit'
-#         return context
