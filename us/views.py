@@ -27,10 +27,16 @@ def us(request,pk):
     #us = Us.objects.all() # Todos los us creados
     proj=Proyecto.objects.get(id=pk)
     user=request.user
+    crear=user.has_perm('add_us')
+    editar=user.has_perm('change_us')
+    eliminar=user.has_perm('delete_us')
     context={
         'Us':us,
         'User':user,
-        'Proj':proj
+        'Proj':proj,
+        'crear':crear,
+        'editar':editar,
+        'eliminar':eliminar,
     }
     print (context)
     return render(request,'us.html',context=context)
