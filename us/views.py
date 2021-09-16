@@ -23,8 +23,8 @@ from project.models import Proyecto
 
 @login_required(login_url='login')
 def us(request,pk):
-    # us=Us.objects.filter(project=pk) #Filtar los us por proyecto
-    us = Us.objects.all() # Todos los us creados
+    us=Us.objects.filter(project=pk) #Filtar los us por proyecto
+    #us = Us.objects.all() # Todos los us creados
     proj=Proyecto.objects.get(id=pk)
     user=request.user
     context={
@@ -46,7 +46,7 @@ def view_us(request,pk,us_pk):
 
 
 class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
-    permission_required = 'add_Us'
+    permission_required = 'add_us'
     model = Us
     form_class = crearUsForm
     template_name = 'create_us.html'

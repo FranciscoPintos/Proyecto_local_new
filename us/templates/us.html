@@ -19,12 +19,13 @@
                                             <div class="card-header justify-content-center bg-info">
                                                 <h3 class="card-title">{{ u.name.upper }}
                                                     id:{{ u.id }}
-                                                    <a href="{% url 'detalle_us' Proj.id u.id%}" class="btn btn-info"><i
+                                                    <a href="{% url 'detalle_us' Proj.id u.id %}"
+                                                       class="btn btn-info"><i
                                                             class="far fa-plus-square"></i></a>
 
                                                 </h3>
                                                 <h6 class="card-title float-right">
-                                                    {{ u.user}}<br>
+                                                    {{ u.user }}<br>
                                                     Proj:{{ u.project }}
                                                 </h6>
 
@@ -40,12 +41,12 @@
                                                 <div class="container mt-3">
                                                     <div class="row">
                                                         <div class="col-lg-auto">
-
                                                             <div class="card bg-warning text-center">
                                                                 <h6 class="text-white m-2">
-                                                                    {% for s in u.status %} <!-- Ciclo para obtener el estado del US -->
+                                                                    {% for s in u.status %}
+                                                                        <!-- Ciclo para obtener el estado del US -->
                                                                         {% if s.0 == u.estado %}
-                                                                            {{ s.1}}
+                                                                            {{ s.1 }}
                                                                         {% endif %}
                                                                     {% endfor %}
                                                                 </h6>
@@ -59,11 +60,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
-                                                    <a href="{% url 'edit_us' pk=Proj.id us_pk=u.id %}" class="btn btn-info"><i
-                                                            class="fas fa-edit"></i></a>
-                                                    <a type="submit" href="{% url 'delete_us' pk=Proj.id us_pk=u.id  %}"
-                                                       class="btn btn-danger"><i
-                                                            class="fas fa-trash"></i></a>
+                                                    {% for perms in User.get_all_permissions %}
+                                                        {% if perms == 'us.change_us' %}
+                                                            <a href="{% url 'edit_us' pk=Proj.id us_pk=u.id %}"
+                                                               class="btn btn-info"><i
+                                                                    class="fas fa-edit"></i></a>
+                                                        {% endif %}
+                                                        {% if perms == 'us.delete_us' %}
+                                                            <a type="submit"
+                                                               href="{% url 'delete_us' pk=Proj.id us_pk=u.id %}"
+                                                               class="btn btn-danger"><i
+                                                                    class="fas fa-trash"></i></a>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 </div>
                                             </div>
                                         </div>
@@ -78,9 +87,15 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_us' Proj.id %}" class="btn btn-lg btn-primary float-right">
-                                    Crear User Story
-                                </a>
+                                {% for perms in User.get_all_permissions %}
+                                    {% if perms == 'us.add_us' %}
+                                        <a href="{% url 'crear_us' Proj.id %}"
+                                           class="btn btn-lg btn-primary float-right">
+                                            Crear User Story
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
+
                             </div>
                         </div>
                     </div>
