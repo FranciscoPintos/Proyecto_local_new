@@ -23,7 +23,8 @@ from project.models import Proyecto
 
 @login_required(login_url='login')
 def us(request,pk):
-    us=Us.objects.filter(project=pk)
+    # us=Us.objects.filter(project=pk) #Filtar los us por proyecto
+    us = Us.objects.all() # Todos los us creados
     proj=Proyecto.objects.get(id=pk)
     user=request.user
     context={
@@ -34,9 +35,14 @@ def us(request,pk):
     print (context)
     return render(request,'us.html',context=context)
 
-def view_us(request,pk):
-    us=Us.objects.get(id=pk)
-    return render(request,'detalle_us.html', {'Us':us})
+def view_us(request,pk,us_pk):
+    us=Us.objects.get(id=us_pk)
+    proj = Proyecto.objects.get(id=pk)
+    context={
+        'Us':us,
+        'Proj':proj
+    }
+    return render(request,'detalle_us.html',context)
 
 
 class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
@@ -46,17 +52,31 @@ class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
     template_name = 'create_us.html'
 
     def get_success_url(self):
+        print('entro aca?')
         proj_id= self.kwargs['pk']
         return reverse_lazy('us', kwargs={'pk': proj_id})
     def get_initial(self):
         initial = super(crear_us, self).get_initial()
         initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        initial['estado']=Us.status[0]
+        print('inicial:', initial)
         return initial
     def get_context_data(self, **kwargs):
         context = super(crear_us, self).get_context_data(**kwargs)
         context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        print(context)
         return context
+    def post(self, request, *args, **kwargs):
+        self.object=self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            print('dfgdfgd',data.project)
+            data.project=Proyecto.objects.get(pk=self.kwargs['pk'])
+            data.estado=Us.status[0][0]
+            data.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
+
 
 
 
