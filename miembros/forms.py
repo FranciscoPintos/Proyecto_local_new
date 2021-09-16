@@ -18,14 +18,12 @@ class CustomMMCF2(forms.ModelMultipleChoiceField):
 class CrearRol(forms.ModelForm):
     class Meta:
         model = RolProyecto
-        fields = ['name','permisos','project']
+        fields = ['name','permisos']
     name = forms.TextInput(attrs={'type': 'text'})
     permisos = CustomMMCF(
         queryset=Permission.objects.filter(id__gt=46).exclude(id__exact=61),
         widget=forms.CheckboxSelectMultiple
     )
-    ch= Proyecto.objects.all()
-    project= forms.Select(choices=ch)
 class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro

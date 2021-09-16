@@ -6,10 +6,11 @@ from django.views.generic import ListView, CreateView,View
 from miembros.forms import CrearRol, CrearMiembro, deleteMiembro, modificarProject, detalleprojecto
 from miembros.models import *
 # Create your views here.
-def AddRol(request):
+def AddRol(request, id):
     if request.method == 'POST':
         FormularioProyecto = CrearRol(request.POST)
         nuevorol= FormularioProyecto.save(commit=False)
+        nuevorol.project = Proyecto.objects.get(id=id)
         nuevorol.save()
         FormularioProyecto.save_m2m()
         return redirect('inicio')  # Este tiene que redirigir a proyecto

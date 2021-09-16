@@ -40,9 +40,10 @@ def nuevoProyecto(request, id):
         formaProyecto = ProyectoForm(request.POST)
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
 
-class ProyectosView(ListView):
-    model = Proyecto
-    templat_name = 'project/nuevoProyecto.html'
+def ProyectosView(request):
+    pr = Proyecto.objects.all()
+    print(pr)
+    return render(request, 'proyectoAgregar.html', {'Proyectos': pr})
 
 class ProyectoCreate(CreateView):
     model = Proyecto
@@ -98,19 +99,21 @@ def verProyecto(request, id):
 
     iniciar_proyecto = user.has_perm('change_proyecto')
     modificar_proyecto = user.has_perm('change_proyecto')
-    agregar_mimebro = user.has_perm('add_miembro')
-    listar_miembro = user.has_perm('view_mimebro')
+    agregar_miembro = user.has_perm('add_miembro')
+    listar_miembro = user.has_perm('view_miembro')
     crear_rol_proyecto = user.has_perm('add_rolproyecto')
+    modificar_rolproyecto = user.has_perm('change_rolproyecto')
     cambiar_estado = user.has_perm('change_proyecto')
 
     context = {
         'Proyecto': proyecto,
         'iniciar_proyecto': iniciar_proyecto,
         'modificar_proyecto': modificar_proyecto,
-        'agregar_mimebro': agregar_mimebro,
+        'agregar_miembro': agregar_miembro,
         'listar_miembro': listar_miembro,
         'crear_rol_proyecto': crear_rol_proyecto,
         'cambiar_estado': cambiar_estado,
+        'modificar_rolproyecto': modificar_rolproyecto,
     }
 
     return render(request, 'verProyecto.html', context)

@@ -11,7 +11,11 @@ from miembros import  *
 
 urlpatterns = [
         # Paths de views
+<<<<<<< HEAD
         path('crearRolProyecto/', AddRol),
+=======
+        path('crearRolProyecto/<int:id>', AddRol, name='agregarRolProyecto'),
+>>>>>>> Correcion de botones y creacion de proyectos
         path('agregarMiembro/', addMiembro),
         path('eliminarMiembro/', borrarMiembro),
         path('verMiembro/<int:id>',  verMiembro, name= 'verotravesmiembro'),
