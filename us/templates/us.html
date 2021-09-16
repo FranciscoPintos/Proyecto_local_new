@@ -60,19 +60,19 @@
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
-                                                    {% for perms in User.get_all_permissions %}
-                                                        {% if perms == 'us.change_us' %}
+
+                                                        {% if editar %}
                                                             <a href="{% url 'edit_us' pk=Proj.id us_pk=u.id %}"
                                                                class="btn btn-info"><i
                                                                     class="fas fa-edit"></i></a>
                                                         {% endif %}
-                                                        {% if perms == 'us.delete_us' %}
+                                                        {% if eliminar %}
                                                             <a type="submit"
                                                                href="{% url 'delete_us' pk=Proj.id us_pk=u.id %}"
                                                                class="btn btn-danger"><i
                                                                     class="fas fa-trash"></i></a>
                                                         {% endif %}
-                                                    {% endfor %}
+
                                                 </div>
                                             </div>
                                         </div>
@@ -87,15 +87,12 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                {% for perms in User.get_all_permissions %}
-                                    {% if perms == 'us.add_us' %}
+                                    {% if crear %}
                                         <a href="{% url 'crear_us' Proj.id %}"
                                            class="btn btn-lg btn-primary float-right">
                                             Crear User Story
                                         </a>
                                     {% endif %}
-                                {% endfor %}
-
                             </div>
                         </div>
                     </div>
