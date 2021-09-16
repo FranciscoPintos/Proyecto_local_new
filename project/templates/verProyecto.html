@@ -2,42 +2,6 @@
 
 {% block content %}
 
-    {% if not iniciar_proyecto %}
-        {% block iniciarProyecto %}
-
-        {% endblock %}
-    {% endif %}
-
-    {% if not modificar_proyecto %}
-        {% block modificarProyecto %}
-
-        {% endblock %}
-    {% endif %}
-
-    {% if not agregar_miembro %}
-        {% block agregarMiembro %}
-
-        {% endblock %}
-    {% endif %}
-
-    {% if not listar_miembro %}
-        {% block listarMiembros %}
-
-        {% endblock %}
-    {% endif %}
-
-    {% if not crear_rol_proyecto %}
-        {% block crearRolProyecto %}
-
-        {% endblock %}
-    {% endif %}
-
-    {% if not cambiar_estado %}
-        {% block cambiarEstado %}
-
-        {% endblock %}
-    {% endif %}
-
     <div class="card col-9 text-center offset-1 mt-3 row">
         <div class="col-8  offset-2 ">
             <div class="card-body p-0">

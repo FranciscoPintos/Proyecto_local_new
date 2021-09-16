@@ -11,7 +11,7 @@ from miembros import  *
 
 urlpatterns = [
         # Paths de views
-        path('crearRolProyecto/', AddRol, name='agregarRolProyecto'),
+        path('crearRolProyecto/<int:id>', AddRol, name='agregarRolProyecto'),
         path('agregarMiembro/', addMiembro),
         path('eliminarMiembro/', borrarMiembro),
         path('verMiembro/<int:id>',  verMiembro, name= 'verotravesmiembro'),
