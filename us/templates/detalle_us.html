@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-header bg-gradient-indigo text-center">
                             <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'us' %}" class="btn btn-info">
+                                <a href="{% url 'us' Proj.id %}" class="btn btn-info">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                             </div>
@@ -19,10 +19,18 @@
                         </div>
                         <div class="card-body">
                             <p class="text-primary">
+                                Descripción:
                                 {{ Us.descripcion }}
+
+
                             </p>
-                            <p class="text-primary">
-                                {{ Us.estado }}
+                            <p class="text-primary bg-gradient-warning">
+                            Estado:
+                                {% for s in Us.status %} <!-- Ciclo para obtener el estado del US -->
+                                    {% if s.0 == Us.estado %}
+                                       {{ s.1 }}
+                                    {% endif %}
+                                {% endfor %}
                             </p>
                         </div>
                     </div>
