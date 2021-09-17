@@ -32,6 +32,7 @@ def addMiembro(request, id):
         return redirect('inicio')  # Este tiene que redirigir a proyecto
     else:
         FormularioProyecto = CrearMiembro(request.GET)
+        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id)
         FormularioProyecto.fields["rol"].queryset =RolProyecto.objects.filter(project_id=id)
         print( RolProyecto.objects.filter(project_id=id))
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto})
