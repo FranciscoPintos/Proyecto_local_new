@@ -11,6 +11,9 @@ class RolProyecto(models.Model):# Member
     name = models.CharField(max_length=60,) #Nombre del Rol
     permisos = models.ManyToManyField(Permission) # Permisos que tiene ese rol
 
+    def list_permissions(self):
+        return self.permisos.filter()
+
     def add_pemission(self, new):
         self.permisos.add(new)
 
@@ -64,3 +67,11 @@ class Miembro(models.Model):# Meal
     def __str__(self):
         return self.horaTrabajo.__str__() + ' ' + self.user.username
 
+    def has_perm(self, perm, obj=None):
+        if self.rol == None:
+            return False
+        else:
+            for i in self.rol.list_permissions():
+                if i.codename == perm:
+                    return True
+            return False

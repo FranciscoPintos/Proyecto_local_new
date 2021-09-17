@@ -114,7 +114,6 @@ class Usuario(AbstractUser):
         return True
 
     def has_perm(self, perm, obj=None):
-
         if self.is_superuser:
             print('es super')
             return True

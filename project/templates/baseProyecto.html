@@ -31,118 +31,121 @@
 
         <link rel="stylesheet" href="{% static 'principalApp/css/estilos_base.css' %}">
     {% endblock %}
+
+
+
 </head>
 <!--el id sirve para llamarlo despues en el js-->
 <body id="body" class="hold-transition overflow-scroll">
-{% block header %}
-    <header class="navbar navbar-expand navbar-dark fixed-top">
-        <nav class="nav">
-            <!--Menu lateral-->
-            <div class="nav-menu-vertical">
-                <i class="fas fa-bars" id="btn_open"></i>
-            </div>
-            <!--Menu horizontal-->
-            <ul class="nav-menu-horizontal">
-                <li class="nav-menu-horizontal-item">
-                    <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
-                </li>
-                <li class="nav-menu-horizontal-item">
-                    <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
-                </li>
-                <li class="nav-menu-horizontal-item">
-                    <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{ user.id }}">Mis Proyectos</a>
-                </li>
-                <li class="nav-menu-horizontal-item">
-                    <a class="nav-menu-horizontal-link" href="#">Calendario</a>
-                </li>
-                <li class="nav-menu-horizontal-item">
-                    <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
-                </li>
-            </ul>
-        </nav>
+    {% block header %}
+        <header class="navbar navbar-expand navbar-dark  flex-md-row  ">
+                <nav class="nav">
+                    <!--Menu lateral-->
+                    <div class="nav-menu-vertical">
+                        <i class="fas fa-bars" id="btn_open"></i>
+                    </div>
+                    <!--Menu horizontal-->
+                    <ul class="nav-menu-horizontal">
+                        <li class="nav-menu-horizontal-item">
+                            <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
+                        </li>
+                        <li class="nav-menu-horizontal-item">
+                            <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
+                        </li>
+                        <li class="nav-menu-horizontal-item">
+                            <a class="nav-menu-horizontal-link" href="/proyecto/nuevoProyecto/{{ user.id }}">Mis Proyectos</a>
+                        </li>
+                        <li class="nav-menu-horizontal-item">
+                            <a class="nav-menu-horizontal-link" href="#">Calendario</a>
+                        </li>
+                        <li class="nav-menu-horizontal-item">
+                            <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
+                        </li>
+                    </ul>
+                </nav>
 
     </header>
 
 {% endblock %}
 {% block menu_lateral %}
-    <div class="menu__side mt-5" id="menu__side">
+    <div class="menu__side" id="menu__side">
         <div class="name__menu">
             <i class="fas fa-inbox"></i>
             <h6>Menú</h6>
         </div>
 
-        <div class="opciones__menu">
-            {% if iniciar_proyecto %}
-                {% block iniciarProyecto %}
-                    <a href="#">
-                        <div class="opcion" id="">
-                            <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
-                            <h5>Iniciar Proyecto</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if modificar_proyecto %}
-                {% block modificarProyecto %}
-                    <a href="#">
-                        <div class="opcion">
-                            <i class="fas fa-edit"></i>
-
-                            <h5>Modificar Proyecto</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if agregar_miembro %}
-                {% block agregarMiembro %}
-                    <a href="#">
-                        <div class="opcion">
-                            <i class="fas fa-play" title="Agregar un miembro al proyecto"></i>
-                            <h5>Agregar Miembro</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if listar_miembro %}
-                {% block listarMiembros %}
-                    <a href="#">
-                        <div class="opcion">
-                            <i class="fas fa-home" title="Muestra todos los miembros del proyecto para su gestión"></i>
-                            <h5>Listar Miembros</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if crear_rol_proyecto %}
-                {% block crearRolProyecto %}
-                    <a href="{% url 'agregarRolProyecto' Proyecto.id %}">
-                        <div class="opcion">
-                            <i class="fas fa-home" title="Crear un nuevo rol para el proyecto"></i>
-                            <h5>Crear Rol Proyecto</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if modificar_rolproyecto %}
-                {% block modificarRolProyecto %}
-                    <a href="#">
-                        <div class="opcion">
-                            <i class="fas fa-home" title="Modificar los permisos de un rol de proyecto"></i>
-                            <h5>Modificar Rol Proyecto</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
-            {% if cambiar_estado %}
-                {% block cambiarEstado %}
-                    <a href="#">
-                        <div class="opcion">
-                            <i class="fas fa-home" title="Cambiar el estado del proyecto"></i>
-                            <h5>Cambiar Estado</h5>
-                        </div>
-                    </a>
-                {% endblock %}
-            {% endif %}
+            <div class="opciones__menu">
+                {% if iniciar_proyecto %}
+                    {% block iniciarProyecto %}
+                        <a href={% url 'iniciarProyecto' Proyecto.id %}>
+                            <div class="opcion" id="">
+                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                <h5>Iniciar Proyecto</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if modificar_proyecto %}
+                    {% block modificarProyecto %}
+                        <a href={% url 'modificar' Proyecto.id %}>
+                            <div class="opcion">
+                                <i class="fas fa-edit" title="Modificar propiedades del proyecto"></i>
+                                <h5>Modificar Proyecto</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if agregar_miembro %}
+                    {% block agregarMiembro %}
+                        <a href={% url 'agregarMiembro' Proyecto.id %}>
+                            <div class="opcion">
+                                <i class="fas fa-play" title="Agregar un miembro al proyecto"></i>
+                                <h5>Agregar Miembro</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if listar_miembro %}
+                    {% block listarMiembros %}
+                        <a href={% url 'verotravesmiembro' Proyecto.id%}>
+                            <div class="opcion">
+                                <i class="fas fa-home" title="Muestra todos los miembros del proyecto para su gestión"></i>
+                                <h5>Listar Miembros</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if crear_rol_proyecto %}
+                    {% block crearRolProyecto %}
+                        <a href={% url 'agregarRolProyecto' Proyecto.id %}>
+                            <div class="opcion">
+                                <i class="fas fa-home" title="Crear un nuevo rol para el proyecto"></i>
+                                <h5>Crear Rol Proyecto</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if modificar_rolproyecto %}
+                    {% block modificarRolProyecto %}
+                        <a href={% url 'verRolesProyecto' Proyecto.id %}>
+                            <div class="opcion">
+                                <i class="fas fa-home" title="Modificar los permisos de un rol de proyecto"></i>
+                                <h5>Modificar Rol Proyecto</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+                {% if cambiar_estado %}
+                    {% block cambiarEstado %}
+                        <a href="#">
+                            <div class="opcion">
+                                <i class="fas fa-home" title="Cambiar el estado del proyecto"></i>
+                                <h5>Cambiar Estado</h5>
+                            </div>
+                        </a>
+                    {% endblock %}
+                {% endif %}
+            </div>
 
             {% if cambiar_estado %}
                 {% block backlog %}
@@ -183,4 +186,3 @@
 {% endblock %}
 </body>
 </html>
-

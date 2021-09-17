@@ -21,6 +21,7 @@ class ProyectoForm(forms.ModelForm):
             'name': 'Nombre',
             'fecha_inicio': 'Fecha de inicio',
             'fecha_fin': 'Fecha de finalización',
+            'creator': 'Scrum Master'
         }
         widgets = {
             'name': forms.TextInput(attrs={'type': 'text'}),
