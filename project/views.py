@@ -50,11 +50,9 @@ def nuevoProyecto(request, id):
                 SM.permisos.add(i)
             return redirect('verProyectos')
         else:
-            print('Fallo')
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})
 
     else:
-        print('entro acoS?')
         #formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active','fecha_inicio','fecha_fin'])
         formaProyecto = ProyectoForm(request.GET)
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})

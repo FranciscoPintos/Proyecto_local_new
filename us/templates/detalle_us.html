@@ -18,9 +18,13 @@
                             <h3> {{ Us.name.upper }}</h3>
                         </div>
                         <div class="card-body">
+                             <p class="text-primary">
+                                Proyecto:
+                                {{ Us.project }}
+                            </p>
                             <p class="text-primary">
-                                Descripción:
-                                {{ Us.descripcion }}
+                                Usuario:
+                                {{ Us.user }}
                             </p>
                             <p class="text-primary bg-gradient-warning">
                             Estado:
@@ -30,6 +34,16 @@
                                     {% endif %}
                                 {% endfor %}
                             </p>
+                            <p class="text-primary">
+                                Dificultad:
+                                {{ Us.dificultad }}
+                            </p>
+                            <p class="text-primary">
+                                Descripción:
+                                {{ Us.descripcion }}
+                            </p>
+                        <a href="{% url 'histo' pk=Proj.id us_pk=Us.id %}" class="btn btn-primary mr-5"
+                                       type="button">Ver Historial</a>
                         </div>
                     </div>
                 {% endif %}

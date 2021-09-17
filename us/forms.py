@@ -1,4 +1,6 @@
 from django import forms
+from django.http import request
+
 from usuario.models import Usuario
 from us.models import *
 
@@ -7,7 +9,7 @@ class crearUsForm(forms.ModelForm):
     class Meta:
         model = Us
         fields = '__all__'
-        exclude=['project','estado','user']
+        exclude=['project','estado']
         labels = {
             'name': 'Nombre',
             'descripcion': 'Descripción',
@@ -42,6 +44,7 @@ class crearUsForm(forms.ModelForm):
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
+        #self.fields["user"].queryset= Miembro.objects.filter(rol__project_id= self.kwargs['pk'])
 
 
 
@@ -49,7 +52,7 @@ class editUsForm(forms.ModelForm):
     class Meta:
         model = Us
         fields = '__all__'
-        exclude = ['project', 'estado', 'user']
+        exclude = ['project']
         widgets = {
             'name': forms.TextInput(
                 attrs={

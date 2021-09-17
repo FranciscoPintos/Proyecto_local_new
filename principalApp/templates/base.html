@@ -73,7 +73,7 @@
                 <a href="{%  url 'verProyectos' %}">
                     <div class="opcion">
                         <i class="fas fa-project-diagram" title="Opción 1"></i>
-                        <h4>Opción 1</h4>
+                        <h4>Crear Proyecto</h4>
                     </div>
                 </a>
                 <a href="{% url 'roles' %}">
@@ -83,7 +83,7 @@
                         <h4>Roles</h4>
                     </div>
                 </a>
-                <a href="#">
+               <a href="{% url 'crearProyecto' user.id %}">
                     <div class="opcion">
                         <i class="fas fa-home" title="Opción 3"></i>
                         <h4>Opción 3</h4>
