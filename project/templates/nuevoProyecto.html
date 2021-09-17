@@ -1,27 +1,50 @@
 {% extends 'base.html' %}
 
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 {% block content %}
     <br><br><br><br><br>
-    {% for message in messages %}
-        <div class="alert alert-success">
-            <a class="close" href="" data-dismiss="alert">×</a>
-            {{ message }}
-        </div>
-    {% endfor %}
-    <form method="POST" >
-        <div class="card col-5 text-center offset-1 mt-3 row ">
 
-                <div class="container mt-1 mb-1">
-                    <div class="form-group col-6 text-center offset-3">
-                        <table class="table table-bordered table-sm">
-                            {{ formaProyecto }}
-                        </table>
-                        <button type="submit">Guardar</button>
-                        {% csrf_token %}
+
+    <br>
+{#    {% for message in messages %}#}
+{#        <div class="alert alert-success">#}
+{#            <a class="close" href="" data-dismiss="alert">×</a>#}
+{#            {{ message }}#}
+{#        </div>#}
+{#    {% endfor %}#}
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <h3> Crear Proyecto</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="col-8 offset-2">
+                            <form action="" method="post">
+                                {% csrf_token %}
+                                <div class="card mt-3 row">
+                                    <div class="card-body">
+                                        {{ formaProyecto|crispy }}
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <a href="{% url 'verProyectos' %}" class="btn btn-primary mr-5"
+                                       type="button">Cancelar</a>
+                                    <input class="btn btn-primary" type="submit" value="Guardar">
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-
+            </div>
         </div>
-    </form>
-</body>
+    </div>
+
+
+
+
 {% endblock %}

@@ -31,13 +31,15 @@ def nuevoProyecto(request, id):
                 messages.error(request,error)
                 return redirect('crearProyecto',id)
 
-            return redirect('inicio')
+            return redirect('verProyectos')
         else:
+            print('Fallo')
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})
 
     else:
+        print('entro acoS?')
         #formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active','fecha_inicio','fecha_fin'])
-        formaProyecto = ProyectoForm(request.POST)
+        formaProyecto = ProyectoForm(request.GET)
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
 
 def ProyectosView(request):

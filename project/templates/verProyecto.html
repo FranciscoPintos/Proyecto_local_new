@@ -1,52 +1,92 @@
 {% extends 'baseProyecto.html' %}
 
 {% block content %}
+    <br>
+    <br>
+    <br>
 
-    <div class="card col-9 text-center offset-1 mt-3 row">
-        <div class="col-8  offset-2 ">
-            <div class="card-body p-0">
-                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
-                    <h3 class="align-content-center ">{{ Proyecto.name }}</h3>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyectos' %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+
+                        </div>
+                        <h3> {{ Proyecto.name }}</h3>
+
+                        <div class="bg-warning">
+                            {% if Proyecto.estado == 'E' %}Espera{% endif %}
+                            {% if Proyecto.estado == 'I' %}Iniciado{% endif %}
+                            {% if Proyecto.estado == 'P' %}Pausado{% endif %}
+                            {% if Proyecto.estado == 'C' %}Cancelado{% endif %}
+                        </div>
+                        <div class="float-right mt-3">
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="card " style="height:18rem;">
+                                    <div class="text-center card-header bg-info">
+                                        <h3 class="card-title">
+                                            TO DO
+                                        </h3>
+                                    </div>
+                                    <div class="card-body text-primary overflow-auto">
+                                        <p class="card-text ">
+                                            {{ u.descripcion }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card " style="height:18rem;">
+                                    <div class="text-center card-header bg-info">
+                                        <h3 class="card-title">
+                                            DOING
+                                        </h3>
+                                    </div>
+                                    <div class="card-body text-primary overflow-auto">
+                                        <p class="card-text ">
+                                            {{ u.descripcion }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="card " style="height:18rem;">
+                                    <div class="text-center card-header bg-info">
+                                        <h3 class="card-title">
+                                            DONE
+                                        </h3>
+                                    </div>
+                                    <div class="card-body text-primary overflow-auto">
+                                        <p class="card-text ">
+                                            {{ u.descripcion }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="col-3 offset-9 mt-3">
+                                {% if Proyecto.estado == 'E' %}
+                                    <a href="" class="btn btn-lg btn-primary float-right">
+                                        INICIAR
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {% if Proyecto %}
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <td>Fecha de inicio</td>
-                                <td>Fecha de fin</td>
-                                <td>Estado</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{Proyecto.fecha_inicio}}</td>
-                                <td>{{Proyecto.fecha_fin}}</td>
-                                <td>
-                                    {% if Proyecto.estado == 'E' %}Espera{% endif %}
-                                    {% if Proyecto.estado == 'I' %}Iniciado{% endif %}
-                                    {% if Proyecto.estado == 'P' %}Pausado{% endif %}
-                                    {% if Proyecto.estado == 'C' %}Cancelado{% endif %}
-                                </td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-
-                {% else %}
-                    <div class="alert alert-danger mt-4"> No tiene proyectos</div>
-                {% endif %}
             </div>
-        </div>
-
-        <div class="mt-6 mb-4 flex-md-row">
-            <div class="col-3 offset-9 mt-3">
-                <a href="{% url 'inicio' %}" class="btn btn-lg btn-primary float-right">
-                    Atras
-                </a>
-            </div>
-
         </div>
     </div>
-
 {% endblock %}
