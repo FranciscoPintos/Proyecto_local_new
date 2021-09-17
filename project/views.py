@@ -86,7 +86,7 @@ def verProyectos(request, id):
         for miembros in Miembro.objects.all():
             print(miembros.user)
             if miembros.user.id == id:
-                miembro = Miembro.objects.filter(user_id=Usuario.objects.get(id=id).id)
+                miembro = Miembro.objects.filter(user_id=Usuario.objects.get(id=id).id).exclude(activo=False)
                 pr = []
                 for elemento in miembro:
                     pr.append(Proyecto.objects.get(id=elemento.rol.project.id))
