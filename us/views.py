@@ -10,7 +10,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-
+from django.urls import reverse
+from miembros.models import Miembro
 from roles.mixins import *
 
 from usuario.models import Usuario
@@ -24,19 +25,13 @@ from project.models import Proyecto
 @login_required(login_url='login')
 def us(request,pk):
     us=Us.objects.filter(project=pk) #Filtar los us por proyecto
-    #us = Us.objects.all() # Todos los us creados
+   # us = Us.objects.all() # Todos los us creados
     proj=Proyecto.objects.get(id=pk)
     user=request.user
-    crear=user.has_perm('add_us')
-    editar=user.has_perm('change_us')
-    eliminar=user.has_perm('delete_us')
     context={
         'Us':us,
         'User':user,
-        'Proj':proj,
-        'crear':crear,
-        'editar':editar,
-        'eliminar':eliminar,
+        'Proj':proj
     }
     print (context)
     return render(request,'us.html',context=context)
@@ -48,43 +43,21 @@ def view_us(request,pk,us_pk):
         'Us':us,
         'Proj':proj
     }
+
     return render(request,'detalle_us.html',context)
 
 
-class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
-    permission_required = 'add_us'
-    model = Us
-    form_class = crearUsForm
-    template_name = 'create_us.html'
-
-    def get_success_url(self):
-        print('entro aca?')
-        proj_id= self.kwargs['pk']
-        return reverse_lazy('us', kwargs={'pk': proj_id})
-    def get_initial(self):
-        initial = super(crear_us, self).get_initial()
-        initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        initial['estado']=Us.status[0]
-        print('inicial:', initial)
-        return initial
-    def get_context_data(self, **kwargs):
-        context = super(crear_us, self).get_context_data(**kwargs)
-        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        return context
-    def post(self, request, *args, **kwargs):
-        self.object=self.get_object
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            data=form.save(commit=False)
-            print('dfgdfgd',data.project)
-            data.project=Proyecto.objects.get(pk=self.kwargs['pk'])
-            data.estado=Us.status[0][0]
-            data.save()
-            return HttpResponseRedirect(self.get_success_url())
-        return self.render_to_response(self.get_context_data(form=form))
-
-
-
+def crear_us(request, pk):
+    if request.method == 'POST':
+        FormularioUserStory = crearUsForm(request.POST)
+        nuevous = FormularioUserStory.save(commit=False)
+        nuevous.project= Proyecto.objects.get(id= pk)
+        nuevous.save()
+        return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
+    else:
+        FormularioUserStory = crearUsForm(request.GET)
+        FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
+        return render(request, 'create_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})
 
 
 class Us_Delete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
@@ -107,23 +80,31 @@ class Us_Delete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
         print(context)
         return context
 
-class editUs(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
-    permission_required = 'change_Us'
-    model = Us
-    form_class = editUsForm
-    template_name = 'editar_us.html'
-    pk_sched_kwargs = 'us_pk' #Definir el nombre del parametro obtenido en la url
-
-    def get_object(self, queryset=None):
-        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
-        obj = get_object_or_404(Us, pk=id)
-        return obj
-
-    def get_success_url(self):
-        proj_id= self.kwargs['pk']
-        return reverse_lazy('us', kwargs={'pk': proj_id})
-
-    def get_context_data(self, **kwargs):
-        context = super(editUs, self).get_context_data(**kwargs)
-        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        return context
+def editUs(request, pk, us_pk):
+    if request.method == 'POST':
+        FormularioUserStory = editUsForm(request.POST)
+        if FormularioUserStory.is_valid():
+            nuevous = FormularioUserStory.save(commit=False)
+            nuevous.project = Proyecto.objects.get(id=pk)
+            anteriorus= Us.objects.get(id= us_pk)
+            anteriorus.name= nuevous.name
+            anteriorus.user= nuevous.user
+            anteriorus.storypoints= nuevous.storypoints
+            anteriorus.estado= nuevous.estado
+            anteriorus.prioridad= nuevous.prioridad
+            anteriorus.descripcion= anteriorus.descripcion
+            anteriorus.save()
+            return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
+        else:
+            pro = Us.objects.get(id=us_pk)
+            FormularioUserStory = editUsForm(instance=pro)
+            FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
+            return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
+    else:
+        pro= Us.objects.get(id=us_pk)
+        FormularioUserStory = editUsForm(instance=pro)
+        FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
+        return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
+def verhistorialus(request, pk, us_pk):
+    historial= HistorialUs.objects.filter(ustory_id= us_pk)
+    return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proj': Proyecto.objects.get(id=pk)})

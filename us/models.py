@@ -1,7 +1,9 @@
 from django.db import models
 from django import forms
 from django.forms import model_to_dict
+from django.utils.timezone import now
 
+from miembros.models import Miembro
 from project.models import *
 from usuario.models import *
 # Create your models here.
@@ -16,17 +18,28 @@ class Us(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=50, unique=True)
     descripcion=models.CharField(max_length=2000)
-    storyPoint = models.PositiveIntegerField(default=0)
     prioridad=models.IntegerField(
         choices=dif_define,
         default=1
     )
+    storypoints= models.PositiveIntegerField(null=True)
     estado=models.IntegerField(
         choices=status,
         default= 1
     )
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=True)
-    user=models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=True)
+    user=models.ForeignKey(Miembro, on_delete=models.CASCADE, blank=True, null=True)
+    def save(self, *args, **kwargs):
+        super(Us, self).save(*args, **kwargs)
+        hu= HistorialUs()
+        us= Us.objects.get(id= self.id)
+        hu.ustory= us
+        hu.name = us.name
+        hu.descripcion= us.descripcion
+        hu.prioridad= us.prioridad
+        hu.estado= us.estado
+        hu.storypoints= us.storypoints
+        hu.save()
     def __str__(self):
         return '{}'.format(self.name)
 
@@ -36,5 +49,13 @@ class Us(models.Model):
 
     class Meta:
         verbose_name = 'Us'
-        db_table = 'Us'
+        db_table = 'us'
         ordering = ['name']
+class HistorialUs(models.Model):
+    ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
+    name = models.CharField('Nombre', max_length=50, unique=True)
+    descripcion = models.CharField(max_length=2000)
+    prioridad = models.IntegerField()
+    estado = models.IntegerField( )
+    storypoints = models.PositiveIntegerField()
+    fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
