@@ -16,7 +16,8 @@ class Us(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=50, unique=True)
     descripcion=models.CharField(max_length=2000)
-    dificultad=models.IntegerField(
+    storyPoint = models.PositiveIntegerField(default=0)
+    prioridad=models.IntegerField(
         choices=dif_define,
         default=1
     )

@@ -12,14 +12,14 @@ from miembros import  *
 urlpatterns = [
         # Paths de views
         path('crearRolProyecto/<int:id>', AddRol, name='agregarRolProyecto'),
-        path('agregarMiembro/', addMiembro),
+        path('agregarMiembro/<int:id>', addMiembro, name='agregarMiembro'),
         path('eliminarMiembro/', borrarMiembro),
         path('verMiembro/<int:id>',  verMiembro, name= 'verotravesmiembro'),
         path('confirmarEliminado/<int:id>', confirmaDelete, name= 'eliminado'),
         path('modifProject/<int:id>',modiProject, name= 'modificar'),
         path('detalleProyecto/<int:id>', detalleproyecto, name='detalle'),
         path('listarRolesProyecto/<int:id>', verRolesProyecto, name='verRolesProyecto'),
-        #path('detalleProyecto/<int:id>', detalleproyecto.as_view(), name='detalle'),
+        path('modificarRolProyecto/<int:id>', modificarRolProyecto, name='modificarRolProyecto'),
 
 
 ]

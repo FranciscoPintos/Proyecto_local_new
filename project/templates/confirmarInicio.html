@@ -1,0 +1,16 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="card col-3 offset-4 mt-4">
+        <div class="card-body p-0 mt-3 mb-3 align-middle text-center">
+            <form method="post">{% csrf_token %}
+                <p>¿Iniciar el proyecto {{ Proyecto.name }}? <i class="fas fa-exclamation-circle"></i></p>
+
+                <input  class="btn btn-danger" type="submit" value="Confirmar">
+            </form>
+            <a type="submit" href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-danger">Cancelar</a>
+        </div>
+    </div>
+{% endblock %}

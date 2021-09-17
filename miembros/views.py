@@ -2,9 +2,10 @@ from django.contrib import messages
 from django.forms import modelform_factory
 from django.shortcuts import render, HttpResponse, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView,View
-from miembros.forms import CrearRol, CrearMiembro, deleteMiembro, modificarProject, detalleprojecto
+from django.views.generic import ListView, CreateView, View, UpdateView
+from miembros.forms import *
 from miembros.models import *
+from django import forms
 # Create your views here.
 def AddRol(request, id):
     if request.method == 'POST':
@@ -23,14 +24,16 @@ def AddRol(request, id):
         #template_name = 'crearRolProyecto.html'# Le tengo que agregar miembros/crearProyecto?
        # success_url = reverse_lazy('inicio')
 
-def addMiembro(request):
+def addMiembro(request, id):
     if request.method == 'POST':
         FormularioProyecto = CrearMiembro(request.POST)
         nuevorol = FormularioProyecto.save(commit=False)
         nuevorol.save()
         return redirect('inicio')  # Este tiene que redirigir a proyecto
     else:
-        FormularioProyecto = CrearMiembro(request.POST)
+        FormularioProyecto = CrearMiembro(request.GET)
+        FormularioProyecto.fields["rol"].queryset =RolProyecto.objects.filter(project_id=id)
+        print( RolProyecto.objects.filter(project_id=id))
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto})
 
 def verMiembro(request, id):
@@ -42,7 +45,6 @@ def verRolesProyecto(request, id):
     #recoge los roles cuyos id de la clase foranea project coinciden con el id del proyecto
     roles = RolProyecto.objects.filter(project_id=id)
     miembros = Miembro.objects.filter(rol__project_id=id)
-    print(id)
     return render(request, 'listarRolesProyecto.html', {'Proyecto': roles, 'Miembros': miembros})
 
 def confirmaDelete(request, id):
@@ -93,21 +95,18 @@ def detalleproyecto(request, id):
     idprojec = Proyecto.objects.get(id=id)
     FormularioProyecto =detalleprojecto(instance = idprojec)
     return render(request, 'detalleProyecto.html', {'detalle': idprojec})
-"""
-class detalleproyecto(View):
-    model = Proyecto
-    form_class = detalleprojecto
-    template_name = 'detalleProyecto.html'
+
+class modificarRolProyecto(UpdateView):
+    model = RolProyecto
+    form_class = editarRolForm
+    template_name = 'modificarRolProyecto.html'
     success_url = reverse_lazy('inicio')
     url_redirect = success_url
-#formaProyecto = CrearRol()
-"""
-"""def nuevoRolProyecto(request, id):
-    if request.method == 'POST':
-        FormularioProyecto = formaProyecto(request.POST)
-        Modelo = FormularioProyecto.save(commit=False) #guardar
-        Modelo.project = Proyecto.objects.get(id=id) #obtener el usuario dado su id
-        Modelo.save()
-        return redirect('inicio')# Este tiene que redirigir a proyecto
-    else:
-        return render(request, 'crearRolProyecto.html', {'formaProyecto': formaProyecto, 'id': id})"""
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Modificar Rol'
+        context['entity'] = 'RolProyecto'
+        context['list_url'] = self.success_url
+        context['action'] = 'edit'
+        return context

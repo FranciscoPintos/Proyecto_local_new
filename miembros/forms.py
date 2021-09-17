@@ -31,8 +31,7 @@ class CrearMiembro(forms.ModelForm):
 
     ch = Usuario.objects.all()
     user = forms.Select(choices=ch)
-    ch1 = RolProyecto.objects.all()
-    rol = forms.Select(choices=ch1)
+
     horaTrabajo=forms.IntegerField
 
 
@@ -78,12 +77,19 @@ class detalleprojecto(forms.ModelForm):
     # estado= forms.CharField
 
 
-"""
-    project = CustomMMCF2(
-        queryset=Proyecto.objects.all(),
-        widget=forms.Select
-    )
-"""
+class editarRolForm(forms.ModelForm):
+    class Meta:
+        model = RolProyecto
+        fields = ['name','permisos']
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese Nombre del Rol',
+                }
+            ),
+            'permisos': forms.CheckboxSelectMultiple()
+
+        }
 
 """
 
