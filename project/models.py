@@ -31,6 +31,7 @@ class Proyecto(models.Model):
 
     class Meta:
         db_table = 'project'
+        ordering = ['name']
 
     def save(self, *args, **kwargs):
         if self.fecha_inicio is not None and self.fecha_fin is not None:

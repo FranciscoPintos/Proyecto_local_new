@@ -72,11 +72,12 @@ class Usuario(AbstractUser):
         return True
 
     def has_perm(self, perm, obj=None):
-        if self.rol == None:
-            return False
+
         if self.is_superuser:
             print('es super')
             return True
+        if self.rol == None:
+            return False
         else:
             print('no es super')
             for i in self.rol.list_permissions():
