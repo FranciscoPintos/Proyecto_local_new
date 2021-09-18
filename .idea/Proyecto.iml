@@ -19,12 +19,15 @@
       <excludeFolder url="file://$MODULE_DIR$/env2/bin" />
       <excludeFolder url="file://$MODULE_DIR$/env2/lib" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.9 (Proyecto_local_new)" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="41bcea2ae3" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="bootstrap-datetimepicker" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />

@@ -1,72 +1,5 @@
-{% load socialaccount %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% block title %}Gestor de proyecto{% endblock %}</title>
+{% extends 'base.html' %}
 
-    {% block extrahead %}
-        <!-- CSS only -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-              crossorigin="anonymous">
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-              crossorigin="anonymous">
-        <!-- Google Font: Source Sans Pro -->
-        <link rel="stylesheet"
-              href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-        <!-- Font Awesome Icons -->
-        <link rel="stylesheet" href="{% static '/plugins/fontawesome-free/css/all.min.css' %}">
-        <!-- Theme style -->
-        <link rel="stylesheet" href="{% static '/css/adminlte.min.css' %}">
-
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-              integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
-              crossorigin="anonymous">
-
-        <link rel="stylesheet" href="{% static 'principalApp/css/estilos_base.css' %}">
-    {% endblock %}
-
-
-
-</head>
-<!--el id sirve para llamarlo despues en el js-->
-<body id="body" class="hold-transition overflow-scroll">
-    {% block header %}
-        <header class="navbar navbar-expand navbar-dark  flex-md-row  ">
-                <nav class="nav">
-                    <!--Menu lateral-->
-                    <div class="nav-menu-vertical">
-                        <i class="fas fa-bars" id="btn_open"></i>
-                    </div>
-                    <!--Menu horizontal-->
-                    <ul class="nav-menu-horizontal">
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{ user.id }}">Mis Proyectos</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="#">Calendario</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </nav>
-
-    </header>
-
-{% endblock %}
 {% block menu_lateral %}
     <div class="menu__side" id="menu__side">
         <div class="name__menu">
@@ -74,115 +7,57 @@
             <h6>Menú</h6>
         </div>
 
-            <div class="opciones__menu">
-                {% if iniciar_proyecto %}
-                    {% block iniciarProyecto %}
-                        <a href={% url 'iniciarProyecto' Proyecto.id %}>
-                            <div class="opcion" id="">
-                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
-                                <h5>Iniciar Proyecto</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if modificar_proyecto %}
-                    {% block modificarProyecto %}
-                        <a href={% url 'modificar' Proyecto.id %}>
-                            <div class="opcion">
-                                <i class="fas fa-edit" title="Modificar propiedades del proyecto"></i>
-                                <h5>Modificar Proyecto</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if agregar_miembro %}
-                    {% block agregarMiembro %}
-                        <a href={% url 'agregarMiembro' Proyecto.id %}>
-                            <div class="opcion">
-                                <i class="fas fa-play" title="Agregar un miembro al proyecto"></i>
-                                <h5>Agregar Miembro</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if listar_miembro %}
-                    {% block listarMiembros %}
-                        <a href={% url 'verotravesmiembro' Proyecto.id%}>
-                            <div class="opcion">
-                                <i class="fas fa-home" title="Muestra todos los miembros del proyecto para su gestión"></i>
-                                <h5>Listar Miembros</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if crear_rol_proyecto %}
-                    {% block crearRolProyecto %}
-                        <a href={% url 'agregarRolProyecto' Proyecto.id %}>
-                            <div class="opcion">
-                                <i class="fas fa-home" title="Crear un nuevo rol para el proyecto"></i>
-                                <h5>Crear Rol Proyecto</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if modificar_rolproyecto %}
-                    {% block modificarRolProyecto %}
-                        <a href={% url 'verRolesProyecto' Proyecto.id %}>
-                            <div class="opcion">
-                                <i class="fas fa-home" title="Modificar los permisos de un rol de proyecto"></i>
-                                <h5>Modificar Rol Proyecto</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-                {% if cambiar_estado %}
-                    {% block cambiarEstado %}
-                        <a href="#">
-                            <div class="opcion">
-                                <i class="fas fa-home" title="Cambiar el estado del proyecto"></i>
-                                <h5>Cambiar Estado</h5>
-                            </div>
-                        </a>
-                    {% endblock %}
-                {% endif %}
-            </div>
-
-            {% if cambiar_estado %}
-                {% block backlog %}
-                    <a href="{% url 'us' Proyecto.id %}">
+        <div class="opciones__menu">
+            {% if listar_miembro %}
+                <a href="#">
+                    <div class="opcion">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h5>Sprints Proyectos</h5>
+                    </div>
+                </a>
+            {% endif %}
+            {% if listar_miembro %}
+                {% block listarMiembros %}
+                    <a href={% url 'miembros' Proyecto.id %}>
                         <div class="opcion">
-                           <i class="fas fa-layer-group"></i>
-                            <h5>Product Backlog</h5>
+                            <i class="fas fa-users"></i>
+                            <h5>Miembros del Proyecto</h5>
+                        </div>
+                    </a>
+                {% endblock %}
+            {% endif %}
+            {% if crear_rol_proyecto %}
+                {% block crearRolProyecto %}
+                    <a href={% url 'verRolesProyecto' Proyecto.id %}>
+                        <div class="opcion">
+                            <i class="fas fa-users-cog"></i>
+                            <h5>Roles del Proyecto</h5>
                         </div>
                     </a>
                 {% endblock %}
             {% endif %}
 
+
+            {% if modificar_proyecto %}
+                {% block modificarProyecto %}
+                    <a href={% url 'modificar' Proyecto.id %}>
+                        <div class="opcion">
+                            <i class="fas fa-cogs"></i>
+                            <h5>Configución del Proyecto</h5>
+                        </div>
+                    </a>
+                {% endblock %}
+            {% endif %}
+            {% if cambiar_estado %}
+                {% block backlog %}
+                    <a href="{% url 'us' Proyecto.id %}">
+                        <div class="opcion">
+                            <i class="fas fa-layer-group"></i>
+                            <h5>Product Backlog</h5>
+                        </div>
+                    </a>
+                {% endblock %}
+            {% endif %}
         </div>
-
     </div>
-
-
 {% endblock %}
-{% block content %}
-
-{% endblock %}
-{% block extrajs %}
-    <!-- jQuery -->
-    <script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{% static '/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- AdminLTE App -->
-    <script src="{% static '/js/adminlte.min.js' %}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{% static '/js/demo.js' %}"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
-
-    <script src="{% static 'principalApp/js/plantilla_base.js' %}"></script>
-    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
-
-{% endblock %}
-</body>
-</html>

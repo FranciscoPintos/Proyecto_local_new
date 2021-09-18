@@ -2,14 +2,27 @@
 
 
 
+
+
+
 {% block content %}
-    <div class="card col-9 text-center offset-1 mt-3 row">
-        <div class="col-8  offset-2 ">
-            <div class="card-body p-0">
-                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
-                    <h3 class="align-content-center ">Roles del Proyecto</h3>
-                </div>
-                {% if Proyecto %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyecto' proj.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Roles de proyecto</h3>
+                    </div>
+                    <div class="card-body">
+                          {% if Proyecto %}
 
                     <table class="table">
                         <thead>
@@ -31,7 +44,7 @@
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
 
-                                        <a href={% url 'modificarRolProyecto' %} class="btn btn-info"><i
+                                        <a href="{% url 'modificarRolProyecto' proj.id  rol.id %}" class="btn btn-info"><i
                                                 class="fas fa-edit"></i></a>
                                         <a type="submit" href="#" class="btn btn-danger"><i
                                                 class="fas fa-trash"></i></a>
@@ -47,16 +60,24 @@
                 {% else %}
                     <div class="alert alert-danger mt-4"> No existe Roles</div>
                 {% endif %}
-            </div>
-        </div>
 
-        <div class="mt-6 mb-4 flex-md-row">
-            <div class="col-3 offset-9 mt-3">
-                <a href="{% url 'crear_rol' %}" class="btn btn-lg btn-primary float-right">
-                    Crear Rol
-                </a>
-            </div>
+                    </div>
+                    <div class="card-footer">
+                            <div class="float-right">
 
+                                <a href="{% url 'crear_rol' %}" class="btn btn-primary">
+                                    Crear Rol
+                                </a>
+                                <a href="{% url 'listar_usuarios' %}"
+                                   class="btn btn-primary">
+                                    Asignar Rol
+                                </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
+
+
