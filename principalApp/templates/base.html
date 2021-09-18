@@ -53,58 +53,58 @@
                             <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{ user.id }}">Mis Proyectos</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="#">Calendario</a>
+                            <a class="nav-menu-horizontal-link" href="{% url 'calendar'%}">Calendario</a>
                         </li>
                         <li class="nav-menu-horizontal-item">
                             <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </nav>
-
         </header>
+    {% endblock %}
+    {% block menu_lateral %}
         <div class="menu__side mt-5" id="menu__side">
 
             <div class="name__menu">
                 <i class="fas fa-inbox"></i>
-                <h4>Menú</h4>
+                <h5>Menú</h5>
             </div>
 
             <div class="opciones__menu">
                 <a href="{%  url 'verProyectos' %}">
                     <div class="opcion">
                         <i class="fas fa-project-diagram" title="Opción 1"></i>
-                        <h4>Crear Proyecto</h4>
+                        <h5>Proyectos</h5>
                     </div>
                 </a>
-                <a href="{% url 'roles' %}">
+                <a href="{%  url 'roles' %}">
                     <div class="opcion">
-
-                        <i class="fas fa-user-tag"></i>
-                        <h4>Roles</h4>
+                        <i class="fas fa-users-cog"></i>
+                        <h5>Roles de sistema</h5>
                     </div>
                 </a>
-               <a href="{% url 'crearProyecto' user.id %}">
+                <a href="#">
                     <div class="opcion">
                         <i class="fas fa-home" title="Opción 3"></i>
-                        <h4>Opción 3</h4>
+                        <h5>Opción 3</h5>
                     </div>
                 </a>
                 <a href="#">
                     <div class="opcion">
                         <i class="fas fa-home" title="Opción 4"></i>
-                        <h4>Opción 4</h4>
+                        <h5>Opción 4</h5>
                     </div>
                 </a>
                 <a href="#">
                     <div class="opcion">
                         <i class="fas fa-home" title="Opción 5"></i>
-                        <h4>Opción 5</h4>
+                        <h5>Opción 5</h5>
                     </div>
                 </a>
                 <a href="#">
                     <div class="opcion">
                         <i class="fas fa-home" title="Opción 6"></i>
-                        <h4>Opción 6</h4>
+                        <h5>Opción 6</h5>
                     </div>
                 </a>
             </div>

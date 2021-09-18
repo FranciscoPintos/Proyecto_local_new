@@ -1,14 +1,38 @@
 {% extends 'base.html' %}
+{% load crispy_forms_filters %}
 
+{% load crispy_forms_tags %}
 {% block content %}
-<br><br><br><br><br><br>
-<body>
-<form method="POST">
-    <table>
-            {{proyecto}}
-    </table>
-        <button type="submit">Guardar</button>
-        {% csrf_token %}
-</form>
-</body>
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <h3>Editar Proyecto</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group col-8 offset-2">
+                            <form action="" method="post">{% csrf_token %}
+                                <table>
+                                    <div class="card mt-3 row">
+                                        <div class="card-body">
+                                            {{proyecto| crispy}}
+                                        </div>
+                                    </div>
+                                </table>
+                                <div class="text-center">
+                                    <a href="{% url 'verProyecto' proj.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
+                                    <input class="btn btn-primary" type="submit" value="Guardar">
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

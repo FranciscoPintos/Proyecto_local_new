@@ -96,6 +96,7 @@ def editUs(request, pk, us_pk):
             anteriorus.save()
             return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
         else:
+            print('Form no valido')
             pro = Us.objects.get(id=us_pk)
             FormularioUserStory = editUsForm(instance=pro)
             FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)

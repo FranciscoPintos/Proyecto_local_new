@@ -109,7 +109,6 @@ def exceptMimebro(request):
 
 def verProyecto(request, id):
     proyecto = Proyecto.objects.get(id=id)
-
     print(request.user.id)
     user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     iniciar_proyecto = user.has_perm('change_proyecto')
