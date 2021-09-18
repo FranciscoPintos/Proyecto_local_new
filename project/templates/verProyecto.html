@@ -11,7 +11,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyectos' %}" class="btn btn-info">
+                            <a href="{% url 'misproyectos' user.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
 
@@ -77,10 +77,14 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                {% if Proyecto.estado == 'E' %}
-                                    <a href="" class="btn btn-lg btn-primary float-right">
-                                        INICIAR
-                                    </a>
+                                {% if iniciar_proyecto %}
+                                    {% if Proyecto.estado == 'E' %}
+                                        <a href="{% url 'iniciarProyecto' Proyecto.id %}"
+                                           class="btn btn-lg btn-primary float-right">
+                                            INICIAR
+                                            <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             </div>
                         </div>

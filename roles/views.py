@@ -16,15 +16,18 @@ from roles.mixins import *
 from usuario.models import Usuario
 from roles.models import *
 from roles.forms import *
+from project.models import *
 
 
 @login_required(login_url='login')
 def roles(request):
     rol=Rol.objects.all()
     user=request.user
+
     context={
         'Rol':rol,
-        'User':user
+        'User':user,
+
     }
     if request.user.has_perm('add_rol'):
         print('tiene permisosos')

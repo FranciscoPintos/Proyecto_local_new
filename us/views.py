@@ -100,9 +100,10 @@ def editUs(request, pk, us_pk):
             ultimohistorial.save()
             return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
         else:
-            #pro = Us.objects.get(id=us_pk)
-            #FormularioUserStory = editUsForm(instance=pro)
-            #FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
+            print('Form no valido')
+            pro = Us.objects.get(id=us_pk)
+            FormularioUserStory = editUsForm(instance=pro)
+            FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
             return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
     else:
         pro= Us.objects.get(id=us_pk)

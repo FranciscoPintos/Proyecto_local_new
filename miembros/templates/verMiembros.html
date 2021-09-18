@@ -1,12 +1,60 @@
-{% extends 'base.html' %}
+{% extends 'baseProyecto.html' %}
+
+
 
 {% block content %}
-    <br><br><br><br><br>
-{% for r in ver %}
-    <tr>
-        <td><h5 class="card-title">{{ r.user }}</h5></td>
-        <a class="boton-nav" href="/confirmarEliminado/{{ r.id }}">eliminar</a>
-    </tr>
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyecto' proj.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Miembros</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if ver %}
+                            <div class="row">
+                                <table>
+                                    {% for r in ver %}
+                                        <tr>
+                                            <td>
+                                                <h5 class="card-title">
+                                                    <i class="far fa-circle"></i>
+                                                    {{ r.user }}
+                                                    <div class="btn-group btn-group-sm ">
+                                                        <a type="submit" href="{% url 'eliminado' r.id %}"
+                                                           class="btn btn-danger"><i
+                                                                class="fas fa-trash"></i></a>
+                                                    </div>
+                                                </h5>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe Miembros</div>
+                        {% endif %}
 
-{% endfor %}
+                    </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="col-3 offset-9 mt-3">
+                                <a href="{% url 'agregarMiembro' proj.id %}" class="btn btn-lg btn-primary float-right">
+                                    Agregar miembros
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -12,7 +12,7 @@ urlpatterns = [
         path('project/listarProyectos/', ProyectosView, name='verProyectos' ),
         path('project/misProyectos/<int:id>', verProyectos, name='misproyectos'),
         path('project/exceptMiembro', exceptMimebro, name="exceptMiembro"),
-        path('project/verProyecto/<int:id>', verProyecto, name='verProyecto'),
+        path('project/<int:id>/verProyecto', verProyecto, name='verProyecto'),
         path('project/iniciar/<int:id>' , iniciarProyecto, name='iniciarProyecto')
 
 
