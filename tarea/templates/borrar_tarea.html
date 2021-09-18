@@ -12,10 +12,10 @@
 
                     </div>
                     <div class="card-title">
-                        <h4>¿Estas seguro de eliminar "{{ object }}"? </h4>
+                        <h4>¿Estas seguro de eliminar ? </h4>
                     </div>
                     <div class="card-body">
-                        <a href="{% url 'us' Proj.id %}" class="btn btn-danger" type="button">Cancelar</a>
+                        <a href="{% url 'tareas' pk=Proj.id us_pk=Us.id %}" class="btn btn-danger" type="button">Cancelar</a>
                         <input class="btn btn-danger" type="submit" value="Confirm">
                     </div>
                 </div>

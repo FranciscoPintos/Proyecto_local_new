@@ -114,7 +114,10 @@ def verProyecto(request, id):
     proyecto = Proyecto.objects.get(id=id)
 
     print(request.user.id)
-    user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+    if Miembro.objects.filter(user=request.user.id):
+        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+    else:
+        user = request.user
     iniciar_proyecto = user.has_perm('change_proyecto')
     modificar_proyecto = user.has_perm('change_proyecto')
     agregar_miembro = user.has_perm('add_miembro')
@@ -122,6 +125,7 @@ def verProyecto(request, id):
     crear_rol_proyecto = user.has_perm('add_rolproyecto')
     modificar_rolproyecto = user.has_perm('change_rolproyecto')
     cambiar_estado = user.has_perm('change_proyecto')
+
 
     context = {
         'Proyecto': proyecto,

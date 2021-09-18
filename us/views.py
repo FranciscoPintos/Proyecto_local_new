@@ -24,7 +24,7 @@ from project.models import Proyecto
 
 @login_required(login_url='login')
 def us(request,pk):
-    us=Us.objects.filter(project=pk) #Filtar los us por proyecto
+    us=Us.objects.filter(project=pk).exclude(activo=False) #Filtar los us por proyecto
    # us = Us.objects.all() # Todos los us creados
     proj=Proyecto.objects.get(id=pk)
     user=request.user
@@ -53,32 +53,31 @@ def crear_us(request, pk):
         nuevous = FormularioUserStory.save(commit=False)
         nuevous.project= Proyecto.objects.get(id= pk)
         nuevous.save()
-        return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
+        historiales = HistorialUs.objects.filter(ustory_id= nuevous.id)
+        for his in historiales:
+            ultimohistorial = his
+        ultimohistorial.user = request.user
+        ultimohistorial.save()
+        return redirect('us', pk=pk)
     else:
         FormularioUserStory = crearUsForm(request.GET)
         FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
         return render(request, 'create_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})
 
 
-class Us_Delete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
-    permission_required ='delete_Us'
-    model = Us
-    template_name = 'delete_us.html'
-    pk_sched_kwargs = 'us_pk'  # Definir el nombre del parametro obtenido en la url
-
-    def get_object(self, queryset=None):
-        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
-        obj = get_object_or_404(Us, pk=id)
-        return obj
-
-    def get_success_url(self):
-        proj_id = self.kwargs['pk']
-        return reverse_lazy('us', kwargs={'pk': proj_id})
-    def get_context_data(self, **kwargs):
-        context = super(Us_Delete, self).get_context_data(**kwargs)
-        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        print(context)
-        return context
+def Us_Delete(request, pk, us_pk):
+    if request.method == 'POST':
+        borrar = Us.objects.get(id=us_pk)
+        borrar.activo = False
+        borrar.save()
+        historiales = HistorialUs.objects.filter(ustory_id=us_pk)
+        for his in historiales:
+            ultimohistorial = his
+        ultimohistorial.user = request.user
+        ultimohistorial.save()
+        return redirect('us', pk=pk)
+    else:
+        return render(request, 'delete_us.html', {'Proj': Proyecto.objects.get(pk=pk)})
 
 def editUs(request, pk, us_pk):
     if request.method == 'POST':
@@ -94,11 +93,16 @@ def editUs(request, pk, us_pk):
             anteriorus.prioridad= nuevous.prioridad
             anteriorus.descripcion= anteriorus.descripcion
             anteriorus.save()
+            historiales= HistorialUs.objects.filter(ustory_id=us_pk)
+            for his in historiales:
+                ultimohistorial= his
+            ultimohistorial.user= request.user
+            ultimohistorial.save()
             return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
         else:
-            pro = Us.objects.get(id=us_pk)
-            FormularioUserStory = editUsForm(instance=pro)
-            FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
+            #pro = Us.objects.get(id=us_pk)
+            #FormularioUserStory = editUsForm(instance=pro)
+            #FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
             return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
     else:
         pro= Us.objects.get(id=us_pk)
