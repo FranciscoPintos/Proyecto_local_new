@@ -28,4 +28,5 @@ urlpatterns = [
     path('', include('project.urls')),
     path('', include('miembros.urls')),
     path('', include('us.urls')),
+    path('', include('tarea.urls')),
 ]
