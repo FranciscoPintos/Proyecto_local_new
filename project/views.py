@@ -12,10 +12,7 @@ import datetime
 # Create your views here.
 from django.views.generic import ListView, CreateView
 
-<<<<<<< HEAD
-=======
 from miembros.models import Miembro, RolProyecto
->>>>>>> Botones de proyectos redirecionado
 from project.forms import CreateProyectoForm, ProyectoForm
 from project.models import Proyecto
 from usuario.models import Usuario

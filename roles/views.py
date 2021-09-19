@@ -37,7 +37,7 @@ def roles(request):
         return render(request,'roles.html',{'Rol':rol})
 
 def base_roles(request):
-    return render(request, 'base_rol.html')
+    return render(request,'base_rol.html')
 
 # Create your views here.
 

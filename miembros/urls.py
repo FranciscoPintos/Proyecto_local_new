@@ -20,6 +20,5 @@ urlpatterns = [
         path('detalleProyecto/<int:id>', detalleproyecto, name='detalle'),
         path('project/<int:id>/listarRolesProyecto', verRolesProyecto, name='verRolesProyecto'),
         path('project/<int:pk>/modificarRolProyecto/<int:rol_pk>', modificarRolProyecto.as_view(), name='modificarRolProyecto'),
-        
 
 ]

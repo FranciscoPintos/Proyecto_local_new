@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+<<<<<<< HEAD
 
 {% block content %}
     <br>
@@ -55,9 +56,65 @@
                         <h3> Roles</h3>
                     </div>
                     <div class="card-body">
+=======
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'inicio' %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Roles</h3>
+                    </div>
+                    <div class="card-body">
 
                         {% if Rol %}
 
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Rol</th>
+                                    <th>Permisos</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                {% for r in Rol %}
+                                    <tbody>
+                                    <tr class="overflow-auto">
+                                        <td><h5 class="card-title">{{ r.rol }}</h5></td>
+                                        <td>
+                                            <div class="card border-transparent m-1 overflow-auto" style="height:18rem;">
+                                                <ul class="list-unstyled">
+                                                    {% for p in r.permisos.all %}
+                                                        <li> {{ p.name }}</li>
+                                                    {% endfor %}
+                                                </ul>
+                                            </div>
+                                        </td>
+                                        <td class=" py-0 align-middle">
+                                            <div class="btn-group btn-group-sm">
+
+                                                <a href="{% url 'edit_rol' r.id %}" class="btn btn-info"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <a type="submit" href="{% url 'delete_rol' r.id %}"
+                                                   class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+>>>>>>> 90ca6074de383b202c41b946cb91da744cd6368f
+
+                        {% if Rol %}
+
+<<<<<<< HEAD
                             <table class="table">
                                 <thead>
                                 <tr>
@@ -157,8 +214,38 @@
 
 <<<<<<< HEAD
 >>>>>>> Creacion del modelo US
-    </div>
+=======
+                                    </tbody>
+                                {% endfor %}
+                            </table>
 
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe Roles</div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        {% if User %}
+                            <div class="float-right">
+
+                                <a href="{% url 'crear_rol' %}" class="btn btn-primary">
+                                    Crear Rol
+                                </a>
+                                <a href="{% url 'listar_usuarios' %}"
+                                   class="btn btn-primary">
+                                    Asignar Rol
+                                </a>
+                            </div>
+
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+>>>>>>> 90ca6074de383b202c41b946cb91da744cd6368f
+    </div>
+{% endblock %}
+
+<<<<<<< HEAD
 
 {% endblock %}
 =======
@@ -180,3 +267,5 @@
 {% endblock %}
 
 >>>>>>> Rutas cambiadas
+=======
+>>>>>>> 90ca6074de383b202c41b946cb91da744cd6368f

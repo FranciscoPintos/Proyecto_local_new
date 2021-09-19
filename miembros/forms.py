@@ -111,4 +111,5 @@ class ProyectoForm(forms.ModelForm):
             'fecha_inicio': forms.DateField(),
             'fecha_fin': forms.DateField(),
         }
+
 """
