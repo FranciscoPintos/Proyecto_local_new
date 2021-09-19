@@ -28,10 +28,6 @@ class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro
         fields = ['user','rol','horaTrabajo']
-
-    ch = Usuario.objects.all()
-    user = forms.Select(choices=ch)
-
     horaTrabajo=forms.IntegerField
 
 

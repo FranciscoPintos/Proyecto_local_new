@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect
-from etiqueta.forms import CrearEtiqueta
+from etiqueta.forms import CrearEtiqueta, editEtiquetaForm
 from etiqueta.models import Etiqueta
 from miembros.models import Miembro
 from project.models import Proyecto
@@ -65,8 +65,12 @@ def crear_etiqueta(request, pk):
             modelEtiqueta = formNewEtiqueta.save(commit=False)
             # Asignar el usuario al modelo
             modelEtiqueta.user = request.user
+            # Asignar proyecto a la etiqueta
+            modelEtiqueta.proyecto = Proyecto.objects.get(id=pk)
             # Peristir el modelo en la base de datos
             modelEtiqueta.save()
+            # Volvemos al litado de etiquetas
+            return redirect('ver_etiquetas', pk=pk)
 
         # Agregamos el formulario al contexto
         context['form'] = formNewEtiqueta
@@ -96,3 +100,30 @@ def ver_etiquetas(request, pk):
         messages.error(request, error)
         return redirect('exceptMiembro')
 
+
+def edit_etiqueta(request, pk, et_pk):
+    if request.method == 'POST':
+        FormularioEtiqueta = editEtiquetaForm(request.POST)
+        if FormularioEtiqueta.is_valid():
+            nuevous = FormularioEtiqueta.save(commit=False)
+            nuevous.proyecto = Proyecto.objects.get(id=pk)
+            anteriorus= Etiqueta.objects.get(id=et_pk)
+            anteriorus.name= nuevous.name
+            anteriorus.save()
+            return redirect('ver_etiquetas', pk=pk)
+        else:
+            return render(request, 'editar_etiqueta.html', {'form': FormularioEtiqueta, 'Proj': Proyecto.objects.get(pk=pk)})
+    else:
+        etiqueta = Etiqueta.objects.get(id=et_pk)
+        FormularioEtiqueta = editEtiquetaForm(instance=etiqueta)
+        return render(request, 'editar_etiqueta.html', {'form': FormularioEtiqueta, 'Proj': Proyecto.objects.get(pk=pk)})
+
+
+def delete_etiqueta(request, pk, et_pk):
+    if request.method == 'POST':
+        borrar = Etiqueta.objects.get(id=et_pk)
+        borrar.activo = False
+        borrar.save()
+        return redirect('ver_etiquetas', pk=pk)
+    else:
+        return render(request, 'delete_etiqueta.html', {'Proj': Proyecto.objects.get(pk=pk)})

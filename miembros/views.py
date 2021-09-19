@@ -110,7 +110,7 @@ def modiProject(request, id):
         idprojec = Proyecto.objects.get(id=id)
         if idprojec.estado == 'E':
             FormularioProyecto = modificarProject(instance=idprojec)
-
+        else:
             if idprojec.estado == 'I':
                 FormularioProyecto = modificarProjectIniciado(instance=idprojec)
             redirect('verProyecto', id)

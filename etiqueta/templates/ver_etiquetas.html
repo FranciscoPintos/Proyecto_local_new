@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'baseProyecto.html' %}
 
 
 {% block content %}
@@ -38,8 +38,10 @@
                                                         <h5 class>{{ r.name }}</h5>
                                                     </td>
                                                     <td>
-                                                        <a type="submit" href="{% url 'verProyecto' r.id %}"
-                                                           class="btn btn-danger"><i class="fas fa-eye"></i></a>
+                                                        <a type="submit" href="{% url 'edit_etiqueta' pk=Proyecto.id et_pk=r.id %}"
+                                                           class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                        <a type="submit" href="{% url 'delete_etiqueta' pk=Proyecto.id et_pk=r.id  %}"
+                                                           class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
 

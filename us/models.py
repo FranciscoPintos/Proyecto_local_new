@@ -23,7 +23,7 @@ class Us(models.Model):
         choices=dif_define,
         default=1
     )
-    storypoints= models.PositiveIntegerField(null=True)
+    storypoints= models.PositiveIntegerField(null=True, blank=True)
     estado=models.IntegerField(
         choices=status,
         default= 1
@@ -56,10 +56,11 @@ class Us(models.Model):
         db_table = 'us'
         ordering = ['prioridad', 'name']
         permissions = (
-            ('add_usproducbacklog', 'Can add Us to Product Backlog'),
-            ('view_usproducbacklog', 'Can view Us to Product Backlog'),
-            ('delete_usproducbacklog', 'Can delete Us to Product Backlog'),
-            ('change_usproducbacklog', 'Can view Us to Product Backlog'))
+            ('add_usproductbacklog', 'Can add Us to Product Backlog'),
+            ('view_usproductbacklog', 'Can view Us to Product Backlog'),
+            ('delete_usproductbacklog', 'Can delete Us to Product Backlog'),
+            ('change_usproductbacklog', 'Can view Us to Product Backlog'),
+            ('valuate_us', 'Can calificate Us to Sprint Backlog'))
 
 
 class HistorialUs(models.Model):
@@ -68,6 +69,6 @@ class HistorialUs(models.Model):
     descripcion = models.CharField(max_length=2000)
     prioridad = models.IntegerField()
     estado = models.IntegerField( )
-    storypoints = models.PositiveIntegerField()
+    storypoints = models.PositiveIntegerField(null=True)
     user= models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)

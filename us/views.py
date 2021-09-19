@@ -127,3 +127,20 @@ def editUs(request, pk, us_pk):
 def verhistorialus(request, pk, us_pk):
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
     return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proj': Proyecto.objects.get(id=pk)})
+
+
+def crear_us_product(request, pk):
+    if request.method == 'POST':
+        FormularioUserStory = crearUsProductForm(request.POST)
+        nuevous = FormularioUserStory.save(commit=False)
+        nuevous.project= Proyecto.objects.get(id= pk)
+        nuevous.save()
+        historiales = HistorialUs.objects.filter(ustory_id= nuevous.id)
+        for his in historiales:
+            ultimohistorial = his
+        ultimohistorial.user = request.user
+        ultimohistorial.save()
+        return redirect('product_backlog', pk=pk)
+    else:
+        FormularioUserStory = crearUsProductForm(request.GET)
+        return render(request, 'create_usProduct.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})

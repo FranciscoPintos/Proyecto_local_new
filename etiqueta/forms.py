@@ -9,3 +9,12 @@ class CrearEtiqueta(forms.ModelForm):
     class Meta:
         model = Etiqueta
         fields = ['name']
+
+
+class editEtiquetaForm(forms.ModelForm):
+    """
+    Formulario de edicion de etiqueta
+    """
+    class Meta:
+        model = Etiqueta
+        fields = ['name']

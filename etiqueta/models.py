@@ -13,13 +13,13 @@ class Etiqueta(models.Model):
     # Nombre de Etiqueta
     name = models.CharField(verbose_name='Nombre', max_length=50, null=False)
     # Usuario creador
-    user = models.ForeignKey(Usuario, verbose_name='Creador', on_delete=models.CASCADE, null=False, related_name='user_etiqueta_set')
+    user = models.ForeignKey(Usuario, verbose_name='Creador', on_delete=models.CASCADE, null=False, related_name='user_etiqueta_set', blank=True)
     # Fecha de creación
-    fecha_creacion = models.DateField(verbose_name='Fecha de creacion', null=False, default=now)
+    fecha_creacion = models.DateField(verbose_name='Fecha de creacion', null=False, default=now, blank=True)
     # Etiqueta eliminada o no eliminada
-    activo = models.BooleanField(verbose_name='activo/eliminado', default=True)
+    activo = models.BooleanField(verbose_name='activo/eliminado', default=True, blank=True)
     # A que proyecto pertenece la etiqueta
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, verbose_name='Proyeco al que pertenecet', null=False)
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, verbose_name='Proyeco al que pertenecet', null=False, blank=True)
 
     class Meta:
         verbose_name = 'Etiqueta'

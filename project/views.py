@@ -15,6 +15,7 @@ from django.views.generic import ListView, CreateView
 from miembros.models import Miembro, RolProyecto
 from project.forms import CreateProyectoForm, ProyectoForm
 from project.models import Proyecto
+from us.models import Us
 from usuario.models import Usuario
 
 
@@ -54,7 +55,7 @@ def nuevoProyecto(request, id):
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
 
 def ProyectosView(request):
-    if request.user.has_perm('view_project'):
+    if request.user.has_perm('view_proyecto'):
         user = request.user
         pr = Proyecto.objects.all()
         print(pr)
@@ -117,24 +118,25 @@ def verProyecto(request, id):
         user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     else:
         user = request.user
+
+    product_backlog = Us.objects.all().filter(project_id=id, activo=True)
     iniciar_proyecto = user.has_perm('change_proyecto')
     modificar_proyecto = user.has_perm('change_proyecto')
-    agregar_miembro = user.has_perm('add_miembro')
     listar_miembro = user.has_perm('view_miembro')
-    crear_rol_proyecto = user.has_perm('add_rolproyecto')
-    modificar_rolproyecto = user.has_perm('change_rolproyecto')
-    cambiar_estado = user.has_perm('change_proyecto')
+    ver_rol_proyecto = user.has_perm('view_rolproyecto')
+    ver_product_backlog = user.has_perm('view_usproducbacklog')
+    ver_etiquetas = user.has_perm('view_etiqueta')
 
 
     context = {
         'Proyecto': proyecto,
         'iniciar_proyecto': iniciar_proyecto,
         'modificar_proyecto': modificar_proyecto,
-        'agregar_miembro': agregar_miembro,
         'listar_miembro': listar_miembro,
-        'crear_rol_proyecto': crear_rol_proyecto,
-        'cambiar_estado': cambiar_estado,
-        'modificar_rolproyecto': modificar_rolproyecto,
+        'ver_rol_proyecto': ver_rol_proyecto,
+        'ver_product_backlog': ver_product_backlog,
+        'ver_etiquetas': ver_etiquetas,
+        'u': product_backlog,
     }
 
     return render(request, 'verProyecto.html', context)
