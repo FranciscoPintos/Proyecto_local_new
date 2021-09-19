@@ -19,12 +19,12 @@
                                 <table>
                                     <div class="card mt-3 row">
                                         <div class="card-body">
-                                            {{proyecto| crispy}}
+                                            {{Etiqueta| crispy}}
                                         </div>
                                     </div>
                                 </table>
                                 <div class="text-center">
-                                    <a href="{% url 'verProyecto' proj.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
+                                    <a href="{% url 'ver_etiquetas' proj.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
                                     <input class="btn btn-primary" type="submit" value="Guardar">
                                 </div>
                             </form>

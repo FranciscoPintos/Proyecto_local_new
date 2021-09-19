@@ -29,4 +29,5 @@ urlpatterns = [
     path('', include('miembros.urls')),
     path('', include('us.urls')),
     path('', include('tarea.urls')),
+    path('', include('etiqueta.urls')),
 ]

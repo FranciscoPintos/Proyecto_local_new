@@ -50,18 +50,21 @@ def nuevoProyecto(request, id):
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})
 
     else:
-        #formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active','fecha_inicio','fecha_fin'])
-        formaProyecto = ProyectoForm(request.GET)
+        formaProyecto = ProyectoForm()
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
 
 def ProyectosView(request):
-    pr = Proyecto.objects.all()
-    print(pr)
-    return render(request, 'proyectoAgregar.html', {'Proyectos': pr})
+    if request.user.has_perm('view_project'):
+        user = request.user
+        pr = Proyecto.objects.all()
+        print(pr)
+        return render(request, 'proyectoAgregar.html', {'Proyectos': pr})
+    else:
+        return redirect('inicio')
 
 class ProyectoCreate(CreateView):
     model = Proyecto
-    template_name = 'proyecto/crearRolProyecto.html'
+    template_name = 'crearRolProyecto.html'
     form_class = CreateProyectoForm
     def get_context_data(self, **kwargs):
         context = super(ProyectoCreate, self).get_context_data(**kwargs)
@@ -87,7 +90,7 @@ def verProyectos(request, id):
                 pr = []
                 for elemento in miembro:
                     pr.append(Proyecto.objects.get(id=elemento.rol.project.id))
-                return render(request, 'misPryectos.html', {'Proyecto': pr, 'modificar':user.has_perm("change_proyecto")})
+                return render(request, 'misPryectos.html', {'Proyecto': pr})
         return redirect('exceptMiembro')
 
         # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)

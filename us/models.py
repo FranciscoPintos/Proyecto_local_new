@@ -3,14 +3,15 @@ from django import forms
 from django.forms import model_to_dict
 from django.utils.timezone import now
 
+from etiqueta.models import Etiqueta
 from miembros.models import Miembro
 from project.models import *
 from usuario.models import *
 # Create your models here.
 
 class Us(models.Model):
-    dif_define=[
-        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5'),
+    dif_define = [
+        (1, 'No urgente'), (2, 'Menos urgente'), (3, 'Media'), (4, 'Alta'), (5, 'Urgente'),
     ]
     status=[
         (1,'To Do'),(2,'Doing'),(3,'QA'),(4,'Done'),
@@ -27,9 +28,11 @@ class Us(models.Model):
         choices=status,
         default= 1
     )
-    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=True)
+    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     user=models.ForeignKey(Miembro, on_delete=models.CASCADE, blank=True, null=True)
     activo= models.BooleanField(default=True)
+    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null = True, blank=True)
+
     def save(self, *args, **kwargs):
         super(Us, self).save(*args, **kwargs)
         hu= HistorialUs()
@@ -51,7 +54,14 @@ class Us(models.Model):
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'
-        ordering = ['name']
+        ordering = ['prioridad', 'name']
+        permissions = (
+            ('add_usproducbacklog', 'Can add Us to Product Backlog'),
+            ('view_usproducbacklog', 'Can view Us to Product Backlog'),
+            ('delete_usproducbacklog', 'Can delete Us to Product Backlog'),
+            ('change_usproducbacklog', 'Can view Us to Product Backlog'))
+
+
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)

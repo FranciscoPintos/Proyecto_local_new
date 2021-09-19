@@ -66,6 +66,25 @@ class modificarProject(forms.ModelForm):
             'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
         }
 
+
+class modificarProjectIniciado(forms.ModelForm):
+    class Meta:
+        model = Proyecto
+        fields = [
+            'name',
+            'fecha_fin',
+        ]
+        labels = {
+            'name': 'Nombre',
+            'fecha_fin': 'Fecha de finalización',
+        }
+
+        widgets = {
+            'name': forms.TextInput(attrs={'type': 'text'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+        }
+
+
 class detalleprojecto(forms.ModelForm):
     class Meta:
         model = Proyecto

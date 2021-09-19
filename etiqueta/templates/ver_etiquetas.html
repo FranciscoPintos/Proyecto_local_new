@@ -12,26 +12,26 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'inicio' %}" class="btn btn-info">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
 
                         </div>
-                        <h3>Mis Proyectos</h3>
+                        <h3>Etiquetas del Proyecto</h3>
                     </div>
                     <div class="card-body">
                         <div class="row justify-content-center">
                             <div class="col-sm-9 justify-content-center">
-                                {% if Proyecto %}
+                                {% if Etiqueta %}
                                     <table class="table">
                                         <thead>
                                         <tr>
-                                            <th>Proyecto</th>
-                                            <th>Entrar</th>
+                                            <th>Etiqueta</th>
+                                            <th>Editar</th>
                                         </tr>
                                         </thead>
-                                        {% for r in Proyecto %}
-                                            {% if r.active %}
+                                        {% for r in Etiqueta %}
+                                            {% if r.activo %}
                                                 <tbody>
                                                 <tr>
                                                     <td>
@@ -48,12 +48,18 @@
                                         {% endfor %}
                                     </table>
                                 {% else %}
-                                    <div class="alert alert-danger mt-4"> No tiene proyectos</div>
+                                    <div class="alert alert-danger mt-4"> No tiene etiquetas</div>
                                 {% endif %}
                             </div>
                         </div>
                     </div>
-
+                    <div class="mt-6 mb-4 flex-md-row">
+                    <div class="col-3 offset-9 mt-3">
+                        <a href="{% url 'crear_etiqueta' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
+                            Crear Etiqueta
+                        </a>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

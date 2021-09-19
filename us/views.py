@@ -23,20 +23,35 @@ from project.models import Proyecto
 # Create your views here.
 
 @login_required(login_url='login')
-def us(request,pk):
-    us=Us.objects.filter(project=pk).exclude(activo=False) #Filtar los us por proyecto
-   # us = Us.objects.all() # Todos los us creados
-    proj=Proyecto.objects.get(id=pk)
-    user=request.user
-    context={
-        'Us':us,
-        'User':user,
-        'Proj':proj
+def us(request, pk):
+    # Filtar los us por proyecto
+    us = Us.objects.filter(project=pk).exclude(activo=False)
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proj': proj
     }
     print (context)
-    return render(request,'us.html',context=context)
+    return render(request, 'us.html', context=context)
 
-def view_us(request,pk,us_pk):
+
+def product_backlog(request, pk):
+    # Filtar los us por proyecto y solo los activos
+    us = Us.objects.filter(project=pk).exclude(activo=False)
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proj': proj
+    }
+    print(context)
+    return render(request, 'product_backlog.html', context=context)
+
+
+def view_us(request, pk, us_pk):
     us=Us.objects.get(id=us_pk)
     proj = Proyecto.objects.get(id=pk)
     context={
@@ -91,7 +106,7 @@ def editUs(request, pk, us_pk):
             anteriorus.storypoints= nuevous.storypoints
             anteriorus.estado= nuevous.estado
             anteriorus.prioridad= nuevous.prioridad
-            anteriorus.descripcion= anteriorus.descripcion
+            anteriorus.descripcion= nuevous.descripcion
             anteriorus.save()
             historiales= HistorialUs.objects.filter(ustory_id=us_pk)
             for his in historiales:
