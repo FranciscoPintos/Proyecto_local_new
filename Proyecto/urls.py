@@ -28,5 +28,9 @@ urlpatterns = [
     path('', include('miembros.urls')),
     path('', include('us.urls')),
     path('', include('tarea.urls')),
+<<<<<<< Updated upstream
     path('', include('etiqueta.urls')),
+=======
+    path('', include('roles.urls')),
+>>>>>>> Stashed changes
 ]

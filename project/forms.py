@@ -16,6 +16,7 @@ class ProyectoForm(forms.ModelForm):
             'name',
             'fecha_inicio',
             'fecha_fin',
+            'creator'
         ]
         labels = {
             'name': 'Nombre',

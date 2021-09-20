@@ -1,15 +1,13 @@
+from roles.models import Rol
 from crum import get_current_request
 from django.contrib.auth.models import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.forms import model_to_dict
-
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 #from allauth.socialaccount.models import
 
-# Create your models here.
-from django.forms import model_to_dict
 
 
 class UsuarioManager(BaseUserManager):
