@@ -92,10 +92,9 @@ class Comentarios(models.Model):
         #se trae el nombre del usuario
         cr = Usuario.objects.get(id=self.creador)
         print(cr)
-        hc.comment = c
-        hc.us = us
-        hc.project = p
-        hc.creador = cr
+        hc.us_name = us.name
+        hc.project_name = p.name
+        hc.creator_name = cr.name
         hc.comentarios = c.comentarios
         hc.save()
 
@@ -117,11 +116,12 @@ class Comentarios(models.Model):
             ('modify_comment', 'Can modify comment'))
 
 class HistorialComentarios(models.Model):
-    comment = models.ForeignKey(Comentarios, on_delete=models.CASCADE, null=True)
-    us = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
-    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, null=True)
-    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
-    comentarios = models.CharField('Comentario', max_length=2000, unique=False)
+    
+    id = models.AutoField(primary_key=True)
+    us_name = models.CharField('Nombre de User Story', max_length=50, unique=True, null=True)
+    project_name = models.CharField('Nombre de Proyecto', max_length=50, unique=True, null=True)
+    creator_name = models.CharField('Nombre de Creador', max_length=50, unique=True, null=True)
+    comentarios = models.CharField('Contenido del comentario', max_length=2000, unique=True, null=True)
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
