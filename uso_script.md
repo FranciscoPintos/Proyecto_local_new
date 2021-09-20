@@ -11,7 +11,7 @@ ls -l
 
 Generalmente encontraran que tiene estos permisos:
 
-![Como se ve generalmente al inicio](https://prnt.sc/1sy0pex)
+https://prnt.sc/1sy0pex
 
 Lo ideal es que se vea como el archivo *manage.py*
 
@@ -30,7 +30,7 @@ ls -l
 
 para verificar que tiene los permisos idénticos al archivo *manage.py*, es decir, así:
 
-![Como debe verse el agregar todos los permisos](https://prnt.sc/1sy0bw0)
+https://prnt.sc/1sy0bw0
 
 Una vez que el archivo tenga los permisos necesarios, corren el siguiente comando:
 
