@@ -61,6 +61,68 @@ def view_us(request, pk, us_pk):
 
     return render(request,'detalle_us.html',context)
 
+#definicion de vista para comentarios de un User Story
+def view_comentarios(request, pk, us_pk):
+    #Para asi saber a que Us pertenece el comentario
+    us = Us.objects.get(id=us_pk)
+    #Para saber a que Proyecto pertenece el comentario
+    proj = Proyecto.objects.get(id=pk)
+    
+    context={
+        'Us': us,
+        'Proj': proj
+    }
+    return render(request, 'ver_comentarios.html', context)
+
+#definicion de vista para crear comentarios de un User Story
+def crear_comentarios(request, pk, us_pk):
+    #en caso de haber completado el fomrulario y clickeado en guardar formulario
+    if request.method == 'POST':
+        #instanciamos el formulario con los datos cargados del metodo post de request
+        FormularioComentarios = FormularioAgregarComentarios(request.POST)
+        #salvamos los valores obtenidos del post
+        nuevocomentario = FormularioComentarios.save(commit=False)
+        #y ahora agregamos los valores que no posee el metodo post de request como:
+        #ID de proyecto
+        nuevocomentario.project = Proyecto.objects.get(id= pk)
+        #ID de US
+        nuevocomentario.us = Us.objects.get(id = us_pk)
+        #ID del usuario creador del comentario
+        nuevocomentario.creador = Usuario.objects.get(id = request.user.id)
+        #guardamos definitamente todos los valores obtenidos
+        nuevocomentario.save()
+        #buscamos los comentarios que posean el id actual
+        historiales = HistorialComentarios.objects.filter(id= nuevocomentario.id)
+        #de aqui nos interesa solo el ultimo comentario hecho
+        for historial in historiales:
+            ultimohistorial = historial
+        #asignamos al creador del comentario que es el usuario actual que posee el request
+        ultimohistorial.creador = request.user
+        #guardamos todos los valores
+        ultimohistorial.save()
+        #Para asi saber a que Us pertenece el comentario
+        us = Us.objects.get(id=us_pk)
+        #Para saber a que Proyecto pertenece el comentario
+        proj = Proyecto.objects.get(id=pk)
+        #creamos el contexto que pasaremos al redirect
+        context = {
+            'Proj': proj,
+            'Us': us
+        }
+        print("LLEGA")
+        #nos dirigimos a la pagina anterior
+        return redirect('ver_comentarios', context)
+    #en caso de que sea la primera vez que cargue la pagina
+    else:
+        FormularioComentarios = FormularioAgregarComentarios(request.GET)
+        context = {
+            'form': FormularioComentarios,
+            'Proj': Proyecto.objects.get(id=pk),
+            'Us': Us.objects.get(id=us_pk)
+        }
+
+        return render(request, 'agregar_comentarios.html', context)
+    
 
 def crear_us(request, pk):
     if request.method == 'POST':

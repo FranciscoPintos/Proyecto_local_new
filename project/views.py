@@ -124,7 +124,7 @@ def verProyecto(request, id):
     modificar_proyecto = user.has_perm('change_proyecto')
     listar_miembro = user.has_perm('view_miembro')
     ver_rol_proyecto = user.has_perm('view_rolproyecto')
-    ver_product_backlog = user.has_perm('view_usproducbacklog')
+    ver_product_backlog = user.has_perm('view_usproductbacklog')
     ver_etiquetas = user.has_perm('view_etiqueta')
 
 

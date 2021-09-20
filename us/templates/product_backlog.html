@@ -69,6 +69,9 @@
                                                     <a type="submit" href="{% url 'delete_us' pk=Proj.id us_pk=u.id  %}"
                                                        class="btn btn-danger"><i
                                                             class="fas fa-trash"></i></a>
+                                                    <a type="submit" href="{% url 'ver_comentarios' pk=Proj.id us_pk=u.id %}" class="btn btn-success">
+                                                        Comentarios
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,7 +86,7 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_us_product' Proj.id %}" class="btn btn-lg btn-primary float-right">
+                                <a href="{% url 'crear_us_product' pk=Proj.id %}" class="btn btn-lg btn-primary float-right">
                                     Crear User Story
                                 </a>
                             </div>

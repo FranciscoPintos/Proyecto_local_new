@@ -63,8 +63,8 @@ class Miembro(models.Model):# Meal
      #   return self.objects.filter(RolProyecto__permisos__icontains='Rol')
 
     def __str__(self):
-        return self.horaTrabajo.__str__() + ' ' + self.user.username
-
+        return self.user.first_name + ', ' + self.user.email
+ 
     def has_perm(self, perm, obj=None):
         if self.rol == None:
             return False

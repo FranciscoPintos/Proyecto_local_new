@@ -25,3 +25,6 @@ class Etiqueta(models.Model):
         verbose_name = 'Etiqueta'
         db_table = 'etiqueta'
         ordering = ['name']
+
+    def __str__(self):
+        return self.name

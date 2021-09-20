@@ -5,6 +5,29 @@ from usuario.models import Usuario
 from us.models import *
 
 
+
+#definicion del formulario de creacion de comentario
+class FormularioAgregarComentarios(forms.ModelForm):
+    class Meta:
+        model = Comentarios
+        fields = ['comentarios']
+        labels = {
+            'comentarios': 'Contenido del Comentario'
+        }
+        widgets = {
+            'comentarios': forms.Textarea(
+                attrs={
+                    'placeholder': 'Ingrese aquí su comentario sobre del US',
+                    'rows': 3,
+                    'cols': 3,
+                    'class':'form-control'
+                }
+            )
+        }
+
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+
 class crearUsForm(forms.ModelForm):
     class Meta:
         model = Us

@@ -10,5 +10,7 @@ urlpatterns = [
         path('project/<int:pk>/eliminarUs/<int:us_pk>', Us_Delete,name='delete_us'),
         path('project/<int:pk>/detalleUs/<int:us_pk>', view_us, name='detalle_us'),
         path('project/<int:pk>/verhistorialus/<int:us_pk>', verhistorialus, name='histo'),
+        path('project/<int:pk>/verComentarios/<int:us_pk>', view_comentarios, name='ver_comentarios'),
+        path('project/<int:pk>/CrearComentarios/<int:us_pk>', crear_comentarios, name='crear_comentarios'),
 
 ]

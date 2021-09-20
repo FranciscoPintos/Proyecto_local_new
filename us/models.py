@@ -62,6 +62,66 @@ class Us(models.Model):
             ('change_usproductbacklog', 'Can view Us to Product Backlog'),
             ('valuate_us', 'Can calificate Us to Sprint Backlog'))
 
+#definicion del modelo de de tabla Comentario
+class Comentarios(models.Model):
+    #debe poseer un id como clave primaria
+    id = models.AutoField(primary_key=True)
+    #otro campo debe ser el comentario en sí
+    comentarios=models.CharField(max_length=2000)
+    #debe poder relacionarse con algún us por medio de una clave foránea
+    us = models.ForeignKey(Us, on_delete=models.CASCADE, blank=True, null=False)
+    #debe poder relacionarse con algún proyecto por medio de una clave foránea
+    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
+    #debe poder relacionarse con algún usuario
+    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=False)
+
+    #metodo para guardar los valores en la bd
+    def save(self, *args, **kwargs):
+        super(Comentarios, self).save(*args, **kwargs)
+        #se instancia la clase HistorialComentarios
+        hc = HistorialComentarios()
+        #se trae el id del comentario
+        c = Comentarios.objects.get(id= self.id)
+        print(c)
+        #se trae el nombre del us
+        us = Us.objects.get(id= self.us)
+        print(us)
+        #se trae el nombre del protecto
+        p = Proyecto.objects.get(id=self.project)
+        print(p)
+        #se trae el nombre del usuario
+        cr = Usuario.objects.get(id=self.creador)
+        print(cr)
+        hc.comment = c
+        hc.us = us
+        hc.project = p
+        hc.creador = cr
+        hc.comentarios = c.comentarios
+        hc.save()
+
+    def __str__(self):
+        return 'ID del comentario: ' + '{}'.format(self.id)
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item
+
+    class Meta:
+        verbose_name = 'Comentarios'
+        db_table = 'comentarios'
+        ordering = ['id', 'creador']
+        permissions = (
+            ('add_comment', 'Can add Us to Product Backlog'),
+            ('view_comment', 'Can view Us to Product Backlog'),
+            ('delete_comment', 'Can delete Us to Product Backlog'),
+            ('modify_comment', 'Can modify comment'))
+
+class HistorialComentarios(models.Model):
+    comment = models.ForeignKey(Comentarios, on_delete=models.CASCADE, null=True)
+    us = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
+    project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, null=True)
+    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    comentarios = models.CharField('Comentario', max_length=2000, unique=False)
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
