@@ -23,20 +23,35 @@ from project.models import Proyecto
 # Create your views here.
 
 @login_required(login_url='login')
-def us(request,pk):
-    us=Us.objects.filter(project=pk).exclude(activo=False) #Filtar los us por proyecto
-   # us = Us.objects.all() # Todos los us creados
-    proj=Proyecto.objects.get(id=pk)
-    user=request.user
-    context={
-        'Us':us,
-        'User':user,
-        'Proj':proj
+def us(request, pk):
+    # Filtar los us por proyecto
+    us = Us.objects.filter(project=pk).exclude(activo=False)
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proj': proj
     }
     print (context)
-    return render(request,'us.html',context=context)
+    return render(request, 'us.html', context=context)
 
-def view_us(request,pk,us_pk):
+
+def product_backlog(request, pk):
+    # Filtar los us por proyecto y solo los activos
+    us = Us.objects.filter(project=pk).exclude(activo=False)
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proj': proj
+    }
+    print(context)
+    return render(request, 'product_backlog.html', context=context)
+
+
+def view_us(request, pk, us_pk):
     us=Us.objects.get(id=us_pk)
     proj = Proyecto.objects.get(id=pk)
     context={
@@ -91,7 +106,7 @@ def editUs(request, pk, us_pk):
             anteriorus.storypoints= nuevous.storypoints
             anteriorus.estado= nuevous.estado
             anteriorus.prioridad= nuevous.prioridad
-            anteriorus.descripcion= anteriorus.descripcion
+            anteriorus.descripcion= nuevous.descripcion
             anteriorus.save()
             historiales= HistorialUs.objects.filter(ustory_id=us_pk)
             for his in historiales:
@@ -112,3 +127,20 @@ def editUs(request, pk, us_pk):
 def verhistorialus(request, pk, us_pk):
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
     return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proj': Proyecto.objects.get(id=pk)})
+
+
+def crear_us_product(request, pk):
+    if request.method == 'POST':
+        FormularioUserStory = crearUsProductForm(request.POST)
+        nuevous = FormularioUserStory.save(commit=False)
+        nuevous.project= Proyecto.objects.get(id= pk)
+        nuevous.save()
+        historiales = HistorialUs.objects.filter(ustory_id= nuevous.id)
+        for his in historiales:
+            ultimohistorial = his
+        ultimohistorial.user = request.user
+        ultimohistorial.save()
+        return redirect('product_backlog', pk=pk)
+    else:
+        FormularioUserStory = crearUsProductForm(request.GET)
+        return render(request, 'create_usProduct.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})

@@ -13,7 +13,7 @@ class Proyecto(models.Model):
         ('P', 'Pausado'),
         ('C', 'Cancelado')
     )
-    name = models.CharField(max_length=50, verbose_name='Nombre')
+    name = models.CharField(max_length=50, verbose_name='Nombre', unique=True)
     creator = models.ForeignKey(Usuario, verbose_name='Creador', on_delete=models.CASCADE)
     fecha_inicio = models.DateField(verbose_name='Fecha de creación', blank=True, null=True)
     fecha_fin = models.DateField(verbose_name='Fecha de Finalización', blank=True, null=True)

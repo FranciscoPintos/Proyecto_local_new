@@ -70,9 +70,62 @@ class editUsForm(forms.ModelForm):
         super().__init__(*args,**kwargs)
 
 
-# class viewUsForm(forms.ModelForm):
-#     class Meta:
-#         model = Us
-#         fields = ['name','descripcion','dificultad','estado']
-#     def __init__(self,*args,**kwargs):
-#         super().__init__(*args,**kwargs)
+class crearUsProductForm(forms.ModelForm):
+    class Meta:
+        model = Us
+        fields = '__all__'
+        exclude=['project', 'estado', 'activo', 'user', 'storypoints']
+        labels = {
+            'name': 'Nombre',
+            'descripcion': 'Descripción',
+        }
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese el nombre del User Story',
+                    'class': 'form-control'
+                }
+            ),
+            'descripcion': forms.Textarea(
+                attrs={
+                    'placeholder': 'Ingrese descripcion del User Story',
+                    'rows': 3,
+                    'cols': 3,
+                    'class':'form-control'
+                }
+            ),
+            'project': forms.Select(
+                attrs={
+                    'class': 'form-control',
+
+                }
+            ),
+
+        }
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        #self.fields["user"].queryset= Miembro.objects.filter(rol__project_id= self.kwargs['pk'])
+
+
+
+class editUsProductForm(forms.ModelForm):
+    class Meta:
+        model = Us
+        fields = '__all__'
+        exclude = ['project', 'activo']
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'placeholder': 'Ingrese el nombre del User Story',
+                }
+            ),
+            'descripcion': forms.Textarea(
+                attrs={
+                    'placeholder': 'Ingrese descripcion del User Story',
+                }
+            ),
+            'estado': forms.Select(),
+        }
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+

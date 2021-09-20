@@ -1,4 +1,4 @@
-{% extends 'baseProyecto.html' %}
+{% extends 'base.html' %}
 
 
 {% block content %}
@@ -27,7 +27,6 @@
                                         <thead>
                                         <tr>
                                             <th>Proyecto</th>
-
                                             <th>Entrar</th>
                                         </tr>
                                         </thead>
@@ -37,14 +36,7 @@
                                                 <tr>
                                                     <td>
                                                         <h5 class>{{ r.name }}</h5>
-                                                        <h5> User_id: {{ user.id }}</h5>
                                                     </td>
-{#                                                    {% if modificar %}#}
-{#                                                        <td class=""">#}
-{#                                                            <a href="{% url 'modificar' r.id %}" class="btn btn-info"><i#}
-{#                                                                    class="fas fa-edit"></i></a>#}
-{#                                                        </td>#}
-{#                                                    {% endif %}#}
                                                     <td>
                                                         <a type="submit" href="{% url 'verProyecto' r.id %}"
                                                            class="btn btn-danger"><i class="fas fa-eye"></i></a>

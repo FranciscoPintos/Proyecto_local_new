@@ -1,0 +1,70 @@
+{% extends 'baseProyecto.html' %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+
+                        </div>
+                        <h3>Etiquetas del Proyecto</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-9 justify-content-center">
+                                {% if Etiqueta %}
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Etiqueta</th>
+                                            <th>Editar</th>
+                                        </tr>
+                                        </thead>
+                                        {% for r in Etiqueta %}
+                                            {% if r.activo %}
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h5 class>{{ r.name }}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <a type="submit" href="{% url 'edit_etiqueta' pk=Proyecto.id et_pk=r.id %}"
+                                                           class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                        <a type="submit" href="{% url 'delete_etiqueta' pk=Proyecto.id et_pk=r.id  %}"
+                                                           class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    <div class="alert alert-danger mt-4"> No tiene etiquetas</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 mb-4 flex-md-row">
+                    <div class="col-3 offset-9 mt-3">
+                        <a href="{% url 'crear_etiqueta' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
+                            Crear Etiqueta
+                        </a>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

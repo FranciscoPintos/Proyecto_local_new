@@ -1,7 +1,5 @@
 from django.contrib.auth.models import Permission
 from django.db import models
-
-# Create your models here.
 from project.models import Proyecto
 from usuario.models import Usuario
 
@@ -25,7 +23,6 @@ class RolProyecto(models.Model):# Member
     new: str
     Cadena que representa un permiso con la columna 'codename' de la tabla auth_permission
     """
-
     def add_pemission_str(self, new):
         self.permisos.add(Permission.objects.get(codename=new))
 
@@ -52,6 +49,7 @@ class RolProyecto(models.Model):# Member
 
     class Meta:
         db_table = 'rol_proyecto'
+
 
 class Miembro(models.Model):# Meal
     user = models.ForeignKey(Usuario, on_delete=models.CASCADE)

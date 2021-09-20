@@ -38,9 +38,13 @@
                                         </h3>
                                     </div>
                                     <div class="card-body text-primary overflow-auto">
-                                        <p class="card-text ">
-                                            {{ u.descripcion }}
-                                        </p>
+                                        {% for US in u %}
+                                            {% if US.estado == 1 %}
+                                                <p class="card-text ">
+                                                    {{ US.name }}
+                                                </p><br>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -52,9 +56,13 @@
                                         </h3>
                                     </div>
                                     <div class="card-body text-primary overflow-auto">
-                                        <p class="card-text ">
-                                            {{ u.descripcion }}
-                                        </p>
+                                        {% for US in u %}
+                                            {% if US.estado == 2 %}
+                                                <p class="card-text ">
+                                                    {{ US.name }}
+                                                </p><br>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>
@@ -66,9 +74,13 @@
                                         </h3>
                                     </div>
                                     <div class="card-body text-primary overflow-auto">
-                                        <p class="card-text ">
-                                            {{ u.descripcion }}
-                                        </p>
+                                        {% for US in u %}
+                                            {% if US.estado == 4 %}
+                                                <p class="card-text ">
+                                                    {{ US.name }}
+                                                </p><br>
+                                            {% endif %}
+                                        {% endfor %}
                                     </div>
                                 </div>
                             </div>

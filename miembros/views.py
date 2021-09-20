@@ -106,9 +106,14 @@ def modiProject(request, id):
                 return redirect('modificar', id=id)
             return redirect('misproyectos', id)
         return redirect('modificar', id=id)
-    if request.method == 'GET':
+    else:
         idprojec = Proyecto.objects.get(id=id)
-        FormularioProyecto = modificarProject(instance=idprojec)
+        if idprojec.estado == 'E':
+            FormularioProyecto = modificarProject(instance=idprojec)
+        else:
+            if idprojec.estado == 'I':
+                FormularioProyecto = modificarProjectIniciado(instance=idprojec)
+            redirect('verProyecto', id)
         User = request.user
         proj=Proyecto.objects.get(id=id)
         return render(request, 'modificarProyecto.html', {'proyecto': FormularioProyecto, 'user': User,'proj':proj})
