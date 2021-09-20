@@ -1,13 +1,27 @@
-{% extends 'base.html' %}
-
+{% extends 'baseProyecto.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<br><br><br><br>
-<form method="POST">
-    <table>
-            {{ formaProyecto}}
-        </table>
-        <button type="submit">Guardar</button>
-        {% csrf_token %}
-</form>
+    <br>
+    <br>
+    <div class="card offset-4 m-5">
+        <div class="align-middle ">
+            <h1 class="text-center">Crear Rol</h1>
+            <div class="form-group col-8 offset-2">
+                <form action="" method="post">{% csrf_token %}
+                    <table>
+                      <div class="card mt-3 row overflow-scroll"  style="height:250px;">
+                            <div class="card-body">
+                                {{ formaProyecto|crispy}}
+                            </div>
+                      </div>
+                    </table>
+                    <div class="text-center">
+                        <a href="{% url 'verRolesProyecto' Proyecto.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
+                        <input class="btn btn-primary" type="submit" value="Guardar">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

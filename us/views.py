@@ -24,6 +24,15 @@ from project.models import Proyecto
 
 @login_required(login_url='login')
 def us(request, pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     # Filtar los us por proyecto
     us = Us.objects.filter(project=pk).exclude(activo=False)
     proj = Proyecto.objects.get(id=pk)
@@ -31,7 +40,8 @@ def us(request, pk):
     context = {
         'Us': us,
         'User': user,
-        'Proj': proj
+        'Proyecto': proj,
+        'permisos': permisos,
     }
     print (context)
     return render(request, 'us.html', context=context)
@@ -52,11 +62,21 @@ def product_backlog(request, pk):
 
 
 def view_us(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     us=Us.objects.get(id=us_pk)
     proj = Proyecto.objects.get(id=pk)
     context={
         'Us':us,
-        'Proj':proj
+        'Proyecto':proj,
+        'permnisos': permisos,
     }
 
     return render(request,'detalle_us.html',context)
@@ -125,6 +145,15 @@ def crear_comentarios(request, pk, us_pk):
     
 
 def crear_us(request, pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         FormularioUserStory = crearUsForm(request.POST)
         nuevous = FormularioUserStory.save(commit=False)
@@ -139,10 +168,19 @@ def crear_us(request, pk):
     else:
         FormularioUserStory = crearUsForm(request.GET)
         FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
-        return render(request, 'create_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})
+        return render(request, 'create_us.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk= pk), 'permisos': permisos})
 
 
 def Us_Delete(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         borrar = Us.objects.get(id=us_pk)
         borrar.activo = False
@@ -154,9 +192,18 @@ def Us_Delete(request, pk, us_pk):
         ultimohistorial.save()
         return redirect('us', pk=pk)
     else:
-        return render(request, 'delete_us.html', {'Proj': Proyecto.objects.get(pk=pk)})
+        return render(request, 'delete_us.html', {'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos})
 
 def editUs(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         FormularioUserStory = editUsForm(request.POST)
         if FormularioUserStory.is_valid():
@@ -180,12 +227,12 @@ def editUs(request, pk, us_pk):
             #pro = Us.objects.get(id=us_pk)
             #FormularioUserStory = editUsForm(instance=pro)
             #FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
-            return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
+            return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk), 'permisos': permisos})
     else:
         pro= Us.objects.get(id=us_pk)
         FormularioUserStory = editUsForm(instance=pro)
         FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
-        return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk)})
+        return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk), 'permisos': permisos})
 def verhistorialus(request, pk, us_pk):
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
     return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proj': Proyecto.objects.get(id=pk)})

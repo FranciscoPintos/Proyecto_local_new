@@ -10,14 +10,14 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyecto' proj.id %}" class="btn btn-info">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
                         <h3> Roles de proyecto</h3>
                     </div>
                     <div class="card-body">
-                          {% if Proyecto %}
+                          {% if roles %}
 
                     <table class="table">
                         <thead>
@@ -27,7 +27,7 @@
                             <th></th>
                         </tr>
                         </thead>
-                        {% for rol in Proyecto %}
+                        {% for rol in roles %}
                             <tbody>
                             <tr>
                                 <td><h5 class="card-title">{{rol.name}}</h5></td>
@@ -38,11 +38,12 @@
                                 </td>
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
-
-                                        <a href="{% url 'modificarRolProyecto' proj.id  rol.id %}" class="btn btn-info"><i
-                                                class="fas fa-edit"></i></a>
-                                        <a type="submit" href="#" class="btn btn-danger"><i
-                                                class="fas fa-trash"></i></a>
+                                        {% if not rol.name == 'Scrum Master' %}
+                                            <a href="{% url 'modificarRolProyecto' Proyecto.id  rol.id %}" class="btn btn-info"><i
+                                                    class="fas fa-edit"></i></a>
+                                            <a type="submit" href="#" class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i></a>
+                                        {%  endif %}
                                     </div>
                                 </td>
                             </tr>
@@ -60,10 +61,10 @@
                     <div class="card-footer">
                             <div class="float-right">
 
-                                <a href="{% url 'agregarRolProyecto' proj.id %}" class="btn btn-primary">
+                                <a href="{% url 'agregarRolProyecto' Proyecto.id %}" class="btn btn-primary">
                                     Crear Rol
                                 </a>
-                                <a href="{% url 'listar_usuarios' %}"
+                                <a href="{% url 'roles_miembros' Proyecto.id%}"
                                    class="btn btn-primary">
                                     Asignar Rol
                                 </a>

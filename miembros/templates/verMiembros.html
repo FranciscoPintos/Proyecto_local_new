@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyecto' proj.id %}" class="btn btn-info">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
@@ -29,7 +29,7 @@
                                                     <i class="far fa-circle"></i>
                                                     {{ r.user }}
                                                     <div class="btn-group btn-group-sm ">
-                                                        <a type="submit" href="{% url 'eliminado' r.id %}"
+                                                        <a type="submit" href="{% url 'eliminado' Proyecto.id r.id %}"
                                                            class="btn btn-danger"><i
                                                                 class="fas fa-trash"></i></a>
                                                     </div>
@@ -47,7 +47,7 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'agregarMiembro' proj.id %}" class="btn btn-lg btn-primary float-right">
+                                <a href="{% url 'agregarMiembro' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
                                     Agregar miembros
                                 </a>
                             </div>

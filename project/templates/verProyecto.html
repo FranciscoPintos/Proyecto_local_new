@@ -38,7 +38,7 @@
                                         </h3>
                                     </div>
                                     <div class="card-body text-primary overflow-auto">
-                                        {% for US in u %}
+                                        {% for US in ProductBacklog %}
                                             {% if US.estado == 1 %}
                                                 <p class="card-text ">
                                                     {{ US.name }}
@@ -89,15 +89,17 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                {% if iniciar_proyecto %}
-                                    {% if Proyecto.estado == 'E' %}
-                                        <a href="{% url 'iniciarProyecto' Proyecto.id %}"
-                                           class="btn btn-lg btn-primary float-right">
-                                            INICIAR
-                                            <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
-                                        </a>
+                                {%  for i in permisos %}
+                                    {% if i.codename == 'change_proyecto' %}
+                                        {% if Proyecto.estado == 'E' %}
+                                            <a href="{% url 'iniciarProyecto' Proyecto.id %}"
+                                               class="btn btn-lg btn-primary float-right">
+                                                INICIAR
+                                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                            </a>
+                                        {% endif %}
                                     {% endif %}
-                                {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
