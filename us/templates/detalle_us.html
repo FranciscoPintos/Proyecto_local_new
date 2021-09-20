@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-header bg-gradient-indigo text-center">
                             <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'us' Proj.id %}" class="btn btn-info">
+                                <a href="{% url 'us' Proyecto.id %}" class="btn btn-info">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                             </div>
@@ -45,11 +45,11 @@
                         <table class="table">
                             <tr>
                                 <td>
-                                    <a href="{% url 'histo' pk=Proj.id us_pk=Us.id %}" class="btn btn-primary mr-5"
+                                    <a href="{% url 'histo' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-primary mr-5"
                                            type="button">Ver Historial</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'tareas' pk=Proj.id us_pk=Us.id %}" class="btn btn-primary mr-5"
+                                    <a href="{% url 'tareas' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-primary mr-5"
                                            type="button">Tareas</a>
                                 </td>
                             </tr>

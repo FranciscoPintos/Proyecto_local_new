@@ -1,7 +1,7 @@
 {% extends 'baseProyecto.html' %}
 
 {% block content %}
-
+    <br><br><br><br>
     <div class="card col-9 text-center offset-1 mt-3 row">
         <div class="col-8  offset-2 ">
             <div class="card-body p-0">
@@ -43,7 +43,7 @@
 
         <div class="mt-6 mb-4 flex-md-row">
             <div class="col-3 offset-9 mt-3">
-                <a href="{% url 'detalle_us' pk=Proj.id us_pk=u.id %}" class="btn btn-lg btn-primary float-right">
+                <a href="{% url 'detalle_us' pk=Proyecto.id us_pk=u.id %}" class="btn btn-lg btn-primary float-right">
                     Atras
                 </a>
             </div>

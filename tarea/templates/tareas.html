@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'detalle_us' pk=Proj.id us_pk=Us.id %}" class="btn btn-info">
+                                <a href="{% url 'detalle_us' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-info">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                         </div>
@@ -38,19 +38,19 @@
                                         <td><h5 class="card-title">{{ tr.horas}}</h5> </td>
                                         {% if modificar %}
                                             <td class=" py-0 align-middle">
-                                                 <a href="{% url 'editar_tarea' pk=Proj.id us_pk=Us.id tr_pk=tr.id %}" class="btn btn-info"><i
+                                                 <a href="{% url 'editar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}" class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
                                             </td>
                                         {% endif %}
 
                                             <td>
-                                                 <a type="submit" href="{% url 'borrar_tarea' pk=Proj.id us_pk=Us.id tr_pk=tr.id  %}"
+                                                 <a type="submit" href="{% url 'borrar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id  %}"
                                                            class="btn btn-danger"><i
                                                                 class="fas fa-trash"></i></a>
                                             </td>
 
                                             <td>
-                                                <a type="submit" href="{% url 'historial_tarea' pk=Proj.id us_pk=Us.id tr_pk=tr.id %}"
+                                                <a type="submit" href="{% url 'historial_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}"
                                                            class="btn btn-info">
                                                                <i class="fas fa-list-alt"></i>
                                                 </a>
@@ -66,7 +66,7 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_tarea'  pk=Proj.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
+                                <a href="{% url 'crear_tarea'  pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
                                     Crear Tarea
                                 </a>
                             </div>

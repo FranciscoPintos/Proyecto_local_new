@@ -76,7 +76,7 @@ def view_us(request, pk, us_pk):
     context={
         'Us':us,
         'Proyecto':proj,
-        'permnisos': permisos,
+        'permisos': permisos,
     }
 
     return render(request,'detalle_us.html',context)
@@ -96,6 +96,15 @@ def view_comentarios(request, pk, us_pk):
 
 #definicion de vista para crear comentarios de un User Story
 def crear_comentarios(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     #en caso de haber completado el fomrulario y clickeado en guardar formulario
     if request.method == 'POST':
         #instanciamos el formulario con los datos cargados del metodo post de request
@@ -227,15 +236,24 @@ def editUs(request, pk, us_pk):
             #pro = Us.objects.get(id=us_pk)
             #FormularioUserStory = editUsForm(instance=pro)
             #FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
-            return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk), 'permisos': permisos})
+            return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos})
     else:
         pro= Us.objects.get(id=us_pk)
         FormularioUserStory = editUsForm(instance=pro)
         FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
-        return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk=pk), 'permisos': permisos})
+        return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos})
 def verhistorialus(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
-    return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proj': Proyecto.objects.get(id=pk)})
+    return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
 
 
 def crear_us_product(request, pk):
