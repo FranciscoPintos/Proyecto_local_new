@@ -28,13 +28,6 @@ class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro
         fields = ['user','rol','horaTrabajo']
-<<<<<<< Updated upstream
-=======
-
-    ch = Usuario.objects.all()
-    #user = forms.Select(choices=ch)
-
->>>>>>> Stashed changes
     horaTrabajo=forms.IntegerField
 
 
