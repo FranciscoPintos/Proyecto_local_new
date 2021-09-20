@@ -8,8 +8,8 @@ from principalApp.views import *
 
 urlpatterns = [
         # Paths de views
-        path('principalApp/inicio', inicioview.as_view() , name='inicio'),
-        path('principalApp/base', baseview.as_view() , name='base'),
+        path('principalApp/inicio', inicioview , name='inicio'),
+        path('principalApp/base', baseview , name='base'),
         path('pricipalApp/calendar',calendar.as_view(),name='calendar')
 
 ]

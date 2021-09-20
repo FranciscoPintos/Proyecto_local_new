@@ -49,6 +49,7 @@ class UsuarioManager(BaseUserManager):
 
 
 class Usuario(AbstractUser):
+
     username = models.CharField('Nombre de usuario', unique=True, max_length=50)
     names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
     lastname = models.CharField('Apellidos ', max_length=50, null=True, blank=True)

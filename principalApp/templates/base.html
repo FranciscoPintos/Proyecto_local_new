@@ -34,102 +34,108 @@
 </head>
 <!--el id sirve para llamarlo despues en el js-->
 <body id="body" class="hold-transition overflow-scroll">
-    {% block header %}
-        <header class="navbar navbar-expand navbar-dark fixed-top">
-                <nav class="nav">
-                    <!--Menu lateral-->
-                    <div class="nav-menu-vertical">
-                        <i class="fas fa-bars" id="btn_open"></i>
-                    </div>
-                    <!--Menu horizontal-->
-                    <ul class="nav-menu-horizontal">
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">{{ user.first_name }}</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{ user.id }}">Mis Proyectos</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="{% url 'calendar'%}">Calendario</a>
-                        </li>
-                        <li class="nav-menu-horizontal-item">
-                            <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
-                        </li>
-                    </ul>
-                </nav>
-        </header>
-    {% endblock %}
-    {% block menu_lateral %}
-        <div class="menu__side mt-5" id="menu__side">
-
-            <div class="name__menu">
-                <i class="fas fa-inbox"></i>
-                <h5>Menú</h5>
+{% block header %}
+    <header class="navbar navbar-expand navbar-dark fixed-top">
+        <nav class="nav">
+            <!--Menu lateral-->
+            <div class="nav-menu-vertical">
+                <i class="fas fa-bars" id="btn_open"></i>
             </div>
+            <!--Menu horizontal-->
+            <ul class="nav-menu-horizontal">
+                <li class="nav-menu-horizontal-item">
+                    <a class="nav-menu-horizontal-link" href="/usuario/{{ user.id }}">
+                        <i class="fas fa-user-tie"></i>
+                        {{ user.first_name }}</a>
+                </li>
+                <li class="nav-menu-horizontal-item">
+                    <a class="nav-menu-horizontal-link" href="/principalApp/inicio">Inicio</a>
+                </li>
+                <li class="nav-menu-horizontal-item">
+                    <a class="nav-menu-horizontal-link" href="/project/misProyectos/{{ user.id }}">Mis Proyectos</a>
+                </li>
+                <li class="nav-menu-horizontal-item">
+                    <a class="nav-menu-horizontal-link" href="{% url 'calendar' %}">Calendario</a>
+                </li>
+                <li class="nav-menu-horizontal-item">
+                    <a class="nav-menu-horizontal-link" href="/accounts/logout/">Cerrar Sesión</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+{% endblock %}
+{% block menu_lateral %}
+    <div class="menu__side mt-5" id="menu__side">
 
-            <div class="opciones__menu">
-                <a href="{%  url 'verProyectos' %}">
+        <div class="name__menu">
+            <i class="fas fa-inbox"></i>
+            <h5>Menú</h5>
+        </div>
+
+        <div class="opciones__menu">
+            {% if perm_proyectos_ver %}
+                <a href="{% url 'verProyectos' %}">
                     <div class="opcion">
                         <i class="fas fa-project-diagram" title="Opción 1"></i>
                         <h5>Proyectos</h5>
                     </div>
                 </a>
-                <a href="{%  url 'roles' %}">
+            {% endif %}
+            {% if perm_roles_ver %}
+                <a href="{% url 'roles' %}">
                     <div class="opcion">
                         <i class="fas fa-users-cog"></i>
                         <h5>Roles de sistema</h5>
                     </div>
                 </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 3"></i>
-                        <h5>Opción 3</h5>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 4"></i>
-                        <h5>Opción 4</h5>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 5"></i>
-                        <h5>Opción 5</h5>
-                    </div>
-                </a>
-                <a href="#">
-                    <div class="opcion">
-                        <i class="fas fa-home" title="Opción 6"></i>
-                        <h5>Opción 6</h5>
-                    </div>
-                </a>
-            </div>
-
+            {% endif %}
+            <a href="#">
+                <div class="opcion">
+                    <i class="fas fa-home" title="Opción 3"></i>
+                    <h5>Opción 3</h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="opcion">
+                    <i class="fas fa-home" title="Opción 4"></i>
+                    <h5>Opción 4</h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="opcion">
+                    <i class="fas fa-home" title="Opción 5"></i>
+                    <h5>Opción 5</h5>
+                </div>
+            </a>
+            <a href="#">
+                <div class="opcion">
+                    <i class="fas fa-home" title="Opción 6"></i>
+                    <h5>Opción 6</h5>
+                </div>
+            </a>
         </div>
-    {% endblock %}
-    {% block content %}
 
-    {% endblock %}
-    {% block extrajs %}
-        <!-- jQuery -->
-        <script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
-        <!-- Bootstrap 4 -->
-        <script src="{% static '/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-        <!-- AdminLTE App -->
-        <script src="{% static '/js/adminlte.min.js' %}"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="{% static '/js/demo.js' %}"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-                integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-                crossorigin="anonymous"></script>
+    </div>
+{% endblock %}
+{% block content %}
 
-        <script src="{% static 'principalApp/js/plantilla_base.js' %}"></script>
-        <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+{% endblock %}
+{% block extrajs %}
+    <!-- jQuery -->
+    <script src="{% static '/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{% static '/plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <!-- AdminLTE App -->
+    <script src="{% static '/js/adminlte.min.js' %}"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="{% static '/js/demo.js' %}"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
 
-    {% endblock %}
+    <script src="{% static 'principalApp/js/plantilla_base.js' %}"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
+
+{% endblock %}
 </body>
 </html>

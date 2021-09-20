@@ -30,7 +30,7 @@ class CrearMiembro(forms.ModelForm):
         fields = ['user','rol','horaTrabajo']
 
     ch = Usuario.objects.all()
-    user = forms.Select(choices=ch)
+    user = forms.Select()
 
     horaTrabajo=forms.IntegerField
 

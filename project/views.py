@@ -80,7 +80,6 @@ class ProyectoCreate(CreateView):
 def verProyectos(request, id):
     print(Usuario.objects.get(id=id).id)
     user = request.user
-
     try:
         c = 0
         for miembros in Miembro.objects.all():
@@ -91,7 +90,7 @@ def verProyectos(request, id):
                 for elemento in miembro:
                     pr.append(Proyecto.objects.get(id=elemento.rol.project.id))
                 return render(request, 'misPryectos.html', {'Proyecto': pr})
-        return redirect('exceptMiembro')
+        return render(request, 'misPryectos.html')
 
         # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
         print(id)
