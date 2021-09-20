@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'verProyecto' Proj.id %}" class="btn btn-info">
+                                <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                             </div>
@@ -24,7 +24,7 @@
                                             <div class="card-header justify-content-center bg-info">
                                                 <h3 class="card-title">{{ u.name.upper }}
                                                     id:{{ u.id }}
-                                                    <a href="{% url 'detalle_us' Proj.id u.id%}" class="btn btn-info"><i
+                                                    <a href="{% url 'detalle_us' Proyecto.id u.id%}" class="btn btn-info"><i
                                                             class="far fa-plus-square"></i></a>
 
                                                 </h3>
@@ -64,9 +64,9 @@
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
-                                                    <a href="{% url 'edit_us' pk=Proj.id us_pk=u.id %}" class="btn btn-info"><i
+                                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}" class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
-                                                    <a type="submit" href="{% url 'delete_us' pk=Proj.id us_pk=u.id  %}"
+                                                    <a type="submit" href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id  %}"
                                                        class="btn btn-danger"><i
                                                             class="fas fa-trash"></i></a>
                                                 </div>
@@ -83,7 +83,7 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_us' Proj.id %}" class="btn btn-lg btn-primary float-right">
+                                <a href="{% url 'crear_us' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
                                     Crear User Story
                                 </a>
                             </div>

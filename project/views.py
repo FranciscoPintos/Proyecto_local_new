@@ -119,24 +119,14 @@ def verProyecto(request, id):
     else:
         user = request.user
 
-    product_backlog = Us.objects.all().filter(project_id=id, activo=True)
-    iniciar_proyecto = user.has_perm('change_proyecto')
-    modificar_proyecto = user.has_perm('change_proyecto')
-    listar_miembro = user.has_perm('view_miembro')
-    ver_rol_proyecto = user.has_perm('view_rolproyecto')
-    ver_product_backlog = user.has_perm('view_usproducbacklog')
-    ver_etiquetas = user.has_perm('view_etiqueta')
+    permisos = user.rol.list_permissions().order_by('id')
 
+    product_backlog = Us.objects.all().filter(project_id=id, activo=True)
 
     context = {
         'Proyecto': proyecto,
-        'iniciar_proyecto': iniciar_proyecto,
-        'modificar_proyecto': modificar_proyecto,
-        'listar_miembro': listar_miembro,
-        'ver_rol_proyecto': ver_rol_proyecto,
-        'ver_product_backlog': ver_product_backlog,
-        'ver_etiquetas': ver_etiquetas,
-        'u': product_backlog,
+        'ProductBacklog': product_backlog,
+        'permisos': permisos,
     }
 
     return render(request, 'verProyecto.html', context)

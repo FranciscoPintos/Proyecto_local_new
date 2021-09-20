@@ -1,0 +1,62 @@
+{% extends 'baseProyecto.html' %}
+{% load crispy_forms_filters %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">Usuarios</h3>
+                </div>
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Escoger Rol</th>
+                        </tr>
+                        </thead>
+
+                                <tbody>
+                                <tr>
+                                    <td><h5 class="card-title">{{ Usuarios.user.name }}</h5> </td>
+                                    <td>
+                                        <form action="" method="post">{% csrf_token %}
+                                            <table>
+                                                <div class="card mt-3 row">
+                                                    <div class="card-body">
+                                                        {{Usuarios| crispy}}
+                                                    </div>
+                                                </div>
+                                            </table>
+                                            <div class="text-center">
+                                                <a href="{% url 'roles_miembros' pk=Proyecto.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
+                                                <input class="btn btn-primary" type="submit" value="Guardar">
+                                            </div>
+                                        </form>
+                                    </td>
+
+
+                                </tr>
+
+
+                                </tbody>
+
+                    </table>
+
+            </div>
+        </div>
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <a href="{% url 'roles_miembros' Proyecto.id%}" class="btn btn-lg btn-primary float-right">
+                    Atras
+                </a>
+
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -5,3 +5,6 @@
 /miembros/migrations/
 /roles/migrations/
 /tarea/migrations/
+/etiqueta/migrations/
+/us/migrations/
+/notificacion/migrations/
