@@ -28,6 +28,10 @@ class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro
         fields = ['user','rol','horaTrabajo']
+
+    ch = Usuario.objects.all()
+    user = forms.Select()
+
     horaTrabajo=forms.IntegerField
 
 
@@ -105,13 +109,27 @@ class editarRolForm(forms.ModelForm):
             'permisos': forms.CheckboxSelectMultiple()
 
         }
-    permisos = CustomMMCF(
-        queryset=Permission.objects.filter(id__gt=46).exclude(id__exact=61),
-        widget=forms.CheckboxSelectMultiple
-    )
 
+"""
 
-class modificarRolPoyectoUsuario(forms.ModelForm):
+class ProyectoForm(forms.ModelForm):
+
     class Meta:
-        model = Miembro
-        fields = ['rol']
+        model = Proyecto
+        fields = [
+            'name',
+            'permisos',
+            'fecha_fin',
+        ]
+        labels = {
+            'name': 'Nombre',
+            'fecha_inicio': 'Permiso de Rol',
+            'fecha_fin': 'Fecha de finalización',
+        }
+        widgets = {
+            'name': forms.CharField(),
+            'fecha_inicio': forms.DateField(),
+            'fecha_fin': forms.DateField(),
+        }
+
+"""
