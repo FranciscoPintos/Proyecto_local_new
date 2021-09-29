@@ -8,6 +8,7 @@ class crearRolForm(forms.ModelForm):
     class Meta:
         model = Rol
         fields = ['rol','permisos']
+
         widgets = {
             'rol': forms.TextInput(
                 attrs={
