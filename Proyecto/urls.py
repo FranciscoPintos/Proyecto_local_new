@@ -30,4 +30,5 @@ urlpatterns = [
     path('', include('us.urls')),
     path('', include('tarea.urls')),
     path('', include('etiqueta.urls')),
+    path('', include('sprint.urls')),
 ]
