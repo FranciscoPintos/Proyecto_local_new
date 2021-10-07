@@ -7,8 +7,9 @@ from django.contrib.auth.decorators import login_required
 @login_required(login_url='login')
 def inicioview(request):
     user = request.user
-    perm_proyecto_ver = user.has_perm('project_view')
-    perm_roles_ver = user.has_perm('roles_view')
+    perm_proyecto_ver = user.has_perm('view_proyecto')
+    perm_roles_ver = user.has_perm('view_rol')
+    print(perm_proyecto_ver)
     context = {
         'perm_proyectos_ver': perm_proyecto_ver,
         'perm_roles_ver': perm_roles_ver,

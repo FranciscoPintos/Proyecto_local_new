@@ -84,17 +84,18 @@ class Comentarios(models.Model):
         c = Comentarios.objects.get(id= self.id)
         print(c)
         #se trae el nombre del us
-        us = Us.objects.get(id= self.us)
+        us = Us.objects.get(id= self.us.id)
         print(us)
         #se trae el nombre del protecto
-        p = Proyecto.objects.get(id=self.project)
+        p = Proyecto.objects.get(id=self.project.id)
         print(p)
         #se trae el nombre del usuario
-        cr = Usuario.objects.get(id=self.creador)
+        cr = Usuario.objects.get(id=self.creador.id)
         print(cr)
+        hc.comentario = c
         hc.us_name = us.name
         hc.project_name = p.name
-        hc.creator_name = cr.name
+        hc.creator_name = cr.first_name
         hc.comentarios = c.comentarios
         hc.save()
 
@@ -118,10 +119,12 @@ class Comentarios(models.Model):
 class HistorialComentarios(models.Model):
     
     id = models.AutoField(primary_key=True)
-    us_name = models.CharField('Nombre de User Story', max_length=50, unique=True, null=True)
-    project_name = models.CharField('Nombre de Proyecto', max_length=50, unique=True, null=True)
-    creator_name = models.CharField('Nombre de Creador', max_length=50, unique=True, null=True)
-    comentarios = models.CharField('Contenido del comentario', max_length=2000, unique=True, null=True)
+    comentario = models.ForeignKey(Comentarios, on_delete=models.CASCADE)
+    us_name = models.CharField('Nombre de User Story', max_length=50, null=True)
+    project_name = models.CharField('Nombre de Proyecto', max_length=50, null=True)
+    creator_name = models.CharField('Nombre de Creador', max_length=50, null=True)
+    comentarios = models.CharField('Contenido del comentario', max_length=2000, null=True)
+    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)

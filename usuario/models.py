@@ -81,6 +81,7 @@ class Usuario(AbstractUser):
         else:
             print('no es super')
             for i in self.rol.list_permissions():
+                print(i.codename)
                 if i.codename == perm:
                     return True
             return False
