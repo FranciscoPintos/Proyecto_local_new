@@ -5,9 +5,18 @@ from project.models import Proyecto
 from sprint.models import Sprint
 
 
-def crearEquipo(request, Proyecto_pk, Sprint_pk):
-    proyecto = Proyecto.objects.get(id=Proyecto_pk)
-    sprint = Sprint.objects.get(id=Sprint_pk)
+def crearEquipo(request, pk, sp_pk):
+    """
+    Vista basa en función para la creación de un Equipo que conforma un sprint asignando miembros al equipo
+    :param request:
+    :param pk:
+    :param sp_pk:
+    :return:
+    """
+    # Proyecto al que pertenece
+    proyecto = Proyecto.objects.get(id=pk)
+    # Sprint para el cual se crea el equipo
+    sprint = Sprint.objects.get(id=sp_pk)
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
@@ -17,3 +26,4 @@ def crearEquipo(request, Proyecto_pk, Sprint_pk):
         user = request.user
     # obtener sus permisos
     permisos = user.rol.list_permissions().order_by('id')
+
