@@ -9,7 +9,7 @@
         <div class="opciones__menu">
             {% for i in permisos %}
                 {% if i.codename == 'view_sprint' %}
-                    <a href="#">
+                    <a href={% url 'sprintlist' Proyecto.id %}>
                         <div class="opcion">
                             <i class="fas fa-clipboard-list"></i>
                             <h5>Sprints Proyectos</h5>

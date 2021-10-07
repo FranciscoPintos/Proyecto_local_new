@@ -11,6 +11,7 @@ class crearSprintForm(forms.ModelForm):
     class Meta:
         model = Sprint
         fields = '__all__'
+        exclude = ['fecha_incio', 'fecha_fin', 'us']
         labels = {
             'name': 'Nombre',
          }
@@ -21,7 +22,8 @@ class crearSprintForm(forms.ModelForm):
                     'class': 'form-control'
                 }
             ),
-
+            'fecha_incio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
 
         }
     def __init__(self,*args,**kwargs):

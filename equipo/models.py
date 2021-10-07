@@ -12,7 +12,7 @@ class Equipo(models.Model):
     # Sprint al que pertenece
     sprint = models.ForeignKey(Sprint, on_delete=models.CASCADE)
     # Miembros del equipo
-    miembros = models.ManyToManyField(Miembro, on_delete=models.CASCADE)
+    miembros = models.ManyToManyField(Miembro)
     # Capacidad del equipo en horas
     capacidad = models.PositiveIntegerField(null=True)
 

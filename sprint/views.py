@@ -18,6 +18,7 @@ from sprint.models import *
 from project.models import *
 from sprint.forms import *
 from miembros.models import *
+from equipo.models import *
 
 class sprintView(ListView):
     model=Sprint
@@ -72,6 +73,12 @@ class crear_sprint(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         Proyecto= self.kwargs['pk']
+        # Creacion de un equipo
+        equipo = Equipo()
+        # Asignacion del equipo al sprint
+        equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
+        # Persistencia del equipo
+        equipo.save()
         return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
     # def get_initial(self):
     #     initial = super(crear_us, self).get_initial()
@@ -82,9 +89,9 @@ class crear_sprint(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super(crear_sprint, self).get_context_data(**kwargs)
         # Ver si es un miembro del proyecto
-        if Miembro.objects.filter(user=request.user.id):
+        if Miembro.objects.filter(user=self.request.user.id):
             # obtener su usuario
-            user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
         else:
             # si no es miembro se analizan los permisos de sistema
             user = request.user
