@@ -16,7 +16,13 @@ class Sprint(models.Model):
     fecha_incio = models.DateField()
     # Fecha fin
     fecha_fin = models.DateField()
-
+    status = [
+        (1, 'To Do'), (2, 'Doing'), (3, 'Done'),
+    ]
+    estado = models.IntegerField(
+        choices=status,
+        default=1
+    )
     def __str__(self):
         return '{}'.format(self.name)
 
