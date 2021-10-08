@@ -81,30 +81,31 @@ class crear_sprint(LoginRequiredMixin, CreateView):
     #     return initial
     def get_context_data(self, **kwargs):
         context = super(crear_sprint, self).get_context_data(**kwargs)
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         # Ver si es un miembro del proyecto
-        if Miembro.objects.filter(user=request.user.id):
+        if Miembro.objects.filter(user=self.request.user.id):
             # obtener su usuario
-            user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
         else:
             # si no es miembro se analizan los permisos de sistema
-            user = request.user
+            user = self.request.user
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
-        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['permisos']=permisos
+        context['permisos'] = permisos
+
         return context
-    # def post(self, request, *args, **kwargs):
-    #     self.object=self.get_object
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         data=form.save(commit=False)
-    #         print('dfgdfgd',data.project)
-    #         data.project=Proyecto.objects.get(pk=self.kwargs['pk'])
-    #         data.estado=Us.status[0][0]
-    #         data.save()
-    #         return HttpResponseRedirect(self.get_success_url())
-    #     return self.render_to_response(self.get_context_data(form=form))
-    #
+    def post(self, request, *args, **kwargs):
+        self.object=self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            # print('dfgdfgd',data.project)
+            data.proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+            # data.estado=Us.status[0][0]
+            data.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
+
 
 
 # @login_required(login_url='login')
