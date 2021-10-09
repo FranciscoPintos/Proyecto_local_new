@@ -23,13 +23,7 @@
                                     <td><h5 class="card-title">{{ Usuarios.user.name }}</h5> </td>
                                     <td>
                                         <form action="" method="post">{% csrf_token %}
-                                            <table>
-                                                <div class="card mt-3 row">
-                                                    <div class="card-body">
-                                                        {{Usuarios| crispy}}
-                                                    </div>
-                                                </div>
-                                            </table>
+                                            {{Usuarios | crispy}}
                                             <div class="text-center">
                                                 <a href="{% url 'roles_miembros' pk=Proyecto.id %}" class="btn btn-primary mr-5" type="button">Cancelar</a>
                                                 <input class="btn btn-primary" type="submit" value="Guardar">

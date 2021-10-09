@@ -38,7 +38,7 @@
                                 </td>
                                 <td class=" py-0 align-middle">
                                     <div class="btn-group btn-group-sm">
-                                        {% if not rol.name == 'Scrum Master' %}
+                                        {% if not rol.name == 'Scrum Master' and not rol.name == 'Product Owner' and not rol.name == ''%}
                                             <a href="{% url 'modificarRolProyecto' Proyecto.id  rol.id %}" class="btn btn-info"><i
                                                     class="fas fa-edit"></i></a>
                                             <a type="submit" href="#" class="btn btn-danger"><i

@@ -10,7 +10,7 @@ class Sprint(models.Model):
 
     id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=50)
-    us = models.ManyToManyField(Us, blank=True, null=True)
+    us = models.ManyToManyField(Us, blank=True)
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
     # Fecha inicio
     fecha_incio = models.DateField(null=True)
