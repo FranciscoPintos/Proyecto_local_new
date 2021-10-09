@@ -98,11 +98,13 @@ def view_comentarios(request, pk, us_pk):
     us = Us.objects.get(id=us_pk)
     #Para saber a que Proyecto pertenece el comentario
     proj = Proyecto.objects.get(id=pk)
-    
+    historial= HistorialComentarios.objects.filter(us_name=us.name)
+
     context={
         'Us': us,
         'Proyecto': proj,
         'permisos': permisos,
+        'histo':historial,
     }
     return render(request, 'ver_comentarios.html', context)
 
@@ -268,6 +270,7 @@ def verhistorialus(request, pk, us_pk):
     permisos = user.rol.list_permissions().order_by('id')
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
     return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
+
 
 
 def crear_us_product(request, pk):

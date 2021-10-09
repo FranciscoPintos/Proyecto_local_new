@@ -240,7 +240,7 @@ def asignar_rolProyecto(request, pk, rl_pk):
             m.rol = RolProyecto.objects.get(project_id=pk, name='')
             m.save()
         for m in miembros_selected:
-            if m is not '':
+            if m != '':
                 miembro_rol = Miembro.objects.get(id=m)
                 miembro_rol.rol = rol
                 miembro_rol.save()
