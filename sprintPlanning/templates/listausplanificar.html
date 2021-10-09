@@ -1,0 +1,58 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                                <a href="{% url 'sprintlist' pk=Proyecto.id %}" class="btn btn-info">
+                                    <i class="fas fa-chevron-left"></i>
+                                </a>
+                        </div>
+                        <h3> User Story</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if uslista %}
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Planificar</th>
+                                    </tr>
+                                </thead>
+                                {% for us in uslista %}
+                                    <tbody>
+                                    <tr>
+                                        <td><h5 class="card-title">{{ us.name}}</h5> </td>
+                                            <td>
+                                                <a type="submit" href="{% url 'planifius' pk=Proyecto.id sp_pk=Sprint.id us_pk=us.id%}"
+                                                           class="btn btn-info">
+                                                               <i class="fas fa-list-alt"></i>
+                                                </a>
+                                            </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existen US</div>
+                        {% endif %}
+                    </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="col-3 offset-9 mt-3">
+                                <a href="{% url 'sprintlist'  pk=Proyecto.id %}" class="btn btn-lg btn-primary float-right">
+                                    Crear Tarea
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
