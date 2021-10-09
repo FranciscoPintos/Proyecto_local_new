@@ -9,4 +9,7 @@ class CrearEquipo(forms.ModelForm):
     class Meta:
         model = Equipo
         fields = '__all__'
-        exclude = ['sprint']
+        exclude = ['sprint', 'capacidad']
+        widgets = {
+            'miembros': forms.CheckboxSelectMultiple()
+        }
