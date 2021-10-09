@@ -252,11 +252,14 @@ def asignar_rolProyecto(request, pk, rl_pk):
     if rol.name == 'Scrum Master':
         FormularioProyecto = ListarMiembro()
         FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Product Owner')
-        FormularioProyecto.initial['miembros'] = Miembro.objects.filter(rol__name='Scrum Master')
+        if len(Miembro.objects.filter(rol__name='Scrum Master', rol__project_id=pk)) > 0:
+            FormularioProyecto.initial['miembros'] = Miembro.objects.get(rol__name='Scrum Master', rol__project_id=pk)
+
     elif rol.name == 'Product Owner':
         FormularioProyecto = ListarMiembro()
         FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Scrum Master')
-        FormularioProyecto.initial['miembros'] = Miembro.objects.filter(rol__name='Product Owner')
+        if len(Miembro.objects.filter(rol__name='Product Owner', rol__project_id=pk)):
+            FormularioProyecto.initial['miembros'] = Miembro.objects.get(rol__name='Product Owner', rol__project_id=pk)
     else:
         FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Scrum Master').exclude(rol__name='Product Owner')
         FormularioProyecto.initial['miembros'] = Miembro.objects.filter(rol__name=rol.name)

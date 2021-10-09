@@ -134,7 +134,6 @@ class ListarMiembro(forms.Form):
     miembros = forms.ModelChoiceField(
         label='miembros',
         queryset=None,
-        required=False,
     )
 
 """
