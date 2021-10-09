@@ -1,6 +1,8 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.models import Permission
 
+from equipo.models import Equipo
 from miembros.models import RolProyecto, Miembro
 from project.models import Proyecto
 from usuario.models import Usuario
@@ -109,6 +111,31 @@ class editarRolForm(forms.ModelForm):
             'permisos': forms.CheckboxSelectMultiple()
 
         }
+
+
+class modificarRolPoyectoUsuario(forms.ModelForm):
+    class Meta:
+        model = Miembro
+        fields = ['rol']
+        widgets = {
+            'rol': forms.CheckboxSelectMultiple()
+        }
+
+
+class ListarMiembros(forms.Form):
+    miembros = forms.ModelMultipleChoiceField(
+        label='miembros',
+        queryset=Miembro.objects.all(),
+        required=False,
+    )
+
+
+class ListarMiembro(forms.Form):
+    miembros = forms.ModelChoiceField(
+        label='miembros',
+        queryset=None,
+        required=False,
+    )
 
 """
 

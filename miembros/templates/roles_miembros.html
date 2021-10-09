@@ -15,20 +15,16 @@
                         <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
                             <th></th>
                         </tr>
                         </thead>
-                        {% for r in Usuarios %}
+                        {% for r in Roles %}
                                 <tbody>
                                 <tr>
-                                    <td><h5 class="card-title">{{ r.user.first_name}}</h5> </td>
-                                    <td><h5 class="card-title">{{ r.user.email}}</h5></td>
-                                    <td>{{ r.rol }}</td>
+                                    <td><h5 class="card-title">{{ r.name}}</h5> </td>
                                     <td class=" py-0 align-middle">
                                         <div class="btn-group btn-group-sm">
-                                            <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id mi_pk=r.id %}" class="btn btn-info"><i
+                                            <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id rl_pk=r.id %}" class="btn btn-info"><i
                                                     class="fas fa-edit"></i></a>
                                         </div>
                                     </td>
