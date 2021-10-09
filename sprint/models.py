@@ -11,11 +11,11 @@ class Sprint(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField('Nombre', max_length=50)
     us = models.ManyToManyField(Us, blank=True)
-    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, null=True)
     # Fecha inicio
-    fecha_incio = models.DateField()
+    fecha_incio = models.DateField(null=True)
     # Fecha fin
-    fecha_fin = models.DateField()
+    fecha_fin = models.DateField(null=True)
     status = [
         (1, 'To Do'), (2, 'Doing'), (3, 'Done'),
     ]

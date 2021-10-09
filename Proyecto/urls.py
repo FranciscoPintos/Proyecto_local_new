@@ -31,4 +31,5 @@ urlpatterns = [
     path('', include('tarea.urls')),
     path('', include('etiqueta.urls')),
     path('', include('sprint.urls')),
+    path('', include('sprintPlanning.urls')),
 ]
