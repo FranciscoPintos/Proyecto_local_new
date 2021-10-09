@@ -94,7 +94,7 @@ def verProyectos(request, id):
         return render(request, 'misPryectos.html')
 
         # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
-        print(id)
+
     except ValueError as err:
         print("exec")
         error = err.args.__str__()
