@@ -229,7 +229,7 @@ def asignar_rolProyecto(request, pk, rl_pk):
     rol = RolProyecto.objects.get(id=rl_pk)
     # Si es un método
     if request.method == 'POST':
-        # Formularios paar un solo miembro
+        # Formularios para un solo miembro
         if rol.name == 'Scrum Master' or rol.name == 'Produc Owner':
             FormularioProyecto = ListarMiembro(request.POST)
         else:
