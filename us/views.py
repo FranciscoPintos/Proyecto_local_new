@@ -98,13 +98,13 @@ def view_comentarios(request, pk, us_pk):
     us = Us.objects.get(id=us_pk)
     #Para saber a que Proyecto pertenece el comentario
     proj = Proyecto.objects.get(id=pk)
-    historial= HistorialComentarios.objects.filter(us_name=us.name)
-
+    comentarios = Comentarios.objects.filter()
+    print(comentarios)
     context={
         'Us': us,
         'Proyecto': proj,
         'permisos': permisos,
-        'histo':historial,
+        'comentarios':comentarios,
     }
     return render(request, 'ver_comentarios.html', context)
 
@@ -153,7 +153,6 @@ def crear_comentarios(request, pk, us_pk):
             'Us': us,
             'permisos': permisos,
         }
-        print("LLEGA")
         #nos dirigimos a la pagina anterior
         return redirect('ver_comentarios', pk=pk, us_pk=us_pk)
     #en caso de que sea la primera vez que cargue la pagina
@@ -218,6 +217,36 @@ def Us_Delete(request, pk, us_pk):
         return redirect('us', pk=pk)
     else:
         return render(request, 'delete_us.html', {'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos})
+
+def borrar_comentario(request, pk, us_pk, com_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    if request.method == 'POST':
+        borrar = Comentarios.objects.get(id=com_pk)
+        borrar.activo = False
+        borrar.save()
+        historiales = HistorialComentarios.objects.filter(comentario=com_pk)
+        for his in historiales:
+            ultimohistorial = his
+        ultimohistorial.user = request.user
+        ultimohistorial.save()
+
+        return redirect('ver_comentarios', pk=pk, us_pk=us_pk)
+    else:
+        context = {
+            'Proyecto':Proyecto.objects.get(pk=pk),
+            'Us':Us.objects.get(id=us_pk),
+            'Comentario':Comentarios.objects.get(id=com_pk),
+            'permisos':permisos
+        }
+        return render(request, 'borrar_comentario.html', context)
 
 def editUs(request, pk, us_pk):
     # Ver si es un miembro del proyecto

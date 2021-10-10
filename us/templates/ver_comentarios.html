@@ -18,23 +18,28 @@
                         <h3> Comentarios del User Story '{{ Us.name.upper }}id:{{ Us.id }}'</h3>
                     </div>
                     <div class="card-body">
-                        {% if histo %}
+                        {% if comentarios %}
                             <table class="table">
                                 
                                 <thead>
                                 <tr>
                                     <th>Contenido del comentario</th>
-                                    <th>Proyecto</th>
-                                    <th>Creador</th>
+                                    <th>Opciones</th>
                                 </tr>
                                 </thead>
-                                {% for r in histo %}
+                                {% for c in comentarios %}
                                     <tbody>
-                                    <tr>
-                                        <td><h5 class="card-title">{{ r.comentarios}}</h5> </td>
-                                        <td><h5 class="card-title">{{ r.project_name}}</h5> </td>
-                                        <td><h5 class="card-title">{{ r.creator_name}}</h5> </td>
-                                    </tr>
+                                        {% if c.activo %}
+                                            <tr>
+                                                <td><h5 class="card-title">{{ c.comentarios }} {{c.id}}</h5> </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm float-right">
+                                                        <a type="submit" href="{% url 'borrar_comentario' pk=Proyecto.id us_pk=Us.id com_pk=c.id %}"
+                                                               class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
                                     </tbody>
                                 {% endfor %}
                             </table>
@@ -50,6 +55,9 @@
                                     Agregar Comentarios
                                 </a>
                             </div>
+                            <a href="#" class="btn btn-lg btn-primary float-right">
+                                Historial
+                            </a>
                         </div>
                     </div>
                 </div>

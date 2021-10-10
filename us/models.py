@@ -74,6 +74,8 @@ class Comentarios(models.Model):
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     #debe poder relacionarse con algún usuario
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=False)
+    #para poder separar los comentarios eliminados de los que no han sido eliminados
+    activo = models.BooleanField(default=True)
 
     #metodo para guardar los valores en la bd
     def save(self, *args, **kwargs):
@@ -82,25 +84,22 @@ class Comentarios(models.Model):
         hc = HistorialComentarios()
         #se trae el id del comentario
         c = Comentarios.objects.get(id= self.id)
-        print(c)
         #se trae el nombre del us
         us = Us.objects.get(id= self.us.id)
-        print(us)
         #se trae el nombre del protecto
         p = Proyecto.objects.get(id=self.project.id)
-        print(p)
         #se trae el nombre del usuario
         cr = Usuario.objects.get(id=self.creador.id)
-        print(cr)
         hc.comentario = c
         hc.us_name = us.name
         hc.project_name = p.name
         hc.creator_name = cr.first_name
         hc.comentarios = c.comentarios
+        hc.activo = c.activo
         hc.save()
 
     def __str__(self):
-        return 'ID del comentario: ' + '{}'.format(self.id)
+        return '{}'.format(self.id)
 
     def toJSON(self):
         item = model_to_dict(self)
@@ -125,6 +124,7 @@ class HistorialComentarios(models.Model):
     creator_name = models.CharField('Nombre de Creador', max_length=50, null=True)
     comentarios = models.CharField('Contenido del comentario', max_length=2000, null=True)
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
