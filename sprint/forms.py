@@ -11,7 +11,7 @@ class crearSprintForm(forms.ModelForm):
     class Meta:
         model = Sprint
         fields = '__all__'
-        exclude=['us', 'fecha_fin', 'fecha_incio', 'proyecto', 'estado']
+        exclude=['us', 'fecha_fin', 'fecha_incio', 'proyecto', 'estado','equipo']
         labels = {
             'name': 'Nombre',
          }

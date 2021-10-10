@@ -25,7 +25,8 @@
                                 {% csrf_token %}
                                 <div class="card mt-3 row">
                                     <div class="card-body">
-                                        {{ formEquipo|crispy }}
+{#                                        {{ formEquipo|crispy }}#}
+                                        {{ form|crispy }}
                                     </div>
                                 </div>
                                 <div class="text-center">

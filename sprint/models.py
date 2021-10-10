@@ -5,6 +5,8 @@ from django.utils.timezone import now
 
 from us.models import *
 
+
+
 # Create your models here.
 class Sprint(models.Model):
 
@@ -23,6 +25,8 @@ class Sprint(models.Model):
         choices=status,
         default=1
     )
+    # equipo=models.ForeignKey(Equipo, on_delete=models.CASCADE,null=True )
+
     def __str__(self):
         return '{}'.format(self.name)
 

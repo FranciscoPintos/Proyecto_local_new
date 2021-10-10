@@ -20,9 +20,10 @@ from sprint.forms import *
 from miembros.models import *
 from equipo.models import *
 
+
 class sprintView(ListView):
-    model=Sprint
-    template_name='sprint_view.html'
+    model = Sprint
+    template_name = 'sprint_view.html'
 
     def get_context_data(self, **kwargs):
         context = super(sprintView, self).get_context_data(**kwargs)
@@ -42,12 +43,9 @@ class sprintView(ListView):
         return context
 
 
-
-
-
 class sprintView_Kanban(ListView):
-    model=Sprint
-    template_name='sprint_kanban.html'
+    model = Sprint
+    template_name = 'sprint_kanban.html'
 
     def get_context_data(self, **kwargs):
         context = super(sprintView_Kanban, self).get_context_data(**kwargs)
@@ -62,7 +60,9 @@ class sprintView_Kanban(ListView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
-        context['sprint']=Sprint.objects.get(pk=self.kwargs['sp_pk'])
+        context['sprint'] = Sprint.objects.get(pk=self.kwargs['sp_pk'])
+        tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
+        context['tieneEquipo'] = tieneEquipo
         return context
 
 
@@ -74,7 +74,7 @@ class crear_sprint(LoginRequiredMixin, CreateView):
     template_name = 'create_sprint.html'
 
     def get_success_url(self):
-        Proyecto= self.kwargs['pk']
+        Proyecto = self.kwargs['pk']
         # Creacion de un equipo
         equipo = Equipo()
         # Asignacion del equipo al sprint
@@ -82,6 +82,7 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         # Persistencia del equipo
         equipo.save()
         return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
+
     # def get_initial(self):
     #     initial = super(crear_us, self).get_initial()
     #     initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
@@ -115,8 +116,6 @@ class crear_sprint(LoginRequiredMixin, CreateView):
     #         return HttpResponseRedirect(self.get_success_url())
     #     return self.render_to_response(self.get_context_data(form=form))
 
-
-
 # @login_required(login_url='login')
 # def us(request,pk):
 #     us=Us.objects.filter(project=pk) #Filtar los us por proyecto
@@ -136,7 +135,6 @@ class crear_sprint(LoginRequiredMixin, CreateView):
 #     }
 #     print (context)
 #     return render(request,'us.html',context=context)
-
 
 
 # class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
@@ -209,4 +207,3 @@ class crear_sprint(LoginRequiredMixin, CreateView):
 #         context = super(editUs, self).get_context_data(**kwargs)
 #         context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
 #         return context
-

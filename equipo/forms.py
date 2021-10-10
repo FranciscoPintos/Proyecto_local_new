@@ -1,5 +1,5 @@
 from django import forms
-from models import Equipo
+from equipo.models import Equipo
 
 
 class CrearEquipo(forms.ModelForm):
@@ -9,7 +9,15 @@ class CrearEquipo(forms.ModelForm):
     class Meta:
         model = Equipo
         fields = '__all__'
-        exclude = ['sprint', 'capacidad']
+        exclude = ['sprint','capacidad']
         widgets = {
-            'miembros': forms.CheckboxSelectMultiple()
+            'miembros': forms.CheckboxSelectMultiple(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
