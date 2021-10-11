@@ -182,3 +182,16 @@ def planificarus(request, pk, sp_pk, us_pk):
     else:
         # Ver si es un miembro del proyecto
         return render(request, 'planificarus.html', {'form': us_form, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos, 'Sprint': Sprint.objects.get(id=sp_pk)})
+
+
+def contenedor_pasos(request, pk, sp_pk):
+
+    proyecto = Proyecto.objects.get(pk=pk)
+    sprint = Sprint.objects.get(id=sp_pk)
+
+    context ={
+        'Proyecto':proyecto,
+        'Sprint':sprint,
+    }
+
+    return render(request, 'contenedor_pasos.html', context)
