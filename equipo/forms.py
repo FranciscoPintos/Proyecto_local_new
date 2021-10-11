@@ -9,14 +9,9 @@ class CrearEquipo(forms.ModelForm):
     class Meta:
         model = Equipo
         fields = '__all__'
-        exclude = ['sprint','capacidad']
-        widgets = {
-            'miembros': forms.CheckboxSelectMultiple(
-                attrs={
-                    'class': 'form-control'
-                }
-            ),
 
+        widgets = {
+            'miembros': forms.CheckboxSelectMultiple(),
         }
 
     def __init__(self, *args, **kwargs):
