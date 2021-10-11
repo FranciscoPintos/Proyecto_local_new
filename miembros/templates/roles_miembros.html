@@ -1,54 +1,64 @@
-{% extends 'baseProyecto.html' %}
 
+
+
+{% extends 'baseProyecto.html' %}
 {% block content %}
     <br>
     <br>
     <br>
-    <div class="card col-9 text-center offset-1 mt-3 row">
-        <div class="col-8  offset-2 ">
-            <div class="card-body p-0">
-                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
-                    <h3 class="align-content-center ">Usuarios</h3>
-                </div>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Roles</h3>
+                    </div>
+                    <div class="card-body">
 
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Correo</th>
-                            <th>Rol</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        {% for r in Usuarios %}
-                                <tbody>
+                        {% if Roles %}
+
+                            <table class="table">
+                                <thead>
                                 <tr>
-                                    <td><h5 class="card-title">{{ r.user.first_name}}</h5> </td>
-                                    <td><h5 class="card-title">{{ r.user.email}}</h5></td>
-                                    <td>{{ r.rol }}</td>
-                                    <td class=" py-0 align-middle">
-                                        <div class="btn-group btn-group-sm">
-                                            <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id mi_pk=r.id %}" class="btn btn-info"><i
-                                                    class="fas fa-edit"></i></a>
-                                        </div>
-                                    </td>
+                                    <th>Nombre</th>
+                                    <th>Opciones</th>
+                                    <th></th>
                                 </tr>
-                                </tbody>
-                        {% endfor %}
-                    </table>
+                                </thead>
+                                {% for r in Roles %}
+                                    {% if r.name %}
+                                        <tbody>
+                                        <tr>
+                                            <td><h5 class="card-title">{{ r.name }}</h5></td>
+                                            <td class=" py-0 align-middle">
+                                                <div class="btn-group btn-group-sm">
+                                                    <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id rl_pk=r.id %}"
+                                                       class="btn btn-info"><i
+                                                            class="fas fa-edit"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
 
+                                    {% endif %}
+                                {% endfor %}
+
+                            </table>
+
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe Roles</div>
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
             </div>
-        </div>
-
-        <div class="mt-6 mb-4 flex-md-row">
-            <div class="col-3 offset-9 mt-3">
-                <a href="{% url 'verRolesProyecto' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
-                    Atras
-                </a>
-            </div>
-
         </div>
     </div>
-
-
 {% endblock %}

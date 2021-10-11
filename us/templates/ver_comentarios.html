@@ -11,15 +11,38 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'us' Proj.id %}" class="btn btn-info">
+                                <a href="{% url 'us' Proyecto.id %}" class="btn btn-info">
                                     <i class="fas fa-chevron-left"></i>
                                 </a>
                             </div>
                         <h3> Comentarios del User Story '{{ Us.name.upper }}id:{{ Us.id }}'</h3>
                     </div>
                     <div class="card-body">
-                        {% if Us.description %}
-                            <p>{{ Us.description }}</p>
+                        {% if comentarios %}
+                            <table class="table">
+                                
+                                <thead>
+                                <tr>
+                                    <th>Contenido del comentario</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                                </thead>
+                                {% for c in comentarios %}
+                                    <tbody>
+                                        {% if c.activo %}
+                                            <tr>
+                                                <td><h5 class="card-title">{{ c.comentarios }}</h5> </td>
+                                                <td>
+                                                    <div class="btn-group btn-group-sm float-right">
+                                                        <a type="submit" href="{% url 'borrar_comentario' pk=Proyecto.id us_pk=Us.id com_pk=c.id %}"
+                                                               class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        {% endif %}
+                                    </tbody>
+                                {% endfor %}
+                            </table>
                         {% else %}
                             <div class="alert alert-danger mt-4"> Este User Story todavia no posee comentarios</div>
                         {% endif %}
@@ -28,10 +51,13 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_comentarios' pk=Proj.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
+                                <a href="{% url 'crear_comentarios' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
                                     Agregar Comentarios
                                 </a>
                             </div>
+                            <a href="{% url 'historial_comentarios' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
+                                Historial
+                            </a>
                         </div>
                     </div>
                 </div>

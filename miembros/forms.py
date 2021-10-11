@@ -1,6 +1,8 @@
 from django import forms
+from django.db import models
 from django.contrib.auth.models import Permission
 
+from equipo.models import Equipo
 from miembros.models import RolProyecto, Miembro
 from project.models import Proyecto
 from usuario.models import Usuario
@@ -28,6 +30,10 @@ class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro
         fields = ['user','rol','horaTrabajo']
+
+    ch = Usuario.objects.all()
+    user = forms.Select()
+
     horaTrabajo=forms.IntegerField
 
 
@@ -105,13 +111,51 @@ class editarRolForm(forms.ModelForm):
             'permisos': forms.CheckboxSelectMultiple()
 
         }
-    permisos = CustomMMCF(
-        queryset=Permission.objects.filter(id__gt=46).exclude(id__exact=61),
-        widget=forms.CheckboxSelectMultiple
-    )
 
 
 class modificarRolPoyectoUsuario(forms.ModelForm):
     class Meta:
         model = Miembro
         fields = ['rol']
+        widgets = {
+            'rol': forms.CheckboxSelectMultiple()
+        }
+
+
+class ListarMiembros(forms.Form):
+    miembros = forms.ModelMultipleChoiceField(
+        label='miembros',
+        queryset=Miembro.objects.all(),
+        required=False,
+    )
+
+
+class ListarMiembro(forms.Form):
+    miembros = forms.ModelChoiceField(
+        label='miembros',
+        queryset=None,
+    )
+
+"""
+
+class ProyectoForm(forms.ModelForm):
+
+    class Meta:
+        model = Proyecto
+        fields = [
+            'name',
+            'permisos',
+            'fecha_fin',
+        ]
+        labels = {
+            'name': 'Nombre',
+            'fecha_inicio': 'Permiso de Rol',
+            'fecha_fin': 'Fecha de finalización',
+        }
+        widgets = {
+            'name': forms.CharField(),
+            'fecha_inicio': forms.DateField(),
+            'fecha_fin': forms.DateField(),
+        }
+
+"""

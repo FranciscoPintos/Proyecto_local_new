@@ -74,6 +74,8 @@ class Comentarios(models.Model):
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     #debe poder relacionarse con algún usuario
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=False)
+    #para poder separar los comentarios eliminados de los que no han sido eliminados
+    activo = models.BooleanField(default=True)
 
     #metodo para guardar los valores en la bd
     def save(self, *args, **kwargs):
@@ -82,24 +84,23 @@ class Comentarios(models.Model):
         hc = HistorialComentarios()
         #se trae el id del comentario
         c = Comentarios.objects.get(id= self.id)
-        print(c)
         #se trae el nombre del us
-        us = Us.objects.get(id= self.us)
-        print(us)
+        us = Us.objects.get(id= self.us.id)
         #se trae el nombre del protecto
-        p = Proyecto.objects.get(id=self.project)
-        print(p)
+        p = Proyecto.objects.get(id=self.project.id)
         #se trae el nombre del usuario
-        cr = Usuario.objects.get(id=self.creador)
-        print(cr)
+        cr = Usuario.objects.get(id=self.creador.id)
+        hc.comentario = c
+        hc.us = us
         hc.us_name = us.name
         hc.project_name = p.name
-        hc.creator_name = cr.name
+        hc.creator_name = cr.first_name
         hc.comentarios = c.comentarios
+        hc.activo = c.activo
         hc.save()
 
     def __str__(self):
-        return 'ID del comentario: ' + '{}'.format(self.id)
+        return '{}'.format(self.id)
 
     def toJSON(self):
         item = model_to_dict(self)
@@ -118,10 +119,14 @@ class Comentarios(models.Model):
 class HistorialComentarios(models.Model):
     
     id = models.AutoField(primary_key=True)
-    us_name = models.CharField('Nombre de User Story', max_length=50, unique=True, null=True)
-    project_name = models.CharField('Nombre de Proyecto', max_length=50, unique=True, null=True)
-    creator_name = models.CharField('Nombre de Creador', max_length=50, unique=True, null=True)
-    comentarios = models.CharField('Contenido del comentario', max_length=2000, unique=True, null=True)
+    comentario = models.ForeignKey(Comentarios, on_delete=models.CASCADE)
+    us = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
+    us_name = models.CharField('Nombre de User Story', max_length=50, null=True)
+    project_name = models.CharField('Nombre de Proyecto', max_length=50, null=True)
+    creator_name = models.CharField('Nombre de Creador', max_length=50, null=True)
+    comentarios = models.CharField('Contenido del comentario', max_length=2000, null=True)
+    creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)

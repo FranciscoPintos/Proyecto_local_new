@@ -1,13 +1,15 @@
-from roles.models import Rol
 from crum import get_current_request
 from django.contrib.auth.models import *
 from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.forms import model_to_dict
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 #from allauth.socialaccount.models import
 
+# Create your models here.
+from roles.models import Rol
 
 
 class UsuarioManager(BaseUserManager):
@@ -35,7 +37,8 @@ class UsuarioManager(BaseUserManager):
             lastname=lastname,
             password=password
         )
-        usuario.is_superuser=True
+
+        usuario.is_superuser = True
         usuario.usuario_administrador = True
         usuario.save()
         return usuario
@@ -43,49 +46,14 @@ class UsuarioManager(BaseUserManager):
     def has_perm(self, perm, obj=None):
         return True
 
-class RolSistema(models.Model):
-    name = models.CharField(max_length=60)
-    permisos = models.ManyToManyField(Permission)
-
-    def add_pemission(self, new):
-        self.permisos.add(new)
-
-    """
-    Asigna un permiso al rol
-
-    Parameters
-    ----------
-    new: str
-    Cadena que representa un permiso con la columna 'codename' de la tabla auth_permission
-    """
-    def add_pemission_str(self, new):
-        self.permisos.add(Permission.objects.get(codename=new))
-
-    def has_permission(self,new):
-        for i in self.permisos.all():
-            if i == new:
-                return True
-        return False
-
-    def has_permission_str(self,new):
-        for i in self.permisos.all():
-            if i.codename == new:
-                return True
-        return False
-
-    def view_permission(self):
-        return self.permisos
-
-    def view_all_permission(self):
-        return self.permisos.all()
 
 
 class Usuario(AbstractUser):
-    # role = models.PositiveSmallIntegerField(choices=ROLE_CHOICES, blank=True, null=True, default='')
+
     username = models.CharField('Nombre de usuario', unique=True, max_length=50)
     names = models.CharField('Nombres ', max_length=50, null=True, blank=True)
     lastname = models.CharField('Apellidos ', max_length=50, null=True, blank=True)
-    ci = models.CharField(max_length=10, unique=True, verbose_name='Cedula', null=True, blank=True)
+    ci = models.CharField(max_length=10,unique=True,  verbose_name='Cedula', null=True, blank=True)
     email = models.CharField(max_length=70, verbose_name='emaill', unique=True)
     fecha_nac = models.DateField(null=True, blank=True)
     fecha_created = models.DateField(null=True, blank=True)
@@ -101,15 +69,6 @@ class Usuario(AbstractUser):
     def __str__(self):
         return self.username + ' ' + self.email
 
-    def has_perm(self, perm, obj=None):
-        if self.is_superuser:
-            return True
-        else:
-            for i in self.user_permissions.all():
-                if i.codename == perm:
-                    return True
-            return False
-
     def has_module_perms(self, app_label):
         return True
 
@@ -122,6 +81,7 @@ class Usuario(AbstractUser):
         else:
             print('no es super')
             for i in self.rol.list_permissions():
+                print(i.codename)
                 if i.codename == perm:
                     return True
             return False

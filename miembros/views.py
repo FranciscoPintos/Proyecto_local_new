@@ -47,7 +47,7 @@ def addMiembro(request, id):
         FormularioProyecto = CrearMiembro(request.GET)
         FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id,
                                                                              miembro__activo=True)
-        FormularioProyecto.fields["rol"].queryset = RolProyecto.objects.filter(project_id=id)
+        FormularioProyecto.fields["rol"].queryset = RolProyecto.objects.filter(project_id=id).exclude(name='Scrum Master')
         print(RolProyecto.objects.filter(project_id=id))
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto, 'Proyecto': proj, 'permisos': permisos})
 
@@ -89,7 +89,7 @@ def verRolesProyecto(request, id):
     return render(request, 'listarRolesProyecto.html', {'roles': roles, 'Miembros': miembros, 'Proyecto': proj, 'permisos': permisos})
 
 
-def confirmaDelete(request, id):
+def confirmaDelete(request, pk, id):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
@@ -104,7 +104,7 @@ def confirmaDelete(request, id):
         idProject = borrar.rol.project.id
         borrar.activo = False
         borrar.save()
-        return redirect('verotravesmiembro', id=idProject)
+        return redirect('miembros', id=idProject)
     else:
         return render(request, 'eliminarMiembro.html', {'permisos':permisos})
 
@@ -209,12 +209,12 @@ def roles_miembros(request, pk):
         user = request.user
     # obtener sus permisos
     permisos = user.rol.list_permissions().order_by('id')
-    usuarios = Miembro.objects.filter(rol__project_id=pk).exclude(activo=False)
+    roles = RolProyecto.objects.filter(project_id=pk)
 
-    return render(request, 'roles_miembros.html', {'Usuarios': usuarios, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
+    return render(request, 'roles_miembros.html', {'Roles': roles, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
 
 
-def asignar_rolProyecto(request, pk, mi_pk):
+def asignar_rolProyecto(request, pk, rl_pk):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
@@ -224,17 +224,43 @@ def asignar_rolProyecto(request, pk, mi_pk):
         user = request.user
     # obtener sus permisos
     permisos = user.rol.list_permissions().order_by('id')
-    usuario = Miembro.objects.get(id=mi_pk)
+
+    # Obtener el rol que se desea modificar
+    rol = RolProyecto.objects.get(id=rl_pk)
+    # Si es un método
     if request.method == 'POST':
-        FormularioProyecto = modificarRolPoyectoUsuario(request.POST)
-        if FormularioProyecto.is_valid():
-            Pr = FormularioProyecto.save(commit=False)
-            usuario.rol = Pr.rol
-            usuario.save()
-            return redirect('roles_miembros', pk=pk)
+        # Formularios para un solo miembro
+        if rol.name == 'Scrum Master' or rol.name == 'Produc Owner':
+            FormularioProyecto = ListarMiembro(request.POST)
+        else:
+            FormularioProyecto = ListarMiembros(request.POST)
+        miembros_selected = FormularioProyecto.data.getlist('miembros')
+        miembros = Miembro.objects.filter(rol__project_id=pk, rol__name=rol.name)
+        for m in miembros:
+            m.rol = RolProyecto.objects.get(project_id=pk, name='')
+            m.save()
+        for m in miembros_selected:
+            if m != '':
+                miembro_rol = Miembro.objects.get(id=m)
+                miembro_rol.rol = rol
+                miembro_rol.save()
 
-        return render(request, 'asignar_rolProyecto.html', {'Usuarios': FormularioProyecto, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
+        return redirect('roles_miembros', pk=pk)
 
-    FormularioProyecto = modificarRolPoyectoUsuario(instance=usuario)
-    FormularioProyecto.fields["rol"].queryset = RolProyecto.objects.filter(project_id=pk)
-    return render(request, 'asignar_rolProyecto.html', {'Usuarios': FormularioProyecto, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
+    miembros = Miembro.objects.filter(rol__project_id=pk)
+    FormularioProyecto = ListarMiembros()
+    if rol.name == 'Scrum Master':
+        FormularioProyecto = ListarMiembro()
+        FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Product Owner')
+        if len(Miembro.objects.filter(rol__name='Scrum Master', rol__project_id=pk)) > 0:
+            FormularioProyecto.initial['miembros'] = Miembro.objects.get(rol__name='Scrum Master', rol__project_id=pk)
+
+    elif rol.name == 'Product Owner':
+        FormularioProyecto = ListarMiembro()
+        FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Scrum Master')
+        if len(Miembro.objects.filter(rol__name='Product Owner', rol__project_id=pk)):
+            FormularioProyecto.initial['miembros'] = Miembro.objects.get(rol__name='Product Owner', rol__project_id=pk)
+    else:
+        FormularioProyecto.fields["miembros"].queryset = Miembro.objects.filter(rol__project_id=pk).exclude(rol__name='Scrum Master').exclude(rol__name='Product Owner')
+        FormularioProyecto.initial['miembros'] = Miembro.objects.filter(rol__name=rol.name)
+    return render(request, 'asignar_rolProyecto.html', {'Usuarios': FormularioProyecto, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos, 'rol': rol})

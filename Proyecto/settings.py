@@ -59,6 +59,9 @@ INSTALLED_APPS = [
     'us',
     'tarea',
     'etiqueta',
+    'sprint',
+    'equipo',
+    'sprintPlanning',
 ]
 
 MIDDLEWARE = [

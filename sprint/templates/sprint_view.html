@@ -1,0 +1,66 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Sprints</h3>
+                    </div>
+                    <div class="card-body">
+
+                        {% if object_list %}
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Opciones</th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                {% for s in object_list %}
+                                    <tbody>
+                                    <tr>
+                                        <td><h5 class="card-title">{{ s.name }}</h5></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a href="{% url 'sprintKanban' Proyecto.id s.id %}"
+                                                   class="btn btn-info"><i class="fas fa-eye"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                {% endfor %}
+
+                            </table>
+
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe Sprint</div>
+                        {% endif %}
+
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="col-3 offset-9 mt-3">
+                                <a href="{% url 'sprintcreate' Proyecto.id %}"
+                                   class="btn btn-lg btn-primary float-right">
+                                    Crear Sprint
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -9,7 +9,7 @@ from django import forms
 from django.shortcuts import get_object_or_404
 import datetime
 
-# Create your views here.
+
 from django.views.generic import ListView, CreateView
 
 from miembros.models import Miembro, RolProyecto
@@ -32,20 +32,42 @@ def nuevoProyecto(request, id):
             except ValueError as err:
                 print (err.args.__str__())
                 error = err.args.__str__()
-                messages.error(request,error)
-                return redirect('crearProyecto',id)
+                messages.error(request, error)
+                return redirect('crearProyecto', id)
+            # Rol de Product Owner para el proyecto
+            PO = RolProyecto()
+            PO.name = 'Product Owner'
+            PO.project = Pr
+            PO.save()
+
+            # Rol de scrum maaster para el proyecto
             SM = RolProyecto()
             SM.name = 'Scrum Master'
             SM.project = Pr
             SM.save()
+
+            # Rol vacío
+            RV = RolProyecto()
+            RV.name = ''
+            RV.project = Pr
+            RV.save()
+
+            # Selección de Scrum master
             SMmiembro = Miembro()
             SMmiembro.user = Pr.creator
-            print(SMmiembro.user.id)
             SMmiembro.rol = SM
+            # Asignar 0 horas de trabajo al Scrum master
             SMmiembro.horaTrabajo = 0
+            # Guardar el Scrum máster
             SMmiembro.save()
+
+            # Permisos para el Scrum Master
             for i in Permission.objects.filter(id__gt=45):
                 SM.permisos.add(i)
+
+            # Permisos para el Product Owner
+            for i in Permission.objects.filter(id__gt=72):
+                PO.permisos.add(i)
             return redirect('verProyectos')
         else:
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})
@@ -81,7 +103,6 @@ class ProyectoCreate(CreateView):
 def verProyectos(request, id):
     print(Usuario.objects.get(id=id).id)
     user = request.user
-
     try:
         c = 0
         for miembros in Miembro.objects.all():
@@ -92,10 +113,10 @@ def verProyectos(request, id):
                 for elemento in miembro:
                     pr.append(Proyecto.objects.get(id=elemento.rol.project.id))
                 return render(request, 'misPryectos.html', {'Proyecto': pr})
-        return redirect('exceptMiembro')
+        return render(request, 'misPryectos.html')
 
         # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
-        print(id)
+
     except ValueError as err:
         print("exec")
         error = err.args.__str__()

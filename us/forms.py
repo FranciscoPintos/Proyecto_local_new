@@ -32,7 +32,7 @@ class crearUsForm(forms.ModelForm):
     class Meta:
         model = Us
         fields = '__all__'
-        exclude=['project','estado', 'activo']
+        exclude=['project','estado', 'activo', 'user', 'storypoints']
         labels = {
             'name': 'Nombre',
             'descripcion': 'Descripción',
@@ -75,7 +75,7 @@ class editUsForm(forms.ModelForm):
     class Meta:
         model = Us
         fields = '__all__'
-        exclude = ['project', 'activo']
+        exclude = ['project', 'activo', 'user', 'storypoints', 'estado']
         widgets = {
             'name': forms.TextInput(
                 attrs={

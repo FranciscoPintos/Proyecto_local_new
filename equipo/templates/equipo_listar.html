@@ -1,0 +1,54 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'sprintKanban' Proyecto.id sprint.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> equipo</h3>
+                    </div>
+                    <div class="card-body">
+
+                        {% if equipo %}
+
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Opciones</th>
+                                </tr>
+                                </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><h5 class="card-title">{{ equipo.miembros }}</h5></td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <a type="submit" href="{% url 'delete_equipo' Proyecto.id sprint.id equipo.id %}"
+                                                   class="btn btn-danger"><i
+                                                        class="fas fa-trash"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe equipo</div>
+                        {% endif %}
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <!--  -->
+                            <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3> Sprint Planning de: {{ Sprint.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3 text-center">
+                                <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=Sprint.id %}"
+                                   class="btn btn-primary">Paso 1</a>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <a href="#"
+                                   class="btn btn-primary">Paso 2</a>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=Sprint.id %}"
+                                   class="btn btn-primary">Paso 3</a>
+                            </div>
+                            <div class="col-sm-3 text-center">
+                                <!--url 'planifius' pk=Proyecto.id sp_pk=Sprint.id resolver us-->
+                                <a href="#"
+                                   class="btn btn-primary">Paso 4</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

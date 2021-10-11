@@ -16,6 +16,10 @@ psycopg2 - Usado para conectar a la base de datos de Postgresql
 ```
 pip install psycopg2
 ```
+numpy - Usado para cantidad de dias entre fechas
+```
+pip install numpy
+```
 
 ## Observaciones de implementación
 

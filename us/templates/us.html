@@ -9,10 +9,10 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
-                            </div>
+                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
                         <h3> User Story</h3>
                     </div>
                     <div class="card-body">
@@ -23,13 +23,16 @@
                                         <div class="card " style="height:18rem;">
                                             <div class="card-header justify-content-center bg-info">
                                                 <h3 class="card-title">{{ u.name.upper }}
-                                                    id:{{ u.id }}
-                                                    <a href="{% url 'detalle_us' Proyecto.id u.id%}" class="btn btn-info"><i
+                                                    {#                                                    id:{{ u.id }}#}
+                                                    <a href="{% url 'detalle_us' Proyecto.id u.id %}"
+                                                       class="btn btn-info"><i
                                                             class="far fa-plus-square"></i></a>
 
                                                 </h3>
                                                 <h6 class="card-title float-right">
-                                                    {{ u.user}}<br>
+                                                    {% if u.user %}
+                                                        {{ u.user }}<br>
+                                                    {% endif %}
                                                     Proj:{{ u.project }}
                                                 </h6>
 
@@ -48,9 +51,10 @@
 
                                                             <div class="card bg-warning text-center">
                                                                 <h6 class="text-white m-2">
-                                                                    {% for s in u.status %} <!-- Ciclo para obtener el estado del US -->
+                                                                    {% for s in u.status %}
+                                                                        <!-- Ciclo para obtener el estado del US -->
                                                                         {% if s.0 == u.estado %}
-                                                                            {{ s.1}}
+                                                                            {{ s.1 }}
                                                                         {% endif %}
                                                                     {% endfor %}
                                                                 </h6>
@@ -61,15 +65,26 @@
                                                                 <h6 class="text-white m-2">{{ u.prioridad }}</h6>
                                                             </div>
                                                         </div>
+                                                        <div class="col-lg-auto">
+                                                            <div class="card bg-gradient-danger text-center">
+                                                                {% if u.etiqueta %}
+                                                                    <h6 class="text-white m-2">{{ u.etiqueta }}</h6>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
-                                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}" class="btn btn-info"><i
+                                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}"
+                                                       class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
-                                                    <a type="submit" href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id  %}"
+                                                    <a type="submit"
+                                                       href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id %}"
                                                        class="btn btn-danger"><i
                                                             class="fas fa-trash"></i></a>
-                                                    <a type="submit" href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}" class="btn btn-success">
+                                                    <a type="submit"
+                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"
+                                                       class="btn btn-success">
                                                         Comentarios
                                                     </a>
                                                 </div>
