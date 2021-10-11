@@ -89,7 +89,7 @@ def verRolesProyecto(request, id):
     return render(request, 'listarRolesProyecto.html', {'roles': roles, 'Miembros': miembros, 'Proyecto': proj, 'permisos': permisos})
 
 
-def confirmaDelete(request, id):
+def confirmaDelete(request, pk, id):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
@@ -104,7 +104,7 @@ def confirmaDelete(request, id):
         idProject = borrar.rol.project.id
         borrar.activo = False
         borrar.save()
-        return redirect('verotravesmiembro', id=idProject)
+        return redirect('miembros', id=idProject)
     else:
         return render(request, 'eliminarMiembro.html', {'permisos':permisos})
 

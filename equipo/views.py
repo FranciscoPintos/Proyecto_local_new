@@ -121,10 +121,9 @@ class crear_equipo(LoginRequiredMixin, CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             data=form.save(commit=False)
-            # print('dfgdfgd',data.project)
-            # data.estado=Us.status[0][0]
             data.sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
             data.save()
+            form.save_m2m()
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
 
@@ -169,8 +168,8 @@ class equipoView(ListView):
         context['permisos'] = permisos
         sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
         context['sprint'] =sprint
+        equ=Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
+        context['equipo'] = equ
+        print(equ.miembros)
 
-        context['equipo'] = Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
-
-        print(context)
         return context

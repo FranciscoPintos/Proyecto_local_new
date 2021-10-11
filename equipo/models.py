@@ -17,3 +17,9 @@ class Equipo(models.Model):
     # Capacidad del equipo en horas
     capacidad = models.PositiveIntegerField(null=True)
 
+
+    class Meta:
+        verbose_name = 'Equipo'
+        db_table = 'equipo'
+        ordering = ['id']
+

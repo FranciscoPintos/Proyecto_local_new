@@ -70,7 +70,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
         return redirect('sprintlist', pk=pk)
     else:
         FormularioUserStory = primerpasoplanificarSprint(request.GET)
-        return render(request, 'create_us.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk), 'permisos': permisos})
+        return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk), 'permisos': permisos})
 
 '''
 def asignarus(request, pk, sp_pk):
