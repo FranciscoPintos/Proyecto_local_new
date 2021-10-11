@@ -15,5 +15,6 @@ urlpatterns = [
         path('project/<int:pk>/verComentarios/<int:us_pk>', view_comentarios, name='ver_comentarios'),
         path('project/<int:pk>/CrearComentarios/<int:us_pk>', crear_comentarios, name='crear_comentarios'),
         path('project/<int:pk>/us/<int:us_pk>/borrar_comentario/<int:com_pk>', borrar_comentario, name='borrar_comentario'),
+        path('project/<int:pk>/us/<int:us_pk>/historial_comentarios/', historial_comentarios, name='historial_comentarios'),
 
 ]

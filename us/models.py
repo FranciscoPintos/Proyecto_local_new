@@ -91,6 +91,7 @@ class Comentarios(models.Model):
         #se trae el nombre del usuario
         cr = Usuario.objects.get(id=self.creador.id)
         hc.comentario = c
+        hc.us = us
         hc.us_name = us.name
         hc.project_name = p.name
         hc.creator_name = cr.first_name
@@ -119,6 +120,7 @@ class HistorialComentarios(models.Model):
     
     id = models.AutoField(primary_key=True)
     comentario = models.ForeignKey(Comentarios, on_delete=models.CASCADE)
+    us = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     us_name = models.CharField('Nombre de User Story', max_length=50, null=True)
     project_name = models.CharField('Nombre de Proyecto', max_length=50, null=True)
     creator_name = models.CharField('Nombre de Creador', max_length=50, null=True)

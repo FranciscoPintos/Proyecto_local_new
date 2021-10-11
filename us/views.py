@@ -300,7 +300,24 @@ def verhistorialus(request, pk, us_pk):
     historial= HistorialUs.objects.filter(ustory_id= us_pk)
     return render(request, 'historial_us.html', {'histo': historial, 'u': Us.objects.get(pk=us_pk), 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
 
-
+def historial_comentarios(request, pk, us_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    historial = HistorialComentarios.objects.filter(us=us_pk)
+    context = {
+        'historial':historial,
+        'permisos':permisos,
+        'Proyecto':Proyecto.objects.get(id=pk),
+        'u': Us.objects.get(pk=us_pk),
+    }
+    return render(request, 'historial_comentarios.html', context)
 
 def crear_us_product(request, pk):
     if request.method == 'POST':
