@@ -1,0 +1,25 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="card col-3 offset-4 mt-4">
+        <div class="card-body p-0 mt-3 mb-3 align-middle text-center">
+            <form method="post">{% csrf_token %}
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <h1><i class="fas fa-exclamation-triangle"></i></h1>
+
+                    </div>
+                    <div class="card-title">
+                        <h4>¿Estas seguro de eliminar el comentario?{{ object }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-danger" type="button">Cancelar</a>
+                        <input class="btn btn-danger" type="submit" value="Confirm">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
