@@ -100,12 +100,6 @@ class crear_equipo(LoginRequiredMixin, CreateView):
         # equipo.save()
         return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
 
-    # def get_initial(self):
-    #     initial = super(crear_us, self).get_initial()
-    #     initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-    #     initial['estado']=Us.status[0]
-    #     print('inicial:', initial)
-    #     return initial
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
@@ -176,8 +170,6 @@ class equipoView(ListView):
         sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
         context['sprint'] =sprint
 
-
-        print(Equipo.objects.get(sprint__id=self.kwargs['sp_pk']))
         context['equipo'] = Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
 
         print(context)
