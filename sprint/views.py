@@ -76,11 +76,11 @@ class crear_sprint(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
         # Creacion de un equipo
-        equipo = Equipo()
+        #equipo = Equipo()
         # Asignacion del equipo al sprint
-        equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
+        #equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # Persistencia del equipo
-        equipo.save()
+        #equipo.save()
         return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
 
     # def get_initial(self):
