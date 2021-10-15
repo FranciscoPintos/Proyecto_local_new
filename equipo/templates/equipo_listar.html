@@ -28,12 +28,20 @@
                                 </thead>
                                     <tbody>
                                     <tr>
-                                        <td><h5 class="card-title">{{ equipo.miembros }}</h5></td>
+                                        <td>
+                                            {% for m in equipo.miembros.all %}
+                                                {{ m}}
+                                            {% endfor %}
+                                        </td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
+                                                 <a type="submit" href="{% url 'editar_equipo' Proyecto.id sprint.id equipo.id %}"
+                                                   class="btn btn-primary"><i
+                                                        class="fas fa-edit"></i></a>
                                                 <a type="submit" href="{% url 'delete_equipo' Proyecto.id sprint.id equipo.id %}"
                                                    class="btn btn-danger"><i
                                                         class="fas fa-trash"></i></a>
+
                                             </div>
                                         </td>
                                     </tr>

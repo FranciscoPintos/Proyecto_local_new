@@ -2,7 +2,49 @@
 
 
 {% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
 
+                        <h3> Tu trabajo</h3>
+                    </div>
+                    <div class="card-body">
+                        {% if Proyectos %}
+                            <div class="row">
+                                {% for u in Proyectos %}
+                                    <div class="col-sm-4">
+                                        <div class="card " style="height:18rem;">
+                                            <div class="card-header justify-content-center bg-info">
+                                                <h3 class="card-title">
+                                                    {{ u.name.upper }}
+                                                </h3>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-danger mt-4"> No existe Proyectos</div>
+                        {% endif %}
+
+                    </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="col-3 offset-9 mt-3">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

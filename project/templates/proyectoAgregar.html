@@ -16,16 +16,14 @@
                         <thead>
                         <tr>
                             <th>Proyecto</th>
-                            <th>Entrar</th>
+
                         </tr>
                         </thead>
                         {% for r in Proyectos %}
-                            <tbody>
+                            <tbody class="text-center">
                             <tr>
                                 <td><h5 class="card-title">{{ r.name}}</h5> </td>
-                                <td>
-                                    <a type="submit" href="{% url 'verProyecto' r.id %}" class="btn btn-danger"><i class="fas fa-eye"></i></a>
-                                </td>
+
                             </tr>
 
 

@@ -4,6 +4,11 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.forms import model_to_dict
 
+
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 from django.contrib.auth.models import AbstractUser, BaseUserManager, Permission
 
 #from allauth.socialaccount.models import
@@ -61,6 +66,8 @@ class Usuario(AbstractUser):
     usuario_activo = models.BooleanField(default=True, null=True, blank=True)
     usuario_administrador = models.BooleanField(default=False, null=True, blank=True)
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE, blank=True, null=True)
+
+    image = models.ImageField(upload_to='users/%Y/%m/%d', null=True, blank=True)
     objects = UsuarioManager()
 
     USERNAME_FIELD = 'username'
@@ -68,6 +75,11 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.username + ' ' + self.email
+
+    # def get_image(self):
+    #     if self.image:
+    #         return '{}{}'.format(MEDIA_URL, self.image)
+    #     return '{}{}'.format(STATIC_URL, 'img/avatar.png')
 
     def has_module_perms(self, app_label):
         return True

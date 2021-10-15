@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
-from equipo.forms import CrearEquipo
+from equipo.forms import *
 from equipo.models import Equipo
 from miembros.models import Miembro
 from project.models import Proyecto
@@ -85,7 +85,7 @@ import datetime
 
 
 class crear_equipo(LoginRequiredMixin, CreateView):
-    permission_required = 'add_equipo'
+    # permission_required = 'add_equipo'
     model = Equipo
     form_class = CrearEquipo
     template_name = 'crearEquipo.html'
@@ -126,6 +126,48 @@ class crear_equipo(LoginRequiredMixin, CreateView):
             form.save_m2m()
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
+
+
+
+class edit_equipo(LoginRequiredMixin,UpdateView):
+    model = Equipo
+    form_class = EditarEquipoForm
+    template_name = 'editar_equipo.html'
+    pk_sched_kwargs = 'eq_pk'  # Definir el nombre del parametro obtenido en la url
+
+    def get_success_url(self):
+        Proyecto = self.kwargs['pk']
+        # # Creacion de un equipo
+        # equipo = Equipo()
+        # # Asignacion del equipo al sprint
+        # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
+        # # Persistencia del equipo
+        # equipo.save()
+        return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
+
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Equipo, pk=id)
+        return obj
+
+
+    def get_context_data(self, **kwargs):
+        context = super(edit_equipo, self).get_context_data(**kwargs)
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+        context['permisos'] = permisos
+        context['sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
+        print(context)
+        return context
+
 
 
 class delete_equipo(DeleteView):
@@ -169,7 +211,9 @@ class equipoView(ListView):
         sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
         context['sprint'] =sprint
         equ=Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
+        print(equ.miembros.all())
         context['equipo'] = equ
-        print(equ.miembros)
 
         return context
+
+

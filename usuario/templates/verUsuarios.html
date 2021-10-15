@@ -14,14 +14,30 @@
                     <div class="card-body">
                         {% if user %}
                             <div class="row">
-                                <div class="card-body text-center">
+                                <div class="card-body">
 
-                                    {% if user.id == name.id %}
-                                        {{ name.first_name }} {{ name.email }}<br>
-                                    {% endif %}
-                                    <!--% endfor %}-->
-                                    {{ user.first_name }}
-                                    {{ user.id }}
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Perfil</th>
+                                            <th>Nombre</th>
+                                            <th>Correo electrónico</th>
+                                            <th>Fecha de Registro</th>
+                                            <th>id</th>
+                                            <th>Rol</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <th>{{ user.get_image }}</th>
+                                            <th>{{ user.get_full_name }}</th>
+                                            <th>{{ user.email }}</th>
+                                            <th>{{ user.fecha_created }}</th>
+                                            <th>{{ user.id }}</th>
+                                            <th>{{ user.rol }}</th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         {% else %}
@@ -34,4 +50,10 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+    
 {% endblock %}

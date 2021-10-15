@@ -9,7 +9,6 @@ from django import forms
 from django.shortcuts import get_object_or_404
 import datetime
 
-
 from django.views.generic import ListView, CreateView
 
 from miembros.models import Miembro, RolProyecto
@@ -20,17 +19,17 @@ from usuario.models import Usuario
 
 
 def nuevoProyecto(request, id):
-    if  request.method == 'POST':
-        #formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active', 'fecha_inicio', 'fecha_fin'])
-        #proyectoForm = formaProyecto(request.POST)
+    if request.method == 'POST':
+        # formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active', 'fecha_inicio', 'fecha_fin'])
+        # proyectoForm = formaProyecto(request.POST)
         proyectoForm = ProyectoForm(request.POST)
         if proyectoForm.is_valid():
             Pr = proyectoForm.save(commit=False)
-            #Pr.creator = Usuario.objects.get(id=id)
+            # Pr.creator = Usuario.objects.get(id=id)
             try:
                 Pr.save()
             except ValueError as err:
-                print (err.args.__str__())
+                print(err.args.__str__())
                 error = err.args.__str__()
                 messages.error(request, error)
                 return redirect('crearProyecto', id)
@@ -76,6 +75,7 @@ def nuevoProyecto(request, id):
         formaProyecto = ProyectoForm()
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
 
+
 def ProyectosView(request):
     if request.user.has_perm('view_proyecto'):
         user = request.user
@@ -85,10 +85,12 @@ def ProyectosView(request):
     else:
         return redirect('inicio')
 
+
 class ProyectoCreate(CreateView):
     model = Proyecto
     template_name = 'crearRolProyecto.html'
     form_class = CreateProyectoForm
+
     def get_context_data(self, **kwargs):
         context = super(ProyectoCreate, self).get_context_data(**kwargs)
         if 'form' not in context:
@@ -99,6 +101,7 @@ class ProyectoCreate(CreateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object
         form = self.form_class(request.POST)
+
 
 def verProyectos(request, id):
     print(Usuario.objects.get(id=id).id)
@@ -123,9 +126,8 @@ def verProyectos(request, id):
         messages.error(request, error)
         return redirect('exceptMiembro')
 
-    print(miembro.rol.project.id)
-    pr = Proyecto.objects.filter(id=miembro.rol.project.id)
-    return render(request, 'misPryectos.html',{'Proyecto':pr})
+    pr = Proyecto.objects.filter(id=Miembro.rol.project.id)
+    return render(request, 'misPryectos.html', {'Proyecto': pr})
 
 
 def exceptMimebro(request):
@@ -149,12 +151,13 @@ def verProyecto(request, id):
         'ProductBacklog': product_backlog,
         'permisos': permisos,
     }
-
+    print(context)
     return render(request, 'verProyecto.html', context)
+
 
 def iniciarProyecto(request, id):
     if request.method == 'POST':
-        ProjectStart= Proyecto.objects.get(id=id)
+        ProjectStart = Proyecto.objects.get(id=id)
         ProjectStart.fecha_inicio = datetime.date.today()
         ProjectStart.estado = 'I'
         ProjectStart.save()

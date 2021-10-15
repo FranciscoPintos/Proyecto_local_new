@@ -10,7 +10,7 @@ urlpatterns = [
         path('usuario/ver', verUsuario),
         path('list/',UserListView.as_view(),name='user_list'),
 
-        path('usuario/<int:id>', verUsuario),
+        path('usuario/<int:id>', verUsuario,name='perfil'),
 
 
 ]

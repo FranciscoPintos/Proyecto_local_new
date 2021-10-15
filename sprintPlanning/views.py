@@ -1,6 +1,6 @@
 import datetime
 
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404,HttpResponseRedirect
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView
@@ -129,6 +129,20 @@ class asignarUs(UpdateView):
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
         return context
+    def post(self, request, *args, **kwargs):
+        self.object=self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            # print('dfgdfgd',data.project)
+
+            # data.estado=Us.status[0][0]
+            data.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
+
+
+
 
 def listarus(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
