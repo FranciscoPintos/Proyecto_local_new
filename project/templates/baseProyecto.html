@@ -7,6 +7,12 @@
             <h6>Menú</h6>
         </div>
         <div class="opciones__menu">
+            <a href={% url 'verProyecto' Proyecto.id %}>
+                <div class="opcion">
+                   <i class="fas fa-home"></i>
+                    <h5>Tablero Kanban</h5>
+                </div>
+            </a>
             {% for i in permisos %}
                 {% if i.codename == 'view_sprint' %}
                     <a href={% url 'sprintlist' Proyecto.id %}>

@@ -50,7 +50,12 @@ class Us(models.Model):
     def toJSON(self):
         item = model_to_dict(self)
         return item
-
+    def get_estado(self):
+        s=self.status[self.estado-1][1]
+        return s
+    def set_estado(self,int):
+        self.estado=int
+        return
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'

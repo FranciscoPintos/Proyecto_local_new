@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect
 from django.forms import ModelForm
 from django import forms
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, JsonResponse
 import datetime
 
 from django.views.generic import ListView, CreateView
@@ -151,8 +152,18 @@ def verProyecto(request, id):
         'ProductBacklog': product_backlog,
         'permisos': permisos,
     }
-    print(context)
-    return render(request, 'verProyecto.html', context)
+    if request.method == "POST" and request.is_ajax():
+        print(request.POST['estado'])
+        try:
+            UStory = Us.objects.get(id=request.POST['id'])
+            UStory.set_estado(request.POST['estado'])
+            UStory.save()
+        except KeyError:
+            HttpResponseServerError("Malformed data!")
+
+        return JsonResponse({"success": True}, status=200)
+    else:
+        return render(request, 'verProyecto.html', context)
 
 
 def iniciarProyecto(request, id):
