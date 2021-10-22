@@ -140,9 +140,11 @@ def modiProject(request, id):
     permisos = user.rol.list_permissions().order_by('id')
     idprojec = Proyecto.objects.get(id=id)
     auxi = idprojec.creator
+
     if request.method == 'POST':
         FormularioProyecto = modificarProject(request.POST)
         if FormularioProyecto.is_valid():
+            print('es valido')
             Pr = FormularioProyecto.save(commit=False)
             Pr.creator = auxi
             idprojec.name = Pr.name
@@ -156,6 +158,8 @@ def modiProject(request, id):
                 messages.error(request, error)
                 return redirect('modificar', id=id)
             return redirect('verProyecto', id)
+
+        print('no es valido')
         return redirect('modificar', id=id)
     else:
         idprojec = Proyecto.objects.get(id=id)

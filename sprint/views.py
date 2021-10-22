@@ -104,17 +104,17 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         context['permisos'] = permisos
 
         return context
-    # def post(self, request, *args, **kwargs):
-    #     self.object=self.get_object
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         data=form.save(commit=False)
-    #         # print('dfgdfgd',data.project)
-    #         data.proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
-    #         # data.estado=Us.status[0][0]
-    #         data.save()
-    #         return HttpResponseRedirect(self.get_success_url())
-    #     return self.render_to_response(self.get_context_data(form=form))
+    def post(self, request, *args, **kwargs):
+        self.object=self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            data=form.save(commit=False)
+            # print('dfgdfgd',data.project)
+            data.proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+            # data.estado=Us.status[0][0]
+            data.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
 
 # @login_required(login_url='login')
 # def us(request,pk):

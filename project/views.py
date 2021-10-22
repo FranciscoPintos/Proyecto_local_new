@@ -156,6 +156,9 @@ def verProyecto(request, id):
         print(request.POST['estado'])
         try:
             UStory = Us.objects.get(id=request.POST['id'])
+            #la diferencia entre cambios de estados no mayor a 1 solo para avanzar
+            #para retroceder no puede ser
+
             UStory.set_estado(request.POST['estado'])
             UStory.save()
         except KeyError:
