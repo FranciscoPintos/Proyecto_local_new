@@ -65,10 +65,10 @@ class sprintView(ListView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
-
-        print(context)
         return context
-
+    def get_queryset(self):
+        object_list = Sprint.objects.filter(proyecto_id=self.kwargs['pk'])
+        return object_list
 
 class sprintView_Kanban(ListView):
     model = Sprint

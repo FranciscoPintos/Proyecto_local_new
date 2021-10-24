@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                            <a href="{% url 'listar_equipo' pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
@@ -30,7 +30,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-primary mr-5"
+                                    <a href="{% url 'listar_equipo' pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-primary mr-5"
                                        type="button">Cancelar</a>
                                     <input class="btn btn-primary" type="submit" value="Guardar">
                                 </div>

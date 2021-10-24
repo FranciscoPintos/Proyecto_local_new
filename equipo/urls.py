@@ -7,6 +7,7 @@ urlpatterns = [
     # Vista para crear y modificar un equipo
     path('project/<int:pk>/sprint/<int:sp_pk>/equipo/crear', crear_equipo.as_view(), name='create_equipo'),
     path('project/<int:pk>/sprint/<int:sp_pk>/equipo/listar', equipoView.as_view(), name='listar_equipo'),
+    path('project/<int:pk>/sprint/<int:sp_pk>/equipo/<int:eq_pk>/view', miembrosView.as_view(), name='lista_miembro_equipo'),
     path('project/<int:pk>/sprint/<int:sp_pk>/equipo/<int:eq_pk>/edit', edit_equipo.as_view(), name='editar_equipo'),
     path('project/<int:pk>/sprint/<int:sp_pk>/equipo/<int:eq_pk>', delete_equipo.as_view(), name='delete_equipo'),
 
