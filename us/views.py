@@ -287,6 +287,7 @@ def editUs(request, pk, us_pk):
         FormularioUserStory = editUsForm(instance=pro)
         # FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
         return render(request, 'editar_us.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos})
+
 def verhistorialus(request, pk, us_pk):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):

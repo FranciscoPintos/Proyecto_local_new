@@ -152,15 +152,25 @@ def verProyecto(request, id):
         'ProductBacklog': product_backlog,
         'permisos': permisos,
     }
-    if request.method == "POST" and request.is_ajax():
-        print(request.POST['estado'])
+    m = Miembro.objects.get(user=request.user)
+    is_scrum=str(m.rol)=='Scrum Master'
+    if request.method == "POST" and request.is_ajax() and is_scrum:
+        print(is_scrum)
+
         try:
             UStory = Us.objects.get(id=request.POST['id'])
             #la diferencia entre cambios de estados no mayor a 1 solo para avanzar
             #para retroceder no puede ser
+            est_actual = int(UStory.estado)
+            est_nuevo = int(request.POST['estado'])
 
-            UStory.set_estado(request.POST['estado'])
-            UStory.save()
+            if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual!=4:
+                if(est_nuevo==4 or est_nuevo==1):
+                    UStory.set_estado(request.POST['estado'])
+                    UStory.save()
+            #Descomentar para hacer los cambios de estado manualmente sin las restricciones
+            # UStory.set_estado(request.POST['estado'])
+            # UStory.save()
         except KeyError:
             HttpResponseServerError("Malformed data!")
 

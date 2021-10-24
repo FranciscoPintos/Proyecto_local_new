@@ -53,6 +53,9 @@ class Us(models.Model):
     def get_estado(self):
         s=self.status[self.estado-1][1]
         return s
+    def get_prioridad(self):
+        prio=self.dif_define[self.prioridad-1][1]
+        return prio
     def set_estado(self,int):
         self.estado=int
         return

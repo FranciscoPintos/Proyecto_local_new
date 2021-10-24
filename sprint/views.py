@@ -21,6 +21,33 @@ from miembros.models import *
 from equipo.models import *
 
 
+def sprint_backlog_view(request, pk, sp_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    # Filtar los us por proyecto
+    # us = Us.objects.filter(project=pk).exclude(activo=False)
+    sprint=Sprint.objects.get(id=sp_pk)
+    us=sprint.us.all()
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proyecto': proj,
+        'sprint':sprint,
+        'permisos': permisos,
+    }
+    print(context)
+    return render(request, 'Sprint_backlog.html', context=context)
+
+
 class sprintView(ListView):
     model = Sprint
     template_name = 'sprint_view.html'
@@ -63,8 +90,31 @@ class sprintView_Kanban(ListView):
         context['sprint'] = Sprint.objects.get(pk=self.kwargs['sp_pk'])
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
+        product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+        context['ProductBacklog'] = product_backlog
         return context
 
+    def post(self, request, *args, **kwargs):
+        if request.is_ajax():
+            # print(request.POST['estado'])
+            try:
+
+                UStory = Us.objects.get(id=request.POST['id'])
+                # la diferencia entre cambios de estados no mayor a 1 solo para avanzar
+                # para retroceder no puede ser
+                est_actual=int(UStory.estado)
+                est_nuevo=int(request.POST['estado'])
+
+                print('es_ac',est_actual)
+                print('es_nv',est_nuevo)
+                print('res',est_actual-est_nuevo)
+                if est_nuevo-est_actual==1:
+                    UStory.set_estado(request.POST['estado'])
+                    UStory.save()
+            except KeyError:
+                HttpResponseServerError("Malformed data!")
+
+            return JsonResponse({"success": True}, status=200)
 
 
 class crear_sprint(LoginRequiredMixin, CreateView):
@@ -104,13 +154,14 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         context['permisos'] = permisos
 
         return context
+
     def post(self, request, *args, **kwargs):
-        self.object=self.get_object
+        self.object = self.get_object
         form = self.form_class(request.POST)
         if form.is_valid():
-            data=form.save(commit=False)
+            data = form.save(commit=False)
             # print('dfgdfgd',data.project)
-            data.proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
+            data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
             # data.estado=Us.status[0][0]
             data.save()
             return HttpResponseRedirect(self.get_success_url())

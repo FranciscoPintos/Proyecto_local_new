@@ -1,21 +1,29 @@
+
+
 {% extends 'baseProyecto.html' %}
+
+
+
 {% block content %}
     <br>
     <br>
     <br>
-    <div class="container mt-3">
+    <br>
+
+    <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg">
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                            <a href="{% url 'misproyectos' user.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
+
                         </div>
                         <h3> {{ sprint.name }}</h3>
-                    </div>
 
+                    </div>
                     <div class="card-header bg-gradient-info">
                         <!---->
                         <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"
@@ -28,90 +36,94 @@
                                class="btn btn-primary">Crear Equipo</a>
                         {% endif %}
 
-                        {{ sprint.equipo }}
+                        <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
+                           class="btn btn-primary">Sprint Backlog</a>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-3">
-                                <div class="card " style="height:18rem;">
-                                    <div class="text-center card-header bg-info">
-                                        <h3 class="card-title">
-                                            SPRINT BACKLOG
-                                        </h3>
-                                    </div>
-                                    <div class="card-body text-primary overflow-auto">
-{#                                        {% for US in sprint.us %}#}
-{#                                            {{ US.name }}#}
-{#                                        {% endfor %}#}
-                                        {{ sprint.us }}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="card " style="height:18rem;">
+                            <div class=" col-sm-3">
+                                <div class="card " style="height:30rem;">
                                     <div class="text-center card-header bg-info">
                                         <h3 class="card-title">
                                             TO DO
                                         </h3>
                                     </div>
-                                    <div class="card-body text-primary overflow-auto">
+                                    <div class="card-body  overflow-auto caja" id="caja1">
                                         {% for US in ProductBacklog %}
                                             {% if US.estado == 1 %}
-                                                <p class="card-text ">
-                                                    {{ US.name }}
-                                                </p><br>
+                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+                                                    <div class="card-header bg-gradient-info mt-3 us"
+                                                         draggable="true" id="{{ US.id }}">
+                                                        {{ US.name }}
+                                                        {{ US.get_estado }}
+                                                    </div>
+                                                </a>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="card " style="height:18rem;">
+                            <div class=" col-sm-3">
+                                <div class="card " style="height:30rem;">
                                     <div class="text-center card-header bg-info">
                                         <h3 class="card-title">
                                             DOING
                                         </h3>
                                     </div>
-                                    <div class="card-body text-primary overflow-auto">
-                                        {% for US in u %}
+                                    <div class="card-body overflow-auto caja" id="caja2">
+                                        {% for US in ProductBacklog %}
                                             {% if US.estado == 2 %}
-                                                <p class="card-text ">
-                                                    {{ US.name }}
-                                                </p><br>
+                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+                                                    <div class="card-header bg-gradient-info mt-3 us"
+                                                         draggable="true" id="{{ US.id }}">
+                                                        {{ US.name }}
+                                                        {{ US.get_estado }}
+                                                    </div>
+                                                </a>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-3">
-                                <div class="card " style="height:18rem;">
+                            <div class=" col-sm-3">
+                                <div class="card " style="height:30rem;">
                                     <div class="text-center card-header bg-info">
                                         <h3 class="card-title">
-                                            DONE
+                                            QA
                                         </h3>
                                     </div>
-                                    <div class="card-body text-primary overflow-auto">
-                                        {% for US in u %}
-                                            {% if US.estado == 4 %}
-                                                <p class="card-text ">
-                                                    {{ US.name }}
-                                                </p><br>
+                                    <div class="card-body  overflow-auto caja" id="caja3">
+                                        {% for US in ProductBacklog %}
+                                            {% if US.estado == 3 %}
+                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+                                                    <div class="card-header bg-gradient-info mt-3 us"
+                                                         draggable="true" id="{{ US.id }}">
+                                                        {{ US.name }}
+                                                        {{ US.get_estado }}
+                                                    </div>
+                                                </a>
                                             {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-
-
                     </div>
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="#"
-                                   class="btn btn-lg btn-primary float-right">
-                                    Iniciar
-                                </a>
+                                {% for i in permisos %}
+                                    {% if i.codename == 'change_proyecto' %}
+                                        {% if Proyecto.estado == 'E' %}
+                                            <a href="{% url 'iniciarProyecto' Proyecto.id %}"
+                                               class="btn btn-lg btn-primary float-right">
+                                                INICIAR
+                                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -119,4 +131,118 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+        let To_do = document.getElementById("caja1")
+        let doing = document.getElementById("caja2");
+        let QA = document.getElementById("caja3");
+        {#let done = document.getElementById("caja4");#}
+
+
+        let UStory = document.getElementsByClassName("us");
+
+        To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+        To_do.addEventListener("drop", (ev) => soltar1(ev));
+
+        doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+        doing.addEventListener("drop", (ev) => soltar2(ev));
+
+        QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+        QA.addEventListener("drop", (ev) => soltar3(ev));
+
+        {#done.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
+        {#done.addEventListener("drop", (ev) => soltar4(ev));#}
+
+
+        for (var i = 0; i < UStory.length; i++) {
+            {#UStory[i].setAttribute("id", "Us" + i);#}
+            UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
+
+        }
+
+        function iniciarArrastre(ev) {
+            ev.dataTransfer.setData("idUs", ev.target.id);
+            console.log(ev.target.id);
+        }
+
+        function CambiarEstado1(ev) {
+            console.log("arrastrando");
+            ev.preventDefault();
+        }
+
+        function soltar1(ev) {
+            ev.preventDefault();
+            let data = ev.dataTransfer.getData("idUs")
+            To_do.appendChild(document.getElementById(data));
+
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                data: {
+                    id: data,
+                    estado: 1,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    location.reload();
+                },
+            });
+
+        }
+
+        function soltar2(ev) {
+            ev.preventDefault();
+            let data = ev.dataTransfer.getData("idUs")
+            doing.appendChild(document.getElementById(data));
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                data: {
+                    id: data,
+                    estado: 2,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    location.reload();
+                },
+
+            })
+
+        }
+
+        function soltar3(ev) {
+            ev.preventDefault();
+            let data = ev.dataTransfer.getData("idUs")
+            QA.appendChild(document.getElementById(data));
+            $.ajax({
+                type: 'POST',
+                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                data: {
+                    id: data,
+                    estado: 3,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (response) {
+                    location.reload();
+                },
+
+            })
+        }
+
+
+    </script>
+
+
 {% endblock %}
