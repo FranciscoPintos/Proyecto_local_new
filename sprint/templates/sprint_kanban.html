@@ -31,9 +31,7 @@
                         {% if tieneEquipo %}
                             <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
                                class="btn btn-primary">Equipo</a>
-                        {% else %}
-                            <a href="{% url 'create_equipo' Proyecto.id sprint.id %}"
-                               class="btn btn-primary">Crear Equipo</a>
+
                         {% endif %}
 
                         <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
@@ -107,7 +105,30 @@
                                     </div>
                                 </div>
                             </div>
-
+                            {% if is_scrum %}
+                                <div class=" col-sm-3">
+                                    <div class="card " style="height:30rem;">
+                                        <div class="text-center card-header bg-info">
+                                            <h3 class="card-title">
+                                                DONE
+                                            </h3>
+                                        </div>
+                                        <div class="card-body  overflow-auto caja" id="caja4">
+                                            {% for US in ProductBacklog %}
+                                                {% if US.estado == 4 %}
+                                                    <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                     <div class="card-footer">
@@ -148,7 +169,6 @@
         let To_do = document.getElementById("caja1")
         let doing = document.getElementById("caja2");
         let QA = document.getElementById("caja3");
-        {#let done = document.getElementById("caja4");#}
 
 
         let UStory = document.getElementsByClassName("us");
@@ -161,10 +181,11 @@
 
         QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
         QA.addEventListener("drop", (ev) => soltar3(ev));
-
-        {#done.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
-        {#done.addEventListener("drop", (ev) => soltar4(ev));#}
-
+        {% if is_scrum %}
+            let done = document.getElementById("caja4");
+            done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            done.addEventListener("drop", (ev) => soltar4(ev));
+        {% endif %}
 
         for (var i = 0; i < UStory.length; i++) {
             {#UStory[i].setAttribute("id", "Us" + i);#}
@@ -240,6 +261,26 @@
 
             })
         }
+        {% if is_scrum %}
+            function soltar4(ev) {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("idUs")
+                done.appendChild(document.getElementById(data));
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                    data: {
+                        id: data,
+                        estado: 4,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+
+                })
+            }
+        {% endif %}
 
 
     </script>

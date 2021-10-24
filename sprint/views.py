@@ -33,15 +33,15 @@ def sprint_backlog_view(request, pk, sp_pk):
     permisos = user.rol.list_permissions().order_by('id')
     # Filtar los us por proyecto
     # us = Us.objects.filter(project=pk).exclude(activo=False)
-    sprint=Sprint.objects.get(id=sp_pk)
-    us=sprint.us.all()
+    sprint = Sprint.objects.get(id=sp_pk)
+    us = sprint.us.all()
     proj = Proyecto.objects.get(id=pk)
     user = request.user
     context = {
         'Us': us,
         'User': user,
         'Proyecto': proj,
-        'sprint':sprint,
+        'sprint': sprint,
         'permisos': permisos,
     }
     print(context)
@@ -66,9 +66,11 @@ class sprintView(ListView):
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
         return context
+
     def get_queryset(self):
         object_list = Sprint.objects.filter(proyecto_id=self.kwargs['pk'])
         return object_list
+
 
 class sprintView_Kanban(ListView):
     model = Sprint
@@ -92,9 +94,14 @@ class sprintView_Kanban(ListView):
         context['tieneEquipo'] = tieneEquipo
         product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
         context['ProductBacklog'] = product_backlog
+        m = Miembro.objects.get(user=self.request.user)
+        is_scrum = str(m.rol) == 'Scrum Master'
+        context['is_scrum']=is_scrum
         return context
 
     def post(self, request, *args, **kwargs):
+        m = Miembro.objects.get(user=request.user)
+        is_scrum = str(m.rol) == 'Scrum Master'
         if request.is_ajax():
             # print(request.POST['estado'])
             try:
@@ -102,15 +109,20 @@ class sprintView_Kanban(ListView):
                 UStory = Us.objects.get(id=request.POST['id'])
                 # la diferencia entre cambios de estados no mayor a 1 solo para avanzar
                 # para retroceder no puede ser
-                est_actual=int(UStory.estado)
-                est_nuevo=int(request.POST['estado'])
-
-                print('es_ac',est_actual)
-                print('es_nv',est_nuevo)
-                print('res',est_actual-est_nuevo)
-                if est_nuevo-est_actual==1:
-                    UStory.set_estado(request.POST['estado'])
-                    UStory.save()
+                est_actual = int(UStory.estado)
+                est_nuevo = int(request.POST['estado'])
+                if is_scrum:
+                    if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
+                        if (est_nuevo == 4 or est_nuevo == 1):
+                            UStory.set_estado(request.POST['estado'])
+                            UStory.save()
+                else:
+                    if est_nuevo - est_actual == 1:
+                        UStory.set_estado(request.POST['estado'])
+                        UStory.save()
+                # Descomentar para hacer los cambios de estado manualmente sin las restricciones
+                # UStory.set_estado(request.POST['estado'])
+                # UStory.save()
             except KeyError:
                 HttpResponseServerError("Malformed data!")
 
