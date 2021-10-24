@@ -92,17 +92,19 @@ class crear_equipo(LoginRequiredMixin, CreateView):
 
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
+        Sprint = self.kwargs['sp_pk']
         # # Creacion de un equipo
         # equipo = Equipo()
         # # Asignacion del equipo al sprint
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
+        return reverse_lazy('contenedor_pasos', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['Sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
         # Ver si es un miembro del proyecto
         if Miembro.objects.filter(user=self.request.user.id):
             # obtener su usuario
@@ -113,12 +115,9 @@ class crear_equipo(LoginRequiredMixin, CreateView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
-        context['sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
-        print(context)
         return context
-    def post(self, request, *args, **kwargs):
-        self.object=self.get_object
-        form = self.form_class(request.POST)
+
+    def form_valid(self, form):
         if form.is_valid():
             data=form.save(commit=False)
             data.sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
@@ -127,7 +126,10 @@ class crear_equipo(LoginRequiredMixin, CreateView):
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
 
-
+    def get_form_kwargs(self):
+        kwargs = super(crear_equipo, self).get_form_kwargs()
+        kwargs['request'] =self.kwargs['pk']
+        return kwargs
 
 class edit_equipo(LoginRequiredMixin,UpdateView):
     model = Equipo
@@ -137,13 +139,14 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
 
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
+        Sprint = self.kwargs['sp_pk']
         # # Creacion de un equipo
         # equipo = Equipo()
         # # Asignacion del equipo al sprint
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
+        return reverse_lazy('contenedor_pasos', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_object(self, queryset=None):
         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
@@ -154,6 +157,7 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
     def get_context_data(self, **kwargs):
         context = super(edit_equipo, self).get_context_data(**kwargs)
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['Sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
         # Ver si es un miembro del proyecto
         if Miembro.objects.filter(user=self.request.user.id):
             # obtener su usuario
@@ -164,10 +168,12 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
-        context['sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
-        print(context)
         return context
 
+    def get_form_kwargs(self):
+        kwargs = super(edit_equipo, self).get_form_kwargs()
+        kwargs['request'] = self.kwargs['sp_pk']
+        return kwargs
 
 
 class delete_equipo(DeleteView):
@@ -177,13 +183,14 @@ class delete_equipo(DeleteView):
 
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
+        Sprint = self.kwargs['sp_pk']
         # # Creacion de un equipo
         # equipo = Equipo()
         # # Asignacion del equipo al sprint
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
+        return reverse_lazy('contenedor_pasos', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_object(self, queryset=None):
         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
@@ -211,9 +218,34 @@ class equipoView(ListView):
         sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
         context['sprint'] =sprint
         equ=Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
-        print(equ.miembros.all())
+        context['equipo'] = equ
+
+        return context
+class miembrosView(ListView):
+    model = Miembro
+    template_name = 'vermiembroequipo.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(miembrosView, self).get_context_data(**kwargs)
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+        context['permisos'] = permisos
+        sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
+        context['sprint'] =sprint
+        equ=Equipo.objects.get(sprint__id=self.kwargs['sp_pk'])
         context['equipo'] = equ
 
         return context
 
-
+    def get_queryset(self):
+        equi= Equipo.objects.get(id=self.kwargs['eq_pk'])
+        object_list= equi.miembros.all()
+        return object_list

@@ -23,6 +23,8 @@ class Us(models.Model):
         choices=dif_define,
         default=1
     )
+    estimacionscrum = models.PositiveIntegerField(null=True, blank=True)
+    estimaciondesarrollador = models.PositiveIntegerField(null=True, blank=True)
     storypoints= models.PositiveIntegerField(null=True, blank=True)
     estado=models.IntegerField(
         choices=status,

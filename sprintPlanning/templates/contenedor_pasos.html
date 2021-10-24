@@ -23,8 +23,13 @@
                                    class="btn btn-primary">Paso 1</a>
                             </div>
                             <div class="col-sm-3 text-center">
-                                <a href="#"
-                                   class="btn btn-primary">Paso 2</a>
+                                {% if tieneEquipo %}
+                                     <a href="{% url 'listar_equipo' Proyecto.id Sprint.id %}"
+                                        class="btn btn-primary">Equipo</a>
+                                {% else %}
+                                    <a href="{% url 'create_equipo' Proyecto.id Sprint.id %}"
+                                        class="btn btn-primary">Crear Equipo</a>
+                                {% endif %}
                             </div>
                             <div class="col-sm-3 text-center">
                                 <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=Sprint.id %}"
@@ -32,7 +37,7 @@
                             </div>
                             <div class="col-sm-3 text-center">
                                 <!--url 'planifius' pk=Proyecto.id sp_pk=Sprint.id resolver us-->
-                                <a href="#"
+                                <a href="{% url 'listado' pk=Proyecto.id sp_pk=Sprint.id %}"
                                    class="btn btn-primary">Paso 4</a>
                             </div>
                         </div>
