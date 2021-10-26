@@ -9,3 +9,16 @@
 /etiqueta/__pycache__/
 /tests/__pycache__/
 /venv/
+/equipo/migrations/
+/etiqueta/migrations/
+/loginSSO/migrations/
+/miembros/migrations/
+/notificacion/migrations/
+/principalApp/migrations/
+/project/migrations/
+/roles/migrations/
+/sprint/migrations/
+/sprintPlanning/migrations/
+/tarea/migrations/
+/us/migrations/
+/usuario/migrations/
