@@ -102,6 +102,7 @@ class asignarUs(UpdateView):
     model = Sprint
     #Validar mi formulario
     form_class = tercerpasoplanificarSprint
+    #form_class.fields['us'] = Miembro.objects.filter(rol__project_id=self.kwargs['pk'])
     #Agregar el html
     template_name = 'sptercerpaso.html'
     pk_sched_kwargs = 'sp_pk'  # Definir el nombre del parametro obtenido en la url

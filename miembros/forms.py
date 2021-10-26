@@ -29,7 +29,7 @@ class CrearRol(forms.ModelForm):
 class CrearMiembro(forms.ModelForm):
     class Meta:
         model = Miembro
-        fields = ['user','rol','horaTrabajo']
+        fields = ['user','horaTrabajo']
 
     ch = Usuario.objects.all()
     user = forms.Select()

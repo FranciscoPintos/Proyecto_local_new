@@ -40,15 +40,28 @@ def addMiembro(request, id):
     proj = Proyecto.objects.get(id=id)
     if request.method == 'POST':
         FormularioProyecto = CrearMiembro(request.POST)
-        nuevorol = FormularioProyecto.save(commit=False)
-        nuevorol.save()
+        nuevomiembro = FormularioProyecto.save(commit=False)
+        miembros = Miembro.objects.filter(rol__project_id=id)
+        # Buscar miembros ya agregados anteriormente
+        for miembro in miembros:
+            if miembro.user.id == nuevomiembro.user.id:
+                # Cargar sus horas de trabajo
+                miembro.horaTrabajo = nuevomiembro.horaTrabajo
+                # Volverlo a activar
+                miembro.activo = True
+                # Canviar formulario a guardar
+                nuevomiembro = miembro
+        # Asignar un rol vacío
+        nuevomiembro.rol = RolProyecto.objects.get(project_id=id, name='')
+        # Guardar en la base de datos
+        nuevomiembro.save()
         return redirect('miembros', id)  # Este tiene que redirigir a proyecto
     else:
+        # Crear formulario
         FormularioProyecto = CrearMiembro(request.GET)
-        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id,
-                                                                             miembro__activo=True)
-        FormularioProyecto.fields["rol"].queryset = RolProyecto.objects.filter(project_id=id).exclude(name='Scrum Master')
-        print(RolProyecto.objects.filter(project_id=id))
+        # Traer todos los usuarios menos los que ya son miembros activos del proyecto
+        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True)
+        # Cargar al html
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto, 'Proyecto': proj, 'permisos': permisos})
 
 
@@ -93,7 +106,7 @@ def confirmaDelete(request, pk, id):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
-        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
     else:
         # si no es miembro se analizan los permisos de sistema
         user = request.user

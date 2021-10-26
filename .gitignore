@@ -17,5 +17,7 @@
 /etiqueta/migrations/
 /etiqueta/__pycache__/
 /tests/__pycache__/
-/equipo/migrations/
+/equipo/migrations
 /venv
+/sprintPlanning/migrations/
+/sprint/migrations

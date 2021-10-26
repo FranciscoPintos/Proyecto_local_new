@@ -28,11 +28,13 @@
                                                 <h5 class="card-title">
                                                     <i class="far fa-circle"></i>
                                                     {{ r.user }}
-                                                    <div class="btn-group btn-group-sm ">
-                                                        <a type="submit" href="{% url 'eliminado' Proyecto.id r.id %}"
-                                                           class="btn btn-danger"><i
-                                                                class="fas fa-trash"></i></a>
-                                                    </div>
+                                                    {% if not r.rol.name == 'Scrum Master' and not r.rol.name == 'Product Owner' %}
+                                                        <div class="btn-group btn-group-sm ">
+                                                            <a type="submit" href="{% url 'eliminado' Proyecto.id r.id %}"
+                                                               class="btn btn-danger"><i
+                                                                    class="fas fa-trash"></i></a>
+                                                        </div>
+                                                    {% endif %}
                                                 </h5>
                                             </td>
                                         </tr>
