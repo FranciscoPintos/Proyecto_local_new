@@ -26,16 +26,21 @@
                     </div>
                     <div class="card-header bg-gradient-info">
                         <!---->
-                        <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"
-                           class="btn btn-primary">Sprint Planning</a>
-                        {% if tieneEquipo %}
-                            <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
-                               class="btn btn-primary">Equipo</a>
+                        {% for i in permisos %}
+                            {% if i.codename == 'view_sprintplanning' and Proyecto.estado == 'I' %}
+                                <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"
+                                   class="btn btn-primary">Sprint Planning</a>
+                            {% endif %}
+                            {% if tieneEquipo and i.codename == 'view_equipo' %}
+                                <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
+                                   class="btn btn-primary">Equipo</a>
+                            {% endif %}
+                            {% if i.codename == 'view_usproductbacklog' %}
+                                <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
+                                class="btn btn-primary">Sprint Backlog</a>
+                            {% endif %}
+                        {%  endfor %}
 
-                        {% endif %}
-
-                        <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
-                           class="btn btn-primary">Sprint Backlog</a>
                     </div>
                     <div class="card-body">
                         <div class="row">

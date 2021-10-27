@@ -137,7 +137,6 @@ def exceptMimebro(request):
 
 def verProyecto(request, id):
     proyecto = Proyecto.objects.get(id=id)
-    print(request.user.id)
     if Miembro.objects.filter(user=request.user.id):
         user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     else:
@@ -180,6 +179,15 @@ def verProyecto(request, id):
 
 
 def iniciarProyecto(request, id):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         ProjectStart = Proyecto.objects.get(id=id)
         ProjectStart.fecha_inicio = datetime.date.today()
@@ -187,4 +195,4 @@ def iniciarProyecto(request, id):
         ProjectStart.save()
         return redirect('verProyecto', id=id)
     else:
-        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id)})
+        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos':permisos})
