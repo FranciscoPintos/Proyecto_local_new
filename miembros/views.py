@@ -178,21 +178,15 @@ class modiProject(UpdateView):
         context['permisos'] = permisos
         return context
 
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            try:
-                form.save()
-            except ValueError as err:
-                print(err.args.__str__())
-                error = err.args.__str__()
-                messages.error(request, error)
-                return self.render_to_response(self.get_context_data(form=form))
-            return HttpResponseRedirect(self.get_success_url())
-
-        return self.render_to_response(self.get_context_data(form=form))
-
+    def form_valid(self, form):
+        try:
+            form.save()
+        except ValueError as err:
+            print(err.args.__str__())
+            error = err.args.__str__()
+            messages.error(self.request, error)
+            return self.render_to_response(self.get_context_data(form=form))
+        return HttpResponseRedirect(self.get_success_url())
 
 def detalleproyecto(request, id):
 
