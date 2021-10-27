@@ -16,7 +16,7 @@ urlpatterns = [
         path('project/<int:pk>/eliminarMiembro', borrarMiembro),
         path('project/<int:id>/miembros',  verMiembro, name= 'miembros'),
         path('project/<int:pk>/confirmarEliminado/<int:id>', confirmaDelete, name= 'eliminado'),
-        path('project/<int:id>/modificar',modiProject, name= 'modificar'),
+        path('project/<int:id>/modificar',modiProject.as_view(), name= 'modificar'),
         path('project/<int:id>/detalleProyecto', detalleproyecto, name='detalle'),
         path('project/<int:id>/listarRolesProyecto', verRolesProyecto, name='verRolesProyecto'),
         path('project/<int:pk>/modificarRolProyecto/<int:rol_pk>', modificarRolProyecto.as_view(), name='modificarRolProyecto'),

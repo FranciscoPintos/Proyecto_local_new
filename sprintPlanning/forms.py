@@ -21,10 +21,11 @@ class primerpasoplanificarSprint(forms.ModelForm):
             'fecha_fin': 'Fecha Fin'
         }
         widgets = {
-            'fecha_incio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_incio': forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}),
+            'fecha_fin': forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}),
 
         }
+
 class tercerpasoplanificarSprint(forms.ModelForm):
     """
     Formulario para definir nombre, inicio y fin de un Sprin

@@ -172,6 +172,13 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         form = self.form_class(request.POST)
         if form.is_valid():
             data = form.save(commit=False)
+            sprints = Sprint.objects.filter(proyecto_id=self.kwargs['pk'])
+            for sp in sprints:
+                if sp.name == data.name and sp.id != data.id:
+                    error = 'Error! Nombre de Sprint ya existente '
+                    messages.error(request, error)
+                    return self.render_to_response(self.get_context_data(form=form))
+            data = form.save(commit=False)
             # print('dfgdfgd',data.project)
             data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
             # data.estado=Us.status[0][0]

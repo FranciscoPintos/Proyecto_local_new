@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.forms import modelform_factory
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, View, UpdateView
@@ -141,50 +142,56 @@ def borrarMiembro(request):
         return render(request, 'eliminarMiembro.html', {'permisos': permisos})
 
 
-def modiProject(request, id):
-    # Ver si es un miembro del proyecto
-    if Miembro.objects.filter(user=request.user.id):
-        # obtener su usuario
-        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
-    else:
-        # si no es miembro se analizan los permisos de sistema
-        user = request.user
-    # obtener sus permisos
-    permisos = user.rol.list_permissions().order_by('id')
-    idprojec = Proyecto.objects.get(id=id)
-    auxi = idprojec.creator
+class modiProject(UpdateView):
+    # Obtener la clase Proyecto
+    model = Proyecto
+    # Validar mi formulario
+    form_class = modificarProject
+    # Agregar el html
+    template_name = 'modificarProyecto.html'
+    pk_sched_kwargs = 'id'  # Definir el nombre del parametro obtenido en la url
 
-    if request.method == 'POST':
-        FormularioProyecto = modificarProject(request.POST)
-        if FormularioProyecto.is_valid():
-            print('es valido')
-            Pr = FormularioProyecto.save(commit=False)
-            Pr.creator = auxi
-            idprojec.name = Pr.name
-            idprojec.fecha_inicio = Pr.fecha_inicio
-            idprojec.fecha_fin = Pr.fecha_fin
+    # Deteción de error
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Proyecto, pk=id)
+        return obj
+
+    # Validación de la url
+    def get_success_url(self):
+        proj_id = self.kwargs['id']
+        return reverse_lazy("verProyecto", kwargs={'id': proj_id})
+
+    def get_context_data(self, **kwargs):
+        context = super(modiProject, self).get_context_data(**kwargs)
+        # Obtemos el id de nuestro proyecto
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['id'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['id'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+        context['permisos'] = permisos
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
             try:
-                idprojec.save()
+                form.save()
             except ValueError as err:
                 print(err.args.__str__())
                 error = err.args.__str__()
                 messages.error(request, error)
-                return redirect('modificar', id=id)
-            return redirect('verProyecto', id)
+                return self.render_to_response(self.get_context_data(form=form))
+            return HttpResponseRedirect(self.get_success_url())
 
-        print('no es valido')
-        return redirect('modificar', id=id)
-    else:
-        idprojec = Proyecto.objects.get(id=id)
-        if idprojec.estado == 'E':
-            FormularioProyecto = modificarProject(instance=idprojec)
-        else:
-            if idprojec.estado == 'I':
-                FormularioProyecto = modificarProjectIniciado(instance=idprojec)
-            redirect('verProyecto', id)
-        User = request.user
-        proj=Proyecto.objects.get(id=id)
-        return render(request, 'modificarProyecto.html', {'proyecto': FormularioProyecto, 'user': User, 'Proyecto': proj, 'permisos': permisos})
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def detalleproyecto(request, id):

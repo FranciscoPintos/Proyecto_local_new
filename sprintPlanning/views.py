@@ -62,9 +62,10 @@ def modificar_sprintplanni(request, pk, sp_pk):
                 return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         sprints= Sprint.objects.filter(proyecto_id= pk)
         for sp in sprints:
-            if sp.name == nuevosp.name:
+            if sp.name == nuevosp.name and sp.id != sprint.id:
                 error = 'Error! Nombre de Sprint ya existente '
                 messages.error(request, error)
+                return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         sprint.fecha_incio= nuevosp.fecha_incio
         sprint.fecha_fin= nuevosp.fecha_fin
         sprint.name= nuevosp.name

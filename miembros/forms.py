@@ -48,6 +48,7 @@ class deleteMiembro(forms.ModelForm):
         model = Miembro
         fields = []
 
+
 class modificarProject(forms.ModelForm):
     class Meta:
         model = Proyecto
@@ -64,8 +65,8 @@ class modificarProject(forms.ModelForm):
 
         widgets = {
             'name': forms.TextInput(attrs={'type': 'text'}),
-            'fecha_inicio': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
-            'fecha_fin': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'fecha_inicio': forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}),
+            'fecha_fin': forms.TextInput(attrs={'type': 'date','class': 'form-control  datetimepicker'}),
         }
 
 

@@ -12,6 +12,12 @@
                     <div class="card-header bg-gradient-indigo text-center">
                         <h3> Crear Sprint</h3>
                     </div>
+                    {% for message in messages %}
+                        <div class="alert alert-success">
+                            <a class="close" href="" data-dismiss="alert">×</a>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
                     <div class="card-body">
                         <div class="col-8 offset-2">
                             <form action="" method="post">
