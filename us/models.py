@@ -64,7 +64,7 @@ class Us(models.Model):
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'
-        ordering = ['prioridad', 'name']
+        ordering = ['-prioridad', 'name']
         permissions = (
             ('add_usproductbacklog', 'Can add Us to Product Backlog'),
             ('view_usproductbacklog', 'Can view Us to Product Backlog'),

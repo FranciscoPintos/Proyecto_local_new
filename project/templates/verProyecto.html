@@ -19,17 +19,33 @@
                             </a>
 
                         </div>
-                        <h3> {{ Proyecto.name }}</h3>
+                        <div class="btn-group btn-group-sm float-right">
 
-                        <div class="bg-warning">
-                            {% if Proyecto.estado == 'E' %}Espera{% endif %}
-                            {% if Proyecto.estado == 'I' %}Iniciado{% endif %}
-                            {% if Proyecto.estado == 'P' %}Pausado{% endif %}
-                            {% if Proyecto.estado == 'C' %}Cancelado{% endif %}
-                        </div>
-                        <div class="float-right mt-3">
+                            <div class="card bg-gradient-green text-white">
 
+                                <p class="m-2">
+                                    {% if Proyecto.estado == 'E'  %}
+                                        <i class="fas fa-angle-double-up"></i>
+                                        Espera
+                                    {% endif %}
+                                    {% if  Proyecto.estado == 'I' %}
+                                        <i class="fas fa-angle-up"></i>
+                                        Iniciado
+                                    {% endif %}
+                                    {% if Proyecto.estado == 'P'%}
+                                        <i class="fas fa-equals"></i>
+                                        Pausado
+                                    {% endif %}
+                                    {% if Proyecto.estado == 'C' %}
+                                        <i class="fas fa-angle-down"></i>
+                                        Cancelado
+                                    {% endif %}
+
+                                    {{ Us.get_prioridad }}
+                                </p>
+                            </div>
                         </div>
+                        <h3> {{ Proyecto.name.upper }}</h3>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -210,7 +226,7 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function (response) {
-                   location.reload();
+                    location.reload();
                 },
             });
 
@@ -229,7 +245,7 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function (response) {
-                     location.reload();
+                    location.reload();
                 },
 
             })
@@ -249,7 +265,7 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function (response) {
-                   location.reload();
+                    location.reload();
                 },
 
             })
@@ -268,7 +284,7 @@
                     'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function (response) {
-                     location.reload();
+                    location.reload();
                 },
 
             })

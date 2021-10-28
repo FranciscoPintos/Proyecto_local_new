@@ -33,7 +33,7 @@
                                                     {% if u.user %}
                                                         {{ u.user }}<br>
                                                     {% endif %}
-                                                    Proj:{{ u.project }}
+{#                                                    Proj:{{ u.project }}#}
                                                 </h6>
 
 
@@ -62,7 +62,7 @@
                                                         </div>
                                                         <div class="col-lg-auto">
                                                             <div class="card bg-gradient-danger text-center">
-                                                                <h6 class="text-white m-2">{{ u.prioridad }}</h6>
+                                                                <h6 class="text-white m-2">{{ u.get_prioridad }}</h6>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-auto">
@@ -82,11 +82,11 @@
                                                        href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id %}"
                                                        class="btn btn-danger"><i
                                                             class="fas fa-trash"></i></a>
-                                                    <a type="submit"
-                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"
-                                                       class="btn btn-success">
-                                                        Comentarios
-                                                    </a>
+{#                                                    <a type="submit"#}
+{#                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"#}
+{#                                                       class="btn btn-success">#}
+{#                                                        Comentarios#}
+{#                                                    </a>#}
                                                 </div>
                                             </div>
                                         </div>
