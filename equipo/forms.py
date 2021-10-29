@@ -39,7 +39,7 @@ class EditarEquipoForm(forms.ModelForm):
         self.request = kwargs.pop('request')
         super(EditarEquipoForm, self).__init__(*args, **kwargs)
         us_list_sprint= Sprint.objects.get(id=self.request).us.all()
-        miembros_equipo= Equipo.objects.get(sprint_id=self.request).miembros.all()
+        miembros_equipo= Miembro.objects.filter(rol__project_id= self.request).exclude(rol__name="Scrum Master").exclude(rol__name="Product Owner")
         for us in us_list_sprint:
             miembro= us.user
             print(miembro)

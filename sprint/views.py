@@ -107,11 +107,8 @@ class sprintView_Kanban(ListView):
         context['is_scrum']=is_scrum
         us=Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
 
-        print(us)
-        context['iniciar']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and not(us)
-
+        context['iniciar']=not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and not(us)
         context['paso']=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
-        print(context['paso'])
         return context
 
     def post(self, request, *args, **kwargs):

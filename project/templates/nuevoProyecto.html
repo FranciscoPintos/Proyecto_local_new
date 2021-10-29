@@ -8,12 +8,11 @@
 
 
     <br>
-{#    {% for message in messages %}#}
-{#        <div class="alert alert-success">#}
-{#            <a class="close" href="" data-dismiss="alert">×</a>#}
-{#            {{ message }}#}
-{#        </div>#}
-{#    {% endfor %}#}
+    {% for message in messages %}
+      <div class="alert alert-success">
+          <a class="close" href="" data-dismiss="alert">×</a> {{ message }}
+      </div>
+    {% endfor %}
     <div class="container mt-3">
         <div class="row">
             <div class="col-lg-12">

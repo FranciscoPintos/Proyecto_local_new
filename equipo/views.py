@@ -124,6 +124,12 @@ class crear_equipo(LoginRequiredMixin, CreateView):
             data.sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
             data.save()
             form.save_m2m()
+            miembros=data.miembros.all()
+            suma= 0
+            for mi in miembros:
+                suma= suma + mi.horaTrabajo
+            data.capacidad= np.busday_count(data.sprint.fecha_incio, data.sprint.fecha_fin, weekmask='1111110') * suma
+            data.save()
             s_p=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk'])
             s_p.paso=3
             s_p.save()
@@ -150,7 +156,7 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('contenedor_pasos', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_object(self, queryset=None):
         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
@@ -174,9 +180,24 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
         context['permisos'] = permisos
         return context
 
+    def form_valid(self, form):
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.sprint = Sprint.objects.get(id=self.kwargs['sp_pk'])
+            data.save()
+            form.save_m2m()
+            miembros = data.miembros.all()
+            suma = 0
+            for mi in miembros:
+                suma = suma + mi.horaTrabajo
+            data.capacidad = np.busday_count(data.sprint.fecha_incio, data.sprint.fecha_fin, weekmask='1111110') * suma
+            data.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
+
     def get_form_kwargs(self):
         kwargs = super(edit_equipo, self).get_form_kwargs()
-        kwargs['request'] = self.kwargs['sp_pk']
+        kwargs['request'] = self.kwargs['pk']
         return kwargs
 
 

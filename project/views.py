@@ -204,7 +204,13 @@ def iniciarProyecto(request, id):
         ProjectStart = Proyecto.objects.get(id=id)
         ProjectStart.fecha_inicio = datetime.date.today()
         ProjectStart.estado = 'I'
-        ProjectStart.save()
+        try:
+            ProjectStart.save()
+        except ValueError as err:
+            print(err.args.__str__())
+            error = err.args.__str__()
+            messages.error(request, error)
+            return redirect('iniciarProyecto', id)
         return redirect('verProyecto', id=id)
     else:
         return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos':permisos})
