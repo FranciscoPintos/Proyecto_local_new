@@ -13,7 +13,7 @@ from sprintPlanning.forms import primerpasoplanificarSprint, tercerpasoplanifica
     planificacionUS_Scrum, estimarUS_desarrollador
 from us.models import Us
 from usuario.models import Usuario
-
+from sprintPlanning.models import *
 
 def modificar_sprintplanni(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -53,9 +53,12 @@ def modificar_sprintplanni(request, pk, sp_pk):
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         # Obtener el sprint que ya a comenzado y el proyecto de la cual se esta trabajando
-        inici= Sprint.objects.filter(estado=2, proyecto_id=pk)
+        inici= Sprint.objects.filter(proyecto_id=pk,estado=2)
+
         if len(inici)>0:
             inici=inici[0]
+            print('nev',nuevosp.fecha_incio)
+            print('inic', inici.fecha_fin)
             if nuevosp.fecha_incio <= inici.fecha_fin:
                 error = 'Error! La fecha de inicio no puede empezar antes que la fecha fin del sprint que está en marcha '
                 messages.error(request, error)
@@ -70,7 +73,12 @@ def modificar_sprintplanni(request, pk, sp_pk):
         sprint.fecha_fin= nuevosp.fecha_fin
         sprint.name= nuevosp.name
         sprint.save()
-        return redirect('sprintlist', pk=pk)
+        s_p=SprintPlanning.objects.get(sprint_id=sprint.id)
+        print(s_p.paso)
+        s_p.paso=2
+        s_p.save()
+        print(s_p.paso)
+        return redirect('sprintKanban', pk=pk , sp_pk=sp_pk)
     else:
         FormularioUserStory = primerpasoplanificarSprint(request.GET)
         return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk),'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
@@ -115,7 +123,7 @@ class asignarUs(UpdateView):
     # Validación de la url
     def get_success_url(self):
         proj_id = self.kwargs['pk']
-        return reverse_lazy("contenedor_pasos", kwargs={'pk': proj_id, 'sp_pk':self.kwargs['sp_pk']})
+        return reverse_lazy('listado', kwargs={'pk': proj_id, 'sp_pk':self.kwargs['sp_pk']})
     # Metodo para filtar los permisos selecionado y el id del proyecto que se esta trabajando
     def get_context_data(self, **kwargs):
         context = super(asignarUs, self).get_context_data(**kwargs)
@@ -163,6 +171,10 @@ class asignarUs(UpdateView):
                 ustory.estimacionscrum= None
                 ustory.user= None
                 ustory.save()
+
+        s_p=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk'])
+        s_p.paso=4
+        s_p.save()
         return super().form_valid(form)
 
 class View_USasignado(ListView):
@@ -279,7 +291,7 @@ def planificarus(request, pk, sp_pk, us_pk):
             uss.name= nuevosp.name
             uss.descripcion= nuevosp.descripcion
             uss.save()
-            return redirect('listarus',pk=pk, sp_pk=sp_pk )
+            return redirect('listado',pk=pk, sp_pk=sp_pk )
         return render(request, 'planificarus.html',
                       {'form': us_form, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos,'Sprint': Sprint.objects.get(id=sp_pk)})
     else:

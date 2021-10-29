@@ -9,9 +9,9 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url 'detalle_us' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-info">
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
+                            <a href="{% url 'detalle_us' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
                         </div>
                         <h3> Tareas</h3>
                     </div>
@@ -19,42 +19,45 @@
                         {% if Tr %}
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>Descricion</th>
-                                        <th>Horas</th>
-                                        {% if modificar %}
-                                            <th>Editar</th>
-                                        {% endif %}
+                                <tr>
+                                    <th>Descricion</th>
+                                    <th>Horas</th>
+                                    {% if modificar %}
+                                        <th>Editar</th>
+                                    {% endif %}
 
-                                            <th>Borrar</th>
+                                    <th>Borrar</th>
 
-                                        <th>Historial</th>
-                                    </tr>
+                                    <th>Historial</th>
+                                </tr>
                                 </thead>
                                 {% for tr in Tr %}
                                     <tbody>
                                     <tr>
-                                        <td><h5 class="card-title">{{ tr.descripcion}}</h5> </td>
-                                        <td><h5 class="card-title">{{ tr.horas}}</h5> </td>
+                                        <td><h5 class="card-title">{{ tr.descripcion }}</h5></td>
+                                        <td><h5 class="card-title">{{ tr.horas }}</h5></td>
                                         {% if modificar %}
                                             <td class=" py-0 align-middle">
-                                                 <a href="{% url 'editar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}" class="btn btn-info"><i
-                                                            class="fas fa-edit"></i></a>
+                                                <a href="{% url 'editar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}"
+                                                   class="btn btn-info"><i
+                                                        class="fas fa-edit"></i></a>
                                             </td>
                                         {% endif %}
 
-                                            <td>
-                                                 <a type="submit" href="{% url 'borrar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id  %}"
-                                                           class="btn btn-danger"><i
-                                                                class="fas fa-trash"></i></a>
-                                            </td>
+                                        <td>
+                                            <a type="submit"
+                                               href="{% url 'borrar_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}"
+                                               class="btn btn-danger"><i
+                                                    class="fas fa-trash"></i></a>
+                                        </td>
 
-                                            <td>
-                                                <a type="submit" href="{% url 'historial_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}"
-                                                           class="btn btn-info">
-                                                               <i class="fas fa-list-alt"></i>
-                                                </a>
-                                            </td>
+                                        <td>
+                                            <a type="submit"
+                                               href="{% url 'historial_tarea' pk=Proyecto.id us_pk=Us.id tr_pk=tr.id %}"
+                                               class="btn btn-info">
+                                                <i class="fas fa-list-alt"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                     </tbody>
                                 {% endfor %}
@@ -66,9 +69,14 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_tarea'  pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
-                                    Crear Tarea
-                                </a>
+                                {% for p in permisos %}
+                                    {% if p.codename == 'add_tarea' and not is_scrum%}
+                                        <a href="{% url 'crear_tarea'  pk=Proyecto.id us_pk=Us.id %}"
+                                           class="btn btn-lg btn-primary float-right">
+                                            Crear Tarea
+                                        </a>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>

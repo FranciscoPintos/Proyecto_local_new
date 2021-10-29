@@ -52,6 +52,12 @@ def nuevoProyecto(request, id):
             RV.project = Pr
             RV.save()
 
+            # Rol de scrum maaster para el proyecto
+            Dt = RolProyecto()
+            Dt.name = 'Desarrollador'
+            Dt.project = Pr
+            Dt.save()
+
             # Selección de Scrum master
             SMmiembro = Miembro()
             SMmiembro.user = Pr.creator
@@ -68,6 +74,12 @@ def nuevoProyecto(request, id):
             # Permisos para el Product Owner
             for i in Permission.objects.filter(id__gt=72):
                 PO.permisos.add(i)
+
+            # Permisos para el Desarollador
+            for i in Permission.objects.filter(id__gt=45):
+                Dt.permisos.add(i)
+
+
             return redirect('verProyectos')
         else:
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})

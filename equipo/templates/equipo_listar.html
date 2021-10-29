@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url "contenedor_pasos" pk=Proyecto.id sp_pk=sprint.id %}" class="btn btn-info">
+                            <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=sprint.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
@@ -38,9 +38,7 @@
                                                  <a type="submit" href="{% url 'editar_equipo' Proyecto.id sprint.id equipo.id %}"
                                                    class="btn btn-primary"><i
                                                         class="fas fa-edit"></i></a>
-                                                <a type="submit" href="{% url 'delete_equipo' Proyecto.id sprint.id equipo.id %}"
-                                                   class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></a>
+
 
                                             </div>
                                         </td>

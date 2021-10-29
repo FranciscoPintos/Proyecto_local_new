@@ -19,7 +19,7 @@ from project.models import *
 from sprint.forms import *
 from miembros.models import *
 from equipo.models import *
-
+from sprintPlanning.models import *
 
 def sprint_backlog_view(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -64,6 +64,9 @@ class sprintView(ListView):
             user = self.request.user
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
+
+        context['create_no']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'],estado=1).exists()
+
         context['permisos'] = permisos
         return context
 
@@ -75,6 +78,11 @@ class sprintView(ListView):
 class sprintView_Kanban(ListView):
     model = Sprint
     template_name = 'sprint_kanban.html'
+
+    def get_success_url(self):
+        Proyecto = self.kwargs['pk']
+        Sprint=self.kwargs['sp_pk']
+        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto,'sp_pk':Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(sprintView_Kanban, self).get_context_data(**kwargs)
@@ -94,13 +102,20 @@ class sprintView_Kanban(ListView):
         context['tieneEquipo'] = tieneEquipo
         product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
         context['ProductBacklog'] = product_backlog
-        m = Miembro.objects.get(user=self.request.user)
+        m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         context['is_scrum']=is_scrum
+        us=Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
+
+        print(us)
+        context['iniciar']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and not(us)
+
+        context['paso']=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
+        print(context['paso'])
         return context
 
     def post(self, request, *args, **kwargs):
-        m = Miembro.objects.get(user=request.user)
+        m = Miembro.objects.get(user=request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         if request.is_ajax():
             # print(request.POST['estado'])
@@ -127,6 +142,12 @@ class sprintView_Kanban(ListView):
                 HttpResponseServerError("Malformed data!")
 
             return JsonResponse({"success": True}, status=200)
+        else:
+            s=Sprint.objects.get(pk=self.kwargs['sp_pk'])
+            s.estado=2
+            s.save()
+            return HttpResponseRedirect(self.get_success_url())
+
 
 
 class crear_sprint(LoginRequiredMixin, CreateView):
@@ -183,6 +204,8 @@ class crear_sprint(LoginRequiredMixin, CreateView):
             data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
             # data.estado=Us.status[0][0]
             data.save()
+            sprint_plannig=SprintPlanning.objects.create(sprint=data,)
+
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
 

@@ -17,6 +17,7 @@ from equipo.models import Equipo
 from miembros.models import Miembro
 from project.models import Proyecto
 from sprint.models import Sprint
+from sprintPlanning.models import *
 
 # Importaciones para fechas
 import numpy as np
@@ -99,7 +100,7 @@ class crear_equipo(LoginRequiredMixin, CreateView):
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('contenedor_pasos', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)
@@ -123,6 +124,9 @@ class crear_equipo(LoginRequiredMixin, CreateView):
             data.sprint=Sprint.objects.get(id=self.kwargs['sp_pk'])
             data.save()
             form.save_m2m()
+            s_p=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk'])
+            s_p.paso=3
+            s_p.save()
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
 

@@ -27,9 +27,34 @@
                     <div class="card-header bg-gradient-info">
                         <!---->
                         {% for i in permisos %}
-                            {% if i.codename == 'view_sprintplanning' and Proyecto.estado == 'I' %}
-                                <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"
-                                   class="btn btn-primary">Sprint Planning</a>
+                            {% if i.codename == 'view_sprintplanning' and sprint.estado == 1 %}
+
+                                {% if paso == 1 %}
+                                    <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=sprint.id %}"
+                                       class="btn btn-primary">Sprint Plannig</a>
+                                {% endif %}
+                                {% if paso == 2 %}
+
+                                    <a href="{% url 'create_equipo' Proyecto.id sprint.id %}"
+                                       class="btn btn-primary">Sprint Plannig</a>
+
+                                {% endif %}
+
+                                {% if paso == 3 %}
+                                    <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=sprint.id %}"
+                                       class="btn btn-primary">Sprint Plannig</a>
+                                {% endif %}
+                                {% if paso == 4 %}
+                                    <a href="{% url 'listado' pk=Proyecto.id sp_pk=sprint.id %}"
+                                       class="btn btn-primary">Sprint Plannig</a>
+                                {% endif %}
+                                {#                                <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"#}
+                                {#                                   class="btn btn-primary">Sprint Planning</a>#}
+
+
+
+
+
                             {% endif %}
                             {% if tieneEquipo and i.codename == 'view_equipo' %}
                                 <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
@@ -37,9 +62,9 @@
                             {% endif %}
                             {% if i.codename == 'view_usproductbacklog' %}
                                 <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
-                                class="btn btn-primary">Sprint Backlog</a>
+                                   class="btn btn-primary">Sprint Backlog</a>
                             {% endif %}
-                        {%  endfor %}
+                        {% endfor %}
 
                     </div>
                     <div class="card-body">
@@ -138,15 +163,14 @@
                     </div>
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
+                            <div class="btn btn-sm float-right">
                                 {% for i in permisos %}
-                                    {% if i.codename == 'change_proyecto' %}
-                                        {% if Proyecto.estado == 'E' %}
-                                            <a href="{% url 'iniciarProyecto' Proyecto.id %}"
-                                               class="btn btn-lg btn-primary float-right">
-                                                INICIAR
-                                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
-                                            </a>
+                                    {% if i.codename == 'change_sprint' %}
+                                        {% if sprint.estado == 1  and iniciar%}
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <input class="btn btn-primary" type="submit" value="Iniciar">
+                                            </form>
                                         {% endif %}
                                     {% endif %}
                                 {% endfor %}

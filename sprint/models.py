@@ -38,7 +38,4 @@ class Sprint(models.Model):
         verbose_name = 'Sprint'
         db_table = 'sprint'
         ordering = ['name']
-        permissions = (
-            ('view_sprintplanning', 'Can view Sprint Planning'),
-            ('change_sprintplanning', 'Can edit Sprint Planning'),
-            ('charge_sprintplanning', 'Can add Us to Sprint Backlog'))
+        # permissions = ['charge_sprintplanning', 'Can add Us to Sprint Backlog']

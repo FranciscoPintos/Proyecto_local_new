@@ -59,13 +59,13 @@
                                     <div class="card-body  overflow-auto caja" id="caja1">
                                         {% for US in ProductBacklog %}
                                             {% if US.estado == 1 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+
                                                     <div class="card-header bg-gradient-info mt-3 us"
                                                          draggable="true" id="{{ US.id }}">
                                                         {{ US.name }}
                                                         {{ US.get_estado }}
                                                     </div>
-                                                </a>
+
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -81,13 +81,13 @@
                                     <div class="card-body overflow-auto caja" id="caja2">
                                         {% for US in ProductBacklog %}
                                             {% if US.estado == 2 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+
                                                     <div class="card-header bg-gradient-info mt-3 us"
                                                          draggable="true" id="{{ US.id }}">
                                                         {{ US.name }}
                                                         {{ US.get_estado }}
                                                     </div>
-                                                </a>
+
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -103,13 +103,13 @@
                                     <div class="card-body  overflow-auto caja" id="caja3">
                                         {% for US in ProductBacklog %}
                                             {% if US.estado == 3 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+
                                                     <div class="card-header bg-gradient-info mt-3 us"
                                                          draggable="true" id="{{ US.id }}">
                                                         {{ US.name }}
                                                         {{ US.get_estado }}
                                                     </div>
-                                                </a>
+
                                             {% endif %}
                                         {% endfor %}
                                     </div>
@@ -125,14 +125,14 @@
                                     <div class="card-body overflow-auto caja" id="caja4">
                                         {% for US in ProductBacklog %}
                                             {% if US.estado == 4 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
+
                                                     <div class="card-header bg-gradient-info mt-3 us"
                                                          draggable="true" id="{{ US.id }}">
                                                         {{ US.name }}
                                                         {{ US.get_estado }}
                                                         {{ US.set_estado.2 }}
                                                     </div>
-                                                </a>
+
                                             {% endif %}
                                         {% endfor %}
                                     </div>
