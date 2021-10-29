@@ -16,6 +16,9 @@ class Rol(models.Model):
     def __str__(self):
         return '{}'.format(self.rol)
 
+    def add_permission_id(self, new):
+        self.permisos.add(Permission.objects.get(id=new))
+
     def toJSON(self):
         item = model_to_dict(self)
         return item
