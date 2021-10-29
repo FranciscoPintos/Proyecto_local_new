@@ -7,8 +7,8 @@ from django.shortcuts import render, redirect
 from django.forms import ModelForm
 from django import forms
 from django.shortcuts import get_object_or_404
+from django.http import HttpResponse, JsonResponse
 import datetime
-
 
 from django.views.generic import ListView, CreateView
 
@@ -20,17 +20,17 @@ from usuario.models import Usuario
 
 
 def nuevoProyecto(request, id):
-    if  request.method == 'POST':
-        #formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active', 'fecha_inicio', 'fecha_fin'])
-        #proyectoForm = formaProyecto(request.POST)
+    if request.method == 'POST':
+        # formaProyecto = modelform_factory(Proyecto, exclude=['creator', 'active', 'fecha_inicio', 'fecha_fin'])
+        # proyectoForm = formaProyecto(request.POST)
         proyectoForm = ProyectoForm(request.POST)
         if proyectoForm.is_valid():
             Pr = proyectoForm.save(commit=False)
-            #Pr.creator = Usuario.objects.get(id=id)
+            # Pr.creator = Usuario.objects.get(id=id)
             try:
                 Pr.save()
             except ValueError as err:
-                print (err.args.__str__())
+                print(err.args.__str__())
                 error = err.args.__str__()
                 messages.error(request, error)
                 return redirect('crearProyecto', id)
@@ -52,6 +52,12 @@ def nuevoProyecto(request, id):
             RV.project = Pr
             RV.save()
 
+            # Rol de scrum maaster para el proyecto
+            Dt = RolProyecto()
+            Dt.name = 'Desarrollador'
+            Dt.project = Pr
+            Dt.save()
+
             # Selección de Scrum master
             SMmiembro = Miembro()
             SMmiembro.user = Pr.creator
@@ -68,6 +74,12 @@ def nuevoProyecto(request, id):
             # Permisos para el Product Owner
             for i in Permission.objects.filter(id__gt=72):
                 PO.permisos.add(i)
+
+            # Permisos para el Desarollador
+            for i in Permission.objects.filter(id__gt=45):
+                Dt.permisos.add(i)
+
+
             return redirect('verProyectos')
         else:
             return render(request, 'nuevoProyecto.html', {'formaProyecto': proyectoForm})
@@ -75,6 +87,7 @@ def nuevoProyecto(request, id):
     else:
         formaProyecto = ProyectoForm()
         return render(request, 'nuevoProyecto.html', {'formaProyecto': formaProyecto})
+
 
 def ProyectosView(request):
     if request.user.has_perm('view_proyecto'):
@@ -85,10 +98,12 @@ def ProyectosView(request):
     else:
         return redirect('inicio')
 
+
 class ProyectoCreate(CreateView):
     model = Proyecto
     template_name = 'crearRolProyecto.html'
     form_class = CreateProyectoForm
+
     def get_context_data(self, **kwargs):
         context = super(ProyectoCreate, self).get_context_data(**kwargs)
         if 'form' not in context:
@@ -99,6 +114,7 @@ class ProyectoCreate(CreateView):
     def post(self, request, *args, **kwargs):
         self.object = self.get_object
         form = self.form_class(request.POST)
+
 
 def verProyectos(request, id):
     print(Usuario.objects.get(id=id).id)
@@ -123,9 +139,8 @@ def verProyectos(request, id):
         messages.error(request, error)
         return redirect('exceptMiembro')
 
-    print(miembro.rol.project.id)
-    pr = Proyecto.objects.filter(id=miembro.rol.project.id)
-    return render(request, 'misPryectos.html',{'Proyecto':pr})
+    pr = Proyecto.objects.filter(id=Miembro.rol.project.id)
+    return render(request, 'misPryectos.html', {'Proyecto': pr})
 
 
 def exceptMimebro(request):
@@ -134,7 +149,6 @@ def exceptMimebro(request):
 
 def verProyecto(request, id):
     proyecto = Proyecto.objects.get(id=id)
-    print(request.user.id)
     if Miembro.objects.filter(user=request.user.id):
         user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     else:
@@ -149,15 +163,54 @@ def verProyecto(request, id):
         'ProductBacklog': product_backlog,
         'permisos': permisos,
     }
-
+    # m = Miembro.objects.get(user=request.user)
+    # is_scrum=str(m.rol)=='Scrum Master'
+    # if request.method == "POST" and request.is_ajax() and is_scrum:
+    #     print(is_scrum)
+    #
+    #     try:
+    #         UStory = Us.objects.get(id=request.POST['id'])
+    #         #la diferencia entre cambios de estados no mayor a 1 solo para avanzar
+    #         #para retroceder no puede ser
+    #         est_actual = int(UStory.estado)
+    #         est_nuevo = int(request.POST['estado'])
+    #
+    #         if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual!=4:
+    #             if(est_nuevo==4 or est_nuevo==1):
+    #                 UStory.set_estado(request.POST['estado'])
+    #                 UStory.save()
+    #         #Descomentar para hacer los cambios de estado manualmente sin las restricciones
+    #         # UStory.set_estado(request.POST['estado'])
+    #         # UStory.save()
+    #     except KeyError:
+    #         HttpResponseServerError("Malformed data!")
+    #
+    #     return JsonResponse({"success": True}, status=200)
+    # else:
     return render(request, 'verProyecto.html', context)
 
+
 def iniciarProyecto(request, id):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
-        ProjectStart= Proyecto.objects.get(id=id)
+        ProjectStart = Proyecto.objects.get(id=id)
         ProjectStart.fecha_inicio = datetime.date.today()
         ProjectStart.estado = 'I'
-        ProjectStart.save()
+        try:
+            ProjectStart.save()
+        except ValueError as err:
+            print(err.args.__str__())
+            error = err.args.__str__()
+            messages.error(request, error)
+            return redirect('iniciarProyecto', id)
         return redirect('verProyecto', id=id)
     else:
-        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id)})
+        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos':permisos})

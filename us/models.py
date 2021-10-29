@@ -23,6 +23,8 @@ class Us(models.Model):
         choices=dif_define,
         default=1
     )
+    estimacionscrum = models.PositiveIntegerField(null=True, blank=True)
+    estimaciondesarrollador = models.PositiveIntegerField(null=True, blank=True)
     storypoints= models.PositiveIntegerField(null=True, blank=True)
     estado=models.IntegerField(
         choices=status,
@@ -50,11 +52,19 @@ class Us(models.Model):
     def toJSON(self):
         item = model_to_dict(self)
         return item
-
+    def get_estado(self):
+        s=self.status[self.estado-1][1]
+        return s
+    def get_prioridad(self):
+        prio=self.dif_define[self.prioridad-1][1]
+        return prio
+    def set_estado(self,int):
+        self.estado=int
+        return
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'
-        ordering = ['prioridad', 'name']
+        ordering = ['-prioridad', 'name']
         permissions = (
             ('add_usproductbacklog', 'Can add Us to Product Backlog'),
             ('view_usproductbacklog', 'Can view Us to Product Backlog'),

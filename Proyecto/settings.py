@@ -179,3 +179,6 @@ LOGIN_URL= reverse_lazy('login')
 AUTH_USER_MODEL = 'usuario.Usuario'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+MEDIA_URL= '/media/'

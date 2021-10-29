@@ -5,6 +5,7 @@ from project.models import Proyecto
 from tarea.forms import *
 from tarea.models import HistorialTarea
 from us.models import Us
+from miembros.models import *
 
 
 def crear_tarea(request, pk, us_pk):
@@ -65,13 +66,17 @@ def tareas(request, pk, us_pk):
     tr=Tarea.objects.filter(ustory__id=us_pk) #Filtar los us por proyecto
     proj=Proyecto.objects.get(id=pk)
     us= Us.objects.get(id=us_pk)
-    user=request.user
+    m = Miembro.objects.get(user=request.user)
+    is_scrum = str(m.rol) == 'Scrum Master'
+
+
     context={
         'Us':us,
         'User':user,
         'Proyecto':proj,
         'Tr': tr,
         'permisos': permisos,
+        'is_scrum': is_scrum
     }
     print (context)
     return render(request,'tareas.html',context=context)

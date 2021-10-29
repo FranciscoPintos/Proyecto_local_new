@@ -9,38 +9,36 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                                <a href="{% url "contenedor_pasos" pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-info">
-                                    <i class="fas fa-chevron-left"></i>
-                                </a>
+                            <a href="{% url 'listar_equipo' pk=Proyecto.id sp_pk=sprint.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
                         </div>
-                        <h3> User Story</h3>
+                        <h3> Lista de desarrolladores</h3>
                     </div>
                     <div class="card-body">
-                        {% if uslista %}
+
+                        {% if object_list %}
                             <table class="table">
                                 <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Planificar</th>
-                                    </tr>
+                                <tr>
+                                    <th>Nombre</th>
+                                </tr>
                                 </thead>
-                                {% for us in uslista %}
+                                {% for miembro in object_list %}
                                     <tbody>
                                     <tr>
-                                        <td><h5 class="card-title">{{ us.name}}</h5> </td>
-                                            <td>
-                                                <a type="submit" href="{% url 'planifius' pk=Proyecto.id sp_pk=Sprint.id us_pk=us.id%}"
-                                                           class="btn btn-info">
-                                                               <i class="fas fa-list-alt"></i>
-                                                </a>
-                                            </td>
+                                        <td><h5 class="card-title">{{ miembro.user.first_name }}</h5></td>
                                     </tr>
                                     </tbody>
                                 {% endfor %}
+
                             </table>
+
                         {% else %}
-                            <div class="alert alert-danger mt-4"> No existen US</div>
+                            <div class="alert alert-danger mt-4"> No existe miembros asignado</div>
                         {% endif %}
+
+
                     </div>
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">

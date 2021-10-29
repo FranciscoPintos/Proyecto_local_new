@@ -9,11 +9,11 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-info">
+                            <a href="{% url 'sprintKanban' Proyecto.id sprint.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
-                        <h3> Product Backlog</h3>
+                        <h3> Sprint Backlog</h3>
                     </div>
                     <div class="card-body">
                         {% if Us %}
@@ -33,7 +33,7 @@
                                                     {% if u.user %}
                                                         {{ u.user }}<br>
                                                     {% endif %}
-{#                                                    Proj:{{ u.project }}#}
+                                                    Proj:{{ u.project }}
                                                 </h6>
 
 
@@ -74,20 +74,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="btn-group btn-group-sm float-right">
-                                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}"
-                                                       class="btn btn-info"><i
-                                                            class="fas fa-edit"></i></a>
-                                                    <a type="submit"
-                                                       href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id %}"
-                                                       class="btn btn-danger"><i
-                                                            class="fas fa-trash"></i></a>
-{#                                                    <a type="submit"#}
-{#                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"#}
-{#                                                       class="btn btn-success">#}
-{#                                                        Comentarios#}
-{#                                                    </a>#}
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -98,15 +85,7 @@
                         {% endif %}
 
                     </div>
-                    <div class="card-footer">
-                        <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_us' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
-                                    Crear User Story
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

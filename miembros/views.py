@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.forms import modelform_factory
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, HttpResponse, redirect,get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, View, UpdateView
@@ -40,15 +41,28 @@ def addMiembro(request, id):
     proj = Proyecto.objects.get(id=id)
     if request.method == 'POST':
         FormularioProyecto = CrearMiembro(request.POST)
-        nuevorol = FormularioProyecto.save(commit=False)
-        nuevorol.save()
+        nuevomiembro = FormularioProyecto.save(commit=False)
+        miembros = Miembro.objects.filter(rol__project_id=id)
+        # Buscar miembros ya agregados anteriormente
+        for miembro in miembros:
+            if miembro.user.id == nuevomiembro.user.id:
+                # Cargar sus horas de trabajo
+                miembro.horaTrabajo = nuevomiembro.horaTrabajo
+                # Volverlo a activar
+                miembro.activo = True
+                # Canviar formulario a guardar
+                nuevomiembro = miembro
+        # Asignar un rol vacío
+        nuevomiembro.rol = RolProyecto.objects.get(project_id=id, name='')
+        # Guardar en la base de datos
+        nuevomiembro.save()
         return redirect('miembros', id)  # Este tiene que redirigir a proyecto
     else:
+        # Crear formulario
         FormularioProyecto = CrearMiembro(request.GET)
-        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id,
-                                                                             miembro__activo=True)
-        FormularioProyecto.fields["rol"].queryset = RolProyecto.objects.filter(project_id=id).exclude(name='Scrum Master')
-        print(RolProyecto.objects.filter(project_id=id))
+        # Traer todos los usuarios menos los que ya son miembros activos del proyecto
+        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True)
+        # Cargar al html
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto, 'Proyecto': proj, 'permisos': permisos})
 
 
@@ -93,7 +107,7 @@ def confirmaDelete(request, pk, id):
     # Ver si es un miembro del proyecto
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
-        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
     else:
         # si no es miembro se analizan los permisos de sistema
         user = request.user
@@ -128,47 +142,51 @@ def borrarMiembro(request):
         return render(request, 'eliminarMiembro.html', {'permisos': permisos})
 
 
-def modiProject(request, id):
-    # Ver si es un miembro del proyecto
-    if Miembro.objects.filter(user=request.user.id):
-        # obtener su usuario
-        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
-    else:
-        # si no es miembro se analizan los permisos de sistema
-        user = request.user
-    # obtener sus permisos
-    permisos = user.rol.list_permissions().order_by('id')
-    idprojec = Proyecto.objects.get(id=id)
-    auxi = idprojec.creator
-    if request.method == 'POST':
-        FormularioProyecto = modificarProject(request.POST)
-        if FormularioProyecto.is_valid():
-            Pr = FormularioProyecto.save(commit=False)
-            Pr.creator = auxi
-            idprojec.name = Pr.name
-            idprojec.fecha_inicio = Pr.fecha_inicio
-            idprojec.fecha_fin = Pr.fecha_fin
-            try:
-                idprojec.save()
-            except ValueError as err:
-                print(err.args.__str__())
-                error = err.args.__str__()
-                messages.error(request, error)
-                return redirect('modificar', id=id)
-            return redirect('verProyecto', id)
-        return redirect('modificar', id=id)
-    else:
-        idprojec = Proyecto.objects.get(id=id)
-        if idprojec.estado == 'E':
-            FormularioProyecto = modificarProject(instance=idprojec)
-        else:
-            if idprojec.estado == 'I':
-                FormularioProyecto = modificarProjectIniciado(instance=idprojec)
-            redirect('verProyecto', id)
-        User = request.user
-        proj=Proyecto.objects.get(id=id)
-        return render(request, 'modificarProyecto.html', {'proyecto': FormularioProyecto, 'user': User, 'Proyecto': proj, 'permisos': permisos})
+class modiProject(UpdateView):
+    # Obtener la clase Proyecto
+    model = Proyecto
+    # Validar mi formulario
+    form_class = modificarProject
+    # Agregar el html
+    template_name = 'modificarProyecto.html'
+    pk_sched_kwargs = 'id'  # Definir el nombre del parametro obtenido en la url
 
+    # Deteción de error
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Proyecto, pk=id)
+        return obj
+
+    # Validación de la url
+    def get_success_url(self):
+        proj_id = self.kwargs['id']
+        return reverse_lazy("verProyecto", kwargs={'id': proj_id})
+
+    def get_context_data(self, **kwargs):
+        context = super(modiProject, self).get_context_data(**kwargs)
+        # Obtemos el id de nuestro proyecto
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['id'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['id'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+        context['permisos'] = permisos
+        return context
+
+    def form_valid(self, form):
+        try:
+            form.save()
+        except ValueError as err:
+            print(err.args.__str__())
+            error = err.args.__str__()
+            messages.error(self.request, error)
+            return self.render_to_response(self.get_context_data(form=form))
+        return HttpResponseRedirect(self.get_success_url())
 
 def detalleproyecto(request, id):
 
@@ -195,7 +213,7 @@ class modificarRolProyecto(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super(modificarRolProyecto, self).get_context_data(**kwargs)
-        context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         return context
 
 

@@ -36,9 +36,9 @@ class Proyecto(models.Model):
     def save(self, *args, **kwargs):
         if self.fecha_inicio is not None and self.fecha_fin is not None:
             if self.fecha_inicio < datetime.date.today():
-                raise ValueError("Fecha" + self.fecha_inicio.__str__() + " no puede ser menor a la actual.")
+                raise ValueError("Fecha inicio " + self.fecha_inicio.__str__() + " no puede ser menor a la actual.")
             if self.fecha_fin <= self.fecha_inicio:
-                raise  ValueError("Fecha" + self.fecha_fin.__str__() + " no puede ser menor a fecha de inicio."+ self.fecha_inicio.__str__())
+                raise  ValueError("Fecha de finalización " + self.fecha_fin.__str__() + " no puede ser menor a fecha de inicio "+ self.fecha_inicio.__str__()+" y a la fecha actual.")
 
         super().save(*args, **kwargs)
 

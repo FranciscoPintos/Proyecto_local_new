@@ -49,16 +49,20 @@
 
 
                     </div>
-                    <div class="card-footer">
-                        <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'sprintcreate' Proyecto.id %}"
-                                   class="btn btn-lg btn-primary float-right">
-                                    Crear Sprint
-                                </a>
+                    {% for i in permisos %}
+                        {% if i.codename == 'add_sprint' and Proyecto.estado == 'I' and  not create_no %}
+                            <div class="card-footer">
+                                <div class="mt-6 mb-4 flex-md-row">
+                                    <div class="col-3 offset-9 mt-3">
+                                        <a href="{% url 'sprintcreate' Proyecto.id %}"
+                                           class="btn btn-lg btn-primary float-right">
+                                            Crear Sprint
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>

@@ -19,6 +19,33 @@ from project.models import *
 from sprint.forms import *
 from miembros.models import *
 from equipo.models import *
+from sprintPlanning.models import *
+
+def sprint_backlog_view(request, pk, sp_pk):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    # Filtar los us por proyecto
+    # us = Us.objects.filter(project=pk).exclude(activo=False)
+    sprint = Sprint.objects.get(id=sp_pk)
+    us = sprint.us.all()
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    context = {
+        'Us': us,
+        'User': user,
+        'Proyecto': proj,
+        'sprint': sprint,
+        'permisos': permisos,
+    }
+    print(context)
+    return render(request, 'Sprint_backlog.html', context=context)
 
 
 class sprintView(ListView):
@@ -37,15 +64,25 @@ class sprintView(ListView):
             user = self.request.user
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
-        context['permisos'] = permisos
 
-        print(context)
+        context['create_no']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'],estado=1).exists()
+
+        context['permisos'] = permisos
         return context
+
+    def get_queryset(self):
+        object_list = Sprint.objects.filter(proyecto_id=self.kwargs['pk'])
+        return object_list
 
 
 class sprintView_Kanban(ListView):
     model = Sprint
     template_name = 'sprint_kanban.html'
+
+    def get_success_url(self):
+        Proyecto = self.kwargs['pk']
+        Sprint=self.kwargs['sp_pk']
+        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto,'sp_pk':Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(sprintView_Kanban, self).get_context_data(**kwargs)
@@ -63,7 +100,50 @@ class sprintView_Kanban(ListView):
         context['sprint'] = Sprint.objects.get(pk=self.kwargs['sp_pk'])
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
+        product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+        context['ProductBacklog'] = product_backlog
+        m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
+        is_scrum = str(m.rol) == 'Scrum Master'
+        context['is_scrum']=is_scrum
+        us=Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
+
+        context['iniciar']=not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and not(us)
+        context['paso']=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
         return context
+
+    def post(self, request, *args, **kwargs):
+        m = Miembro.objects.get(user=request.user,rol__project_id=self.kwargs['pk'])
+        is_scrum = str(m.rol) == 'Scrum Master'
+        if request.is_ajax():
+            # print(request.POST['estado'])
+            try:
+
+                UStory = Us.objects.get(id=request.POST['id'])
+                # la diferencia entre cambios de estados no mayor a 1 solo para avanzar
+                # para retroceder no puede ser
+                est_actual = int(UStory.estado)
+                est_nuevo = int(request.POST['estado'])
+                if is_scrum:
+                    if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
+                        if (est_nuevo == 4 or est_nuevo == 1):
+                            UStory.set_estado(request.POST['estado'])
+                            UStory.save()
+                else:
+                    if est_nuevo - est_actual == 1:
+                        UStory.set_estado(request.POST['estado'])
+                        UStory.save()
+                # Descomentar para hacer los cambios de estado manualmente sin las restricciones
+                # UStory.set_estado(request.POST['estado'])
+                # UStory.save()
+            except KeyError:
+                HttpResponseServerError("Malformed data!")
+
+            return JsonResponse({"success": True}, status=200)
+        else:
+            s=Sprint.objects.get(pk=self.kwargs['sp_pk'])
+            s.estado=2
+            s.save()
+            return HttpResponseRedirect(self.get_success_url())
 
 
 
@@ -104,17 +184,27 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         context['permisos'] = permisos
 
         return context
-    # def post(self, request, *args, **kwargs):
-    #     self.object=self.get_object
-    #     form = self.form_class(request.POST)
-    #     if form.is_valid():
-    #         data=form.save(commit=False)
-    #         # print('dfgdfgd',data.project)
-    #         data.proyecto=Proyecto.objects.get(pk=self.kwargs['pk'])
-    #         # data.estado=Us.status[0][0]
-    #         data.save()
-    #         return HttpResponseRedirect(self.get_success_url())
-    #     return self.render_to_response(self.get_context_data(form=form))
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            sprints = Sprint.objects.filter(proyecto_id=self.kwargs['pk'])
+            for sp in sprints:
+                if sp.name == data.name and sp.id != data.id:
+                    error = 'Error! Nombre de Sprint ya existente '
+                    messages.error(request, error)
+                    return self.render_to_response(self.get_context_data(form=form))
+            data = form.save(commit=False)
+            # print('dfgdfgd',data.project)
+            data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
+            # data.estado=Us.status[0][0]
+            data.save()
+            sprint_plannig=SprintPlanning.objects.create(sprint=data,)
+
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
 
 # @login_required(login_url='login')
 # def us(request,pk):

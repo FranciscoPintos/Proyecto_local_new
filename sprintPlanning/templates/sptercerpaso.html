@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
-                        <h3> Crear Sprint</h3>
+                        <h3> Cargar Sprint Backlog</h3>
                     </div>
                     <div class="card-body">
                         <div class="col-8 offset-2">
@@ -22,7 +22,7 @@
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <a href="{% url 'sprintlist' Proyecto.id %}" class="btn btn-primary mr-5"
+                                    <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-primary mr-5"
                                        type="button">Cancelar</a>
                                     <input class="btn btn-primary" type="submit" value="Guardar">
                                 </div>

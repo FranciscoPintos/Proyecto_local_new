@@ -20,13 +20,11 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="41bcea2ae3" level="application" />
     <orderEntry type="library" name="bootstrap" level="application" />
     <orderEntry type="library" name="all" level="application" />
-    <orderEntry type="library" name="bootstrap-datetimepicker" level="application" />
-    <orderEntry type="library" name="jquery" level="application" />
-    <orderEntry type="library" name="moment" level="application" />
     <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="js-cookie" level="application" />
+    <orderEntry type="library" name="popper.js" level="application" />
   </component>
   <component name="PyDocumentationSettings">
     <option name="renderExternalDocumentation" value="true" />

@@ -9,50 +9,59 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=sprint.id %}" class="btn btn-info">
+                            <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=Sprint.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
-                        <h3> equipo</h3>
+                        <h3> Estimar US</h3>
                     </div>
                     <div class="card-body">
 
-                        {% if equipo %}
+                        {% if object_list %}
 
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th>Nombre</th>
                                     <th>Opciones</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
+                                {% for us in object_list %}
                                     <tbody>
                                     <tr>
-                                        <td>
-                                            Equipo
-                                        </td>
+                                        <td><h5 class="card-title">{{ us.name }}</h5></td>
                                         <td>
                                             <div class="btn-group btn-group-sm">
-                                                <a type="submit" href="{% url 'lista_miembro_equipo' Proyecto.id sprint.id equipo.id %}"
+                                                <a href="{% url 'planifius' pk=Proyecto.id sp_pk=Sprint.id us_pk=us.id %}"
                                                    class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                                 <a type="submit" href="{% url 'editar_equipo' Proyecto.id sprint.id equipo.id %}"
-                                                   class="btn btn-primary"><i
-                                                        class="fas fa-edit"></i></a>
-
-
                                             </div>
                                         </td>
                                     </tr>
                                     </tbody>
+                                {% endfor %}
+
                             </table>
 
                         {% else %}
-                            <div class="alert alert-danger mt-4"> No existe equipo</div>
+                            <div class="alert alert-danger mt-4"> No existe US asignado</div>
                         {% endif %}
 
 
                     </div>
+                    <div class="card-footer">
+                        <div class="mt-6 mb-4 flex-md-row">
+                            <div class="btn float-right">
+                                {% for p in permisos %}
+                                    {% if p.codename == 'add_us' %}
+                                        <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=Sprint.id %}"
+                                           class="btn btn-primary">Agregar Us</a>
 
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

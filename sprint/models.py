@@ -38,3 +38,4 @@ class Sprint(models.Model):
         verbose_name = 'Sprint'
         db_table = 'sprint'
         ordering = ['name']
+        # permissions = ['charge_sprintplanning', 'Can add Us to Sprint Backlog']

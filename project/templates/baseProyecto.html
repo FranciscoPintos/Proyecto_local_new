@@ -7,8 +7,14 @@
             <h6>Menú</h6>
         </div>
         <div class="opciones__menu">
+            <a href={% url 'verProyecto' Proyecto.id %}>
+                <div class="opcion">
+                   <i class="fas fa-home"></i>
+                    <h5>Proyecto</h5>
+                </div>
+            </a>
             {% for i in permisos %}
-                {% if i.codename == 'view_sprint' %}
+                {% if i.codename == 'view_sprint' and Proyecto.estado == 'I' %}
                     <a href={% url 'sprintlist' Proyecto.id %}>
                         <div class="opcion">
                             <i class="fas fa-clipboard-list"></i>
@@ -37,7 +43,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'change_proyecto' %}
+                {% if i.codename == 'change_proyecto' and Proyecto.estado != 'I' %}
                     {% block modificarProyecto %}
                         <a href={% url 'modificar' Proyecto.id %}>
                             <div class="opcion">
@@ -47,7 +53,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'view_usproductbacklog' %}
+                {% if i.codename == 'view_usproductbacklog' and Proyecto.estado == 'I' %}
                     {% block backlog %}
                         <a href="{% url 'us' Proyecto.id %}">
                             <div class="opcion">
@@ -57,7 +63,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'view_etiqueta' %}
+                {% if i.codename == 'view_etiqueta' and Proyecto.estado == 'I' %}
                     {% block etiqueta %}
                         <a href="{% url 'ver_etiquetas' Proyecto.id %}">
                             <div class="opcion">
