@@ -117,7 +117,7 @@ class ProyectoCreate(CreateView):
 
 
 def verProyectos(request, id):
-    print(Usuario.objects.get(id=id).id)
+    #print(Usuario.objects.get(id=id).id)
     user = request.user
     try:
         c = 0

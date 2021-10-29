@@ -85,3 +85,7 @@ class Miembro(models.Model):
                 if i.codename == perm:
                     return True
             return False
+
+    def add_rol(self, new):
+        self.rol = new
+        self.save()
