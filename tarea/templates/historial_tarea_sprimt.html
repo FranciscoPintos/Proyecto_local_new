@@ -1,0 +1,47 @@
+{% extends 'baseProyecto.html' %}
+
+{% block content %}
+    <br><br><br><br>
+    <div class="card col-9 text-center offset-1 mt-3 row">
+        <div class="col-8  offset-2 ">
+            <div class="card-body p-0">
+                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
+                    <h3 class="align-content-center ">HistorialUs</h3>
+                </div>
+                {% if histo %}
+
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Descricion</th>
+                            <th>Horas</th>
+                            <th>Fecha de Modificacion</th>
+                        </tr>
+                        </thead>
+                        {% for r in histo %}
+                            <tbody>
+                            <tr>
+                                <td><h5 class="card-title">{{ r.descripcion}}</h5> </td>
+                                <td><h5 class="card-title">{{ r.hora}}</h5> </td>
+                                <td><h5 class="card-title">{{ r.fecha_modificacion}}</h5> </td>
+
+                            </tr>
+                            </tbody>
+                        {% endfor %}
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mt-6 mb-4 flex-md-row">
+            <div class="col-3 offset-9 mt-3">
+                <a href="{% url 'tareas_sprimt' pk=Proyecto.id sp_pk=Sprimt.id us_pk=u.id %}" class="btn btn-lg btn-primary float-right">
+                    Atras
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+
+{% endblock %}

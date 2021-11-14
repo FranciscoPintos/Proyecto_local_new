@@ -13,6 +13,8 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from miembros.models import Miembro
 from roles.mixins import *
+from sprint.models import Sprint
+from tarea.models import Tarea
 
 from usuario.models import Usuario
 from us.models import *
@@ -81,6 +83,29 @@ def view_us(request, pk, us_pk):
 
     return render(request,'detalle_us.html',context)
 
+def detalle_us_sprimt(request, pk, sp_pk, us_pk):
+    '''
+        Para acceder los destalles de un US desde un sprimt
+    '''
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    us=Us.objects.get(id=us_pk)
+    proj = Proyecto.objects.get(id=pk)
+    context={
+        'Us':us,
+        'Proyecto':proj,
+        'permisos': permisos,
+        'sprimt': Sprint.objects.get(id=sp_pk)
+    }
+
+    return render(request,'deta_us_sprimt.html',context)
 
 # definicion de vista para comentarios de un User Story
 def view_comentarios(request, pk, us_pk):
@@ -98,7 +123,7 @@ def view_comentarios(request, pk, us_pk):
     us = Us.objects.get(id=us_pk)
     #Para saber a que Proyecto pertenece el comentario
     proj = Proyecto.objects.get(id=pk)
-    comentarios = Comentarios.objects.filter()
+    comentarios = Comentarios.objects.filter(us_id=us_pk, activo=True)
     print(comentarios)
     context={
         'Us': us,
@@ -166,7 +191,6 @@ def crear_comentarios(request, pk, us_pk):
         }
 
         return render(request, 'agregar_comentarios.html', context)
-    
 
 def crear_us(request, pk):
     # Ver si es un miembro del proyecto
@@ -193,6 +217,53 @@ def crear_us(request, pk):
         FormularioUserStory = crearUsForm(request.GET)
         # FormularioUserStory.fields["user"].queryset = Miembro.objects.filter(rol__project_id=pk)
         return render(request, 'create_us.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk= pk), 'permisos': permisos})
+
+class edit_comentario(LoginRequiredMixin,UpdateView):
+    model = Comentarios
+    form_class = FormularioAgregarComentarios
+    template_name = 'editar_comentario.html'
+    pk_sched_kwargs = 'com_pk'  # Definir el nombre del parametro obtenido en la url
+
+    def get_success_url(self):
+        Proyecto = self.kwargs['pk']
+        Sprint = self.kwargs['sp_pk']
+        return reverse_lazy('ver_comentarios', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+
+    def get_object(self, queryset=None):
+        id = int(self.kwargs.get(self.pk_sched_kwargs, None))
+        obj = get_object_or_404(Comentarios, pk=id)
+        return obj
+
+
+    def get_context_data(self, **kwargs):
+        context = super(edit_comentario, self).get_context_data(**kwargs)
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        context['Sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+        context['permisos'] = permisos
+        return context
+
+    def form_valid(self, form):
+        if form.is_valid():
+            # buscamos los comentarios que posean el id actual
+            historiales = HistorialComentarios.objects.filter(comentario=self.kwargs['com_pk'])
+            # de aqui nos interesa solo el ultimo comentario hecho
+            for historial in historiales:
+                ultimohistorial = historial
+            # asignamos al creador del comentario que es el usuario actual que posee el request
+            ultimohistorial.creador = Usuario.objects.get(id=self.request.user.id)
+            # guardamos todos los valores
+            ultimohistorial.save()
+            return HttpResponseRedirect(self.get_success_url())
+        return self.render_to_response(self.get_context_data(form=form))
 
 
 def Us_Delete(request, pk, us_pk):
@@ -235,7 +306,7 @@ def borrar_comentario(request, pk, us_pk, com_pk):
         historiales = HistorialComentarios.objects.filter(comentario=com_pk)
         for his in historiales:
             ultimohistorial = his
-        ultimohistorial.user = request.user
+        ultimohistorial.creador = request.user
         ultimohistorial.save()
 
         return redirect('ver_comentarios', pk=pk, us_pk=us_pk)
@@ -336,3 +407,4 @@ def crear_us_product(request, pk):
     else:
         FormularioUserStory = crearUsProductForm(request.GET)
         return render(request, 'create_usProduct.html', {'form': FormularioUserStory, 'Proj': Proyecto.objects.get(pk= pk)})
+
