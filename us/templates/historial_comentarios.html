@@ -4,8 +4,8 @@
     <div class="card col-9 text-center offset-1 mt-3 row">
         <div class="col-8  offset-2 ">
             <div class="card-body p-0">
-                <div class="bg-gradient-indigo mt-5 col-5 offset-3">
-                    <h3 class="align-content-center ">Historial de Comentarios</h3>
+                <div class="bg-gradient-indigo mt-5 col-7 offset-3">
+                    <h3 class="align-content-center ">Historial de Comentarios del US: {{ u.name }} del {{ Proyecto.name }}</h3>
                 </div>
                 {% if historial %}
 
@@ -22,11 +22,20 @@
                         {% for h in historial %}
                             <tbody>
                             <tr>
-                                <td><h5 class="card-title">{{ h.comentarios }}</h5> </td>
-                                <td><h5 class="card-title">{{ h.creador }}</h5> </td>
-                                <td><h5 class="card-title">{{ h.project_name }}</h5> </td>
-                                <td><h5 class="card-title">{{ h.us_name }}</h5> </td>
-                                <td><h5 class="card-title">{{ h.fecha_modificacion }}</h5> </td>
+                                {% if h.activo %}
+                                    <td><h5 class="card-title">{{ h.comentarios }}</h5> </td>
+                                    <td><h5 class="card-title">{{ h.creador }}</h5> </td>
+                                    <td><h5 class="card-title">{{ h.project_name }}</h5> </td>
+                                    <td><h5 class="card-title">{{ h.us_name }}</h5> </td>
+                                    <td><h5 class="card-title">{{ h.fecha_modificacion }}</h5> </td>
+                                {% else%}
+
+                                    <td style="background-color: rgba(250,0,0,0.6);" ><h5 class="card-title">{{ h.comentarios }}</h5> </td>
+                                    <td style="background-color: rgba(250,0,0,0.6);"><h5 class="card-title">{{ h.creador }}</h5> </td>
+                                    <td style="background-color: rgba(250,0,0,0.6);;"><h5 class="card-title">{{ h.project_name }}</h5> </td>
+                                    <td style="background-color: rgba(250,0,0,0.6);"><h5 class="card-title">{{ h.us_name }}</h5> </td>
+                                    <td style="background-color: rgba(250,0,0,0.6);"><h5 class="card-title">{{ h.fecha_modificacion }}</h5> </td>
+                                {% endif %}
                             </tr>
 
 

@@ -96,7 +96,7 @@ class Comentarios(models.Model):
         c = Comentarios.objects.get(id= self.id)
         #se trae el nombre del us
         us = Us.objects.get(id= self.us.id)
-        #se trae el nombre del protecto
+        #se trae el nombre del proyecto
         p = Proyecto.objects.get(id=self.project.id)
         #se trae el nombre del usuario
         cr = Usuario.objects.get(id=self.creador.id)
@@ -137,7 +137,7 @@ class HistorialComentarios(models.Model):
     comentarios = models.CharField('Contenido del comentario', max_length=2000, null=True)
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
-
+    activo= models.BooleanField(null=True)
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)
