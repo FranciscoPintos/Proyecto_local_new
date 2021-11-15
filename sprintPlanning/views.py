@@ -78,7 +78,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
         s_p.paso=2
         s_p.save()
         print(s_p.paso)
-        return redirect('sprintKanban', pk=pk , sp_pk=sp_pk)
+        return redirect('create_equipo', pk=pk , sp_pk=sp_pk)
     else:
         FormularioUserStory = primerpasoplanificarSprint(request.GET)
         return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk),'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
