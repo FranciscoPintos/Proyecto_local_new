@@ -19,7 +19,7 @@ class Sprint(models.Model):
     # Fecha fin
     fecha_fin = models.DateField(null=True)
     status = [
-        (1, 'To Do'), (2, 'Doing'), (3, 'Done'),
+        (1, 'Planning'), (2, 'Activo'), (3, 'Finalizado'),
     ]
     estado = models.IntegerField(
         choices=status,
@@ -37,5 +37,5 @@ class Sprint(models.Model):
     class Meta:
         verbose_name = 'Sprint'
         db_table = 'sprint'
-        ordering = ['name']
+        ordering = ['estado']
         # permissions = ['charge_sprintplanning', 'Can add Us to Sprint Backlog']

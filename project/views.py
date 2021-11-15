@@ -7,7 +7,8 @@ from django.shortcuts import render, redirect
 from django.forms import ModelForm
 from django import forms
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.urls import reverse_lazy
 import datetime
 
 from django.views.generic import ListView, CreateView
@@ -211,6 +212,76 @@ def iniciarProyecto(request, id):
             error = err.args.__str__()
             messages.error(request, error)
             return redirect('iniciarProyecto', id)
-        return redirect('verProyecto', id=id)
+        return redirect('verProyecto', pk=id)
     else:
         return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos':permisos})
+
+
+
+# clase para visualizar la pantalla principal de un proyecto n
+class Proyect_view(ListView):
+    model = Proyecto
+    template_name = 'verProyecto.html'
+
+    def get_success_url(self):
+        Proyecto = self.kwargs['pk']
+        return reverse_lazy('verProyecto', kwargs={'pk': Proyecto})
+
+    def get_context_data(self, **kwargs):
+        context = super(Proyect_view, self).get_context_data(**kwargs)
+        context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
+        # Ver si es un miembro del proyecto
+        if Miembro.objects.filter(user=self.request.user.id):
+            # obtener su usuario
+            user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        else:
+            # si no es miembro se analizan los permisos de sistema
+            user = self.request.user
+        # obtener sus permisos
+        permisos = user.rol.list_permissions().order_by('id')
+
+
+        product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+
+
+        m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
+        is_scrum = str(m.rol) == 'Scrum Master'
+
+        context['permisos'] = permisos
+        context['ProductBacklog'] = product_backlog
+        context['is_scrum'] = is_scrum
+
+
+
+        return context
+
+    # def post(self, request, *args, **kwargs):
+    #     m = Miembro.objects.get(user=request.user,rol__project_id=self.kwargs['pk'])
+    #     is_scrum = str(m.rol) == 'Scrum Master'
+    #     print('mettgg11g')
+    #     if request.is_ajax():
+    #         # print(request.POST['estado'])
+    #         print('sdfs')
+    #         try:
+    #
+    #             UStory = Us.objects.get(id=request.POST['id'])
+    #             # la diferencia entre cambios de estados no mayor a 1 solo para avanzar
+    #             # para retroceder no puede ser
+    #             est_actual = int(UStory.estado)
+    #             est_nuevo = int(request.POST['estado'])
+    #             if is_scrum:
+    #                 if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
+    #                     if (est_nuevo == 4 or est_nuevo == 1):
+    #                         UStory.set_estado(request.POST['estado'])
+    #                         UStory.save()
+    #
+    #             # Descomentar para hacer los cambios de estado manualmente sin las restricciones
+    #             # UStory.set_estado(request.POST['estado'])
+    #             # UStory.save()
+    #         except KeyError:
+    #             HttpResponseServerError("Malformed data!")
+    #
+    #         return JsonResponse({"success": True}, status=200)
+    #     else:
+    #         print('metodo post')
+    #     return HttpResponseRedirect(self.get_success_url())

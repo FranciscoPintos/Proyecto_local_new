@@ -96,11 +96,13 @@ class sprintView_Kanban(ListView):
             user = self.request.user
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
+
+        sprint=Sprint.objects.get(pk=self.kwargs['sp_pk'])
         context['permisos'] = permisos
-        context['sprint'] = Sprint.objects.get(pk=self.kwargs['sp_pk'])
+        context['sprint'] =sprint
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
-        product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+        product_backlog = sprint.us.all() #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
         context['ProductBacklog'] = product_backlog
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
