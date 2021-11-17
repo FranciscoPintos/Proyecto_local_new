@@ -226,8 +226,8 @@ class edit_comentario(LoginRequiredMixin,UpdateView):
 
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
-        Sprint = self.kwargs['sp_pk']
-        return reverse_lazy('ver_comentarios', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        Us=self.kwargs['us_pk']
+        return reverse_lazy('ver_comentarios', kwargs={'pk': Proyecto, 'us_pk': Us})
 
     def get_object(self, queryset=None):
         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
@@ -238,7 +238,8 @@ class edit_comentario(LoginRequiredMixin,UpdateView):
     def get_context_data(self, **kwargs):
         context = super(edit_comentario, self).get_context_data(**kwargs)
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-        context['Sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
+        context['Us']=Us.objects.get(id=self.kwargs['us_pk'])
+        # context['Sprint'] = Sprint.objects.get(id=self.kwargs['sp_pk'])
         # Ver si es un miembro del proyecto
         if Miembro.objects.filter(user=self.request.user.id):
             # obtener su usuario
@@ -262,6 +263,7 @@ class edit_comentario(LoginRequiredMixin,UpdateView):
             ultimohistorial.creador = Usuario.objects.get(id=self.request.user.id)
             # guardamos todos los valores
             ultimohistorial.save()
+            form.save()
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))
 

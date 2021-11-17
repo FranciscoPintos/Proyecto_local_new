@@ -19,7 +19,7 @@
                         <h3> Agregue comentarios al User Story {{ Us.name.upper }}, id:{{ Us.id }}</h3>
                     </div>
                     <div class="card-body">
-                        
+
                         <form method="post" action="">
                             {% csrf_token %}
 
@@ -28,7 +28,7 @@
                             <input class="btn btn-primary" type="submit" value="Guardar">
 
                         </form>
-                        
+
                     </div>
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
@@ -36,7 +36,7 @@
                                 <a href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right" type="button">
                                     Cancelar
                                 </a>
-                                
+
                             </div>
                         </div>
                     </div>

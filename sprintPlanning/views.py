@@ -14,6 +14,7 @@ from sprintPlanning.forms import primerpasoplanificarSprint, tercerpasoplanifica
 from us.models import Us
 from usuario.models import Usuario
 from sprintPlanning.models import *
+from tests import test_email
 
 def modificar_sprintplanni(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -254,6 +255,7 @@ def listarus(request, pk, sp_pk):
     #if equi.capacidad < cal:
     #    error='Capacida superada'
     return render(request, 'listausplanificar.html', {'error': error, 'uslista': us_list,'Sprint': Sprint.objects.get(id=sp_pk), 'Proyecto': Proyecto.objects.get(pk= pk), 'permisos': permisos})
+
 def planificarus(request, pk, sp_pk, us_pk):
     if Miembro.objects.filter(user=request.user.id):
         # obtener su usuario
@@ -283,8 +285,16 @@ def planificarus(request, pk, sp_pk, us_pk):
         if Formularious.is_valid():
             nuevosp = Formularious.save(commit=False)
             if namerol == "Scrum Master" or namerol == "Product Owner":
+                if uss.user is not None:
+                    email_to = uss.user.user.email
+                    message='Hule ya ahora vos'
+                    test_email.send_email(email_to, message)
                 uss.user= nuevosp.user
                 uss.estimacionscrum = nuevosp.estimacionscrum
+                ###Acá va el envio de correo
+                message="Ahora es tu turno"
+                email_to=uss.user.user.email
+                test_email.send_email(email_to, message)
             else:
                 uss.estimaciondesarrollador = nuevosp.estimaciondesarrollador
                 uss.storypoints = int((uss.estimacionscrum + uss.estimaciondesarrollador) / 2)

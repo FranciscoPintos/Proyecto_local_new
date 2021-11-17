@@ -100,7 +100,7 @@ class crear_equipo(LoginRequiredMixin, CreateView):
         # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
         # # Persistencia del equipo
         # equipo.save()
-        return reverse_lazy('', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        return reverse_lazy('sprintpaso3', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)

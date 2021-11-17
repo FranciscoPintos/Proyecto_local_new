@@ -215,114 +215,95 @@
 
 
 
+    {% if sprint.estado == 2 %}
+        <script>
+            let To_do = document.getElementById("caja1")
+            let doing = document.getElementById("caja2");
+            let QA = document.getElementById("caja3");
 
-    <script>
-        let To_do = document.getElementById("caja1")
-        let doing = document.getElementById("caja2");
-        let QA = document.getElementById("caja3");
 
+            let UStory = document.getElementsByClassName("us");
 
-        let UStory = document.getElementsByClassName("us");
+            To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            To_do.addEventListener("drop", (ev) => soltar1(ev));
 
-        To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        To_do.addEventListener("drop", (ev) => soltar1(ev));
+            doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            doing.addEventListener("drop", (ev) => soltar2(ev));
 
-        doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        doing.addEventListener("drop", (ev) => soltar2(ev));
+            QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            QA.addEventListener("drop", (ev) => soltar3(ev));
+            {% if is_scrum %}
+                let done = document.getElementById("caja4");
+                done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+                done.addEventListener("drop", (ev) => soltar4(ev));
+            {% endif %}
 
-        QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        QA.addEventListener("drop", (ev) => soltar3(ev));
-        {% if is_scrum %}
-            let done = document.getElementById("caja4");
-            done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-            done.addEventListener("drop", (ev) => soltar4(ev));
-        {% endif %}
+            for (var i = 0; i < UStory.length; i++) {
+                {#UStory[i].setAttribute("id", "Us" + i);#}
+                UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
 
-        for (var i = 0; i < UStory.length; i++) {
-            {#UStory[i].setAttribute("id", "Us" + i);#}
-            UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
+            }
 
-        }
+            function iniciarArrastre(ev) {
+                ev.dataTransfer.setData("idUs", ev.target.id);
+                console.log(ev.target.id);
+            }
 
-        function iniciarArrastre(ev) {
-            ev.dataTransfer.setData("idUs", ev.target.id);
-            console.log(ev.target.id);
-        }
+            function CambiarEstado1(ev) {
+                console.log("arrastrando");
+                ev.preventDefault();
+            }
 
-        function CambiarEstado1(ev) {
-            console.log("arrastrando");
-            ev.preventDefault();
-        }
-
-        function soltar1(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            To_do.appendChild(document.getElementById(data));
-
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 1,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-            });
-
-        }
-
-        function soltar2(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            doing.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 2,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-
-        }
-
-        function soltar3(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            QA.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 3,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-        }
-        {% if is_scrum %}
-            function soltar4(ev) {
+            function soltar1(ev) {
                 ev.preventDefault();
                 let data = ev.dataTransfer.getData("idUs")
-                done.appendChild(document.getElementById(data));
+                To_do.appendChild(document.getElementById(data));
+
                 $.ajax({
                     type: 'POST',
                     url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
                     data: {
                         id: data,
-                        estado: 4,
+                        estado: 1,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+                });
+
+            }
+
+            function soltar2(ev) {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("idUs")
+                doing.appendChild(document.getElementById(data));
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                    data: {
+                        id: data,
+                        estado: 2,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+
+                })
+
+            }
+
+            function soltar3(ev) {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("idUs")
+                QA.appendChild(document.getElementById(data));
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                    data: {
+                        id: data,
+                        estado: 3,
                         'csrfmiddlewaretoken': '{{ csrf_token }}',
                     },
                     success: function (response) {
@@ -331,10 +312,29 @@
 
                 })
             }
-        {% endif %}
+            {% if is_scrum %}
+                function soltar4(ev) {
+                    ev.preventDefault();
+                    let data = ev.dataTransfer.getData("idUs")
+                    done.appendChild(document.getElementById(data));
+                    $.ajax({
+                        type: 'POST',
+                        url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                        data: {
+                            id: data,
+                            estado: 4,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        },
+                        success: function (response) {
+                            location.reload();
+                        },
+
+                    })
+                }
+            {% endif %}
 
 
-    </script>
-
+        </script>
+    {% endif %}
 
 {% endblock %}
