@@ -19,24 +19,26 @@ def AddRol(request, pk):
 
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
-        FormularioProyecto = CrearRol(request.POST)
-        nuevorol = FormularioProyecto.save(commit=False)
+        formulario_rol = CrearRol(request.POST)
+        nuevorol = formulario_rol.save(commit=False)
         nuevorol.project = Proyecto.objects.get(id=pk)
         nuevorol.save()
-        FormularioProyecto.save_m2m()
+        formulario_rol.save_m2m()
         return redirect('verRolesProyecto', pk)  # Este tiene que redirigir a proyecto
     else:
-        FormularioProyecto = CrearRol(request.POST)
-        return render(request, 'crearRolProyecto.html', {'formaProyecto': FormularioProyecto, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
-
+        formulario_rol = CrearRol(request.POST)
+        return render(request, 'crearRolProyecto.html', {'formaProyecto': formulario_rol,
+                                                         'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
 
 
 def addMiembro(request, id):
+    # Permisos
     if Miembro.objects.filter(user=request.user.id):
+        # Obtener usuario
         user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     else:
         user = request.user
-
+    # Obtener permisos
     permisos = user.rol.list_permissions().order_by('id')
     proj = Proyecto.objects.get(id=id)
     if request.method == 'POST':
