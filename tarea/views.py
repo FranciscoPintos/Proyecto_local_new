@@ -80,7 +80,6 @@ def tareas(request, pk, us_pk):
         'permisos': permisos,
         'is_scrum': is_scrum
     }
-    print (context)
     return render(request,'tareas.html',context=context)
 def historial_tarea(request, pk, us_pk, tr_pk):
     # Ver si es un miembro del proyecto
@@ -141,7 +140,6 @@ def tareas_sprimt(request, pk,sp_pk, us_pk):
         'is_scrum': is_scrum,
         'sprimt': Sprint.objects.get(id=sp_pk)
     }
-    print (context)
     return render(request,'tareas_sprimt.html',context=context)
 
 def historial_tarea_sprimt(request, pk,sp_pk, us_pk, tr_pk):

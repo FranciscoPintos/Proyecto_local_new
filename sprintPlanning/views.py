@@ -1,3 +1,5 @@
+# Importaciones para fechas
+import numpy as np
 import datetime
 
 from django.shortcuts import render, redirect, get_object_or_404,HttpResponseRedirect
@@ -44,7 +46,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         # Validación de fecha inicio mayor a la fecha actual
-        if nuevosp.fecha_incio <= datetime.date.today():
+        if nuevosp.fecha_incio < datetime.date.today():
             error = 'Error! Fecha inicio debe ser mayor a la fecha actual '
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
@@ -58,8 +60,6 @@ def modificar_sprintplanni(request, pk, sp_pk):
 
         if len(inici)>0:
             inici=inici[0]
-            print('nev',nuevosp.fecha_incio)
-            print('inic', inici.fecha_fin)
             if nuevosp.fecha_incio <= inici.fecha_fin:
                 error = 'Error! La fecha de inicio no puede empezar antes que la fecha fin del sprint que está en marcha '
                 messages.error(request, error)
@@ -75,60 +75,50 @@ def modificar_sprintplanni(request, pk, sp_pk):
         sprint.name= nuevosp.name
         sprint.save()
         s_p=SprintPlanning.objects.get(sprint_id=sprint.id)
-        print(s_p.paso)
-        s_p.paso=2
+        if Equipo.objects.filter(sprint_id=sp_pk).exists():
+            data = Equipo.objects.get(sprint_id=sp_pk)
+            miembros = data.miembros.all()
+            suma = 0
+            for mi in miembros:
+                suma = suma + mi.horaTrabajo
+            data.capacidad = np.busday_count(data.sprint.fecha_incio, data.sprint.fecha_fin, weekmask='1111110') * suma
+            data.save()
+            s_p.paso = 3
+        else:
+            s_p.paso = 2
         s_p.save()
-        print(s_p.paso)
+        if Equipo.objects.filter(sprint_id=sp_pk).exists():
+            return redirect('editar_equipo', pk=pk, sp_pk=sp_pk, eq_pk=data.id)
         return redirect('create_equipo', pk=pk , sp_pk=sp_pk)
     else:
-        FormularioUserStory = primerpasoplanificarSprint(request.GET)
-        return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk),'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
+        return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk), 'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
 
-'''
-def asignarus(request, pk, sp_pk):
-    # Ver si es un miembro del proyecto
-    if Miembro.objects.filter(user=request.user.id):
-        # obtener su usuario
-        user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
-    else:
-        # si no es miembro se analizan los permisos de sistema
-        user = request.user
-    # obtener sus permisos
-    permisos = user.rol.list_permissions().order_by('id')
-    #Obtener los us de aquellos que no han sido finalizado
-    uss = Us.objects.filter(project_id=pk).exclude(estado=4)
-    # Optener sprint de la cual se va a planificar
-    sprint = Sprint.objects.get(id=sp_pk)
-    # Optener formulario un sprint ya existente antes de comenzar
-    sprint_form = tercerpasoplanificarSprint(instance=sprint)
-    if request.method == 'POST':
-        # Obtener formulario cargado
-        FormularioSprint = tercerpasoplanificarSprint(request.POST)
-        # Obtener el modelo del formulario
-        nuevosp = FormularioSprint.save(commit=False)
-'''
+
 class asignarUs(UpdateView):
-    #Obtener la clase sprint
+    # Obtener la clase sprint
     model = Sprint
-    #Validar mi formulario
+    # Validar mi formulario
     form_class = tercerpasoplanificarSprint
     #form_class.fields['us'] = Miembro.objects.filter(rol__project_id=self.kwargs['pk'])
-    #Agregar el html
+    # Agregar el html
     template_name = 'sptercerpaso.html'
     pk_sched_kwargs = 'sp_pk'  # Definir el nombre del parametro obtenido en la url
+
     # Deteción de error
     def get_object(self, queryset=None):
         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
         obj = get_object_or_404(Sprint, pk=id)
         return obj
+
     # Validación de la url
     def get_success_url(self):
         proj_id = self.kwargs['pk']
         return reverse_lazy('listado', kwargs={'pk': proj_id, 'sp_pk':self.kwargs['sp_pk']})
+
     # Metodo para filtar los permisos selecionado y el id del proyecto que se esta trabajando
     def get_context_data(self, **kwargs):
         context = super(asignarUs, self).get_context_data(**kwargs)
-        #Obtemos el id de nuestro proyecto
+        # Obtemos el id de nuestro proyecto
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
         context['Sprint'] = Sprint.objects.get(pk=self.kwargs['sp_pk'])
         # Ver si es un miembro del proyecto
@@ -142,15 +132,14 @@ class asignarUs(UpdateView):
         permisos = user.rol.list_permissions().order_by('id')
         context['permisos'] = permisos
         return context
+
     def get_form_kwargs(self):
         kwargs = super(asignarUs, self).get_form_kwargs()
-        kwargs['request'] =self.kwargs['pk']
+        kwargs['request'] = self.kwargs['pk']
         return kwargs
 
     def form_valid(self, form):
         product = form.save(commit=False)
-
-        #form.instance.MI_CAMPO = "MI VALOR"
         us_viejos_asignados= Sprint.objects.get(id=self.kwargs['sp_pk']).us.all()
         idsviejo=[]
         for ids in us_viejos_asignados:
@@ -163,7 +152,6 @@ class asignarUs(UpdateView):
         idsnuevo = []
         for ids in us_asignados:
             idsnuevo.append(ids.id)
-        #print(idsnuevo)
         for us in idsviejo:
             if us not in idsnuevo:
                 ustory= Us.objects.get(id=us)

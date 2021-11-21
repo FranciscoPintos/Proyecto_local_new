@@ -9,6 +9,7 @@ from project.models import *
 from usuario.models import *
 # Create your models here.
 
+
 class Us(models.Model):
     dif_define = [
         (1, 'No urgente'), (2, 'Menos urgente'), (3, 'Media'), (4, 'Alta'), (5, 'Urgente'),
@@ -33,34 +34,39 @@ class Us(models.Model):
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     user=models.ForeignKey(Miembro, on_delete=models.CASCADE, blank=True, null=True)
     activo= models.BooleanField(default=True)
-    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null = True, blank=True)
+    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         super(Us, self).save(*args, **kwargs)
-        hu= HistorialUs()
-        us= Us.objects.get(id= self.id)
-        hu.ustory= us
+        hu = HistorialUs()
+        us = Us.objects.get(id=self.id)
+        hu.ustory = us
         hu.name = us.name
-        hu.descripcion= us.descripcion
-        hu.prioridad= us.prioridad
-        hu.estado= us.estado
-        hu.storypoints= us.storypoints
+        hu.descripcion = us.descripcion
+        hu.prioridad = us.prioridad
+        hu.estado = us.estado
+        hu.storypoints = us.storypoints
         hu.save()
+
     def __str__(self):
         return '{}'.format(self.name)
 
     def toJSON(self):
         item = model_to_dict(self)
         return item
+
     def get_estado(self):
-        s=self.status[self.estado-1][1]
+        s = self.status[self.estado-1][1]
         return s
+
     def get_prioridad(self):
         prio=self.dif_define[self.prioridad-1][1]
         return prio
-    def set_estado(self,int):
-        self.estado=int
+
+    def set_estado(self, int):
+        self.estado = int
         return
+
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'
@@ -72,19 +78,19 @@ class Us(models.Model):
             ('change_usproductbacklog', 'Can view Us to Product Backlog'),
             ('valuate_us', 'Can calificate Us to Sprint Backlog'))
 
-#definicion del modelo de de tabla Comentario
+# definicion del modelo de de tabla Comentario
 class Comentarios(models.Model):
-    #debe poseer un id como clave primaria
+    # debe poseer un id como clave primaria
     id = models.AutoField(primary_key=True)
-    #otro campo debe ser el comentario en sí
+    # otro campo debe ser el comentario en sí
     comentarios=models.CharField(max_length=2000)
-    #debe poder relacionarse con algún us por medio de una clave foránea
+    # debe poder relacionarse con algún us por medio de una clave foránea
     us = models.ForeignKey(Us, on_delete=models.CASCADE, blank=True, null=False)
-    #debe poder relacionarse con algún proyecto por medio de una clave foránea
+    # debe poder relacionarse con algún proyecto por medio de una clave foránea
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
-    #debe poder relacionarse con algún usuario
+    # debe poder relacionarse con algún usuario
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=False)
-    #para poder separar los comentarios eliminados de los que no han sido eliminados
+    # para poder separar los comentarios eliminados de los que no han sido eliminados
     activo = models.BooleanField(default=True)
 
     #metodo para guardar los valores en la bd
@@ -138,6 +144,7 @@ class HistorialComentarios(models.Model):
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
     activo= models.BooleanField(null=True)
+
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)

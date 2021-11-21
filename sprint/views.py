@@ -99,7 +99,7 @@ class sprintView_Kanban(ListView):
 
         sprint=Sprint.objects.get(pk=self.kwargs['sp_pk'])
         context['permisos'] = permisos
-        context['sprint'] =sprint
+        context['sprint'] = sprint
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
         product_backlog = sprint.us.all() #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
@@ -107,10 +107,13 @@ class sprintView_Kanban(ListView):
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         context['is_scrum']=is_scrum
-        us=Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
-
-        context['iniciar']=not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and not(us)
-        context['paso']=SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
+        # Determinar si existen User Stories no estimados
+        us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
+        # Determinar si existen User Stories en el sprint
+        has_us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().exists()
+        print(has_us)
+        context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us
+        context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
         return context
 
     def post(self, request, *args, **kwargs):

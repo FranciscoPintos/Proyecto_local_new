@@ -72,7 +72,7 @@
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
                                 {% for p in permisos %}
-                                    {% if p.codename == 'add_tarea' and not is_scrum%}
+                                    {% if p.codename == 'add_tarea' and not is_scrum and sprimt.estado == 2%}
                                         <a href="{% url 'crear_tarea'  pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}"
                                            class="btn btn-lg btn-primary float-right">
                                             Crear Tarea

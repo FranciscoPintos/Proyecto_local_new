@@ -38,6 +38,7 @@ class tercerpasoplanificarSprint(forms.ModelForm):
         self.request = kwargs.pop('request')
         super(tercerpasoplanificarSprint, self).__init__(*args, **kwargs)
         self.fields['us'].queryset = Us.objects.filter(project_id=self.request, estado=1).order_by('-prioridad')
+
     class Meta:
         model = Sprint
         fields = '__all__'
@@ -49,6 +50,8 @@ class tercerpasoplanificarSprint(forms.ModelForm):
         widgets = {
             'us': forms.CheckboxSelectMultiple()
         }
+
+
 class planificacionUS_Scrum(forms.ModelForm):
     class Meta:
         model = Us

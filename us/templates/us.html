@@ -75,6 +75,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
+                                                    {% if u.estado == 1 %}
                                                     <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}"
                                                        class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
@@ -86,7 +87,8 @@
 {#                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"#}
 {#                                                       class="btn btn-success">#}
 {#                                                        Comentarios#}
-{#                                                    </a>#}
+{#                                                    </a> #}
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>

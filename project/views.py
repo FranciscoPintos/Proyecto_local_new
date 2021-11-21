@@ -19,6 +19,9 @@ from project.models import Proyecto
 from us.models import Us
 from usuario.models import Usuario
 
+# Importaciones para fechas
+import numpy as np
+
 
 def nuevoProyecto(request, id):
     if request.method == 'POST':
@@ -140,9 +143,6 @@ def verProyectos(request, id):
         messages.error(request, error)
         return redirect('exceptMiembro')
 
-    pr = Proyecto.objects.filter(id=Miembro.rol.project.id)
-    return render(request, 'misPryectos.html', {'Proyecto': pr})
-
 
 def exceptMimebro(request):
     return render(request, 'exceptMiembro.html')
@@ -224,8 +224,8 @@ class Proyect_view(ListView):
     template_name = 'verProyecto.html'
 
     def get_success_url(self):
-        Proyecto = self.kwargs['pk']
-        return reverse_lazy('verProyecto', kwargs={'pk': Proyecto})
+        proyecto = self.kwargs['pk']
+        return reverse_lazy('verProyecto', kwargs={'pk': proyecto})
 
     def get_context_data(self, **kwargs):
         context = super(Proyect_view, self).get_context_data(**kwargs)
@@ -240,9 +240,7 @@ class Proyect_view(ListView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
 
-
         product_backlog = Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
-
 
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
@@ -250,8 +248,7 @@ class Proyect_view(ListView):
         context['permisos'] = permisos
         context['ProductBacklog'] = product_backlog
         context['is_scrum'] = is_scrum
-
-
+        context['dias'] = np.busday_count(datetime.date.today(), Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin, weekmask='1111110') + 1
 
         return context
 
