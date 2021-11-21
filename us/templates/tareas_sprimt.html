@@ -20,11 +20,11 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Descricion</th>
+                                    <th>Descripcion</th>
+
                                     <th>Horas</th>
-                                    {% if modificar %}
-                                        <th>Editar</th>
-                                    {% endif %}
+
+                                    <th>Editar</th>
 
                                     <th>Borrar</th>
 
@@ -36,7 +36,7 @@
                                     <tr>
                                         <td><h5 class="card-title">{{ tr.descripcion }}</h5></td>
                                         <td><h5 class="card-title">{{ tr.horas }}</h5></td>
-                                        {% if modificar and tr.sprimt.id == sprimt.id %}
+                                        {% if tr.sprimt.id == sprimt.id %}
                                             <td class=" py-0 align-middle">
                                                 <a href="{% url 'editar_tarea' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id tr_pk=tr.id %}"
                                                    class="btn btn-info"><i

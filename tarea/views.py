@@ -1,3 +1,5 @@
+import datetime
+
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -20,14 +22,17 @@ def crear_tarea(request, pk,sp_pk, us_pk):
     # obtener sus permisos
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
-        FormularioUserStory = crearTarea(request.POST)
-        nuevous = FormularioUserStory.save(commit=False)
-        nuevous.ustory= Us.objects.get(id= us_pk)
-        nuevous.save()
-        return redirect('tareas_sprimt', pk=pk, us_pk=us_pk)
+        formularioTarea = crearTarea(request.POST)
+        new_tarea = formularioTarea.save(commit=False)
+        new_tarea.ustory = Us.objects.get(id=us_pk)
+        new_tarea.sprimt = Sprint.objects.get(pk=sp_pk)
+        if new_tarea.fecha_creacion is None:
+            new_tarea.fecha_creacion = datetime.datetime.now()
+        new_tarea.save()
+        return redirect('tareas_sprimt', pk=pk, sp_pk=sp_pk, us_pk=us_pk)
     else:
-        FormularioUserStory = crearTarea(request.GET)
-        return render(request, 'crear_tarea.html', {'form': FormularioUserStory, 'Proyecto': Proyecto.objects.get(pk= pk),'Sprimt':Sprint.objects.get(id=sp_pk), 'Us': Us.objects.get(pk= us_pk), 'permisos': permisos})
+        formularioTarea = crearTarea(request.GET)
+        return render(request, 'crear_tarea.html', {'form': formularioTarea, 'Proyecto': Proyecto.objects.get(pk=pk),'Sprimt':Sprint.objects.get(id=sp_pk), 'Us': Us.objects.get(pk= us_pk), 'permisos': permisos})
 
 def editar_tarea(request, pk,sp_pk, us_pk, tr_pk):
     # Ver si es un miembro del proyecto
@@ -47,7 +52,7 @@ def editar_tarea(request, pk,sp_pk, us_pk, tr_pk):
         anteriotarea.descripcion= nuevous.descripcion
         anteriotarea.horas= nuevous.horas
         anteriotarea.save()
-        return redirect('tareas_sprimt', pk=pk, us_pk=us_pk)
+        return redirect('tareas_sprimt', pk=pk, sp_pk=sp_pk, us_pk=us_pk)
     else:
         FormularioUserStory = crearTarea(instance= Tarea.objects.get(id= tr_pk))
         return render(request, 'editar_tarea.html',
@@ -108,7 +113,7 @@ def borrar_tarea(request, pk,sp_pk, us_pk, tr_pk):
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         nuevous = Tarea.objects.get(id=tr_pk).delete()
-        return redirect('tareas_sprimt', pk=pk, us_pk=us_pk)
+        return redirect('tareas_sprimt', pk=pk, sp_pk=sp_pk, us_pk=us_pk)
     else:
         return render(request, 'borrar_tarea.html', {'Proyecto': Proyecto.objects.get(pk= pk),
                                                      'Sprimt': Sprint.objects.get(id=sp_pk),

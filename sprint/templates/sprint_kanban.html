@@ -184,6 +184,24 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        {% if Proyecto.estado == 'I' %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>fecha de inicio del Sprint</th>
+                                    <th>fecha de finalización del Sprint</th>
+                                    <th>Días Restantes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>   {{ sprint.fecha_incio }}</td>
+                                    <td>   {{ sprint.fecha_fin }}</td>
+                                    <td>   {{ dias }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        {% endif %}
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="btn btn-sm float-right">
                                 {% for i in permisos %}

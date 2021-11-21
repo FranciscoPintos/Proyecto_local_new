@@ -12,6 +12,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 
+# Importaciones para fechas
+import numpy as np
+
 from roles.mixins import *
 
 from sprint.models import *
@@ -114,6 +117,8 @@ class sprintView_Kanban(ListView):
         print(has_us)
         context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us
         context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
+        context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
+                                          weekmask='1111110') + 1
         return context
 
     def post(self, request, *args, **kwargs):
