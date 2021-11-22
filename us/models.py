@@ -32,6 +32,7 @@ class Us(models.Model):
     )
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     user=models.ForeignKey(Miembro, on_delete=models.CASCADE, blank=True, null=True)
+    #sprint=models.ForeignKey(Sprint, on_delete=models.CASCADE, blank=True, null=True)
     activo= models.BooleanField(default=True)
     etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null = True, blank=True)
 

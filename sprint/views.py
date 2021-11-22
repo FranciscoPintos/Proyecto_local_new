@@ -20,6 +20,63 @@ from sprint.forms import *
 from miembros.models import *
 from equipo.models import *
 from sprintPlanning.models import *
+from us.models import *
+from tarea.models import *
+# importacion de las dependencias para el grafico  burndownchart
+import matplotlib.pyplot as plt
+import numpy as np
+import datetime
+
+
+def ver_burndownchart(request, pk, sp_pk):
+
+    proj = Proyecto.objects.get(id=pk)
+    user = request.user
+    sprint = Sprint.objects.get(id=sp_pk)
+    # falta agregar de que sprint viene
+    us = Us.objects.filter(project=pk, user=user.id)
+    tarea = Tarea.objects.filter(ustory=us, sprimt=sp_pk)
+    context = {
+        'Us': us,
+        'User': user,
+        'sprint': sprint,
+        'Tarea': tarea,
+        'Proyecto': proj,
+    }
+    # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
+    # calculo del sp del sprint
+    sp = 0
+    for objeto in us:
+        # se van sumando todos los storypoints de cada us
+        sp = sp + objeto.storypoints
+    #calculo de la duracion del sprint
+    fecha_inicio = sprint.fecha_incio
+    fecha_fin = sprint.fecha_fin
+    # duracion del sprint en dias
+    #dias = (fecha_fin-fecha_inicio).days
+    dias = 5
+    # generacion del eje x del burndownchart
+    x = np.arange(0, dias, 1)
+    # funcion del eje y
+    y = sp - (sp*x/dias)
+
+    figura, ax = plt.subplots()
+    ax.plot(x, y)
+
+    ax.set(
+        xlabel='Días',
+        ylabel='StoryPoints',
+        title='Gráfico del Burndownchart'
+    )
+
+    ax.grid()
+
+    figura.savefig("burndownchart.png")
+    plt.show()
+
+
+    return render(request, 'burndown_chart.html', context=context)
+
 
 def sprint_backlog_view(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
