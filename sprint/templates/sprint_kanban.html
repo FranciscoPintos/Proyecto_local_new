@@ -86,6 +86,12 @@
                                 <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
                                    class="btn btn-primary">Sprint Backlog</a>
                             {% endif %}
+
+                            {% if i.codename == 'view_historialtarea' %}
+                                <a href="{% url 'burndown_chart' Proyecto.id sprint.id %}"
+                                   class="btn btn-primary">Burndown Chart</a>
+                            {% endif %}
+
                         {% endfor %}
 
                     </div>

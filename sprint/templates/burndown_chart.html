@@ -1,0 +1,34 @@
+{% extends 'baseProyecto.html' %}
+
+{% block content %}
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'sprintKanban' pk=Proyecto.id sp_pk=sprint.id %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </div>
+                        <h3>Burndown Chart del sprint: {{ sprint.name }}</h3>
+                    </div>
+                    <div class="card-body">
+                        <figure class="figure">
+                          <img src="../../burndownchart.png" class="figure-img img-fluid rounded" alt="No fue posible cargar la imagen">
+                          <figcaption class="figure-caption">Burndownchart del sprint: {{ sprint.name }}</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
