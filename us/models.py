@@ -45,6 +45,11 @@ class Us(models.Model):
         hu.descripcion = us.descripcion
         hu.prioridad = us.prioridad
         hu.estado = us.estado
+        hu.estimacionscrum = us.estimacionscrum
+        hu.estimaciondesarrollador = us.estimaciondesarrollador
+        hu.user = us.user
+        hu.activo = us.activo
+        hu.etiqueta = us.etiqueta
         hu.storypoints = us.storypoints
         hu.save()
 
@@ -149,8 +154,12 @@ class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)
     descripcion = models.CharField(max_length=2000)
+    estimacionscrum = models.PositiveIntegerField(null=True, blank=True)
+    estimaciondesarrollador = models.PositiveIntegerField(null=True, blank=True)
     prioridad = models.IntegerField()
     estado = models.IntegerField( )
     storypoints = models.PositiveIntegerField(null=True)
-    user= models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(Miembro, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
+    activo= models.BooleanField(default=True)
+    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null=True, blank=True)

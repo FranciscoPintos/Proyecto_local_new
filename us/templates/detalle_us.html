@@ -87,7 +87,7 @@
                                     <tr>
                                         <td>
                                             {% if Us.storypoints %}
-                                                <div class="card bg-gradient-green text-center"> {{ Us.storypoints }}hs</div>
+                                                <div class="card bg-gradient-green text-center"> {{ horas_asignadas }}hs</div>
                                             {% else %}
                                                 <div class="card bg-gradient-gray text-center"> 0 h</div>
                                             {% endif %}
@@ -95,7 +95,7 @@
                                         <td></td>
                                         <td>
                                             {% if Us.storypoints %}
-                                                <div class="card bg-gradient-green text-center"> {{ Us.storypoints }}hs</div>
+                                                <div class="card bg-gradient-green text-center"> {{ horas_trabajadas }}hs</div>
 
                                             {% else %}
                                                 <div class="card bg-gradient-green text-center"> 0 h</div>
@@ -104,7 +104,7 @@
                                         <td></td>
                                         <td>
                                             {% if Us.storypoints %}
-                                                <div class="card bg-gradient-green text-center"> {{ Us.storypoints }}hs</div>
+                                                <div class="card bg-gradient-green text-center"> {{ horas_restantes }}hs</div>
                                             {% else %}
                                                 <div class="card bg-gradient-primary text-center"> 0 h</div>
                                             {% endif %}

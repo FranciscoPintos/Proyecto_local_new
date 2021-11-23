@@ -129,7 +129,7 @@ def tareas_sprimt(request, pk,sp_pk, us_pk):
         user = request.user
     # obtener sus permisos
     permisos = user.rol.list_permissions().order_by('id')
-    tr=Tarea.objects.filter(ustory__id=us_pk) #Filtar los us por proyecto
+    tr=Tarea.objects.filter(ustory__id=us_pk, sprimt_id__gte=sp_pk) #Filtar los us por proyecto
     proj=Proyecto.objects.get(id=pk)
     us= Us.objects.get(id=us_pk)
     m = Miembro.objects.get(user=request.user, rol__project_id= pk)

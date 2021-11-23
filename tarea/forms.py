@@ -24,7 +24,7 @@ class crearTarea(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'fecha_creacion': forms.TextInput(attrs={'type': 'date', 'class': 'form-control  datetimepicker'}),
+            'fecha_creacion': forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control  datetimepicker'}),
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
@@ -48,7 +48,7 @@ class editarTarea(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
-            'fecha_creacion': forms.TextInput(attrs={'type': 'date', 'class': 'form-control  datetimepicker'}),
+            'fecha_creacion': forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control  datetimepicker'}),
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)

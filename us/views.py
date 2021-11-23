@@ -75,10 +75,22 @@ def view_us(request, pk, us_pk):
     permisos = user.rol.list_permissions().order_by('id')
     us=Us.objects.get(id=us_pk)
     proj = Proyecto.objects.get(id=pk)
+    horasTrabajadas = 0
+    horasAsignadas = 0
+    for tr in Tarea.objects.filter(ustory_id=us_pk):
+        horasTrabajadas += tr.horas
+    # Obtener todos los sprint del proyecto
+    for sp in Sprint.objects.filter(us__id=us_pk):
+        hs_us = HistorialUs.objects.filter(ustory__sprint__id=sp.id).last()
+        if hs_us.storypoints is not None:
+            horasAsignadas += hs_us.storypoints
     context={
         'Us':us,
         'Proyecto':proj,
         'permisos': permisos,
+        'horas_asignadas': horasAsignadas,
+        'horas_trabajadas': horasTrabajadas,
+        'horas_restantes': horasAsignadas - horasTrabajadas,
     }
 
     return render(request,'detalle_us.html',context)
@@ -98,11 +110,20 @@ def detalle_us_sprimt(request, pk, sp_pk, us_pk):
     permisos = user.rol.list_permissions().order_by('id')
     us=Us.objects.get(id=us_pk)
     proj = Proyecto.objects.get(id=pk)
+    horasTrabajadas = 0
+    for tr in Tarea.objects.filter(sprimt__id=sp_pk, ustory_id=us_pk):
+        horasTrabajadas += tr.horas
+    horasAsignadas = 0
+    if HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk).last().storypoints is not None:
+        horasAsignadas = HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk).last().storypoints
     context={
         'Us':us,
         'Proyecto':proj,
         'permisos': permisos,
-        'sprimt': Sprint.objects.get(id=sp_pk)
+        'sprimt': Sprint.objects.get(id=sp_pk),
+        'horas_asignadas': horasAsignadas,
+        'horas_trabajadas': horasTrabajadas,
+        'horas_restantes': horasAsignadas - horasTrabajadas,
     }
 
     return render(request,'deta_us_sprimt.html',context)
@@ -339,7 +360,8 @@ def editUs(request, pk, us_pk):
             anteriorus= Us.objects.get(id= us_pk)
             anteriorus.name= nuevous.name
             anteriorus.user= nuevous.user
-            anteriorus.storypoints= nuevous.storypoints
+            if nuevous.storypoints is not None:
+                anteriorus.storypoints= nuevous.storypoints
             anteriorus.estado= nuevous.estado
             anteriorus.prioridad= nuevous.prioridad
             anteriorus.descripcion= nuevous.descripcion

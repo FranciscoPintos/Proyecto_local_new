@@ -107,6 +107,13 @@ class sprintView_Kanban(ListView):
         context['tieneEquipo'] = tieneEquipo
         product_backlog = sprint.us.all() #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
         context['ProductBacklog'] = product_backlog
+        # Ultimo estado de los US durante el Sprint
+        context['historiales'] = []
+        # Por cada us del sprint Backlog
+        for US in product_backlog:
+            # Asignar su ultimo historial del us durante el sprint
+            context['historiales'].append(HistorialUs.objects.filter(ustory__id=US.id).order_by('-id').first())
+        print(context['historiales'])
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         context['is_scrum']=is_scrum
@@ -114,10 +121,10 @@ class sprintView_Kanban(ListView):
         us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
         # Determinar si existen User Stories en el sprint
         has_us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().exists()
-        print(has_us)
         context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us
         context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
-        context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
+        if Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin is not None:
+            context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
                                           weekmask='1111110') + 1
         return context
 
@@ -128,7 +135,7 @@ class sprintView_Kanban(ListView):
 
         if sprint.estado == 2:
             if request.is_ajax():
-                # print(request.POST['estado'])
+                print(request.POST['estado'])
                 try:
 
                     UStory = Us.objects.get(id=request.POST['id'])
@@ -152,11 +159,11 @@ class sprintView_Kanban(ListView):
                     HttpResponseServerError("Malformed data!")
 
                 return JsonResponse({"success": True}, status=200)
-            else:
-                s=Sprint.objects.get(pk=self.kwargs['sp_pk'])
-                s.estado=2
-                s.save()
-                return HttpResponseRedirect(self.get_success_url())
+        elif sprint.estado == 1:
+            s = Sprint.objects.get(pk=self.kwargs['sp_pk'])
+            s.estado = 2
+            s.save()
+            return HttpResponseRedirect(self.get_success_url())
 
 
 

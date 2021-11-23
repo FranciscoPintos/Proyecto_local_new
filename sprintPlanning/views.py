@@ -154,7 +154,8 @@ class asignarUs(UpdateView):
             idsnuevo.append(ids.id)
         for us in idsviejo:
             if us not in idsnuevo:
-                ustory= Us.objects.get(id=us)
+                ustory = Us.objects.get(id=us)
+                ustory.user = Miembro.objects.get(user_id=self.request.user, rol__project_id=self.kwargs['pk'])
                 ustory.storypoints= None
                 ustory.estimaciondesarrollador= None
                 ustory.estimacionscrum= None
