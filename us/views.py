@@ -370,7 +370,7 @@ def editUs(request, pk, us_pk):
             historiales= HistorialUs.objects.filter(ustory_id=us_pk)
             for his in historiales:
                 ultimohistorial= his
-            ultimohistorial.user= request.user
+            ultimohistorial.user= Miembro.objects.get(user_id=request.user.id, rol__project_id=pk)
             ultimohistorial.save()
             return redirect('us', pk=pk)  # Este tiene que redirigir a proyecto
         else:

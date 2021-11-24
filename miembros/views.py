@@ -161,8 +161,9 @@ class modiProject(UpdateView):
 
     # Validación de la url
     def get_success_url(self):
+
         proj_id = self.kwargs['id']
-        return reverse_lazy("verProyecto", kwargs={'id': proj_id})
+        return reverse_lazy("verProyecto", kwargs={'pk': proj_id})
 
     def get_context_data(self, **kwargs):
         context = super(modiProject, self).get_context_data(**kwargs)
