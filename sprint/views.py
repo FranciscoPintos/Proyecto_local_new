@@ -62,7 +62,7 @@ def ver_burndownchart(request, pk, sp_pk):
             sp = sp + histo
 
         # traemos la ultima modificacion del us
-        ultima_modif = HistorialUs.objects.filter(ustory=objeto.id).last()
+        ultima_modif = HistorialUs.objects.filter(ustory=objeto.id, sprint=sprint.id).last()
         # si esta ultima modificacion tiene estado 4
         if(ultima_modif.estado == 4): # esta en el done
             # está terminado
