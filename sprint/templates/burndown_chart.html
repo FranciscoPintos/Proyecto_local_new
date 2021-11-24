@@ -1,5 +1,5 @@
 {% extends 'baseProyecto.html' %}
-
+{% load static %}
 {% block content %}
 
     <br>
@@ -20,8 +20,8 @@
                     </div>
                     <div class="card-body">
                         <figure class="figure">
-                          <img src="../../burndownchart.png" class="figure-img img-fluid rounded" alt="No fue posible cargar la imagen">
-                          <figcaption class="figure-caption">Burndownchart del sprint: {{ sprint.name }}</figcaption>
+                            <img src="{% static 'img/burndownchart.png' %}" class="figure-img img-fluid rounded" alt="No fue posible cargar la imagen">
+                            <figcaption class="figure-caption text-end">Burndownchart del sprint: {{ sprint.name }}</figcaption>
                         </figure>
                     </div>
                 </div>

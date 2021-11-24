@@ -94,11 +94,23 @@ def ver_burndownchart(request, pk, sp_pk):
     # el valor inicial de y debe ser igual a la cantidad de storypoints a ser realizados
     y2.append(sp)
 
+    dic = {}
+
     for terminado in us_terminados:
-        print(fecha_inicio)
-        print(terminado.fecha_modificacion.date())
-        x2.insert( (terminado.fecha_modificacion.date()-fecha_inicio).days,  (terminado.fecha_modificacion.date()-fecha_inicio).days)
-        y2.insert( (terminado.fecha_modificacion.date()-fecha_inicio).days, terminado.storypoints )
+        dic[terminado.fecha_modificacion] = dic.get(terminado.fecha_modificacion, 0) + terminado.storypoints
+
+    aux = dic.values()
+    j = 1
+
+    for i in aux:
+        y2.append(i)
+        if( ( (i.fecha_modificacion).date() - fecha_inicio ).days == j ):
+            x2.append(j)
+            j = j + 1
+        else:
+            while( ((i.fecha_modificacion).date() - fecha_inicio ).days != j ):
+                j = j + 1
+
 
     print(x2)
     print(y2)
@@ -114,8 +126,7 @@ def ver_burndownchart(request, pk, sp_pk):
     ax1.grid()
     ax1.legend()
 
-    figura.savefig("burndownchart.png")
-    plt.show()
+    figura.savefig("sprint/static/img/burndownchart.png")
 
 
     return render(request, 'burndown_chart.html', context=context)
