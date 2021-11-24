@@ -185,7 +185,12 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
             data = form.save(commit=False)
             data.sprint = Sprint.objects.get(id=self.kwargs['sp_pk'])
             data.save()
+            equipo = Equipo.objects.get(id=self.kwargs['eq_pk'])
+
             form.save_m2m()
+            for us in Sprint.objects.get(id=self.kwargs['sp_pk']).us.all():
+                if us.user not in equipo.miembros.all():
+                    equipo.miembros.add(us.user)
             miembros = data.miembros.all()
             suma = 0
             for mi in miembros:
@@ -197,7 +202,7 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(edit_equipo, self).get_form_kwargs()
-        kwargs['request'] = self.kwargs['pk']
+        kwargs['request'] = self.kwargs['eq_pk']
         return kwargs
 
 

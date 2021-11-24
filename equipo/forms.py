@@ -41,12 +41,7 @@ class EditarEquipoForm(forms.ModelForm):
         super(EditarEquipoForm, self).__init__(*args, **kwargs)
         equipo = Equipo.objects.get(id=self.request)
         us_list_sprint= Sprint.objects.get(id=equipo.sprint.id).us.all()
-        miembros_equipo= Miembro.objects.filter(rol__project_id= self.request).exclude(rol__name="Scrum Master").exclude(rol__name="Product Owner")
-        for us in us_list_sprint:
-            miembro= us.user
-            print(miembro)
-            if miembro in miembros_equipo:
-                print(miembros_equipo[0].id)
-                miembros_equipo=miembros_equipo.exclude(id=miembro.id)
-                print(miembro.id)
+        miembros_equipo= Miembro.objects.filter(rol__project_id=equipo.sprint.proyecto.id).exclude(rol__name="Scrum Master").exclude(rol__name="Product Owner")
+
+        print(miembros_equipo)
         self.fields['miembros'].queryset = miembros_equipo

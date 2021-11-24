@@ -53,9 +53,19 @@
                             {% endif %}
 
 
+<<<<<<< Updated upstream
                             <h5>Descripción <a href="{% url 'edit_us' pk=Proyecto.id us_pk=Us.id %}"
                                                class="btn-sm btn-info"><i
                                     class="fas fa-edit"></i></a></h5>
+=======
+                            <h5>Descripción
+                                {% if horas_asignadas > 0 %}
+                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=Us.id %}"
+                               class="btn-sm btn-info"><i
+                                    class="fas fa-edit"></i></a>
+                                {% endif %}
+                            </h5>
+>>>>>>> Stashed changes
 
                             <p class="bg-gray-light">{{ Us.descripcion }}</p>
 
