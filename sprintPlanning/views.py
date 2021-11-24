@@ -13,7 +13,7 @@ from project.models import Proyecto
 from sprint.models import Sprint
 from sprintPlanning.forms import primerpasoplanificarSprint, tercerpasoplanificarSprint, \
     planificacionUS_Scrum, estimarUS_desarrollador
-from us.models import Us
+from us.models import Us, HistorialUs
 from usuario.models import Usuario
 from sprintPlanning.models import *
 from tests import test_email
@@ -83,12 +83,14 @@ def modificar_sprintplanni(request, pk, sp_pk):
                 suma = suma + mi.horaTrabajo
             data.capacidad = np.busday_count(data.sprint.fecha_incio, data.sprint.fecha_fin, weekmask='1111110') * suma
             data.save()
-            s_p.paso = 3
         else:
             s_p.paso = 2
         s_p.save()
         if Equipo.objects.filter(sprint_id=sp_pk).exists():
-            return redirect('editar_equipo', pk=pk, sp_pk=sp_pk, eq_pk=data.id)
+            if s_p.paso == 3:
+                return redirect('sprintpaso3', pk=pk, sp_pk=sp_pk)
+            else:
+                return redirect('listarus', pk=pk, sp_pk=sp_pk)
         return redirect('create_equipo', pk=pk , sp_pk=sp_pk)
     else:
         return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk), 'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
@@ -290,6 +292,9 @@ def planificarus(request, pk, sp_pk, us_pk):
             uss.name= nuevosp.name
             uss.descripcion= nuevosp.descripcion
             uss.save()
+            ultimo_historial = HistorialUs.objects.filter(ustory_id=us_pk).last()
+            ultimo_historial.sprint = Sprint.objects.get(id=sp_pk)
+            ultimo_historial.save()
             return redirect('listado',pk=pk, sp_pk=sp_pk )
         return render(request, 'planificarus.html',
                       {'form': us_form, 'Proyecto': Proyecto.objects.get(pk=pk), 'permisos': permisos,'Sprint': Sprint.objects.get(id=sp_pk)})

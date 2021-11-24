@@ -3,7 +3,8 @@ from django import forms
 from django.forms import model_to_dict
 from django.utils.timezone import now
 
-from us.models import *
+from project.models import Proyecto
+from us.models import Us
 
 
 

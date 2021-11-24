@@ -81,7 +81,7 @@ def view_us(request, pk, us_pk):
         horasTrabajadas += tr.horas
     # Obtener todos los sprint del proyecto
     for sp in Sprint.objects.filter(us__id=us_pk):
-        hs_us = HistorialUs.objects.filter(ustory__sprint__id=sp.id).last()
+        hs_us = HistorialUs.objects.filter(sprint__id=sp.id).last()
         if hs_us.storypoints is not None:
             horasAsignadas += hs_us.storypoints
     context={
@@ -114,8 +114,8 @@ def detalle_us_sprimt(request, pk, sp_pk, us_pk):
     for tr in Tarea.objects.filter(sprimt__id=sp_pk, ustory_id=us_pk):
         horasTrabajadas += tr.horas
     horasAsignadas = 0
-    if HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk).last().storypoints is not None:
-        horasAsignadas = HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk).last().storypoints
+    if HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk, sprint__id=sp_pk).last().storypoints is not None:
+        horasAsignadas = HistorialUs.objects.filter(ustory__sprint__id=sp_pk, ustory_id=us_pk, sprint__id=sp_pk).last().storypoints
     context={
         'Us':us,
         'Proyecto':proj,

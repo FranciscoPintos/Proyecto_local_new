@@ -23,6 +23,8 @@ from sprint.forms import *
 from miembros.models import *
 from equipo.models import *
 from sprintPlanning.models import *
+from us.models import HistorialUs
+
 
 def sprint_backlog_view(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -112,7 +114,7 @@ class sprintView_Kanban(ListView):
         # Por cada us del sprint Backlog
         for US in product_backlog:
             # Asignar su ultimo historial del us durante el sprint
-            context['historiales'].append(HistorialUs.objects.filter(ustory__id=US.id).order_by('-id').first())
+            context['historiales'].append(HistorialUs.objects.filter(ustory__id=US.id, sprint__id=sprint.id).order_by('-id').first())
         print(context['historiales'])
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
@@ -121,7 +123,8 @@ class sprintView_Kanban(ListView):
         us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
         # Determinar si existen User Stories en el sprint
         has_us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().exists()
-        context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us
+        context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us and sprint.fecha_incio < sprint.fecha_fin
+        context['finalizar'] = not Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(estado=3).exists()
         context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
         if Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin is not None:
             context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
@@ -148,10 +151,16 @@ class sprintView_Kanban(ListView):
                             if (est_nuevo == 4 or est_nuevo == 1):
                                 UStory.set_estado(request.POST['estado'])
                                 UStory.save()
+                                ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
+                                ultimo_historial.sprint = sprint
+                                ultimo_historial.save()
                     else:
                         if est_nuevo - est_actual == 1:
                             UStory.set_estado(request.POST['estado'])
                             UStory.save()
+                            ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
+                            ultimo_historial.sprint = sprint
+                            ultimo_historial.save()
                     # Descomentar para hacer los cambios de estado manualmente sin las restricciones
                     # UStory.set_estado(request.POST['estado'])
                     # UStory.save()
@@ -159,9 +168,51 @@ class sprintView_Kanban(ListView):
                     HttpResponseServerError("Malformed data!")
 
                 return JsonResponse({"success": True}, status=200)
+            else:
+                # Finalizacion de Sprint
+
+                # Todos los us del sprint
+                for us in Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all():
+                    # Los us en TODO o DOING
+                    if us.estado == 1 or us.estado == 2:
+                        # Cambiar prioridad
+                        us.prioridad = 5
+                        # Quitar usuario asignado
+                        us.user = None
+                        us.estado=1
+                        # Asignar al siguiente sprint los US no finalizados
+                        if Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists():
+                            next_sp = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=1)
+                            next_sp.us.add(us)
+                            # Borrar Estimacion
+                            us.storypoints = None
+                            us.save()
+                            ultimo_historial = HistorialUs.objects.filter(ustory_id=us.id).last()
+                            ultimo_historial.sprint = next_sp
+                            ultimo_historial.save()
+                        else:
+                            us.save()
+                            ultimo_historial = HistorialUs.objects.filter(ustory_id=us.id).last()
+                            ultimo_historial.sprint = sprint
+                            ultimo_historial.save()
+                # Asignar fecha de finalizacion y estado finalizado
+                sprint.fecha_fin = datetime.date.today()
+                sprint.estado = 3
+                sprint.save()
+                # Control de fecha de inicio del siguiente Sprint
+                if Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists():
+                    next_sp = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=1)
+                    # Si la fecha de inicio del siguiente es menor a lafecha de finalizacion del actual movemos la fecha
+                    # de inicio del siguiente sprint
+                    if next_sp.fecha_incio is not None:
+                        if next_sp.fecha_incio < sprint.fecha_fin:
+                            next_sp.fecha_incio = sprint.fecha_fin
+                            next_sp.save()
+                return HttpResponseRedirect(self.get_success_url())
         elif sprint.estado == 1:
             s = Sprint.objects.get(pk=self.kwargs['sp_pk'])
             s.estado = 2
+            s.fecha_incio = datetime.date.today()
             s.save()
             return HttpResponseRedirect(self.get_success_url())
 

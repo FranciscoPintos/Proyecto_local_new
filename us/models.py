@@ -150,6 +150,8 @@ class HistorialComentarios(models.Model):
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
     activo= models.BooleanField(null=True)
 
+from sprint.models import Sprint
+
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)
@@ -163,3 +165,4 @@ class HistorialUs(models.Model):
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
     activo= models.BooleanField(default=True)
     etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null=True, blank=True)
+    sprint = models.ForeignKey(Sprint, on_delete=models.CASCADE, null=True, blank=True)
