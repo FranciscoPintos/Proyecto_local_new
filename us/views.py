@@ -231,7 +231,7 @@ def crear_us(request, pk):
         historiales = HistorialUs.objects.filter(ustory_id= nuevous.id)
         for his in historiales:
             ultimohistorial = his
-        ultimohistorial.user = request.user
+        ultimohistorial.user = Miembro.objects.get(user_id=request.user.id, rol__project_id=pk)
         ultimohistorial.save()
         return redirect('us', pk=pk)
     else:
@@ -306,7 +306,7 @@ def Us_Delete(request, pk, us_pk):
         historiales = HistorialUs.objects.filter(ustory_id=us_pk)
         for his in historiales:
             ultimohistorial = his
-        ultimohistorial.user = request.user
+        ultimohistorial.user = Miembro.objects.get(user_id=request.user.id, rol__project_id=pk)
         ultimohistorial.save()
         return redirect('us', pk=pk)
     else:
