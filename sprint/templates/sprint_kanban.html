@@ -44,7 +44,12 @@
                             </div>
                         </div>
                         <h3> {{ sprint.name }}</h3>
-
+                        {% if sprint.fecha_fin < sprint.fecha_incio %}
+                            <br>
+                            <div class="alert alert-danger">Error en fechas</div>
+                            <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=sprint.id %}"
+                                       class="btn btn-primary">Cambiar Fecha</a>
+                        {% endif %}
                     </div>
                     <div class="card-header bg-gradient-info">
                         <!---->
@@ -226,6 +231,12 @@
                                             <form action="" method="POST">
                                                 {% csrf_token %}
                                                 <input class="btn btn-primary" type="submit" value="Iniciar">
+                                            </form>
+                                        {% endif %}
+                                        {% if sprint.estado == 2  and finalizar %}
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <input class="btn btn-primary" type="submit" value="Finalizar">
                                             </form>
                                         {% endif %}
                                     {% endif %}

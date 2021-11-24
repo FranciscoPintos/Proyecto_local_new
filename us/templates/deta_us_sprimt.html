@@ -84,7 +84,7 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            {% if Us.storypoints %}
+                                            {% if horas_asignadas > 0 %}
                                                 <div class="card bg-gradient-green text-center"> {{ horas_asignadas }}hs</div>
                                             {% else %}
                                                 <div class="card bg-gradient-gray text-center"> 0 h</div>
@@ -92,7 +92,7 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                            {% if Us.storypoints %}
+                                            {% if horas_trabajadas > 0 %}
                                                 <div class="card bg-gradient-green text-center"> {{ horas_trabajadas }}hs</div>
         
                                             {% else %}
@@ -101,7 +101,7 @@
                                         </td>
                                         <td></td>
                                         <td>
-                                            {% if Us.storypoints %}
+                                            {% if horas_restantes %}
                                                 <div class="card bg-gradient-green text-center"> {{ horas_restantes }}hs</div>
                                             {% else %}
                                                 <div class="card bg-gradient-primary text-center"> 0 h</div>
@@ -123,7 +123,7 @@
         
         
                                    {% if Us.estado == 2 %}
-                                        <a href="{% url 'tareas' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-primary"
+                                        <a href="{% url 'tareas_sprimt' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}" class="btn btn-primary"
                                            type="button">Tareas</a>
 
 
