@@ -87,9 +87,11 @@
                                    class="btn btn-primary">Sprint Backlog</a>
                             {% endif %}
 
-                            {% if i.codename == 'view_historialtarea' %}
-                                <a href="{% url 'burndown_chart' Proyecto.id sprint.id %}"
-                                   class="btn btn-primary">Burndown Chart</a>
+                            {% if sprint.estado == 2 %}
+                                {% if i.codename == 'view_historialtarea' %}
+                                    <a href="{% url 'burndown_chart' Proyecto.id sprint.id %}"
+                                    class="btn btn-primary">Burndown Chart</a>
+                                {% endif %}
                             {% endif %}
 
                         {% endfor %}

@@ -46,33 +46,73 @@ def ver_burndownchart(request, pk, sp_pk):
         'Tarea': tarea,
         'Proyecto': proj,
     }
+
+
     # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
     # calculo del sp del sprint
     sp = 0
-    for objeto in us:
-        # se van sumando todos los storypoints de cada us
-        sp = sp + objeto.storypoints
+    us_terminados = []
+    # se van sumando todos los storypoints de cada us
+    for objeto in sprint.us.all():
+        # traemos el ultimo historial suyo
+        histo = HistorialUs.objects.filter(ustory=objeto.id).last().storypoints
+        if(histo is None): # si es none sumamos cero
+            sp = sp + 0
+        else: # sino sumamos el valor devuelto
+            sp = sp + histo
+
+        # traemos la ultima modificacion del us
+        ultima_modif = HistorialUs.objects.filter(ustory=objeto.id).last()
+        # si esta ultima modificacion tiene estado 4
+        if(ultima_modif.estado == 4): # esta en el done
+            # está terminado
+            us_terminados.append(ultima_modif)
+
+    print(us_terminados)
     #calculo de la duracion del sprint
     fecha_inicio = sprint.fecha_incio
     fecha_fin = sprint.fecha_fin
+
     # duracion del sprint en dias
-    #dias = (fecha_fin-fecha_inicio).days
-    dias = 5
+    dias = (fecha_fin-fecha_inicio).days
     # generacion del eje x del burndownchart
-    x = np.arange(0, dias, 1)
+    x1 = np.arange(0, dias+1, 1)
     # funcion del eje y
-    y = sp - (sp*x/dias)
+    y1 = sp - (sp*x1/dias)
 
-    figura, ax = plt.subplots()
-    ax.plot(x, y)
+    figura, ax1 = plt.subplots()
+    ax1.plot(x1, y1, label='Gráfico ideal')
 
-    ax.set(
+    # seran listas que contendran los valores a ser ploteados
+    x2 = []
+    y2 = []
+
+    # los valores iniciales de x y de y sí son conocidos
+    
+    # el valor inicial de x debe ser 0
+    x2.append(0)
+    # el valor inicial de y debe ser igual a la cantidad de storypoints a ser realizados
+    y2.append(sp)
+
+    for terminado in us_terminados:
+        print(fecha_inicio)
+        print(terminado.fecha_modificacion.date())
+        x2.insert( (terminado.fecha_modificacion.date()-fecha_inicio).days,  (terminado.fecha_modificacion.date()-fecha_inicio).days)
+        y2.insert( (terminado.fecha_modificacion.date()-fecha_inicio).days, terminado.storypoints )
+
+    print(x2)
+    print(y2)
+
+    ax1.plot(x2, y2, label='Gráfico real')
+
+    ax1.set(
         xlabel='Días',
         ylabel='StoryPoints',
         title='Gráfico del Burndownchart'
     )
 
-    ax.grid()
+    ax1.grid()
+    ax1.legend()
 
     figura.savefig("burndownchart.png")
     plt.show()
