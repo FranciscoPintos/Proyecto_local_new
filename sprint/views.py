@@ -107,7 +107,15 @@ class sprintView_Kanban(ListView):
         context['sprint'] = sprint
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
-        product_backlog = sprint.us.all() #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+        miembro=Miembro.objects.get(user=self.request.user, rol__project_id= self.kwargs['pk'])
+
+
+        product_backlog = sprint.us.filter(user=miembro)
+        print('name:',miembro.rol.name)
+        if miembro.rol.name == 'Scrum Master':
+            product_backlog=sprint.us.all()
+        #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+
         context['ProductBacklog'] = product_backlog
         # Ultimo estado de los US durante el Sprint
         context['historiales'] = []
