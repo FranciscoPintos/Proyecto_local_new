@@ -7,6 +7,16 @@
 /tarea/__pycache__/
 /us/__pycache__/
 /etiqueta/__pycache__/
+/tests/__pycache__/
+Proyecto/__pycache__/
+equipo/__pycache__/
+sprint/__pycache__/
+sprintPlanning/__pycache__/
+equipo/migrations/__pycache__/
+etiqueta/migrations/__pycache__/
+sprint/migrations/__pycache__/
+sprintPlanning/migrations/__pycache__/
+us/migrations/__pycache__/
 /venv/
 /equipo/migrations/
 /etiqueta/migrations/
