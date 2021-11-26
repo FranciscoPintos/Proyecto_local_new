@@ -146,7 +146,7 @@
                         </div>
                     <div class="col-2 m-2">
                         {% for i in permisos %}
-                            {% if i.codename == 'change_proyecto' %}
+                            {% if i.codename == 'start_proyecto' %}
                                 {% if Proyecto.estado == 'E' and iniciar %}
                                     <a href="{% url 'iniciarProyecto' Proyecto.id %}"
                                        class="btn btn-lg btn-primary">
@@ -155,6 +155,8 @@
                                     </a>
 
                                 {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'end_proyecto' %}
                                 {% if Proyecto.estado == 'I' and finalizar %}
                                     <a href="{% url 'finalizarProyecto' Proyecto.id %}"
                                        class="btn btn-lg btn-primary">

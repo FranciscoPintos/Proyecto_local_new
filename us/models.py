@@ -77,12 +77,6 @@ class Us(models.Model):
         verbose_name = 'Us'
         db_table = 'us'
         ordering = ['-prioridad', 'name']
-        permissions = (
-            ('add_usproductbacklog', 'Can add Us to Product Backlog'),
-            ('view_usproductbacklog', 'Can view Us to Product Backlog'),
-            ('delete_usproductbacklog', 'Can delete Us to Product Backlog'),
-            ('change_usproductbacklog', 'Can view Us to Product Backlog'),
-            ('valuate_us', 'Can calificate Us to Sprint Backlog'))
 
 # definicion del modelo de de tabla Comentario
 class Comentarios(models.Model):
@@ -132,11 +126,6 @@ class Comentarios(models.Model):
         verbose_name = 'Comentarios'
         db_table = 'comentarios'
         ordering = ['id', 'creador']
-        permissions = (
-            ('add_comment', 'Can add Us to Product Backlog'),
-            ('view_comment', 'Can view Us to Product Backlog'),
-            ('delete_comment', 'Can delete Us to Product Backlog'),
-            ('modify_comment', 'Can modify comment'))
 
 class HistorialComentarios(models.Model):
     

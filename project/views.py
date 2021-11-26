@@ -77,13 +77,41 @@ def nuevoProyecto(request, id):
                 SM.permisos.add(i)
 
             # Permisos para el Product Owner
-            for i in Permission.objects.filter(id__gt=72):
-                PO.permisos.add(i)
+            PO.add_pemission_str('view_proyecto')
+            PO.add_pemission_str('view_miembro')
+            PO.add_pemission_str('view_comentarios')
+            PO.add_pemission_str('view_historialcomentarios')
+            PO.add_pemission_str('view_historialus')
+            PO.add_pemission_str('add_us')
+            PO.add_pemission_str('change_us')
+            PO.add_pemission_str('delete_us')
+            PO.add_pemission_str('view_us')
+            PO.add_pemission_str('view_historialtarea')
+            PO.add_pemission_str('view_tarea')
+            PO.add_pemission_str('add_etiqueta')
+            PO.add_pemission_str('change_etiqueta')
+            PO.add_pemission_str('delete_etiqueta')
+            PO.add_pemission_str('view_etiqueta')
+            PO.add_pemission_str('view_sprint')
+            PO.add_pemission_str('view_equipo')
+            PO.add_pemission_str('view_sprintbacklog')
+            PO.add_pemission_str('view_burdownchart')
 
             # Permisos para el Desarollador
-            for i in Permission.objects.filter(id__gt=45):
-                Dt.permisos.add(i)
-
+            Dt.add_pemission_str('view_proyecto')
+            Dt.add_pemission_str('view_miembro')
+            Dt.add_pemission_str('view_comentarios')
+            Dt.add_pemission_str('view_historialcomentarios')
+            Dt.add_pemission_str('view_historialus')
+            Dt.add_pemission_str('view_us')
+            Dt.add_pemission_str('view_historialtarea')
+            Dt.add_pemission_str('view_tarea')
+            Dt.add_pemission_str('add_tarea')
+            Dt.add_pemission_str('delete_tarea')
+            Dt.add_pemission_str('change_tarea')
+            Dt.add_pemission_str('view_sprint')
+            Dt.add_pemission_str('view_equipo')
+            Dt.add_pemission_str('view_sprintbacklog')
 
             return redirect('verProyectos')
         else:
@@ -122,7 +150,6 @@ class ProyectoCreate(CreateView):
 
 
 def verProyectos(request, id):
-    #print(Usuario.objects.get(id=id).id)
     user = request.user
     try:
         c = 0

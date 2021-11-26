@@ -20,8 +20,7 @@ class Proyecto(models.Model):
     fecha_fin = models.DateField(verbose_name='Fecha de Finalización', blank=True, null=True)
     active = models.BooleanField(default=True)
     estado = models.CharField(max_length=20, choices=ESTADOS, default='E')
-    #miembros debe ser una relación desde la case Miembro
-
+    # miembros debe ser una relación desde la case Miembro
 
     def __str__(self):
         return self.name
@@ -43,9 +42,3 @@ class Proyecto(models.Model):
 
         super().save(*args, **kwargs)
 
-def set_can_buy_beer(sender, instance, **kwargs):
-    ''' Trigger body '''
-    if instance.age >= 21:
-        instance.can_buy_beer = True
-    else:
-        instance.can_buy_beer = False
