@@ -243,9 +243,11 @@ class sprintView_Kanban(ListView):
         context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us and sprint.fecha_incio < sprint.fecha_fin
         context['finalizar'] = not Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(estado=3).exists()
         context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
-        if Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin is not None:
+        if Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin is not None and sprint.estado != 3:
             context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
-                                          weekmask='1111110') + 1
+                                          weekmask='1111110')
+        else:
+            context['dias'] = 0
         return context
 
     def post(self, request, *args, **kwargs):

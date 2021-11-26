@@ -11,7 +11,8 @@ class Proyecto(models.Model):
         ('E', 'Espera'),
         ('I', 'Iniciado'),
         ('P', 'Pausado'),
-        ('C', 'Cancelado')
+        ('C', 'Cancelado'),
+        ('F', 'Finalizado'),
     )
     name = models.CharField(max_length=50, verbose_name='Nombre', unique=True)
     creator = models.ForeignKey(Usuario, verbose_name='Creador', on_delete=models.CASCADE)

@@ -63,7 +63,7 @@ def addMiembro(request, id):
         # Crear formulario
         FormularioProyecto = CrearMiembro(request.GET)
         # Traer todos los usuarios menos los que ya son miembros activos del proyecto
-        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True)
+        FormularioProyecto.fields['user'].queryset = Usuario.objects.filter(miembro__rol__project_id=id, miembro__activo=False).union(Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True))
         # Cargar al html
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto, 'Proyecto': proj, 'permisos': permisos})
 

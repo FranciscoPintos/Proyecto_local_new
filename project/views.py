@@ -16,6 +16,7 @@ from django.views.generic import ListView, CreateView
 from miembros.models import Miembro, RolProyecto
 from project.forms import CreateProyectoForm, ProyectoForm
 from project.models import Proyecto
+from sprint.models import Sprint
 from us.models import Us
 from usuario.models import Usuario
 
@@ -208,14 +209,37 @@ def iniciarProyecto(request, id):
         try:
             ProjectStart.save()
         except ValueError as err:
-            print(err.args.__str__())
             error = err.args.__str__()
             messages.error(request, error)
             return redirect('iniciarProyecto', id)
         return redirect('verProyecto', pk=id)
     else:
-        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos':permisos})
+        return render(request, 'confirmarInicio.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos': permisos})
 
+
+def finalizarProyecto(request, id):
+    # Ver si es un miembro del proyecto
+    if Miembro.objects.filter(user=request.user.id):
+        # obtener su usuario
+        user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
+    else:
+        # si no es miembro se analizan los permisos de sistema
+        user = request.user
+    # obtener sus permisos
+    permisos = user.rol.list_permissions().order_by('id')
+    if request.method == 'POST':
+        ProjectStart = Proyecto.objects.get(id=id)
+        ProjectStart.fecha_inicio = datetime.date.today()
+        ProjectStart.estado = 'F'
+        try:
+            ProjectStart.save()
+        except ValueError as err:
+            error = err.args.__str__()
+            messages.error(request, error)
+            return redirect('finalizarProyecto', id)
+        return redirect('verProyecto', pk=id)
+    else:
+        return render(request, 'confirmarFinalizacion.html', {'Proyecto': Proyecto.objects.get(id=id), 'permisos': permisos})
 
 
 # clase para visualizar la pantalla principal de un proyecto n
@@ -248,8 +272,17 @@ class Proyect_view(ListView):
         context['permisos'] = permisos
         context['ProductBacklog'] = product_backlog
         context['is_scrum'] = is_scrum
-        context['dias'] = np.busday_count(datetime.date.today(), Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin, weekmask='1111110') + 1
+        if Proyecto.objects.get(pk=self.kwargs['pk']).estado != 'C' or  Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin != 'F':
+            context['dias'] = np.busday_count(datetime.date.today(), Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin, weekmask='1111110')
+        else:
+            context['dias'] = 0
+        if not Us.objects.filter(project_id=self.kwargs['pk']).exclude(estado=4).exclude(activo=False).exists() and \
+                not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and \
+                not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists():
+            context['finalizar'] = True
 
+        if Miembro.objects.filter(rol__project_id=self.kwargs['pk'], rol__name='Product Owner').exists():
+            context['iniciar'] = True
         return context
 
     # def post(self, request, *args, **kwargs):

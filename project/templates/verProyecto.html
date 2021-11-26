@@ -47,7 +47,6 @@
                         </div>
                         <h3> {{ Proyecto.name.upper }}</h3>
                     </div>
-                    {% if  Proyecto.estado == 'I' %}
                         <div class="card-body">
                             {% if ProductBacklog %}
                                 <div class="row">
@@ -142,18 +141,25 @@
                                     </div>
                                 </div>
                             {% else %}
-                                Prdocut backlog vacío
+                                Product backlog vacío
                             {% endif %}
                         </div>
-                    {% endif %}
                     <div class="col-2 m-2">
                         {% for i in permisos %}
                             {% if i.codename == 'change_proyecto' %}
-                                {% if Proyecto.estado == 'E' %}
+                                {% if Proyecto.estado == 'E' and iniciar %}
                                     <a href="{% url 'iniciarProyecto' Proyecto.id %}"
                                        class="btn btn-lg btn-primary">
                                         INICIAR
                                         <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                    </a>
+
+                                {% endif %}
+                                {% if Proyecto.estado == 'I' and finalizar %}
+                                    <a href="{% url 'finalizarProyecto' Proyecto.id %}"
+                                       class="btn btn-lg btn-primary">
+                                        FINALIZAR
+                                        <i class="fas fa-play-circle" title="Finalizar el proyecto"></i>
                                     </a>
 
                                 {% endif %}

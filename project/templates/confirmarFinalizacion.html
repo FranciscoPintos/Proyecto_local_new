@@ -1,0 +1,23 @@
+{% extends 'baseProyecto.html' %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+    <div class="card col-3 offset-4 mt-4">
+        {% for message in messages %}
+            <div class="alert alert-success">
+                <a class="close" href="" data-dismiss="alert">×</a> {{ message }}
+            </div>
+        {% endfor %}
+        <div class="card-body p-0 mt-3 mb-3 align-middle text-center">
+            <form method="post">{% csrf_token %}
+                <h3>¿Finalizar el proyecto {{ Proyecto.name }}? <i class="fas fa-exclamation-circle"></i></h3>
+
+
+                <a type="submit" href="{% url 'verProyecto' Proyecto.id %}" class="btn btn-danger">Cancelar</a>
+                <input  class="btn bg-green" type="submit" value="Confirmar">
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
