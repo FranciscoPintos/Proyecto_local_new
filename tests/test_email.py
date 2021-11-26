@@ -10,6 +10,7 @@ from usuario import *
 
 
 def send_email(email_to, message):
+    print('sefsdfs')
     try:
         mailServer = smtplib.SMTP(settings.EMAIL_HOST, settings.EMAIL_PORT)
         print(mailServer.ehlo())

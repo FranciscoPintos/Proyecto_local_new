@@ -24,7 +24,7 @@ from miembros.models import *
 from equipo.models import *
 from sprintPlanning.models import *
 from us.models import HistorialUs
-
+from tests.test_email import send_email
 
 from tarea.models import *
 # importacion de las dependencias para el grafico  burndownchart
@@ -116,6 +116,7 @@ def ver_burndownchart(request, pk, sp_pk):
 
     print(x2)
     print(y2)
+
 
     ax1.plot(x2, y2, label='Gráfico real')
 
@@ -265,14 +266,27 @@ class sprintView_Kanban(ListView):
                     if is_scrum:
                         if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
                             if (est_nuevo == 4 or est_nuevo == 1):
+                                print('antess:', UStory.estado)
                                 UStory.set_estado(request.POST['estado'])
                                 UStory.save()
+                                print('Desopues:',UStory.estado)
                                 ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
                                 ultimo_historial.sprint = sprint
                                 ultimo_historial.save()
                     else:
                         if est_nuevo - est_actual == 1:
                             UStory.set_estado(request.POST['estado'])
+                            print('est',request.POST['estado'])
+                            if (int(request.POST['estado']) == 3):
+                                Creador=Miembro.objects.get(rol__project_id=self.kwargs['pk'], rol__name='Scrum Master')
+                                print('correo:' ,Creador.user.email)
+                                proj=str(self.kwargs['pk'])
+                                spr=str(self.kwargs['sp_pk'])
+                                # us=str(self.kwargs['us_pk'])
+                                mensaje= 'El sprint '+ spr + ' del Proyecto ' + proj + ' tiene pendiente por evaluar el US ' + UStory.name
+                                print(mensaje)
+                                send_email(Creador.user.email,mensaje)
+
                             UStory.save()
                             ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
                             ultimo_historial.sprint = sprint
