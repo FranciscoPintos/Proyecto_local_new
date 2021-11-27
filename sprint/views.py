@@ -24,14 +24,15 @@ from miembros.models import *
 from equipo.models import *
 from sprintPlanning.models import *
 from us.models import HistorialUs
-
-
 from tarea.models import *
+
 # importacion de las dependencias para el grafico  burndownchart
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 
+
+#TRATAR DE VER COMO HACER CUANDO EL SPRINT DURA MAS DE LO ESPERADO
 
 def ver_burndownchart(request, pk, sp_pk):
 
@@ -40,7 +41,7 @@ def ver_burndownchart(request, pk, sp_pk):
     sprint = Sprint.objects.get(id=sp_pk)
     # falta agregar de que sprint viene
     us = Us.objects.filter(project=pk, user=user.id)
-    tarea = Tarea.objects.filter(ustory=us, sprimt=sp_pk)
+    tarea = Tarea.objects.filter(sprimt=sp_pk)
     context = {
         'Us': us,
         'User': user,
@@ -53,7 +54,7 @@ def ver_burndownchart(request, pk, sp_pk):
     # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
     # calculo del sp del sprint
     sp = 0
-    us_terminados = []
+
     # se van sumando todos los storypoints de cada us
     for objeto in sprint.us.all():
         # traemos el ultimo historial suyo
@@ -63,14 +64,6 @@ def ver_burndownchart(request, pk, sp_pk):
         else: # sino sumamos el valor devuelto
             sp = sp + histo
 
-        # traemos la ultima modificacion del us
-        ultima_modif = HistorialUs.objects.filter(ustory=objeto.id, sprint=sprint.id).last()
-        # si esta ultima modificacion tiene estado 4
-        if(ultima_modif.estado == 4): # esta en el done
-            # está terminado
-            us_terminados.append(ultima_modif)
-
-    print(us_terminados)
     #calculo de la duracion del sprint
     fecha_inicio = sprint.fecha_incio
     fecha_fin = sprint.fecha_fin
@@ -98,21 +91,25 @@ def ver_burndownchart(request, pk, sp_pk):
 
     dic = {}
 
-    for terminado in us_terminados:
-        dic[terminado.fecha_modificacion] = dic.get(terminado.fecha_modificacion, 0) + terminado.storypoints
+    for objeto in tarea:
+        ultimo = HistorialTarea.objects.filter(tarea=objeto.id).last()
+        dic[(ultimo.fecha_modificacion).date()] = dic.get((ultimo.fecha_modificacion).date(), 0) + ultimo.hora
 
-    aux = dic.values()
+    aux = sp
     j = 1
 
-    for i in aux:
-        y2.append(i)
-        if( ( (i.fecha_modificacion).date() - fecha_inicio ).days == j ):
+    for clave, valor in dic.items():
+        print("El valor es: ", valor)
+        aux = aux - valor
+        y2.append(aux)
+        print("La clave es: ", clave)
+        if( ( clave - fecha_inicio ).days == j ):
             x2.append(j)
             j = j + 1
         else:
-            while( ((i.fecha_modificacion).date() - fecha_inicio ).days != j ):
+            while( (clave - fecha_inicio).days != j ):
                 j = j + 1
-
+            x2.append(j)
 
     print(x2)
     print(y2)
