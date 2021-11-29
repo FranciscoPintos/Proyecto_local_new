@@ -69,7 +69,8 @@ def ver_burndownchart(request, pk, sp_pk):
     fecha_fin = sprint.fecha_fin
 
     # duracion del sprint en dias
-    dias = (fecha_fin-fecha_inicio).days
+    #dias = (fecha_fin-fecha_inicio).days
+    dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110')
     # generacion del eje x del burndownchart
     x1 = np.arange(0, dias+1, 1)
     # funcion del eje y
@@ -99,17 +100,50 @@ def ver_burndownchart(request, pk, sp_pk):
     j = 1
 
     for clave, valor in dic.items():
-        print("El valor es: ", valor)
-        aux = aux - valor
-        y2.append(aux)
-        print("La clave es: ", clave)
-        if( ( clave - fecha_inicio ).days == j ):
-            x2.append(j)
-            j = j + 1
-        else:
-            while( (clave - fecha_inicio).days != j ):
+        if( (fecha_fin - clave).days >= 0 ):
+            print("El valor es: ", valor)
+            aux = aux - valor
+            y2.append(aux)
+            print("La clave es: ", clave)
+            if ((clave - fecha_inicio).days == j):
+                x2.append(j)
                 j = j + 1
-            x2.append(j)
+            else:
+                while ((clave - fecha_inicio).days != j):
+                    j = j + 1
+                x2.append(j)
+        else:
+            # cambiamos la fecha fin
+            print(type(fecha_fin))
+            print(type(clave))
+            fecha_fin = clave
+            print("fecha inicio: ", fecha_inicio)
+            print("fecha fin nuevo: ", fecha_fin)
+            # luego recalculamos los dias que contiene el sprint
+            dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110') + 1
+            # generacion del eje x del burndownchart
+            x1 = np.arange(0, dias + 1, 1)
+            print("nuevo dias: ", dias)
+            print("x1: ", x1)
+            # funcion del eje y
+            y1 = sp - (sp * x1 / dias)
+
+            figura, ax1 = plt.subplots()
+            ax1.plot(x1, y1, label='Gráfico ideal')
+
+
+            print("El valor es: ", valor)
+            aux = aux - valor
+            y2.append(aux)
+            print("La clave es: ", clave)
+            if ((clave - fecha_inicio).days == j):
+                x2.append(j)
+                j = j + 1
+            else:
+                while ((clave - fecha_inicio).days != j):
+                    j = j + 1
+                x2.append(j)
+
 
     print(x2)
     print(y2)
