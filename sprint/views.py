@@ -77,7 +77,7 @@ def ver_burndownchart(request, pk, sp_pk):
     y1 = sp - (sp*x1/dias)
 
     figura, ax1 = plt.subplots()
-    ax1.plot(x1, y1, label='Gráfico ideal')
+    ax1.plot(x1, y1, label='Linea ideal')
 
     # seran listas que contendran los valores a ser ploteados
     x2 = []
@@ -129,7 +129,7 @@ def ver_burndownchart(request, pk, sp_pk):
             y1 = sp - (sp * x1 / dias)
 
             figura, ax1 = plt.subplots()
-            ax1.plot(x1, y1, label='Gráfico ideal')
+            ax1.plot(x1, y1, label='Linea ideal')
 
 
             print("El valor es: ", valor)
@@ -148,7 +148,7 @@ def ver_burndownchart(request, pk, sp_pk):
     print(x2)
     print(y2)
 
-    ax1.plot(x2, y2, label='Gráfico real')
+    ax1.plot(x2, y2, label='Linea real')
 
     ax1.set(
         xlabel='Días',
