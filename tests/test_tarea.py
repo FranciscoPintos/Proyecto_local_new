@@ -1,5 +1,7 @@
 from django.test import TestCase
 from tarea.models import *
+from tarea.forms import *
+import datetime
 
 
 #Espacio de definicion de pruebas unitarias referentes al modelo Tarea
@@ -21,6 +23,17 @@ class TestTarea(TestCase):
     #Espacio de definicion de prueba unitaria referente a las horas de trabajo
     def test_horas(self):
         self.assertEqual(Tarea.horas, 10, 'La cantidad de horas no coincide')
+
+    # definicion de prueba unitaria para el formulario de creacion de tarea
+    def test_form_tarea(self):
+        fecha_creacion = datetime.datetime.now().today()
+        data_form = {
+            'descripcion': 'Descripcion de una tarea',
+            'horas': 20,
+            'fecha_creacion': fecha_creacion
+        }
+        formulario = crearTarea(data_form)
+        self.assertTrue(formulario.is_valid, "El formulario no es válido")
 
 #Espacio de definicion de pruebas unitarias referentes al modelo HistorialTarea
 class TestHistorialTarea(TestCase):

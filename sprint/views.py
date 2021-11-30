@@ -27,11 +27,14 @@ from us.models import HistorialUs
 from tests.test_email import send_email
 
 from tarea.models import *
+
 # importacion de las dependencias para el grafico  burndownchart
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 
+
+#TRATAR DE VER COMO HACER CUANDO EL SPRINT DURA MAS DE LO ESPERADO
 
 def ver_burndownchart(request, pk, sp_pk):
 
@@ -40,7 +43,7 @@ def ver_burndownchart(request, pk, sp_pk):
     sprint = Sprint.objects.get(id=sp_pk)
     # falta agregar de que sprint viene
     us = Us.objects.filter(project=pk, user=user.id)
-    tarea = Tarea.objects.filter(ustory=us, sprimt=sp_pk)
+    tarea = Tarea.objects.filter(sprimt=sp_pk)
     context = {
         'Us': us,
         'User': user,
@@ -53,7 +56,7 @@ def ver_burndownchart(request, pk, sp_pk):
     # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
     # calculo del sp del sprint
     sp = 0
-    us_terminados = []
+
     # se van sumando todos los storypoints de cada us
     for objeto in sprint.us.all():
         # traemos el ultimo historial suyo
@@ -63,27 +66,20 @@ def ver_burndownchart(request, pk, sp_pk):
         else: # sino sumamos el valor devuelto
             sp = sp + histo
 
-        # traemos la ultima modificacion del us
-        ultima_modif = HistorialUs.objects.filter(ustory=objeto.id, sprint=sprint.id).last()
-        # si esta ultima modificacion tiene estado 4
-        if(ultima_modif.estado == 4): # esta en el done
-            # está terminado
-            us_terminados.append(ultima_modif)
-
-    print(us_terminados)
-    # calculo de la duracion del sprint
+    #calculo de la duracion del sprint
     fecha_inicio = sprint.fecha_incio
     fecha_fin = sprint.fecha_fin
 
     # duracion del sprint en dias
-    dias = (fecha_fin-fecha_inicio).days
+    #dias = (fecha_fin-fecha_inicio).days
+    dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110')
     # generacion del eje x del burndownchart
     x1 = np.arange(0, dias+1, 1)
     # funcion del eje y
     y1 = sp - (sp*x1/dias)
 
     figura, ax1 = plt.subplots()
-    ax1.plot(x1, y1, label='Gráfico ideal')
+    ax1.plot(x1, y1, label='Linea ideal')
 
     # seran listas que contendran los valores a ser ploteados
     x2 = []
@@ -98,27 +94,63 @@ def ver_burndownchart(request, pk, sp_pk):
 
     dic = {}
 
-    for terminado in us_terminados:
-        dic[terminado.fecha_modificacion] = dic.get(terminado.fecha_modificacion, 0) + terminado.storypoints
+    for objeto in tarea:
+        ultimo = HistorialTarea.objects.filter(tarea=objeto.id).last()
+        dic[(ultimo.fecha_modificacion).date()] = dic.get((ultimo.fecha_modificacion).date(), 0) + ultimo.hora
 
-    aux = dic.values()
+    aux = sp
     j = 1
 
-    for i in aux:
-        y2.append(i)
-        if( ( (i.fecha_modificacion).date() - fecha_inicio ).days == j ):
-            x2.append(j)
-            j = j + 1
-        else:
-            while( ((i.fecha_modificacion).date() - fecha_inicio ).days != j ):
+    for clave, valor in dic.items():
+        if( (fecha_fin - clave).days >= 0 ):
+            print("El valor es: ", valor)
+            aux = aux - valor
+            y2.append(aux)
+            print("La clave es: ", clave)
+            if ((clave - fecha_inicio).days == j):
+                x2.append(j)
                 j = j + 1
+            else:
+                while ((clave - fecha_inicio).days != j):
+                    j = j + 1
+                x2.append(j)
+        else:
+            # cambiamos la fecha fin
+            print(type(fecha_fin))
+            print(type(clave))
+            fecha_fin = clave
+            print("fecha inicio: ", fecha_inicio)
+            print("fecha fin nuevo: ", fecha_fin)
+            # luego recalculamos los dias que contiene el sprint
+            dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110') + 1
+            # generacion del eje x del burndownchart
+            x1 = np.arange(0, dias + 1, 1)
+            print("nuevo dias: ", dias)
+            print("x1: ", x1)
+            # funcion del eje y
+            y1 = sp - (sp * x1 / dias)
+
+            figura, ax1 = plt.subplots()
+            ax1.plot(x1, y1, label='Linea ideal')
+
+
+            print("El valor es: ", valor)
+            aux = aux - valor
+            y2.append(aux)
+            print("La clave es: ", clave)
+            if ((clave - fecha_inicio).days == j):
+                x2.append(j)
+                j = j + 1
+            else:
+                while ((clave - fecha_inicio).days != j):
+                    j = j + 1
+                x2.append(j)
 
 
     print(x2)
     print(y2)
 
-
-    ax1.plot(x2, y2, label='Gráfico real')
+    ax1.plot(x2, y2, label='Linea real')
 
     ax1.set(
         xlabel='Días',
