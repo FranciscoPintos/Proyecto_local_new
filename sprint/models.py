@@ -42,4 +42,5 @@ class Sprint(models.Model):
         permissions = [('charge_sprintplanning', 'Can add Us to Sprint Backlog'),
                        ('view_sprintbacklog', 'Can view Sprint Backlog'),
                        ('view_burdownchart', 'Can view Burdownchart'),
-                       ('start_sprint', 'Can start Sprint')]
+                       ('start_sprint', 'Can start Sprint'),
+                       ('end_sprint', 'Can finalize a Sprint')]

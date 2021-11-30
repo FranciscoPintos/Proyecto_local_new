@@ -50,7 +50,7 @@
 
                     </div>
                     {% for i in permisos %}
-                        {% if i.codename == 'add_sprint' and Proyecto.estado == 'I' and  not create_no %}
+                        {% if i.codename == 'add_sprint' and Proyecto.estado == 'I' and create %}
                             <div class="card-footer">
                                 <div class="mt-6 mb-4 flex-md-row">
                                     <div class="col-3 offset-9 mt-3">

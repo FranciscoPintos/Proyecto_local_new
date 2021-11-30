@@ -59,16 +59,21 @@
 
                     </div>
                     <div class="card-footer">
-                            <div class="float-right">
-
-                                <a href="{% url 'agregarRolProyecto' Proyecto.id %}" class="btn btn-primary">
-                                    Crear Rol
-                                </a>
-                                <a href="{% url 'roles_miembros' Proyecto.id%}"
-                                   class="btn btn-primary">
-                                    Asignar Rol
-                                </a>
-                            </div>
+                        <div class="float-right">
+                            {% for permiso in permisos %}
+                                {% if permiso.codename == 'add_rolproyecto' %}
+                                    <a href="{% url 'agregarRolProyecto' Proyecto.id %}" class="btn btn-primary">
+                                        Crear Rol
+                                    </a>
+                                {% endif %}
+                                {% if permiso.codename == 'asignar_rolproyecto' %}
+                                    <a href="{% url 'roles_miembros' Proyecto.id%}"
+                                       class="btn btn-primary">
+                                        Asignar Rol
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>

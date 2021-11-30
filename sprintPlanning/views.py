@@ -2,7 +2,7 @@
 import numpy as np
 import datetime
 
-from django.shortcuts import render, redirect, get_object_or_404,HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, ListView
@@ -10,13 +10,12 @@ from django.views.generic import UpdateView, ListView
 from equipo.models import Equipo
 from miembros.models import Miembro
 from project.models import Proyecto
-from sprint.models import Sprint
 from sprintPlanning.forms import primerpasoplanificarSprint, tercerpasoplanificarSprint, \
     planificacionUS_Scrum, estimarUS_desarrollador
 from us.models import Us, HistorialUs
-from usuario.models import Usuario
 from sprintPlanning.models import *
 from tests import test_email
+
 
 def modificar_sprintplanni(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -30,7 +29,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
     permisos = user.rol.list_permissions().order_by('id')
     # Optener sprint de la cual se va a planificar
     sprint = Sprint.objects.get(id=sp_pk)
-    #Optener formulario un sprint ya existente antes de comenzar
+    # Optener formulario un sprint ya existente antes de comenzar
     sprin_form = primerpasoplanificarSprint(instance=sprint)
     # Optener la clase proyecto en la cual se esta trabajndo
     pro = Proyecto.objects.get(id=pk)
@@ -41,8 +40,8 @@ def modificar_sprintplanni(request, pk, sp_pk):
         # Obtener el modelo del formulario
         nuevosp = FormularioSprint.save(commit=False)
         # Validación de fecha inicio menor a fecha fin
-        if nuevosp.fecha_incio >= nuevosp.fecha_fin:
-            error = 'Error! Fecha inicio mayor a fecha fin: La fecha de fin debe de ser mayor a la fecha inicio'
+        if nuevosp.fecha_incio > nuevosp.fecha_fin:
+            error = 'Error! Fecha inicio mayor a fecha fin: La fecha de fin debe de ser mayor o igual a la fecha inicio'
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         # Validación de fecha inicio mayor a la fecha actual
@@ -51,7 +50,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
         # Validación de fecha fecha fin mayor a fecha inicio
-        if nuevosp.fecha_fin >= pro.fecha_fin:
+        if nuevosp.fecha_fin > pro.fecha_fin:
             error = 'Error! Fecha Fin debe ser menor a la fecha de finalacición del proyecto '
             messages.error(request, error)
             return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
@@ -60,7 +59,7 @@ def modificar_sprintplanni(request, pk, sp_pk):
 
         if len(inici)>0:
             inici=inici[0]
-            if nuevosp.fecha_incio <= inici.fecha_fin:
+            if nuevosp.fecha_incio < inici.fecha_fin:
                 error = 'Error! La fecha de inicio no puede empezar antes que la fecha fin del sprint que está en marcha '
                 messages.error(request, error)
                 return redirect('sprintpaso1', pk=pk, sp_pk=sp_pk)
@@ -87,13 +86,15 @@ def modificar_sprintplanni(request, pk, sp_pk):
             s_p.paso = 2
         s_p.save()
         if Equipo.objects.filter(sprint_id=sp_pk).exists():
-            if s_p.paso == 3:
+            if s_p.paso == 3 and user.has_perm('charge_sprintplanning'):
                 return redirect('sprintpaso3', pk=pk, sp_pk=sp_pk)
-            else:
+            elif user.has_perm('estimar_sprintplanning'):
                 return redirect('listarus', pk=pk, sp_pk=sp_pk)
-        return redirect('create_equipo', pk=pk , sp_pk=sp_pk)
+        if user.has_perm('add_equipo'):
+            return redirect('create_equipo', pk=pk, sp_pk=sp_pk)
+        return redirect('sprintKanban', pk=pk, sp_pk=sp_pk)
     else:
-        return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk= pk), 'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
+        return render(request, 'spprimerpaso.html', {'form': sprin_form, 'Proyecto': Proyecto.objects.get(pk=pk), 'Sprint': Sprint.objects.get(pk= sp_pk), 'permisos': permisos})
 
 
 class asignarUs(UpdateView):
@@ -115,7 +116,13 @@ class asignarUs(UpdateView):
     # Validación de la url
     def get_success_url(self):
         proj_id = self.kwargs['pk']
-        return reverse_lazy('listado', kwargs={'pk': proj_id, 'sp_pk':self.kwargs['sp_pk']})
+        user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        # Si tiene permiso para agregar US al sprint
+        if user.has_perm('estimar_sprintplanning'):
+            return reverse_lazy('listado', kwargs={'pk': proj_id, 'sp_pk': self.kwargs['sp_pk']})
+        # Si no tiene permiso se le redirige al sprint
+        else:
+            return reverse_lazy('sprintKanban', kwargs={'pk': proj_id, 'sp_pk': self.kwargs['sp_pk']})
 
     # Metodo para filtar los permisos selecionado y el id del proyecto que se esta trabajando
     def get_context_data(self, **kwargs):
@@ -146,7 +153,6 @@ class asignarUs(UpdateView):
         idsviejo=[]
         for ids in us_viejos_asignados:
             idsviejo.append(ids.id)
-        #print(idsviejo)
         #form.instance.save()
         product.save()
         form.save_m2m()
@@ -188,7 +194,6 @@ class View_USasignado(ListView):
             permisos = user.rol.list_permissions().order_by('id')
             context['permisos'] = permisos
 
-            print(context)
             return context
 
         def get_queryset(self):
@@ -202,27 +207,6 @@ class View_USasignado(ListView):
             object_list =us
             return object_list
 
-
-
-'''
-    def get_initial(self):
-        initial = super().get_initial()
-        initial['us'] = Us.objects.filter(project_id=self.kwargs['pk'], estado=1)
-        return initial
-
-    def post(self, request, *args, **kwargs):
-        self.object=self.get_object
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            #data=form.save(commit=False)
-            # print('dfgdfgd',data.project)
-
-            # data.estado=Us.status[0][0]
-            #data.save()
-            form.save()
-            return HttpResponseRedirect(self.get_success_url())
-        return self.render_to_response(self.get_context_data(form=form))
-'''
 
 def listarus(request, pk, sp_pk):
     # Ver si es un miembro del proyecto
@@ -333,4 +317,3 @@ def listadoparaestimar(request, pk, sp_pk):
         us = Us.objects.filter(sprint__id=sp_pk, estado=1)
     else:
         us = Us.objects.filter(user=user.user, sprint__id=sp_pk)
-    print(us)

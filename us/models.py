@@ -77,6 +77,7 @@ class Us(models.Model):
         verbose_name = 'Us'
         db_table = 'us'
         ordering = ['-prioridad', 'name']
+        permissions = [('estimar_sprintplanning','Can valuate a US')]
 
 # definicion del modelo de de tabla Comentario
 class Comentarios(models.Model):

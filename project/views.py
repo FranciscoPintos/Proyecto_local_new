@@ -35,7 +35,6 @@ def nuevoProyecto(request, id):
             try:
                 Pr.save()
             except ValueError as err:
-                print(err.args.__str__())
                 error = err.args.__str__()
                 messages.error(request, error)
                 return redirect('crearProyecto', id)
@@ -112,6 +111,8 @@ def nuevoProyecto(request, id):
             Dt.add_pemission_str('view_sprint')
             Dt.add_pemission_str('view_equipo')
             Dt.add_pemission_str('view_sprintbacklog')
+            Dt.add_pemission_str('view_burdownchart')
+            Dt.add_pemission_str('estimar_sprintplanning')
 
             return redirect('verProyectos')
         else:
@@ -126,7 +127,6 @@ def ProyectosView(request):
     if request.user.has_perm('view_proyecto'):
         user = request.user
         pr = Proyecto.objects.all()
-        print(pr)
         return render(request, 'proyectoAgregar.html', {'Proyectos': pr})
     else:
         return redirect('inicio')
@@ -154,7 +154,6 @@ def verProyectos(request, id):
     try:
         c = 0
         for miembros in Miembro.objects.all():
-            print(miembros.user)
             if miembros.user.id == id:
                 miembro = Miembro.objects.filter(user_id=Usuario.objects.get(id=id).id).exclude(activo=False)
                 pr = []
@@ -166,7 +165,6 @@ def verProyectos(request, id):
         # miembro = Miembro.objects.get(user_id=Usuario.objects.get(id=id).id)
 
     except ValueError as err:
-        print("exec")
         error = err.args.__str__()
         messages.error(request, error)
         return redirect('exceptMiembro')
@@ -192,30 +190,6 @@ def verProyecto(request, id):
         'ProductBacklog': product_backlog,
         'permisos': permisos,
     }
-    # m = Miembro.objects.get(user=request.user)
-    # is_scrum=str(m.rol)=='Scrum Master'
-    # if request.method == "POST" and request.is_ajax() and is_scrum:
-    #     print(is_scrum)
-    #
-    #     try:
-    #         UStory = Us.objects.get(id=request.POST['id'])
-    #         #la diferencia entre cambios de estados no mayor a 1 solo para avanzar
-    #         #para retroceder no puede ser
-    #         est_actual = int(UStory.estado)
-    #         est_nuevo = int(request.POST['estado'])
-    #
-    #         if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual!=4:
-    #             if(est_nuevo==4 or est_nuevo==1):
-    #                 UStory.set_estado(request.POST['estado'])
-    #                 UStory.save()
-    #         #Descomentar para hacer los cambios de estado manualmente sin las restricciones
-    #         # UStory.set_estado(request.POST['estado'])
-    #         # UStory.save()
-    #     except KeyError:
-    #         HttpResponseServerError("Malformed data!")
-    #
-    #     return JsonResponse({"success": True}, status=200)
-    # else:
     return render(request, 'verProyecto.html', context)
 
 
@@ -299,46 +273,14 @@ class Proyect_view(ListView):
         context['permisos'] = permisos
         context['ProductBacklog'] = product_backlog
         context['is_scrum'] = is_scrum
-        if Proyecto.objects.get(pk=self.kwargs['pk']).estado != 'C' or  Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin != 'F':
+        if Proyecto.objects.get(pk=self.kwargs['pk']).estado != 'C' or Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin != 'F':
             context['dias'] = np.busday_count(datetime.date.today(), Proyecto.objects.get(pk=self.kwargs['pk']).fecha_fin, weekmask='1111110')
         else:
             context['dias'] = 0
         if not Us.objects.filter(project_id=self.kwargs['pk']).exclude(estado=4).exclude(activo=False).exists() and \
-                not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists() and \
-                not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists():
+                Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=3).exists():
             context['finalizar'] = True
 
         if Miembro.objects.filter(rol__project_id=self.kwargs['pk'], rol__name='Product Owner').exists():
             context['iniciar'] = True
         return context
-
-    # def post(self, request, *args, **kwargs):
-    #     m = Miembro.objects.get(user=request.user,rol__project_id=self.kwargs['pk'])
-    #     is_scrum = str(m.rol) == 'Scrum Master'
-    #     print('mettgg11g')
-    #     if request.is_ajax():
-    #         # print(request.POST['estado'])
-    #         print('sdfs')
-    #         try:
-    #
-    #             UStory = Us.objects.get(id=request.POST['id'])
-    #             # la diferencia entre cambios de estados no mayor a 1 solo para avanzar
-    #             # para retroceder no puede ser
-    #             est_actual = int(UStory.estado)
-    #             est_nuevo = int(request.POST['estado'])
-    #             if is_scrum:
-    #                 if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
-    #                     if (est_nuevo == 4 or est_nuevo == 1):
-    #                         UStory.set_estado(request.POST['estado'])
-    #                         UStory.save()
-    #
-    #             # Descomentar para hacer los cambios de estado manualmente sin las restricciones
-    #             # UStory.set_estado(request.POST['estado'])
-    #             # UStory.save()
-    #         except KeyError:
-    #             HttpResponseServerError("Malformed data!")
-    #
-    #         return JsonResponse({"success": True}, status=200)
-    #     else:
-    #         print('metodo post')
-    #     return HttpResponseRedirect(self.get_success_url())

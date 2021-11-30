@@ -59,7 +59,6 @@ def product_backlog(request, pk):
         'User': user,
         'Proj': proj
     }
-    print(context)
     return render(request, 'product_backlog.html', context=context)
 
 
@@ -145,7 +144,6 @@ def view_comentarios(request, pk, us_pk):
     #Para saber a que Proyecto pertenece el comentario
     proj = Proyecto.objects.get(id=pk)
     comentarios = Comentarios.objects.filter(us_id=us_pk, activo=True)
-    print(comentarios)
     context={
         'Us': us,
         'Proyecto': proj,

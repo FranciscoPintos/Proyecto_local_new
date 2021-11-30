@@ -27,7 +27,16 @@
                                         <thead>
                                         <tr>
                                             <th>Etiqueta</th>
-                                            <th>Editar</th>
+                                            {% for permiso in permisos %}
+                                                {% if permiso.codename == 'change_etiqueta' %}
+                                                    <th>Editar</th>
+                                                {% endif %}
+                                            {% endfor %}
+                                            {% for permiso in permisos %}
+                                                {% if permiso.codename == 'delete_etiqueta' %}
+                                                    <th>Eliminar</th>
+                                                {% endif %}
+                                            {% endfor %}
                                         </tr>
                                         </thead>
                                         {% for r in Etiqueta %}
@@ -37,12 +46,22 @@
                                                     <td>
                                                         <h5 class>{{ r.name }}</h5>
                                                     </td>
-                                                    <td>
-                                                        <a type="submit" href="{% url 'edit_etiqueta' pk=Proyecto.id et_pk=r.id %}"
-                                                           class="btn btn-info"><i class="fas fa-edit"></i></a>
-                                                        <a type="submit" href="{% url 'delete_etiqueta' pk=Proyecto.id et_pk=r.id  %}"
-                                                           class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                                                    </td>
+                                                    {% for permiso in permisos %}
+                                                        {% if permiso.codename == 'change_etiqueta' %}
+                                                            <td>
+                                                                <a type="submit" href="{% url 'edit_etiqueta' pk=Proyecto.id et_pk=r.id %}"
+                                                                    class="btn btn-info"><i class="fas fa-edit"></i></a>
+                                                            </td>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                    {% for permiso in permisos %}
+                                                        {% if permiso.codename == 'delete_etiqueta' %}
+                                                            <td>
+                                                                <a type="submit" href="{% url 'delete_etiqueta' pk=Proyecto.id et_pk=r.id  %}"
+                                                                   class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                                            </td>
+                                                        {% endif %}
+                                                    {% endfor %}
                                                 </tr>
 
                                                 </tbody>

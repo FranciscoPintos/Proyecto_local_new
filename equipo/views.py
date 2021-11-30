@@ -94,13 +94,13 @@ class crear_equipo(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
         Sprint = self.kwargs['sp_pk']
-        # # Creacion de un equipo
-        # equipo = Equipo()
-        # # Asignacion del equipo al sprint
-        # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
-        # # Persistencia del equipo
-        # equipo.save()
-        return reverse_lazy('sprintpaso3', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        # Si tiene permiso para agregar US al sprint
+        if user.has_perm('charge_sprintplanning'):
+            return reverse_lazy('sprintpaso3', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        # Si no tiene permiso se le redirige al sprint
+        else:
+            return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)

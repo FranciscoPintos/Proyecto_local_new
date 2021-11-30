@@ -33,17 +33,21 @@
                                     </td>
                                     <td>
                                         <div class="btn-group btn-group-sm">
-                                            <a type="submit"
-                                               href="{% url 'lista_miembro_equipo' Proyecto.id sprint.id equipo.id %}"
-                                               class="btn btn-info"><i class="fas fa-eye"></i></a>
-
-                                            {% if sprint.estado == 1 %}
+                                        {% for permiso in permisos %}
+                                            {% if permiso.codename == 'view_equipo' %}
                                                 <a type="submit"
-                                                   href="{% url 'editar_equipo' Proyecto.id sprint.id equipo.id %}"
-                                                   class="btn btn-primary"><i
-                                                        class="fas fa-edit"></i></a>
+                                                   href="{% url 'lista_miembro_equipo' Proyecto.id sprint.id equipo.id %}"
+                                                   class="btn btn-info"><i class="fas fa-eye"></i></a>
                                             {% endif %}
-
+                                            {% if permiso.codename == 'change_equipo' %}
+                                                {% if sprint.estado == 1 %}
+                                                    <a type="submit"
+                                                       href="{% url 'editar_equipo' Proyecto.id sprint.id equipo.id %}"
+                                                       class="btn btn-primary"><i
+                                                            class="fas fa-edit"></i></a>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
                                         </div>
                                     </td>
                                 </tr>

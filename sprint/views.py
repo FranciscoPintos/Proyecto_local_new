@@ -70,7 +70,6 @@ def ver_burndownchart(request, pk, sp_pk):
             # está terminado
             us_terminados.append(ultima_modif)
 
-    print(us_terminados)
     #calculo de la duracion del sprint
     fecha_inicio = sprint.fecha_incio
     fecha_fin = sprint.fecha_fin
@@ -113,11 +112,6 @@ def ver_burndownchart(request, pk, sp_pk):
             while( ((i.fecha_modificacion).date() - fecha_inicio ).days != j ):
                 j = j + 1
 
-
-    print(x2)
-    print(y2)
-
-
     ax1.plot(x2, y2, label='Gráfico real')
 
     ax1.set(
@@ -158,7 +152,6 @@ def sprint_backlog_view(request, pk, sp_pk):
         'sprint': sprint,
         'permisos': permisos,
     }
-    print(context)
     return render(request, 'Sprint_backlog.html', context=context)
 
 
@@ -178,8 +171,10 @@ class sprintView(ListView):
             user = self.request.user
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
-
-        context['create_no']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'],estado=1).exists()
+        if Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1):
+            Us_sprint = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=1).us.all()
+            print( Us.objects.filter(project_id=self.kwargs['pk'], estado=1, activo=True).difference(Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=1).us.all()) )
+        context['create'] = not Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists() and Us.objects.filter(project_id=self.kwargs['pk'], estado=1, activo=True)
 
         context['permisos'] = permisos
         return context
@@ -220,7 +215,6 @@ class sprintView_Kanban(ListView):
 
 
         product_backlog = sprint.us.filter(user=miembro)
-        print('name:',miembro.rol.name)
         if miembro.rol.name == 'Scrum Master':
             product_backlog=sprint.us.all()
         #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
@@ -232,7 +226,6 @@ class sprintView_Kanban(ListView):
         for US in product_backlog:
             # Asignar su ultimo historial del us durante el sprint
             context['historiales'].append(HistorialUs.objects.filter(ustory__id=US.id, sprint__id=sprint.id).order_by('-id').first())
-        print(context['historiales'])
         m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         context['is_scrum']=is_scrum
@@ -257,7 +250,6 @@ class sprintView_Kanban(ListView):
 
         if sprint.estado == 2:
             if request.is_ajax():
-                print(request.POST['estado'])
                 try:
 
                     UStory = Us.objects.get(id=request.POST['id'])
@@ -268,25 +260,20 @@ class sprintView_Kanban(ListView):
                     if is_scrum:
                         if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
                             if (est_nuevo == 4 or est_nuevo == 1):
-                                print('antess:', UStory.estado)
                                 UStory.set_estado(request.POST['estado'])
                                 UStory.save()
-                                print('Desopues:',UStory.estado)
                                 ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
                                 ultimo_historial.sprint = sprint
                                 ultimo_historial.save()
                     else:
                         if est_nuevo - est_actual == 1:
                             UStory.set_estado(request.POST['estado'])
-                            print('est',request.POST['estado'])
                             if (int(request.POST['estado']) == 3):
                                 Creador=Miembro.objects.get(rol__project_id=self.kwargs['pk'], rol__name='Scrum Master')
-                                print('correo:' ,Creador.user.email)
                                 proj=str(self.kwargs['pk'])
                                 spr=str(self.kwargs['sp_pk'])
                                 # us=str(self.kwargs['us_pk'])
                                 mensaje= 'El sprint '+ spr + ' del Proyecto ' + proj + ' tiene pendiente por evaluar el US ' + UStory.name
-                                print(mensaje)
                                 send_email(Creador.user.email,mensaje)
 
                             UStory.save()
@@ -366,12 +353,6 @@ class crear_sprint(LoginRequiredMixin, CreateView):
         # equipo.save()
         return reverse_lazy('sprintlist', kwargs={'pk': Proyecto})
 
-    # def get_initial(self):
-    #     initial = super(crear_us, self).get_initial()
-    #     initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-    #     initial['estado']=Us.status[0]
-    #     print('inicial:', initial)
-    #     return initial
     def get_context_data(self, **kwargs):
         context = super(crear_sprint, self).get_context_data(**kwargs)
         context['Proyecto'] = Proyecto.objects.get(pk=self.kwargs['pk'])
@@ -400,7 +381,6 @@ class crear_sprint(LoginRequiredMixin, CreateView):
                     messages.error(request, error)
                     return self.render_to_response(self.get_context_data(form=form))
             data = form.save(commit=False)
-            # print('dfgdfgd',data.project)
             data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
             # data.estado=Us.status[0][0]
             data.save()
@@ -430,73 +410,3 @@ class crear_sprint(LoginRequiredMixin, CreateView):
 #     return render(request,'us.html',context=context)
 
 
-# class crear_us(LoginRequiredMixin,ValidatePermissionRequiredMixin, CreateView):
-#     permission_required = 'add_us'
-#     model = Us
-#     form_class = crearUsForm
-#     template_name = 'create_us.html'
-#
-#     def get_success_url(self):
-#         print('entro aca?')
-#         proj_id= self.kwargs['pk']
-#         return reverse_lazy('us', kwargs={'pk': proj_id})
-#     def get_initial(self):
-#         initial = super(crear_us, self).get_initial()
-#         initial['project'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-#         initial['estado']=Us.status[0]
-#         print('inicial:', initial)
-#         return initial
-#     def get_context_data(self, **kwargs):
-#         context = super(crear_us, self).get_context_data(**kwargs)
-#         context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-#         return context
-#     def post(self, request, *args, **kwargs):
-#         self.object=self.get_object
-#         form = self.form_class(request.POST)
-#         if form.is_valid():
-#             data=form.save(commit=False)
-#             print('dfgdfgd',data.project)
-#             data.project=Proyecto.objects.get(pk=self.kwargs['pk'])
-#             data.estado=Us.status[0][0]
-#             data.save()
-#             return HttpResponseRedirect(self.get_success_url())
-#         return self.render_to_response(self.get_context_data(form=form))
-# class Us_Delete(LoginRequiredMixin,ValidatePermissionRequiredMixin, DeleteView):
-#     permission_required ='delete_Us'
-#     model = Us
-#     template_name = 'delete_us.html'
-#     pk_sched_kwargs = 'us_pk'  # Definir el nombre del parametro obtenido en la url
-#
-#     def get_object(self, queryset=None):
-#         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
-#         obj = get_object_or_404(Us, pk=id)
-#         return obj
-#
-#     def get_success_url(self):
-#         proj_id = self.kwargs['pk']
-#         return reverse_lazy('us', kwargs={'pk': proj_id})
-#     def get_context_data(self, **kwargs):
-#         context = super(Us_Delete, self).get_context_data(**kwargs)
-#         context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-#         print(context)
-#         return context
-# class editUs(LoginRequiredMixin,ValidatePermissionRequiredMixin,UpdateView):
-#     permission_required = 'change_Us'
-#     model = Us
-#     form_class = editUsForm
-#     template_name = 'editar_us.html'
-#     pk_sched_kwargs = 'us_pk' #Definir el nombre del parametro obtenido en la url
-#
-#     def get_object(self, queryset=None):
-#         id = int(self.kwargs.get(self.pk_sched_kwargs, None))
-#         obj = get_object_or_404(Us, pk=id)
-#         return obj
-#
-#     def get_success_url(self):
-#         proj_id= self.kwargs['pk']
-#         return reverse_lazy('us', kwargs={'pk': proj_id})
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(editUs, self).get_context_data(**kwargs)
-#         context['proj'] = Proyecto.objects.get(pk=self.kwargs['pk'])
-#         return context

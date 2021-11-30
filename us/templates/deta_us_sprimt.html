@@ -120,19 +120,17 @@
         
                                     <a href="{% url 'histo' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-info"
                                        type="button">Ver Historial</a>
-        
-        
-                                   {% if Us.estado == 2 %}
-                                        <a href="{% url 'tareas_sprimt' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}" class="btn btn-primary"
-                                           type="button">Tareas</a>
 
 
-                                        <a type="submit"
-                                           href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=Us.id %}"
-                                           class="btn btn-success">
-                                            Comentarios
-                                        </a>
-                                    {% endif %}
+                                    <a href="{% url 'tareas_sprimt' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}" class="btn btn-primary"
+                                       type="button">Tareas</a>
+
+
+                                    <a type="submit"
+                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=Us.id %}"
+                                       class="btn btn-success">
+                                        Comentarios
+                                    </a>
         
         
                                 </div>

@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+from project.forms import ProyectoFormIniciado
+
+
 def AddRol(request, pk):
     if Miembro.objects.filter(user=request.user.id):
         user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
@@ -78,7 +81,6 @@ def verMiembro(request, id):
     ver = Miembro.objects.filter(rol__project_id=id, activo=True)
     proj = Proyecto.objects.get(id=id)
     user = request.user
-    print(ver)
     context = {
         'ver': ver,
         'Proyecto': proj,
@@ -137,7 +139,6 @@ def borrarMiembro(request):
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         FormularioProyecto = deleteMiembro(request.POST)
-        print(FormularioProyecto)
         form = FormularioProyecto.fields
         return redirect('verotravesmiembro')  # Este tiene que redirigir a proyecto
     else:
@@ -185,7 +186,6 @@ class modiProject(UpdateView):
         try:
             form.save()
         except ValueError as err:
-            print(err.args.__str__())
             error = err.args.__str__()
             messages.error(self.request, error)
             return self.render_to_response(self.get_context_data(form=form))

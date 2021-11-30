@@ -61,6 +61,7 @@ class RolProyecto(models.Model):
     class Meta:
         #nombre de la tabla
         db_table = 'rol_proyecto'
+        permissions = [('asignar_rolproyecto','Can assign a member to a rolproyecto')]
 
 
 # definicion de modelo de Miembro de un proyecto
@@ -85,7 +86,7 @@ class Miembro(models.Model):
         return self.user.first_name + ', ' + self.user.email
     
     def has_perm(self, perm, obj=None):
-        if self.rol == None:
+        if self.rol is None:
             return False
         else:
             for i in self.rol.list_permissions():

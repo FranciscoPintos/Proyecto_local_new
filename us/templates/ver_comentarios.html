@@ -15,6 +15,7 @@
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
+
                         <h3> Comentarios del User Story '{{ Us.name.upper }}'</h3>
                     </div>
                     <div class="card-body">
@@ -55,7 +56,8 @@
                     <div class="card-footer">
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_comentarios' pk=Proyecto.id us_pk=Us.id %}" class="btn btn-lg btn-primary float-right">
+                                <input type="hidden" name="next" value="{{ request.path }}">
+                                <a href="{% url 'crear_comentarios' pk=Proyecto.id us_pk=Us.id %}?next={{ request.path|urlencode }}" class="btn btn-lg btn-primary float-right">
                                     Agregar Comentarios
                                 </a>
                             </div>

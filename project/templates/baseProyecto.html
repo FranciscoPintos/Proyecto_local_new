@@ -14,7 +14,7 @@
                 </div>
             </a>
             {% for i in permisos %}
-                {% if i.codename == 'view_sprint' and Proyecto.estado == 'I' %}
+                {% if i.codename == 'view_sprint' and Proyecto.estado != 'E' %}
                     <a href={% url 'sprintlist' Proyecto.id %}>
                         <div class="opcion">
                             <i class="fas fa-clipboard-list"></i>
@@ -43,7 +43,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'change_proyecto' and Proyecto.estado != 'I' %}
+                {% if i.codename == 'change_proyecto' %}
                     {% block modificarProyecto %}
                         <a href={% url 'modificar' Proyecto.id %}>
                             <div class="opcion">
@@ -53,7 +53,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'view_usproductbacklog' and Proyecto.estado == 'I' %}
+                {% if i.codename == 'view_usproductbacklog' and Proyecto.estado != 'E' %}
                     {% block backlog %}
                         <a href="{% url 'us' Proyecto.id %}">
                             <div class="opcion">
@@ -63,7 +63,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'view_etiqueta' and Proyecto.estado == 'I' %}
+                {% if i.codename == 'view_etiqueta' and Proyecto.estado != 'E' %}
                     {% block etiqueta %}
                         <a href="{% url 'ver_etiquetas' Proyecto.id %}">
                             <div class="opcion">

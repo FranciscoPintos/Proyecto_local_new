@@ -60,7 +60,7 @@
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="btn float-right">
                                 {% for p in permisos %}
-                                    {% if p.codename == 'add_us' %}
+                                    {% if p.codename == 'charge_sprintplanning' %}
                                         <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=Sprint.id %}"
                                            class="btn btn-primary">Agregar Us</a>
 

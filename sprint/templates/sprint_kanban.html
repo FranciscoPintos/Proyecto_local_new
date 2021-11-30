@@ -54,46 +54,44 @@
                     <div class="card-header bg-gradient-info">
                         <!---->
                         {% for i in permisos %}
-                            {% if i.codename == 'view_sprintplanning' and sprint.estado == 1 %}
+                            {% if i.codename == 'change_sprint' and sprint.estado == 1 %}
 
                                 {% if paso == 1 %}
                                     <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'add_equipo' and sprint.estado == 1 %}
                                 {% if paso == 2 %}
 
                                     <a href="{% url 'create_equipo' Proyecto.id sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
 
                                 {% endif %}
-
+                            {% endif %}
+                            {% if i.codename == 'charge_sprintplanning' and sprint.estado == 1 %}
                                 {% if paso == 3 %}
                                     <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'estimar_sprintplanning' and sprint.estado == 1 %}
                                 {% if paso == 4 %}
                                     <a href="{% url 'listado' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
-                                {#                                <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"#}
-                                {#                                   class="btn btn-primary">Sprint Planning</a>#}
-
-
-
-
-
                             {% endif %}
                             {% if tieneEquipo and i.codename == 'view_equipo' %}
                                 <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
                                    class="btn btn-primary">Equipo</a>
                             {% endif %}
-                            {% if i.codename == 'view_usproductbacklog' %}
+                            {% if i.codename == 'view_sprintbacklog' %}
                                 <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
                                    class="btn btn-primary">Sprint Backlog</a>
                             {% endif %}
 
-                            {% if sprint.estado == 2 %}
-                                {% if i.codename == 'view_historialtarea' %}
+                            {% if sprint.estado != 1 %}
+                                {% if i.codename == 'view_burdownchart' %}
                                     <a href="{% url 'burndown_chart' Proyecto.id sprint.id %}"
                                     class="btn btn-primary">Burndown Chart</a>
                                 {% endif %}
@@ -226,13 +224,15 @@
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="btn btn-sm float-right">
                                 {% for i in permisos %}
-                                    {% if i.codename == 'change_sprint' %}
+                                    {% if i.codename == 'start_sprint' %}
                                         {% if sprint.estado == 1  and iniciar %}
                                             <form action="" method="POST">
                                                 {% csrf_token %}
                                                 <input class="btn btn-primary" type="submit" value="Iniciar">
                                             </form>
                                         {% endif %}
+                                    {% endif %}
+                                    {% if i.codename == 'end_sprint' %}
                                         {% if sprint.estado == 2  and finalizar %}
                                             <form action="" method="POST">
                                                 {% csrf_token %}
