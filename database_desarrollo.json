@@ -1,0 +1,4651 @@
+
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-11-24T02:31:19.232Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Aplicación OAuth",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 6,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 6,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 6,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 6,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 7,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 7,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 7,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 7,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 8,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 8,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 8,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 8,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add social account",
+    "content_type": 9,
+    "codename": "add_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change social account",
+    "content_type": 9,
+    "codename": "change_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete social account",
+    "content_type": 9,
+    "codename": "delete_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view social account",
+    "content_type": 9,
+    "codename": "view_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add social application",
+    "content_type": 10,
+    "codename": "add_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change social application",
+    "content_type": 10,
+    "codename": "change_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete social application",
+    "content_type": 10,
+    "codename": "delete_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view social application",
+    "content_type": 10,
+    "codename": "view_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add social application token",
+    "content_type": 11,
+    "codename": "add_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change social application token",
+    "content_type": 11,
+    "codename": "change_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete social application token",
+    "content_type": 11,
+    "codename": "delete_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view social application token",
+    "content_type": 11,
+    "codename": "view_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add holidaytime",
+    "content_type": 12,
+    "codename": "add_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change holidaytime",
+    "content_type": 12,
+    "codename": "change_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete holidaytime",
+    "content_type": 12,
+    "codename": "delete_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view holidaytime",
+    "content_type": 12,
+    "codename": "view_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 13,
+    "codename": "add_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 13,
+    "codename": "change_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 13,
+    "codename": "delete_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 13,
+    "codename": "view_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Rol",
+    "content_type": 14,
+    "codename": "add_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Rol",
+    "content_type": 14,
+    "codename": "change_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Rol",
+    "content_type": 14,
+    "codename": "delete_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Rol",
+    "content_type": 14,
+    "codename": "view_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add proyecto",
+    "content_type": 15,
+    "codename": "add_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change proyecto",
+    "content_type": 15,
+    "codename": "change_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete proyecto",
+    "content_type": 15,
+    "codename": "delete_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view proyecto",
+    "content_type": 15,
+    "codename": "view_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add miembro",
+    "content_type": 16,
+    "codename": "add_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change miembro",
+    "content_type": 16,
+    "codename": "change_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete miembro",
+    "content_type": 16,
+    "codename": "delete_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view miembro",
+    "content_type": 16,
+    "codename": "view_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add rol proyecto",
+    "content_type": 17,
+    "codename": "add_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change rol proyecto",
+    "content_type": 17,
+    "codename": "change_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete rol proyecto",
+    "content_type": 17,
+    "codename": "delete_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view rol proyecto",
+    "content_type": 17,
+    "codename": "view_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add Comentarios",
+    "content_type": 18,
+    "codename": "add_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change Comentarios",
+    "content_type": 18,
+    "codename": "change_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete Comentarios",
+    "content_type": 18,
+    "codename": "delete_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view Comentarios",
+    "content_type": 18,
+    "codename": "view_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add Us to Product Backlog",
+    "content_type": 18,
+    "codename": "add_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 18,
+    "codename": "view_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete Us to Product Backlog",
+    "content_type": 18,
+    "codename": "delete_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can modify comment",
+    "content_type": 18,
+    "codename": "modify_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add historial comentarios",
+    "content_type": 19,
+    "codename": "add_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change historial comentarios",
+    "content_type": 19,
+    "codename": "change_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete historial comentarios",
+    "content_type": 19,
+    "codename": "delete_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view historial comentarios",
+    "content_type": 19,
+    "codename": "view_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add historial us",
+    "content_type": 20,
+    "codename": "add_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change historial us",
+    "content_type": 20,
+    "codename": "change_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete historial us",
+    "content_type": 20,
+    "codename": "delete_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view historial us",
+    "content_type": 20,
+    "codename": "view_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add Us",
+    "content_type": 21,
+    "codename": "add_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change Us",
+    "content_type": 21,
+    "codename": "change_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete Us",
+    "content_type": 21,
+    "codename": "delete_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view Us",
+    "content_type": 21,
+    "codename": "view_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add Us to Product Backlog",
+    "content_type": 21,
+    "codename": "add_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 21,
+    "codename": "view_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete Us to Product Backlog",
+    "content_type": 21,
+    "codename": "delete_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 21,
+    "codename": "change_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can calificate Us to Sprint Backlog",
+    "content_type": 21,
+    "codename": "valuate_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can add Tarea",
+    "content_type": 22,
+    "codename": "add_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can change Tarea",
+    "content_type": 22,
+    "codename": "change_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can delete Tarea",
+    "content_type": 22,
+    "codename": "delete_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can view Tarea",
+    "content_type": 22,
+    "codename": "view_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can add HistorialTarea",
+    "content_type": 23,
+    "codename": "add_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can change HistorialTarea",
+    "content_type": 23,
+    "codename": "change_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can delete HistorialTarea",
+    "content_type": 23,
+    "codename": "delete_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can view HistorialTarea",
+    "content_type": 23,
+    "codename": "view_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can add Etiqueta",
+    "content_type": 24,
+    "codename": "add_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can change Etiqueta",
+    "content_type": 24,
+    "codename": "change_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can delete Etiqueta",
+    "content_type": 24,
+    "codename": "delete_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can view Etiqueta",
+    "content_type": 24,
+    "codename": "view_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can add Sprint",
+    "content_type": 25,
+    "codename": "add_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can change Sprint",
+    "content_type": 25,
+    "codename": "change_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can delete Sprint",
+    "content_type": 25,
+    "codename": "delete_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can view Sprint",
+    "content_type": 25,
+    "codename": "view_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can add Equipo",
+    "content_type": 26,
+    "codename": "add_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can change Equipo",
+    "content_type": 26,
+    "codename": "change_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can delete Equipo",
+    "content_type": 26,
+    "codename": "delete_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can view Equipo",
+    "content_type": 26,
+    "codename": "view_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can add SprintPlanning",
+    "content_type": 27,
+    "codename": "add_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can change SprintPlanning",
+    "content_type": 27,
+    "codename": "change_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can delete SprintPlanning",
+    "content_type": 27,
+    "codename": "delete_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 117,
+  "fields": {
+    "name": "Can view SprintPlanning",
+    "content_type": 27,
+    "codename": "view_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 118,
+  "fields": {
+    "name": "Can start a Project",
+    "content_type": 15,
+    "codename": "start_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 119,
+  "fields": {
+    "name": "Can end a Project",
+    "content_type": 15,
+    "codename": "end_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 120,
+  "fields": {
+    "name": "Can assign a member to a rolproyecto",
+    "content_type": 17,
+    "codename": "asignar_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 121,
+  "fields": {
+    "name": "Can valuate a US",
+    "content_type": 21,
+    "codename": "estimar_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 122,
+  "fields": {
+    "name": "Can add Us to Sprint Backlog",
+    "content_type": 25,
+    "codename": "charge_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 123,
+  "fields": {
+    "name": "Can view Sprint Backlog",
+    "content_type": 25,
+    "codename": "view_sprintbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 124,
+  "fields": {
+    "name": "Can view Burdownchart",
+    "content_type": 25,
+    "codename": "view_burdownchart"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 125,
+  "fields": {
+    "name": "Can start Sprint",
+    "content_type": 25,
+    "codename": "start_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 126,
+  "fields": {
+    "name": "Can finalize a Sprint",
+    "content_type": 25,
+    "codename": "end_sprint"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sites",
+    "model": "site"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "account",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "account",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialaccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialapp"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "principalApp",
+    "model": "holidaytime"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "usuario",
+    "model": "usuario"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "roles",
+    "model": "rol"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "project",
+    "model": "proyecto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "miembros",
+    "model": "miembro"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "miembros",
+    "model": "rolproyecto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "us",
+    "model": "comentarios"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "us",
+    "model": "historialcomentarios"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 20,
+  "fields": {
+    "app_label": "us",
+    "model": "historialus"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 21,
+  "fields": {
+    "app_label": "us",
+    "model": "us"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 22,
+  "fields": {
+    "app_label": "tarea",
+    "model": "tarea"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 23,
+  "fields": {
+    "app_label": "tarea",
+    "model": "historialtarea"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 24,
+  "fields": {
+    "app_label": "etiqueta",
+    "model": "etiqueta"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 25,
+  "fields": {
+    "app_label": "sprint",
+    "model": "sprint"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
+  "fields": {
+    "app_label": "equipo",
+    "model": "equipo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 27,
+  "fields": {
+    "app_label": "sprintPlanning",
+    "model": "sprintplanning"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "e6gcjx2r26totti568wucrr6qyp5kvq0",
+  "fields": {
+    "session_data": ".eJxVjE0KwyAUhO_iuoi_jXbXXESeT0VpMFB1VXr3mpJFuxmY-WbmRRyMnt1o8elKIDciyOU384CPWA8A23bEFBD3UTv9dk7c6H26WHtB6GWv67n6u8rQ8vxhQiVpPItBe5WUVwyl9mDVovA6geFRLJLxIAK3CTyzfCpHaaQAbTl5fwCyqDv6:1ms9Y2:9uNkGE2RZb4vAzcToXHNC132P_1cVHVKha3nki-F2VM",
+    "expire_date": "2021-12-14T20:16:18.375Z"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 4,
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "email": "pintos98javier99@fpuna.edu.py",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "email": "userprueba1is2@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "email": "userprueba2is2@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "email": "fpcreaciones@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "socialaccount.socialapp",
+  "pk": 1,
+  "fields": {
+    "provider": "google",
+    "name": "Aplicación OAuth",
+    "client_id": "96128541178-8hkdejl0g62hiurv8a71ah99uvls9up6.apps.googleusercontent.com",
+    "secret": "HZaQQ9N-W__8oaltWtQ_xquG",
+    "key": "",
+    "sites": [
+      4
+    ]
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "provider": "google",
+    "uid": "101650378013258971914",
+    "last_login": "2021-11-30T20:16:18.285Z",
+    "date_joined": "2021-11-24T02:31:29.856Z",
+    "extra_data": "{\"id\": \"101650378013258971914\", \"email\": \"pintos98javier99@fpuna.edu.py\", \"verified_email\": true, \"name\": \"Francisco Javier Pintos Villar\", \"given_name\": \"Francisco Javier\", \"family_name\": \"Pintos Villar\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJwiHTR2oAtVPAJxtrKIZBIQG08OQzlomeIiCk3u=s96-c\", \"locale\": \"es\", \"hd\": \"fpuna.edu.py\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "provider": "google",
+    "uid": "114859760729133515892",
+    "last_login": "2021-11-29T17:37:26.118Z",
+    "date_joined": "2021-11-24T02:38:58.636Z",
+    "extra_data": "{\"id\": \"114859760729133515892\", \"email\": \"userprueba1is2@gmail.com\", \"verified_email\": true, \"name\": \"User Prueba 1 IS2\", \"given_name\": \"User Prueba 1\", \"family_name\": \"IS2\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "provider": "google",
+    "uid": "105675435886523813510",
+    "last_login": "2021-11-29T17:24:41.459Z",
+    "date_joined": "2021-11-24T02:39:04.478Z",
+    "extra_data": "{\"id\": \"105675435886523813510\", \"email\": \"userprueba2is2@gmail.com\", \"verified_email\": true, \"name\": \"User Prueba 2 IS2\", \"given_name\": \"User Prueba 2\", \"family_name\": \"IS2\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "provider": "google",
+    "uid": "106413952047610284312",
+    "last_login": "2021-11-26T04:38:37.638Z",
+    "date_joined": "2021-11-24T03:01:32.598Z",
+    "extra_data": "{\"id\": \"106413952047610284312\", \"email\": \"fpcreaciones@gmail.com\", \"verified_email\": true, \"name\": \"Francisco Pintos\", \"given_name\": \"Francisco\", \"family_name\": \"Pintos\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJyqf1X7KLL1nDwu6nDfu488uODeMeA-TP5WCsol=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 1,
+  "fields": {
+    "app": 1,
+    "account": 1,
+    "token": "ya29.a0ARrdaM-G2k3IV_Re0cDDBOP2MoU3Uh3Er0L2SptuTTv_9uTs-6UW2yBhhIMlbgzaV8AvuBglzxZAEm2IugGc4Qn9myv8dp30Q-xakBVuiG2L5Wilegq6jTjHZSja1t9v2-FgG2zniWf8MTiAPwAK_nvMNpueTg",
+    "token_secret": "",
+    "expires_at": "2021-11-30T21:16:16.867Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 2,
+  "fields": {
+    "app": 1,
+    "account": 2,
+    "token": "ya29.a0ARrdaM_rhJbyQj4EwRvRoR0vclVtlGsS1H4VC_s_HtTcBNYm1ZNOsjbzbHaj_UqyCfEBwGYQDVpmCYLj2aHOoGdEfG6X0bDJuVOaIXFtHusQVkV81gDfDjrbpRdOGALXeIt12BjPkREnO7UkGBsdz2qle6WE",
+    "token_secret": "",
+    "expires_at": "2021-11-29T18:37:24.583Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 3,
+  "fields": {
+    "app": 1,
+    "account": 3,
+    "token": "ya29.a0ARrdaM_OFeolSCZjvhK2nLhtAN2rKTZPiJXRRquaAQNSM628Rzonv8YENON9LEpfB-zf1Bsw75dONoWSdMe2dZYoUQj_qBFhP2d97_HXvZUJzlNGiWmfSM40I8YEo4x1peSdWN6zLJW-zwNwNHgKpqSTMQft",
+    "token_secret": "",
+    "expires_at": "2021-11-29T18:24:40.032Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 4,
+  "fields": {
+    "app": 1,
+    "account": 4,
+    "token": "ya29.a0ARrdaM_G8vHDNgaQEQFwVMsTLzhZaxJ6v7DgAihqrMR9AxZzRNsl40B_Iyc9z0tMNiM0-j3EsKF35wtHcTKGtcTfx8oY9o51923yylgegLyIQxFHIrvMz1yGDpevXYTWyoK0ia9KXMbp20NboC6FssGmuM74",
+    "token_secret": "",
+    "expires_at": "2021-11-26T05:38:36.308Z"
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$iRwdkqk6MiHJvqq53aCejN$RupQqZzO0iHLepGafdm7eE7PuiupBNcSRGSUD8fEJ1M=",
+    "last_login": "2021-11-30T04:02:23.576Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "date_joined": "2021-11-24T02:30:13.050Z",
+    "username": "admin",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "admin@admin.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": true,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 2,
+  "fields": {
+    "password": "!CoNGz0N9kwmoZUo2g6cSUjzDTfvTptTw1lW57GNr",
+    "last_login": "2021-11-30T20:16:18.365Z",
+    "is_superuser": false,
+    "first_name": "Francisco Javier",
+    "last_name": "Pintos Villar",
+    "is_active": true,
+    "date_joined": "2021-11-24T02:31:29.837Z",
+    "username": "francisco_javier",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "pintos98javier99@fpuna.edu.py",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 3,
+  "fields": {
+    "password": "!r7oIDFLluaKjVfvS1IaDU9JRzUoDh6vBcMx9OLu3",
+    "last_login": "2021-11-29T17:37:26.179Z",
+    "is_superuser": false,
+    "first_name": "User Prueba 1",
+    "last_name": "IS2",
+    "is_active": true,
+    "date_joined": "2021-11-24T02:38:58.579Z",
+    "username": "user_prueba_1",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "userprueba1is2@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 4,
+  "fields": {
+    "password": "!dVU0ltRJUCtztTv2UdGNNDnS6PJZ4MYNxboPebac",
+    "last_login": "2021-11-29T17:24:41.495Z",
+    "is_superuser": false,
+    "first_name": "User Prueba 2",
+    "last_name": "IS2",
+    "is_active": true,
+    "date_joined": "2021-11-24T02:39:04.422Z",
+    "username": "user_prueba_2",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "userprueba2is2@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 5,
+  "fields": {
+    "password": "!glxB5Qw5iIqpexONq7AITsvDXeTYzwlCRVlgkEc8",
+    "last_login": "2021-11-26T04:38:37.661Z",
+    "is_superuser": false,
+    "first_name": "Francisco",
+    "last_name": "Pintos",
+    "is_active": true,
+    "date_joined": "2021-11-24T03:01:32.542Z",
+    "username": "francisco",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "fpcreaciones@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 1,
+  "fields": {
+    "name": "Proyecto 1",
+    "creator": 2,
+    "fecha_inicio": "2021-11-23",
+    "fecha_fin": "2021-12-31",
+    "active": true,
+    "estado": "I"
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 2,
+  "fields": {
+    "name": "Proyecto 2",
+    "creator": 2,
+    "fecha_inicio": "2021-11-30",
+    "fecha_fin": "2022-01-30",
+    "active": true,
+    "estado": "E"
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 3,
+  "fields": {
+    "name": "Proyecto 3",
+    "creator": 2,
+    "fecha_inicio": "2021-11-30",
+    "fecha_fin": "2022-01-30",
+    "active": true,
+    "estado": "E"
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 4,
+  "fields": {
+    "name": "Projecto 3",
+    "creator": 2,
+    "fecha_inicio": "2021-11-30",
+    "fecha_fin": "2021-12-12",
+    "active": true,
+    "estado": "E"
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 5,
+  "fields": {
+    "name": "Proyecto wef",
+    "creator": 2,
+    "fecha_inicio": "2021-12-04",
+    "fecha_fin": "2021-12-12",
+    "active": true,
+    "estado": "E"
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 1,
+  "fields": {
+    "project": 1,
+    "name": "Product Owner",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      73,
+      75,
+      76,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 2,
+  "fields": {
+    "project": 1,
+    "name": "Scrum Master",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 3,
+  "fields": {
+    "project": 1,
+    "name": "",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 4,
+  "fields": {
+    "project": 1,
+    "name": "Desarrollador",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 5,
+  "fields": {
+    "project": 2,
+    "name": "Product Owner",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 6,
+  "fields": {
+    "project": 2,
+    "name": "Scrum Master",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 7,
+  "fields": {
+    "project": 3,
+    "name": "Product Owner",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 8,
+  "fields": {
+    "project": 3,
+    "name": "Scrum Master",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 9,
+  "fields": {
+    "project": 4,
+    "name": "Product Owner",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 10,
+  "fields": {
+    "project": 4,
+    "name": "Scrum Master",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 11,
+  "fields": {
+    "project": 5,
+    "name": "Product Owner",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      73,
+      75,
+      76,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 12,
+  "fields": {
+    "project": 5,
+    "name": "Scrum Master",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 13,
+  "fields": {
+    "project": 5,
+    "name": "",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 14,
+  "fields": {
+    "project": 5,
+    "name": "Desarrollador",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "rol": 2,
+    "horaTrabajo": 0,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "rol": 4,
+    "horaTrabajo": 8,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "rol": 4,
+    "horaTrabajo": 6,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "rol": 1,
+    "horaTrabajo": 8,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 5,
+  "fields": {
+    "user": 2,
+    "rol": 12,
+    "horaTrabajo": 0,
+    "activo": true
+  }
+},
+{
+  "model": "us.us",
+  "pk": 1,
+  "fields": {
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "prioridad": 3,
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 1,
+    "user": null,
+    "activo": false,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 2,
+  "fields": {
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "prioridad": 5,
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "storypoints": 20,
+    "estado": 4,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 3,
+  "fields": {
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "prioridad": 5,
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": 15,
+    "storypoints": 17,
+    "estado": 1,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 4,
+  "fields": {
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "prioridad": 5,
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "storypoints": 13,
+    "estado": 4,
+    "project": 1,
+    "user": 2,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 5,
+  "fields": {
+    "name": "Us 1",
+    "descripcion": "sfgdsgdfg dfgdfg",
+    "prioridad": 1,
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 1,
+    "user": null,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 6,
+  "fields": {
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "prioridad": 5,
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": 5,
+    "storypoints": 5,
+    "estado": 4,
+    "project": 1,
+    "user": 2,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 7,
+  "fields": {
+    "name": "US 3",
+    "descripcion": "dsfgdg dgdgds dsgdgs",
+    "prioridad": 5,
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 8,
+  "fields": {
+    "name": "US 4",
+    "descripcion": "fd dgdg dhfghgfdhs dhf",
+    "prioridad": 4,
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 1,
+    "user": null,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 1,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 1,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:41:16.108Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 2,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 2,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-24T02:42:27.476Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 3,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-24T02:43:14.517Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 4,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-24T02:47:36.860Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 5,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:48:09.290Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 6,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 3,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:48:59.433Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 7,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:52:17.761Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 8,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:52:50.167Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 9,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:53:26.063Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 10,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "El proyecto  de la asignatura será realizado en la modalidad a presencial, con la tutoría del profesor asignado.\r\n\r\nDesde el primer entregable, el DT está siendo evaluado con el objetivo de tener una calificación al final del curso, de manera que se califica el proceso realizado más que tener un sistema funcional sin haber cumplido los hitos establecidos.\r\n\r\nCada entregable será evaluado en las fechas de entrega y esa calificación formará parte del puntaje final de la asignatura obtenido por los miembros del DT.\r\n\r\nRespecto a las consultas que tengan los DT respecto al desarrollo del proyecto, en la plataforma utilizaremos mucho la comunicación asíncrona (Foros, mails y demás). También serán realizadas las aclaraciones en clase, en las revisiones o en los días de consultas.",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 3,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:53:31.154Z",
+    "activo": false,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 11,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 1,
+    "fecha_modificacion": "2021-11-24T02:53:41.753Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 12,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:00:01.303Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 13,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:01:03.459Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 14,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T03:01:21.588Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 15,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T03:05:56.635Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 16,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T03:06:09.304Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 17,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:09:10.573Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 18,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:21:58.094Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 19,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:22:07.992Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 20,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T03:24:09.874Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 21,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T03:25:50.140Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 22,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:28:21.863Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 23,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T03:33:42.611Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 24,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 13,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T03:35:09.678Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 25,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T03:36:04.861Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 26,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T03:36:08.696Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 27,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T19:20:50.682Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 28,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 13,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T19:21:02.158Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 29,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T19:21:12.821Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 30,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 4,
+    "fecha_modificacion": "2021-11-24T19:21:44.371Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 31,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T19:22:11.349Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 32,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T19:22:14.357Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 33,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": 13,
+    "user": 3,
+    "fecha_modificacion": "2021-11-24T19:22:30.592Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 34,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 2,
+    "fecha_modificacion": "2021-11-24T19:31:13.079Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 35,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": null,
+    "fecha_modificacion": "2021-11-25T03:26:19.390Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 1
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 36,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 13,
+    "user": null,
+    "fecha_modificacion": "2021-11-25T03:26:19.429Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 1
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 37,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": null,
+    "fecha_modificacion": "2021-11-25T03:26:19.463Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 1
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 38,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 13,
+    "user": 2,
+    "fecha_modificacion": "2021-11-25T03:32:14.133Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 39,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-25T03:32:23.558Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 40,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 4,
+    "fecha_modificacion": "2021-11-25T03:32:33.283Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 41,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-25T03:33:33.105Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 42,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-25T03:33:38.316Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 43,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 13,
+    "user": 2,
+    "fecha_modificacion": "2021-11-26T03:25:56.983Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 44,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 13,
+    "user": 2,
+    "fecha_modificacion": "2021-11-26T03:37:44.321Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 45,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 15,
+    "estimaciondesarrollador": 12,
+    "prioridad": 5,
+    "estado": 4,
+    "storypoints": 13,
+    "user": 2,
+    "fecha_modificacion": "2021-11-26T03:38:06.015Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 46,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:45:27.142Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 47,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:45:34.031Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 48,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:51:38.526Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 49,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:51:39.882Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 50,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:51:45.597Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 51,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:51:51.071Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 52,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:51:52.482Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 53,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:52:28.263Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 54,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T03:52:29.924Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 55,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:54:56.053Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 56,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:54:58.821Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 57,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:02.307Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 58,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:03.658Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 59,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:05.065Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 60,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:06.289Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 61,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:08.089Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 62,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T03:57:09.384Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 63,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:12:23.835Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 64,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:13:56.896Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 65,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:14:35.652Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 66,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:14:41.568Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 67,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:15:26.452Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 68,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:15:45.037Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 69,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:16:33.608Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 70,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:17:10.585Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 71,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:18:01.326Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 72,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:18:18.957Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 73,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:18:20.325Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 74,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:27:10.936Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 75,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:27:29.110Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 76,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:36:13.003Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 77,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:38:50.250Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 78,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:39:05.640Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 79,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:40:04.971Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 80,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:41:19.109Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 81,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:41:33.268Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 82,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:41:36.978Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 83,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:43:29.098Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 84,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:43:45.847Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 85,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:45:36.139Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 86,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:47:43.089Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 87,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:48:05.542Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 88,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:48:09.943Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 89,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "Entre uno de los ejercicios que los DT deben realizar está el de la planificación de los entregables de las iteraciones de desarrollo de software a realizar. Este trabajo comprende el análisis de la meta a lograr (especificada por el PO) y los trabajos que debe realizar el DT para llegar a lograr la meta. El proceso de planificar es uno de los más enriquecedores para los ingenieros de software, ya que nos ayuda a calcular de alguna manera con los mejores datos disponibles al momento cuánto trabajo debemos hacer y en que tiempo para lograr la meta.\r\nEntregable",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 20,
+    "prioridad": 5,
+    "estado": 4,
+    "storypoints": 20,
+    "user": 3,
+    "fecha_modificacion": "2021-11-26T04:49:03.145Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 90,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:49:04.968Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 91,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 4,
+    "fecha_modificacion": "2021-11-26T04:50:31.701Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 92,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": null,
+    "fecha_modificacion": "2021-11-26T04:50:40.701Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 2
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 93,
+  "fields": {
+    "ustory": 5,
+    "name": "Us 1",
+    "descripcion": "sfgdsgdfg dfgdfg",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 1,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-29T17:28:38.844Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 94,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-29T17:28:51.579Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 95,
+  "fields": {
+    "ustory": 7,
+    "name": "US 3",
+    "descripcion": "dsfgdg dgdgds dsgdgs",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-29T17:29:03.716Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 96,
+  "fields": {
+    "ustory": 8,
+    "name": "US 4",
+    "descripcion": "fd dgdg dhfghgfdhs dhf",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-29T17:29:21.188Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 97,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-29T17:32:59.981Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 98,
+  "fields": {
+    "ustory": 7,
+    "name": "US 3",
+    "descripcion": "dsfgdg dgdgds dsgdgs",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-29T17:34:00.712Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 99,
+  "fields": {
+    "ustory": 8,
+    "name": "US 4",
+    "descripcion": "fd dgdg dhfghgfdhs dhf",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 4,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-29T17:34:00.729Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 100,
+  "fields": {
+    "ustory": 5,
+    "name": "Us 1",
+    "descripcion": "sfgdsgdfg dfgdfg",
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "prioridad": 1,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-29T17:34:00.747Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 101,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "En esta entrega el DT deberá entregar la iteración 2 del proceso de desarrollo de software considerando los siguientes puntos a ser evaluados:\r\n\r\nSCC : Utilización de sistema de control de cambios con TAGs\r\nPUD : Utilización de pruebas unitarias y documentación de código fuente\r\nALC : Alcance a lograr del proyecto de software (usuarios, roles, permisos, menú principal, definición y configuración proyecto, parámetros, iniciar proyecto)\r\nPLA : Evaluación de la planificación realizada para la iteración\r\nQA : Calidad del proceso y el software desarrollado para la iteración",
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": 15,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 17,
+    "user": 3,
+    "fecha_modificacion": "2021-11-29T17:34:14.904Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 102,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": 5,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 5,
+    "user": 2,
+    "fecha_modificacion": "2021-11-29T17:34:59.201Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 103,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": 5,
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 5,
+    "user": 2,
+    "fecha_modificacion": "2021-11-29T17:37:46.735Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 104,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": 5,
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 5,
+    "user": 2,
+    "fecha_modificacion": "2021-11-29T17:59:36.879Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 105,
+  "fields": {
+    "ustory": 6,
+    "name": "US 2",
+    "descripcion": "sgadfs gfdg dgdfgdfg",
+    "estimacionscrum": 6,
+    "estimaciondesarrollador": 5,
+    "prioridad": 5,
+    "estado": 4,
+    "storypoints": 5,
+    "user": 2,
+    "fecha_modificacion": "2021-11-29T22:39:37.773Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 3
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 106,
+  "fields": {
+    "ustory": 7,
+    "name": "US 3",
+    "descripcion": "dsfgdg dgdgds dsgdgs",
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-30T03:50:07.800Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 4
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 107,
+  "fields": {
+    "ustory": 7,
+    "name": "US 3",
+    "descripcion": "dsfgdg dgdgds dsgdgs",
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": null,
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 3,
+    "fecha_modificacion": "2021-11-30T03:51:18.245Z",
+    "activo": true,
+    "etiqueta": null,
+    "sprint": 4
+  }
+},
+{
+  "model": "tarea.tarea",
+  "pk": 1,
+  "fields": {
+    "ustory": 4,
+    "descripcion": "dvfgdsg dfgdg",
+    "horas": 10,
+    "fecha_creacion": "2021-11-26T06:26:00Z",
+    "sprimt": 2
+  }
+},
+{
+  "model": "tarea.tarea",
+  "pk": 2,
+  "fields": {
+    "ustory": 6,
+    "descripcion": "5014546454",
+    "horas": 5,
+    "fecha_creacion": "2021-11-30T20:52:00Z",
+    "sprimt": 3
+  }
+},
+{
+  "model": "tarea.historialtarea",
+  "pk": 1,
+  "fields": {
+    "tarea": 1,
+    "descripcion": "dvfgdsg dfgdg",
+    "hora": 10,
+    "fecha_modificacion": "2021-11-26T06:26:00Z",
+    "sprimt": 2
+  }
+},
+{
+  "model": "tarea.historialtarea",
+  "pk": 2,
+  "fields": {
+    "tarea": 1,
+    "descripcion": "dvfgdsg dfgdg",
+    "hora": 10,
+    "fecha_modificacion": "2021-11-26T06:26:00Z",
+    "sprimt": 2
+  }
+},
+{
+  "model": "tarea.historialtarea",
+  "pk": 3,
+  "fields": {
+    "tarea": 2,
+    "descripcion": "5014546454",
+    "hora": 5,
+    "fecha_modificacion": "2021-11-30T20:52:00Z",
+    "sprimt": 3
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 1,
+  "fields": {
+    "name": "Sprint 1",
+    "proyecto": 1,
+    "fecha_incio": "2021-11-24",
+    "fecha_fin": "2021-11-24",
+    "estado": 3,
+    "us": [
+      4,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 2,
+  "fields": {
+    "name": "sprint 2",
+    "proyecto": 1,
+    "fecha_incio": "2021-11-25",
+    "fecha_fin": "2021-11-25",
+    "estado": 3,
+    "us": [
+      4,
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 3,
+  "fields": {
+    "name": "Sprint 3",
+    "proyecto": 1,
+    "fecha_incio": "2021-11-29",
+    "fecha_fin": "2021-12-05",
+    "estado": 2,
+    "us": [
+      6,
+      3
+    ]
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 4,
+  "fields": {
+    "name": "Sprint 4",
+    "proyecto": 1,
+    "fecha_incio": "2021-12-12",
+    "fecha_fin": "2021-12-16",
+    "estado": 1,
+    "us": [
+      7,
+      8
+    ]
+  }
+},
+{
+  "model": "equipo.equipo",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "capacidad": 32,
+    "miembros": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "equipo.equipo",
+  "pk": 2,
+  "fields": {
+    "sprint": 2,
+    "capacidad": 0,
+    "miembros": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "equipo.equipo",
+  "pk": 3,
+  "fields": {
+    "sprint": 3,
+    "capacidad": 84,
+    "miembros": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "equipo.equipo",
+  "pk": 4,
+  "fields": {
+    "sprint": 4,
+    "capacidad": 42,
+    "miembros": [
+      2,
+      3
+    ]
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "paso": 4
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 2,
+  "fields": {
+    "sprint": 2,
+    "paso": 4
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 3,
+  "fields": {
+    "sprint": 3,
+    "paso": 4
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 4,
+  "fields": {
+    "sprint": 4,
+    "paso": 4
+  }
+}
+]
