@@ -47,5 +47,7 @@ class calendar(TemplateView):
     template_name = 'calendar.html'
 
 
+class email(TemplateView):
+    template_name = 'send_email.html'
 def pr(request):
     return render(request, "principalApp/pr.html")

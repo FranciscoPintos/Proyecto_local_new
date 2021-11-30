@@ -34,7 +34,6 @@ import datetime
 
 
 def ver_burndownchart(request, pk, sp_pk):
-
     proj = Proyecto.objects.get(id=pk)
     user = request.user
     sprint = Sprint.objects.get(id=sp_pk)
@@ -49,7 +48,6 @@ def ver_burndownchart(request, pk, sp_pk):
         'Proyecto': proj,
     }
 
-
     # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
     # calculo del sp del sprint
     sp = 0
@@ -58,29 +56,29 @@ def ver_burndownchart(request, pk, sp_pk):
     for objeto in sprint.us.all():
         # traemos el ultimo historial suyo
         histo = HistorialUs.objects.filter(ustory=objeto.id).last().storypoints
-        if(histo is None): # si es none sumamos cero
+        if (histo is None):  # si es none sumamos cero
             sp = sp + 0
-        else: # sino sumamos el valor devuelto
+        else:  # sino sumamos el valor devuelto
             sp = sp + histo
 
         # traemos la ultima modificacion del us
         ultima_modif = HistorialUs.objects.filter(ustory=objeto.id, sprint=sprint.id).last()
         # si esta ultima modificacion tiene estado 4
-        if(ultima_modif.estado == 4): # esta en el done
+        if (ultima_modif.estado == 4):  # esta en el done
             # está terminado
             us_terminados.append(ultima_modif)
 
     print(us_terminados)
-    #calculo de la duracion del sprint
+    # calculo de la duracion del sprint
     fecha_inicio = sprint.fecha_incio
     fecha_fin = sprint.fecha_fin
 
     # duracion del sprint en dias
-    dias = (fecha_fin-fecha_inicio).days
+    dias = (fecha_fin - fecha_inicio).days
     # generacion del eje x del burndownchart
-    x1 = np.arange(0, dias+1, 1)
+    x1 = np.arange(0, dias + 1, 1)
     # funcion del eje y
-    y1 = sp - (sp*x1/dias)
+    y1 = sp - (sp * x1 / dias)
 
     figura, ax1 = plt.subplots()
     ax1.plot(x1, y1, label='Gráfico ideal')
@@ -106,17 +104,15 @@ def ver_burndownchart(request, pk, sp_pk):
 
     for i in aux:
         y2.append(i)
-        if( ( (i.fecha_modificacion).date() - fecha_inicio ).days == j ):
+        if (((i.fecha_modificacion).date() - fecha_inicio).days == j):
             x2.append(j)
             j = j + 1
         else:
-            while( ((i.fecha_modificacion).date() - fecha_inicio ).days != j ):
+            while (((i.fecha_modificacion).date() - fecha_inicio).days != j):
                 j = j + 1
-
 
     print(x2)
     print(y2)
-
 
     ax1.plot(x2, y2, label='Gráfico real')
 
@@ -130,7 +126,6 @@ def ver_burndownchart(request, pk, sp_pk):
     ax1.legend()
 
     figura.savefig("sprint/static/img/burndownchart.png")
-
 
     return render(request, 'burndown_chart.html', context=context)
 
@@ -179,7 +174,7 @@ class sprintView(ListView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
 
-        context['create_no']=Sprint.objects.filter(proyecto_id=self.kwargs['pk'],estado=1).exists()
+        context['create_no'] = Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists()
 
         context['permisos'] = permisos
         return context
@@ -195,8 +190,8 @@ class sprintView_Kanban(ListView):
 
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
-        Sprint=self.kwargs['sp_pk']
-        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto,'sp_pk':Sprint})
+        Sprint = self.kwargs['sp_pk']
+        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(sprintView_Kanban, self).get_context_data(**kwargs)
@@ -211,19 +206,18 @@ class sprintView_Kanban(ListView):
         # obtener sus permisos
         permisos = user.rol.list_permissions().order_by('id')
 
-        sprint=Sprint.objects.get(pk=self.kwargs['sp_pk'])
+        sprint = Sprint.objects.get(pk=self.kwargs['sp_pk'])
         context['permisos'] = permisos
         context['sprint'] = sprint
         tieneEquipo = Equipo.objects.filter(sprint_id=self.kwargs['sp_pk']).exists()
         context['tieneEquipo'] = tieneEquipo
-        miembro=Miembro.objects.get(user=self.request.user, rol__project_id= self.kwargs['pk'])
-
+        miembro = Miembro.objects.get(user=self.request.user, rol__project_id=self.kwargs['pk'])
 
         product_backlog = sprint.us.filter(user=miembro)
-        print('name:',miembro.rol.name)
+        print('name:', miembro.rol.name)
         if miembro.rol.name == 'Scrum Master':
-            product_backlog=sprint.us.all()
-        #Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
+            product_backlog = sprint.us.all()
+        # Us.objects.all().filter(project_id=self.kwargs['pk'], activo=True)
 
         context['ProductBacklog'] = product_backlog
         # Ultimo estado de los US durante el Sprint
@@ -231,27 +225,30 @@ class sprintView_Kanban(ListView):
         # Por cada us del sprint Backlog
         for US in product_backlog:
             # Asignar su ultimo historial del us durante el sprint
-            context['historiales'].append(HistorialUs.objects.filter(ustory__id=US.id, sprint__id=sprint.id).order_by('-id').first())
+            context['historiales'].append(
+                HistorialUs.objects.filter(ustory__id=US.id, sprint__id=sprint.id).order_by('-id').first())
         print(context['historiales'])
-        m = Miembro.objects.get(user=self.request.user,rol__project_id=self.kwargs['pk'])
+        m = Miembro.objects.get(user=self.request.user, rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
-        context['is_scrum']=is_scrum
+        context['is_scrum'] = is_scrum
         # Determinar si existen User Stories no estimados
         us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(storypoints=None).exists()
         # Determinar si existen User Stories en el sprint
         has_us = Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().exists()
-        context['iniciar'] = not(Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not(us) and has_us and sprint.fecha_incio < sprint.fecha_fin
+        context['iniciar'] = not (Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=2).exists()) and not (
+            us) and has_us and sprint.fecha_incio < sprint.fecha_fin
         context['finalizar'] = not Sprint.objects.get(pk=self.kwargs['sp_pk']).us.all().filter(estado=3).exists()
         context['paso'] = SprintPlanning.objects.get(sprint_id=self.kwargs['sp_pk']).paso
         if Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin is not None and sprint.estado != 3:
-            context['dias'] = np.busday_count(datetime.date.today(), Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
-                                          weekmask='1111110')
+            context['dias'] = np.busday_count(datetime.date.today(),
+                                              Sprint.objects.get(pk=self.kwargs['sp_pk']).fecha_fin,
+                                              weekmask='1111110')
         else:
             context['dias'] = 0
         return context
 
     def post(self, request, *args, **kwargs):
-        m = Miembro.objects.get(user=request.user,rol__project_id=self.kwargs['pk'])
+        m = Miembro.objects.get(user=request.user, rol__project_id=self.kwargs['pk'])
         is_scrum = str(m.rol) == 'Scrum Master'
         sprint = Sprint.objects.get(pk=self.kwargs['sp_pk'])
 
@@ -265,29 +262,34 @@ class sprintView_Kanban(ListView):
                     # para retroceder no puede ser
                     est_actual = int(UStory.estado)
                     est_nuevo = int(request.POST['estado'])
+                    proj = str(self.kwargs['pk'])
+                    spr = str(self.kwargs['sp_pk'])
+                    Creador = Miembro.objects.get(rol__project_id=self.kwargs['pk'], rol__name='Scrum Master')
+                    print('correo:', Creador.user.email)
                     if is_scrum:
                         if (est_nuevo - est_actual == 1 or est_nuevo - est_actual == -2) and est_actual != 4:
                             if (est_nuevo == 4 or est_nuevo == 1):
-                                print('antess:', UStory.estado)
+                                if est_nuevo == 4:
+                                    msj= 'El User Story ' + UStory.name + 'fue aceptado'
+                                    send_email(Creador.user.email, msj)
+                                if est_nuevo == 1:
+                                    msj = 'El User Story ' + UStory.name + 'fue rechazado'
+                                    send_email(Creador.user.email, msj)
                                 UStory.set_estado(request.POST['estado'])
                                 UStory.save()
-                                print('Desopues:',UStory.estado)
                                 ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
                                 ultimo_historial.sprint = sprint
                                 ultimo_historial.save()
                     else:
                         if est_nuevo - est_actual == 1:
                             UStory.set_estado(request.POST['estado'])
-                            print('est',request.POST['estado'])
+                            print('est', request.POST['estado'])
                             if (int(request.POST['estado']) == 3):
-                                Creador=Miembro.objects.get(rol__project_id=self.kwargs['pk'], rol__name='Scrum Master')
-                                print('correo:' ,Creador.user.email)
-                                proj=str(self.kwargs['pk'])
-                                spr=str(self.kwargs['sp_pk'])
+
                                 # us=str(self.kwargs['us_pk'])
-                                mensaje= 'El sprint '+ spr + ' del Proyecto ' + proj + ' tiene pendiente por evaluar el US ' + UStory.name
+                                mensaje = 'El sprint ' + spr + ' del Proyecto ' + proj + ' tiene pendiente por evaluar el US ' + UStory.name
                                 print(mensaje)
-                                send_email(Creador.user.email,mensaje)
+                                send_email(Creador.user.email, mensaje)
 
                             UStory.save()
                             ultimo_historial = HistorialUs.objects.filter(ustory_id=UStory.id).last()
@@ -311,7 +313,7 @@ class sprintView_Kanban(ListView):
                         us.prioridad = 5
                         # Quitar usuario asignado
                         us.user = None
-                        us.estado=1
+                        us.estado = 1
                         # Asignar al siguiente sprint los US no finalizados
                         if Sprint.objects.filter(proyecto_id=self.kwargs['pk'], estado=1).exists():
                             next_sp = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=1)
@@ -347,7 +349,6 @@ class sprintView_Kanban(ListView):
             s.fecha_incio = datetime.date.today()
             s.save()
             return HttpResponseRedirect(self.get_success_url())
-
 
 
 class crear_sprint(LoginRequiredMixin, CreateView):
@@ -404,7 +405,7 @@ class crear_sprint(LoginRequiredMixin, CreateView):
             data.proyecto = Proyecto.objects.get(pk=self.kwargs['pk'])
             # data.estado=Us.status[0][0]
             data.save()
-            sprint_plannig=SprintPlanning.objects.create(sprint=data,)
+            sprint_plannig = SprintPlanning.objects.create(sprint=data, )
 
             return HttpResponseRedirect(self.get_success_url())
         return self.render_to_response(self.get_context_data(form=form))

@@ -9,8 +9,8 @@ from django.views.generic import UpdateView, ListView
 
 from equipo.models import Equipo
 from miembros.models import Miembro
-from project.models import Proyecto
-from sprint.models import Sprint
+from project.models import *
+from sprint.models import *
 from sprintPlanning.forms import primerpasoplanificarSprint, tercerpasoplanificarSprint, \
     planificacionUS_Scrum, estimarUS_desarrollador
 from us.models import Us, HistorialUs
@@ -258,6 +258,8 @@ def planificarus(request, pk, sp_pk, us_pk):
     permisos = user.rol.list_permissions().order_by('id')
     # Optener sprint de la cual se va a planificar
     uss = Us.objects.get(id=us_pk)
+    sprint= Sprint.objects.get(id=sp_pk)
+    proyecto= Proyecto.objects.get(id=pk)
     miembro = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
     namerol = miembro.rol.name
     # Optener formulario de un sprint ya existente antes de comenzar
@@ -278,12 +280,14 @@ def planificarus(request, pk, sp_pk, us_pk):
             if namerol == "Scrum Master" or namerol == "Product Owner":
                 if uss.user is not None:
                     email_to = uss.user.user.email
-                    message='Hule ya ahora vos'
+                    message='Fuiste desasignado del User Story' + uss.name
                     test_email.send_email(email_to, message)
                 uss.user= nuevosp.user
                 uss.estimacionscrum = nuevosp.estimacionscrum
                 ###Acá va el envio de correo
-                message="Ahora es tu turno"
+
+                message='Se le ha asignado el User Story '+ uss.name + \
+                        ' en el Sprint ' + sprint.name+ ' del proyecto ' + proyecto.name +', se requiere estimación en el Sprint'
                 email_to=uss.user.user.email
                 test_email.send_email(email_to, message)
             else:

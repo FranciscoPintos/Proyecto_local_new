@@ -19,6 +19,7 @@ from project.models import Proyecto
 from sprint.models import Sprint
 from us.models import Us
 from usuario.models import Usuario
+from tests.test_email import send_email
 
 # Importaciones para fechas
 import numpy as np
@@ -50,6 +51,7 @@ def nuevoProyecto(request, id):
             SM.name = 'Scrum Master'
             SM.project = Pr
             SM.save()
+            #send_email(Pr.creator,'Fuiste asignado como Scrum Master del proyecto' + Pr.name)
 
             # Rol vacío
             RV = RolProyecto()

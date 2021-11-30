@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title></title>
+<meta charset="utf-8"/>
+<meta content="width=device-width" name="viewport"/>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css"/>
+<style>
+		.bee-button .content {
+			text-align: center
+		}
+
+		.bee-row-4,
+		body {
+			background-color: #121212
+		}
+
+		.bee-menu .bee-hamburger-controls span,
+		.bee-row-1,
+		.bee-row-10,
+		.bee-row-12,
+		.bee-row-14,
+		.bee-row-16,
+		.bee-row-17,
+		.bee-row-18,
+		.bee-row-19,
+		.bee-row-2,
+		.bee-row-20,
+		.bee-row-21,
+		.bee-row-25,
+		.bee-row-3,
+		.bee-row-3 .bee-row-content,
+		.bee-row-4,
+		.bee-row-9 {
+			background-repeat: no-repeat
+		}
+
+		.bee-row-10 .bee-col-1,
+		.bee-row-11 .bee-col-1,
+		.bee-row-12 .bee-col-1,
+		.bee-row-13 .bee-col-1,
+		.bee-row-13 .bee-col-2,
+		.bee-row-14 .bee-col-1,
+		.bee-row-15 .bee-col-1,
+		.bee-row-15 .bee-col-2,
+		.bee-row-16 .bee-col-1,
+		.bee-row-17 .bee-col-1,
+		.bee-row-18 .bee-col-1,
+		.bee-row-18 .bee-col-2,
+		.bee-row-18 .bee-col-3,
+		.bee-row-19 .bee-col-1,
+		.bee-row-2 .bee-col-1,
+		.bee-row-2 .bee-col-2,
+		.bee-row-2 .bee-col-3,
+		.bee-row-20 .bee-col-1,
+		.bee-row-20 .bee-col-2,
+		.bee-row-20 .bee-col-3,
+		.bee-row-21 .bee-col-1,
+		.bee-row-22 .bee-col-1,
+		.bee-row-23 .bee-col-1,
+		.bee-row-23 .bee-col-2,
+		.bee-row-23 .bee-col-3,
+		.bee-row-24 .bee-col-1,
+		.bee-row-25 .bee-col-1,
+		.bee-row-3 .bee-col-1,
+		.bee-row-4 .bee-col-1,
+		.bee-row-5 .bee-col-1,
+		.bee-row-5 .bee-col-2,
+		.bee-row-6 .bee-col-1,
+		.bee-row-7 .bee-col-1,
+		.bee-row-8 .bee-col-1,
+		.bee-row-8 .bee-col-2,
+		.bee-row-9 .bee-col-1 {
+			padding-bottom: 5px;
+			padding-top: 5px
+		}
+
+		body {
+			color: #000;
+			font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif
+		}
+
+		.bee-row-2 .bee-col-2 .bee-block-1 li a,
+		a {
+			color: #fff
+		}
+
+		* {
+			box-sizing: border-box
+		}
+
+		body,
+		p {
+			margin: 0
+		}
+
+		.bee-menu .bee-hamburger-trigger {
+			display: none
+		}
+
+		.bee-row-content {
+			max-width: 1440px;
+			margin: 0 auto;
+			display: flex
+		}
+
+		.bee-row-content .bee-col-w2 {
+			flex-basis: 17%
+		}
+
+		.bee-row-content .bee-col-w3 {
+			flex-basis: 25%
+		}
+
+		.bee-row-content .bee-col-w4 {
+			flex-basis: 33%
+		}
+
+		.bee-row-content .bee-col-w6 {
+			flex-basis: 50%
+		}
+
+		.bee-row-content .bee-col-w12 {
+			flex-basis: 100%
+		}
+
+		.bee-button a,
+		.bee-icon .bee-icon-label-right a,
+		.bee-menu ul li a {
+			text-decoration: none
+		}
+
+		.bee-divider,
+		.bee-image {
+			overflow: auto
+		}
+
+		.bee-divider .center,
+		.bee-image .bee-center {
+			margin: 0 auto
+		}
+
+		.bee-row-11 .bee-col-1 .bee-block-2,
+		.bee-row-18 .bee-col-1 .bee-block-1,
+		.bee-row-18 .bee-col-2 .bee-block-1,
+		.bee-row-18 .bee-col-3 .bee-block-1,
+		.bee-row-20 .bee-col-1 .bee-block-1,
+		.bee-row-20 .bee-col-2 .bee-block-1,
+		.bee-row-20 .bee-col-3 .bee-block-1,
+		.bee-row-3 .bee-col-1 .bee-block-1 {
+			width: 100%
+		}
+
+		.bee-icon,
+		.bee-icon .bee-icon-image,
+		.bee-icon .bee-icon-label-right,
+		.bee-menu ul.bee-horizontal li {
+			display: inline-block
+		}
+
+		.bee-icon {
+			vertical-align: middle
+		}
+
+		.bee-icon .bee-icon-image {
+			vertical-align: middle;
+			margin-right: -4px
+		}
+
+		.bee-image img {
+			display: block;
+			width: 100%
+		}
+
+		.bee-menu .bee-hamburger-controls {
+			cursor: pointer;
+			display: inline-block;
+			position: relative
+		}
+
+		.bee-menu .bee-hamburger-controls span {
+			display: block;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			background-size: 100%;
+			transition: .12s ease-in-out
+		}
+
+		.bee-menu ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0
+		}
+
+		.bee-social .icon img {
+			max-height: 32px
+		}
+
+		.bee-text {
+			overflow-wrap: anywhere
+		}
+
+		.bee-row-1 .bee-row-content,
+		.bee-row-10 .bee-row-content,
+		.bee-row-11 .bee-row-content,
+		.bee-row-12 .bee-row-content,
+		.bee-row-13 .bee-row-content,
+		.bee-row-14 .bee-row-content,
+		.bee-row-15 .bee-row-content,
+		.bee-row-16 .bee-row-content,
+		.bee-row-17 .bee-row-content,
+		.bee-row-18 .bee-row-content,
+		.bee-row-19 .bee-row-content,
+		.bee-row-2 .bee-row-content,
+		.bee-row-20 .bee-row-content,
+		.bee-row-21 .bee-row-content,
+		.bee-row-22 .bee-row-content,
+		.bee-row-23 .bee-row-content,
+		.bee-row-24 .bee-row-content,
+		.bee-row-25 .bee-row-content,
+		.bee-row-4 .bee-row-content,
+		.bee-row-5 .bee-row-content,
+		.bee-row-6 .bee-row-content,
+		.bee-row-7 .bee-row-content,
+		.bee-row-8 .bee-row-content,
+		.bee-row-9 .bee-row-content {
+			background-repeat: no-repeat;
+			color: #000
+		}
+
+		.bee-row-1 .bee-col-1 .bee-block-1,
+		.bee-row-1 .bee-col-1 .bee-block-2,
+		.bee-row-10 .bee-col-1 .bee-block-3,
+		.bee-row-11 .bee-col-1 .bee-block-1,
+		.bee-row-12 .bee-col-1 .bee-block-1,
+		.bee-row-13 .bee-col-1 .bee-block-4,
+		.bee-row-13 .bee-col-1 .bee-block-6,
+		.bee-row-13 .bee-col-1 .bee-block-8,
+		.bee-row-13 .bee-col-2 .bee-block-1,
+		.bee-row-13 .bee-col-2 .bee-block-3,
+		.bee-row-14 .bee-col-1 .bee-block-1,
+		.bee-row-14 .bee-col-1 .bee-block-2,
+		.bee-row-15 .bee-col-1 .bee-block-3,
+		.bee-row-15 .bee-col-2 .bee-block-3,
+		.bee-row-15 .bee-col-2 .bee-block-5,
+		.bee-row-15 .bee-col-2 .bee-block-7,
+		.bee-row-16 .bee-col-1 .bee-block-1,
+		.bee-row-16 .bee-col-1 .bee-block-2,
+		.bee-row-17 .bee-col-1 .bee-block-3,
+		.bee-row-19 .bee-col-1 .bee-block-1,
+		.bee-row-19 .bee-col-1 .bee-block-2,
+		.bee-row-21 .bee-col-1 .bee-block-1,
+		.bee-row-21 .bee-col-1 .bee-block-2,
+		.bee-row-22 .bee-col-1 .bee-block-1,
+		.bee-row-23 .bee-col-1 .bee-block-1,
+		.bee-row-24 .bee-col-1 .bee-block-1,
+		.bee-row-24 .bee-col-1 .bee-block-3,
+		.bee-row-24 .bee-col-1 .bee-block-4,
+		.bee-row-24 .bee-col-1 .bee-block-6,
+		.bee-row-4 .bee-col-1 .bee-block-1,
+		.bee-row-5 .bee-col-1 .bee-block-4,
+		.bee-row-5 .bee-col-1 .bee-block-6,
+		.bee-row-5 .bee-col-1 .bee-block-8,
+		.bee-row-5 .bee-col-2 .bee-block-1,
+		.bee-row-5 .bee-col-2 .bee-block-3,
+		.bee-row-6 .bee-col-1 .bee-block-1,
+		.bee-row-7 .bee-col-1 .bee-block-1,
+		.bee-row-8 .bee-col-1 .bee-block-3,
+		.bee-row-8 .bee-col-2 .bee-block-3,
+		.bee-row-8 .bee-col-2 .bee-block-5,
+		.bee-row-8 .bee-col-2 .bee-block-7,
+		.bee-row-9 .bee-col-1 .bee-block-1 {
+			padding: 10px
+		}
+
+		.bee-row-2 .bee-col-1 .bee-block-1 {
+			padding-left: 20px;
+			padding-top: 10px;
+			width: 100%
+		}
+
+		.bee-row-2 .bee-col-2 .bee-block-1 {
+			color: #fff;
+			font-family: inherit;
+			font-size: 17px;
+			text-align: right
+		}
+
+		.bee-row-10 .bee-col-1 .bee-block-4,
+		.bee-row-2 .bee-col-3 .bee-block-1,
+		.bee-row-3 .bee-col-1 .bee-block-2 {
+			padding: 10px 10px 10px 25px;
+			text-align: center
+		}
+
+		.bee-row-3 .bee-row-content {
+			background-color: #121212;
+			color: #000
+		}
+
+		.bee-row-4 .bee-col-1 {
+			border-bottom: 0 solid #1bb2bb;
+			border-left: 0 solid #1bb2bb;
+			border-right: 0px solid #1bb2bb;
+			border-top: 0 solid #1bb2bb
+		}
+
+		.bee-row-13,
+		.bee-row-15,
+		.bee-row-5,
+		.bee-row-6,
+		.bee-row-7,
+		.bee-row-8 {
+			background-position: top center;
+			background-repeat: repeat
+		}
+
+		.bee-row-10 .bee-col-1 .bee-block-1,
+		.bee-row-10 .bee-col-1 .bee-block-2,
+		.bee-row-13 .bee-col-1 .bee-block-1,
+		.bee-row-13 .bee-col-1 .bee-block-5,
+		.bee-row-15 .bee-col-2 .bee-block-1,
+		.bee-row-15 .bee-col-2 .bee-block-4,
+		.bee-row-17 .bee-col-1 .bee-block-1,
+		.bee-row-17 .bee-col-1 .bee-block-2,
+		.bee-row-5 .bee-col-1 .bee-block-1,
+		.bee-row-5 .bee-col-1 .bee-block-5,
+		.bee-row-8 .bee-col-2 .bee-block-1,
+		.bee-row-8 .bee-col-2 .bee-block-4 {
+			padding: 10px 10px 10px 25px
+		}
+
+		.bee-row-13 .bee-col-1 .bee-block-2,
+		.bee-row-15 .bee-col-1 .bee-block-2,
+		.bee-row-5 .bee-col-1 .bee-block-2,
+		.bee-row-8 .bee-col-1 .bee-block-2 {
+			padding-bottom: 5px;
+			padding-left: 10px;
+			padding-right: 10px
+		}
+
+		.bee-row-13 .bee-col-1 .bee-block-3,
+		.bee-row-13 .bee-col-1 .bee-block-7,
+		.bee-row-15 .bee-col-2 .bee-block-2,
+		.bee-row-15 .bee-col-2 .bee-block-6,
+		.bee-row-5 .bee-col-1 .bee-block-3,
+		.bee-row-5 .bee-col-1 .bee-block-7,
+		.bee-row-8 .bee-col-2 .bee-block-2,
+		.bee-row-8 .bee-col-2 .bee-block-6 {
+			padding-left: 25px;
+			width: 100%
+		}
+
+		.bee-row-13 .bee-col-1 .bee-block-9,
+		.bee-row-15 .bee-col-2 .bee-block-8,
+		.bee-row-5 .bee-col-1 .bee-block-9,
+		.bee-row-8 .bee-col-2 .bee-block-8 {
+			padding: 10px 10px 10px 20px
+		}
+
+		.bee-row-13 .bee-col-1 .bee-block-10,
+		.bee-row-15 .bee-col-2 .bee-block-9,
+		.bee-row-5 .bee-col-1 .bee-block-10,
+		.bee-row-8 .bee-col-2 .bee-block-9 {
+			padding-bottom: 10px;
+			padding-left: 20px;
+			padding-right: 10px
+		}
+
+		.bee-row-13 .bee-col-1 .bee-block-11,
+		.bee-row-15 .bee-col-2 .bee-block-10,
+		.bee-row-5 .bee-col-1 .bee-block-11,
+		.bee-row-8 .bee-col-2 .bee-block-10 {
+			padding: 10px 10px 10px 25px;
+			text-align: left
+		}
+
+		.bee-row-13 .bee-col-2 .bee-block-2,
+		.bee-row-15 .bee-col-1 .bee-block-1,
+		.bee-row-5 .bee-col-2 .bee-block-2,
+		.bee-row-8 .bee-col-1 .bee-block-1 {
+			padding: 10px;
+			width: 100%
+		}
+
+		.bee-row-11 {
+			background-image: url('https://d1oco4z2z1fhwp.cloudfront.net/templates/default/2481/bg.png');
+			background-position: top center;
+			background-repeat: no-repeat
+		}
+
+		.bee-row-22,
+		.bee-row-23,
+		.bee-row-24 {
+			background-color: #040404;
+			background-repeat: no-repeat
+		}
+
+		.bee-row-23 .bee-col-1 .bee-block-2 {
+			padding: 15px 10px 10px 25px
+		}
+
+		.bee-row-23 .bee-col-2 .bee-block-1,
+		.bee-row-23 .bee-col-3 .bee-block-1 {
+			padding: 15px 10px 10px;
+			width: 100%
+		}
+
+		.bee-row-24 .bee-col-1 .bee-block-2 {
+			padding: 10px;
+			text-align: center
+		}
+
+		.bee-row-24 .bee-col-1 .bee-block-5 {
+			color: #656565;
+			font-family: inherit;
+			font-size: 14px;
+			text-align: center
+		}
+
+		.bee-row-25 .bee-col-1 .bee-block-1 {
+			color: #9d9d9d;
+			font-family: inherit;
+			font-size: 15px;
+			padding-bottom: 5px;
+			padding-top: 5px;
+			text-align: center
+		}
+
+		.bee-row-2 .bee-col-2 .bee-block-1 li {
+			padding-left: 15px;
+			padding-right: 15px
+		}
+
+		.bee-row-25 .bee-col-1 .bee-block-1 .bee-icon-image {
+			padding: 5px 6px 5px 5px
+		}
+
+		.bee-row-25 .bee-col-1 .bee-block-1 .bee-icon {
+			margin-left: 0;
+			margin-right: 0
+		}
+
+		.bee-row-24 .bee-col-1 .bee-block-5 li {
+			padding: 5px 15px
+		}
+
+		.bee-row-24 .bee-col-1 .bee-block-5 li a {
+			color: #656565
+		}
+
+		@media (max-width:768px) {
+			.bee-menu ul.with-bee-hamburger {
+				display: none;
+				padding: 5px 0;
+				position: relative;
+				top: -4px
+			}
+
+			.bee-menu ul.with-bee-hamburger li {
+				display: block;
+				text-align: center
+			}
+
+			.bee-menu ul.with-bee-hamburger li a {
+				text-decoration: none
+			}
+
+			.bee-menu ul.with-bee-hamburger span,
+			.bee-mobile_hide {
+				display: none
+			}
+
+			#bee-hamburger-m26o4ye:checked~ul,
+			#bee-hamburger-mgc3qm3:checked~ul,
+			.bee-row-content:not(.no_stack) {
+				display: block
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 .bee-hamburger-controls {
+				width: 48px;
+				height: 48px;
+				background-color: transparent;
+				border-radius: 0
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 .bee-hamburger-controls span {
+				width: 24px;
+				height: 24px
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 .bee-hamburger-controls span.bee-hamburger-open {
+				background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0IiB2aWV3Qm94PSIwIDAgNjQgNjQiIHdpZHRoPSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB3aWR0aD0iNjQiLz48cmVjdCBoZWlnaHQ9IjEyIiByeD0iNiIgd2lkdGg9IjY0IiB5PSI1MiIvPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB3aWR0aD0iNjQiIHk9IjI2Ii8+PC9nPjwvc3ZnPg==");
+				transform: translate(-50%, -50%) scaleY(1)
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 .bee-hamburger-controls span.bee-hamburger-close {
+				background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0IiB2aWV3Qm94PSIwIDAgNjQgNjQiIHdpZHRoPSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjZmZmZmZmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB0cmFuc2Zvcm09Im1hdHJpeCgtLjcwNzEwNjc4IC0uNzA3MTA2NzggLjcwNzEwNjc4IC0uNzA3MTA2NzggMzEuOTkxMzc4IDc3LjIzNDAxOSkiIHdpZHRoPSI4MiIgeD0iLTkuMDA4NjIyIiB5PSIyNS45OTEzNzgiLz48cmVjdCBoZWlnaHQ9IjEyIiByeD0iNiIgdHJhbnNmb3JtPSJtYXRyaXgoLS43MDcxMDY3OCAuNzA3MTA2NzggLS43MDcxMDY3OCAtLjcwNzEwNjc4IDc3LjgxOTgwNiAzMi4yMzQwMTkpIiB3aWR0aD0iODIiIHg9Ii04Ljc2NTk4MSIgeT0iMjYuMjM0MDE5Ii8+PC9nPjwvc3ZnPg==");
+				transform: translate(-50%, -50%) scaleY(0)
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 ul.with-bee-hamburger {
+				background-color: transparent
+			}
+
+			.bee-row-2 .bee-col-2 .bee-block-1 ul.with-bee-hamburger li,
+			.bee-row-2 .bee-col-2 .bee-block-1 ul.with-bee-hamburger li a {
+				color: #fff
+			}
+
+			#bee-hamburger-m26o4ye:checked~.bee-hamburger-controls .bee-hamburger-open,
+			#bee-hamburger-mgc3qm3:checked~.bee-hamburger-controls .bee-hamburger-open {
+				transform: translate(-50%, -50%) scaleY(0)
+			}
+
+			#bee-hamburger-m26o4ye:checked~.bee-hamburger-controls .bee-hamburger-close,
+			#bee-hamburger-mgc3qm3:checked~.bee-hamburger-controls .bee-hamburger-close {
+				transform: translate(-50%, -50%) scaleY(1)
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 .bee-hamburger-controls {
+				width: 36px;
+				height: 36px;
+				background-color: #fff;
+				border-radius: 0
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 .bee-hamburger-controls span {
+				width: 18px;
+				height: 18px
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 .bee-hamburger-controls span.bee-hamburger-open {
+				background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0IiB2aWV3Qm94PSIwIDAgNjQgNjQiIHdpZHRoPSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB3aWR0aD0iNjQiLz48cmVjdCBoZWlnaHQ9IjEyIiByeD0iNiIgd2lkdGg9IjY0IiB5PSI1MiIvPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB3aWR0aD0iNjQiIHk9IjI2Ii8+PC9nPjwvc3ZnPg==");
+				transform: translate(-50%, -50%) scaleY(1)
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 .bee-hamburger-controls span.bee-hamburger-close {
+				background-image: url("data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjY0IiB2aWV3Qm94PSIwIDAgNjQgNjQiIHdpZHRoPSI2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxyZWN0IGhlaWdodD0iMTIiIHJ4PSI2IiB0cmFuc2Zvcm09Im1hdHJpeCgtLjcwNzEwNjc4IC0uNzA3MTA2NzggLjcwNzEwNjc4IC0uNzA3MTA2NzggMzEuOTkxMzc4IDc3LjIzNDAxOSkiIHdpZHRoPSI4MiIgeD0iLTkuMDA4NjIyIiB5PSIyNS45OTEzNzgiLz48cmVjdCBoZWlnaHQ9IjEyIiByeD0iNiIgdHJhbnNmb3JtPSJtYXRyaXgoLS43MDcxMDY3OCAuNzA3MTA2NzggLS43MDcxMDY3OCAtLjcwNzEwNjc4IDc3LjgxOTgwNiAzMi4yMzQwMTkpIiB3aWR0aD0iODIiIHg9Ii04Ljc2NTk4MSIgeT0iMjYuMjM0MDE5Ii8+PC9nPjwvc3ZnPg==");
+				transform: translate(-50%, -50%) scaleY(0)
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 ul.with-bee-hamburger {
+				background-color: #fff
+			}
+
+			.bee-row-24 .bee-col-1 .bee-block-5 ul.with-bee-hamburger li,
+			.bee-row-24 .bee-col-1 .bee-block-5 ul.with-bee-hamburger li a {
+				color: #000
+			}
+		}
+	</style>
+</head>
+<body>
+<div class="bee-page-container">
+<div class="bee-row bee-row-1">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-2">
+<div class="bee-row-content no_stack">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Company Logo" class="bee-fixedwidth" src="images/QAVO_logo_White.png" style="max-width:144px;"/></a></div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w4">
+<div class="bee-block bee-block-1 bee-menu">
+<nav class="bee-menu"><input class="bee-hamburger-trigger" id="bee-hamburger-mgc3qm3" type="checkbox"/><label class="bee-hamburger-controls" for="bee-hamburger-mgc3qm3"><span class="bee-hamburger-open"></span><span class="bee-hamburger-close"></span></label>
+<ul class="bee-horizontal with-bee-hamburger">
+<li>Deals</li>
+<li>Accessories</li>
+<li>Gaming</li>
+<li>Audio</li>
+</ul>
+</nav>
+</div>
+</div>
+<div class="bee-col bee-col-3 bee-col-w2">
+<div class="bee-block bee-block-1 bee-button bee-mobile_hide"><a class="bee-button-content" href="http://www.example.com" style="line-height: 24px; font-size: 12px; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; font-family: inherit; max-width: 100%; padding-bottom: 10px; padding-left: 25px; padding-right: 25px; padding-top: 10px; width: auto; display: inline-block;"><span style="line-height: 200%; word-break: break-word;"><strong>Black Friday Sales</strong></span></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-3">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-image"><img alt="Black Friday Promo Image" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/Black_Friday_Hero_1.png" style="max-width:792px;"/></div>
+<div class="bee-block bee-block-2 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>VIEW ALL DEALS</strong></span></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-4">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:45px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-5">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;">Future Gaming Is Here</span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-3 bee-image"><a href="http://www.example.comc"><img alt="Rating" class="bee-fixedwidth" src="images/stars4.5.png" style="max-width:180px;"/></a></div>
+<div class="bee-block bee-block-4 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-5 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-6 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-7 bee-image"><a href="http://www.example.com"><img alt="Color selection" class="bee-fixedwidth" src="images/Color_Selection.png" style="max-width:144px;"/></a></div>
+<div class="bee-block bee-block-8 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-9 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><strong style=""><span style="font-size: 34px; line-height: 40px;">SAVE $90</span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-10 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><span style="font-size: 34px; line-height: 40px;"><span style="text-decoration: line-through; font-size: 18px; line-height: 21px;">$390</span> </span><strong style=""><span style="font-size: 34px; line-height: 40px;"><span style="font-size: 24px; line-height: 28px;">$300</span></span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-11 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>BUY NOW</strong></span></a></div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w6">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-image"><a href="http://www.example.com"><img alt="White Game Console" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/Gaming_Console_White.png" style="max-width:360px;"/></a></div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-6">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-7">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-8">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Smart Phone" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/Iphone.png" style="max-width:360px;"/></a></div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w6">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;">Fresh Out of Box</span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-image"><a href="http://www.example.com"><img alt="Rating" class="bee-fixedwidth" src="images/stars4.5.png" style="max-width:144px;"/></a></div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-4 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-5 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-6 bee-image"><a href="http://www.example.com"><img alt="Color selection" class="bee-fixedwidth" src="images/device_color_phone.png" style="max-width:144px;"/></a></div>
+<div class="bee-block bee-block-7 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-8 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><strong style=""><span style="font-size: 34px; line-height: 40px;">SAVE $90</span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-9 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><span style="font-size: 34px; line-height: 40px;"><span style="text-decoration: line-through; font-size: 18px; line-height: 21px;">$390</span> </span><strong style=""><span style="font-size: 34px; line-height: 40px;"><span style="font-size: 24px; line-height: 28px;">$300</span></span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-10 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>BUY NOW</strong></span></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-9">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-10">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px; text-align: center;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;"> In Darkness And In Light<br style=""/></span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px; text-align: center;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</span></p>
+<p style="font-size: 14px; line-height: 25px; text-align: center;"><span style="font-size: 16px; line-height: 28px;">malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-4 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>BUY NOW</strong></span></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-11">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-image"><a href="http://www.example.com"><img alt="Black TV" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/TV.png" style="max-width:1224px;"/></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-12">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:30px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-13">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;">Smart Watch Of Future</span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-3 bee-image"><a href="http://www.example.com"><img alt="Rating" class="bee-fixedwidth" src="images/stars4.5.png" style="max-width:180px;"/></a></div>
+<div class="bee-block bee-block-4 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-5 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-6 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-7 bee-image"><a href="http://www.example.com"><img alt="Color selection" class="bee-fixedwidth" src="images/Color_Device_Watch.png" style="max-width:144px;"/></a></div>
+<div class="bee-block bee-block-8 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-9 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><strong style=""><span style="font-size: 34px; line-height: 40px;">SAVE $90</span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-10 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><span style="font-size: 34px; line-height: 40px;"><span style="text-decoration: line-through; font-size: 18px; line-height: 21px;">$390</span> </span><strong style=""><span style="font-size: 34px; line-height: 40px;"><span style="font-size: 24px; line-height: 28px;">$300</span></span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-11 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>BUY NOW</strong></span></a></div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w6">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-image"><a href="http://www.example.com"><img alt="Smart Watch" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/Smart_Watches.png" style="max-width:396px;"/></a></div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:30px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-14">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-15">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Black Speaker" class="bee-center bee-fixedwidth bee-fullwidthOnMobile" src="images/Speaker_Black_1.png" style="max-width:396px;"/></a></div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w6">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;">Loud and Clear</span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-image"><img alt="Rating" class="bee-fixedwidth" src="images/stars4.5.png" style="max-width:180px;"/></div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-4 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-5 bee-divider">
+<div class="spacer" style="height:30px;"></div>
+</div>
+<div class="bee-block bee-block-6 bee-image"><a href="http://www.example.com"><img alt="Color selection" class="bee-fixedwidth" src="images/Color_Device_Speaker.png" style="max-width:144px;"/></a></div>
+<div class="bee-block bee-block-7 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-8 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><strong style=""><span style="font-size: 34px; line-height: 40px;">SAVE $90</span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-9 bee-text">
+<div class="bee-text-content" style="line-height: 120%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 16px; text-align: left;"><span style="font-size: 34px; line-height: 40px;"><span style="text-decoration: line-through; font-size: 18px; line-height: 21px;">$390</span> </span><strong style=""><span style="font-size: 34px; line-height: 40px;"><span style="font-size: 24px; line-height: 28px;">$300</span></span></strong></p>
+</div>
+</div>
+<div class="bee-block bee-block-10 bee-button"><a class="bee-button-content" href="http://www.example.com" style="font-size: 12px; line-height: 24px; font-family: inherit; background-color: #ffffff; border-bottom: 0px solid #8a3b8f; border-left: 0px solid #8a3b8f; border-radius: 4px; border-right: 0px solid #8a3b8f; border-top: 0px solid #8a3b8f; color: #313a46; max-width: 100%; padding-bottom: 10px; padding-left: 55px; padding-right: 55px; padding-top: 10px; width: auto; display: inline-block;"><span style="font-size: 16px; line-height: 200%; word-break: break-word;"><strong>BUY NOW</strong></span></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-16">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:35px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-17">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-text">
+<div class="bee-text-content" style="line-height: 150%; font-size: 12px; color: #ffffff; font-family: inherit;">
+<p style="font-size: 14px; line-height: 21px; text-align: center;"><span style="font-size: 38px; line-height: 57px;"><strong style=""><span style="line-height: 18px;">Follow US</span></strong></span></p>
+</div>
+</div>
+<div class="bee-block bee-block-2 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; color: #a5adb8; font-family: inherit;">
+<p style="font-size: 14px; line-height: 25px; text-align: center;"><span style="font-size: 16px; line-height: 28px;">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</span></p>
+<p style="font-size: 14px; line-height: 25px; text-align: center;"><span style="font-size: 16px; line-height: 28px;">malesuada fames ac turpis egestas.malesuada fames ac turpis egestas.</span></p>
+</div>
+</div>
+<div class="bee-block bee-block-3 bee-divider">
+<div class="spacer" style="height:20px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-18">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Phone &amp; red Shirt" class="bee-center bee-fixedwidth" src="images/Phone_red.png" style="max-width:384px;"/></a></div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Graphic Book" class="bee-center bee-fixedwidth" src="images/Tech_Book.png" style="max-width:384px;"/></a></div>
+</div>
+<div class="bee-col bee-col-3 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Black Phone" class="bee-center bee-fixedwidth" src="images/Black_Iphone.png" style="max-width:384px;"/></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-19">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:10px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-20">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="VR set" class="bee-center bee-fixedwidth" src="images/VR.png" style="max-width:384px;"/></a></div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Phone &amp; VR" class="bee-center bee-fixedwidth" src="images/Phone_VR.png" style="max-width:384px;"/></a></div>
+</div>
+<div class="bee-col bee-col-3 bee-col-w4">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Smart Device Pink" class="bee-center bee-fixedwidth" src="images/Pink_Device.png" style="max-width:384px;"/></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-21">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-divider">
+<div class="spacer" style="height:35px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-22">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-23">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w6">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:0px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-text">
+<div class="bee-text-content" style="font-size: 14px; line-height: 150%; color: #ffffff; font-family: inherit;">
+<p style="line-height: 18px; text-align: center;"><span style="font-size: 16px; line-height: 24px;"><span style="background-color: transparent; line-height: 18px;"><strong style="">Download our app &amp; Receive</strong></span><strong style=""> free shipping</strong></span></p>
+</div>
+</div>
+</div>
+<div class="bee-col bee-col-2 bee-col-w3">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="Google Play Badge" class="bee-center bee-autowidth" src="images/Google_Play_Badge_US.png" style="max-width:217px;"/></a></div>
+</div>
+<div class="bee-col bee-col-3 bee-col-w3">
+<div class="bee-block bee-block-1 bee-image"><a href="http://www.example.com"><img alt="App store Badge" class="bee-center bee-autowidth" src="images/App_Store_Badge_US_Black.png" style="max-width:217px;"/></a></div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-24">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-divider">
+<div class="spacer" style="height:5px;"></div>
+</div>
+<div class="bee-block bee-block-2 bee-social">
+<div class="content"><span class="icon" style="padding:0 7.5px 0 7.5px;"><a href="https://www.facebook.com/"><img alt="Facebook" src="images/facebook2x.png" title="facebook"/></a></span><span class="icon" style="padding:0 7.5px 0 7.5px;"><a href="https://www.twitter.com/"><img alt="Twitter" src="images/twitter2x.png" title="twitter"/></a></span><span class="icon" style="padding:0 7.5px 0 7.5px;"><a href="https://www.linkedin.com/"><img alt="Linkedin" src="images/linkedin2x.png" title="linkedin"/></a></span><span class="icon" style="padding:0 7.5px 0 7.5px;"><a href="https://www.instagram.com/"><img alt="Instagram" src="images/instagram2x.png" title="instagram"/></a></span></div>
+</div>
+<div class="bee-block bee-block-3 bee-text">
+<div class="bee-text-content" style="line-height: 180%; font-size: 12px; font-family: inherit; color: #656565;">
+<p style="font-size: 14px; line-height: 25px; text-align: center;">Lorem ipsum dolor sit amet, consectetur</p>
+</div>
+</div>
+<div class="bee-block bee-block-4 bee-text">
+<div class="bee-text-content" style="line-height: 200%; font-size: 12px; font-family: inherit; color: #656565;">
+<p style="font-size: 14px; line-height: 28px; text-align: center;">UK (+23) 456 7890 <br style=""/>US (+22) 456 7891</p>
+<p style="font-size: 14px; line-height: 28px; text-align: center;">support@domain.com <br style=""/>sales@domain.com</p>
+</div>
+</div>
+<div class="bee-block bee-block-5 bee-menu">
+<nav class="bee-menu"><input class="bee-hamburger-trigger" id="bee-hamburger-m26o4ye" type="checkbox"/><label class="bee-hamburger-controls" for="bee-hamburger-m26o4ye"><span class="bee-hamburger-open"></span><span class="bee-hamburger-close"></span></label>
+<ul class="bee-horizontal with-bee-hamburger">
+<li><a href="http://www.example.com" target="_self" title="">Deals</a></li>
+<li><a href="http://www.example.com" target="_self" title="">Privacy Policy</a></li>
+<li><a href="http://www.example.com" target="_self" title="">Customer Service</a></li>
+<li><a href="http://www.example.com" target="_self" title="">About Us</a></li>
+</ul>
+</nav>
+</div>
+<div class="bee-block bee-block-6 bee-divider">
+<div class="spacer" style="height:20px;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="bee-row bee-row-25">
+<div class="bee-row-content">
+<div class="bee-col bee-col-1 bee-col-w12">
+<div class="bee-block bee-block-1 bee-icons">
+<div class="bee-icon">
+<div class="bee-icon-image"><a href="https://www.designedwithbee.com/" target="_blank" title="Designed with BEE"><img alt="Designed with BEE" height="32px" src="images/bee.png" width="auto"/></a></div>
+<div class="bee-icon-label-right"><a href="https://www.designedwithbee.com/" target="_blank" title="Designed with BEE">Designed with BEE</a></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
