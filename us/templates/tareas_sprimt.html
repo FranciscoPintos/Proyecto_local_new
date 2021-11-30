@@ -3,6 +3,8 @@
     <br>
     <br>
     <br>
+
+
     <div class="container mt-3">
         <div class="row">
             <div class="col-lg-12">
@@ -13,7 +15,7 @@
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
-                        <h3> Tareas</h3>
+                        <h3> Tareas - {{ Us.name }}</h3>
                     </div>
                     <div class="card-body">
                         {% if Tr %}
@@ -75,7 +77,7 @@
                                     {% if p.codename == 'add_tarea' and not is_scrum and sprimt.estado == 2 and Us.estado == 2%}
                                         <a href="{% url 'crear_tarea'  pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}"
                                            class="btn btn-lg btn-primary float-right">
-                                            Crear Tarea
+                                            Cargar Tarea
                                         </a>
                                     {% endif %}
                                 {% endfor %}

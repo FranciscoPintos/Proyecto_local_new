@@ -36,11 +36,13 @@
                                         <tr>
                                             <td><h5 class="card-title">{{ r.name }}</h5></td>
                                             <td class=" py-0 align-middle">
-                                                <div class="btn-group btn-group-sm">
-                                                    <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id rl_pk=r.id %}"
-                                                       class="btn btn-info"><i
-                                                            class="fas fa-edit"></i></a>
-                                                </div>
+                                                {% if r.name != "Scrum Master" %}
+                                                    <div class="btn-group btn-group-sm">
+                                                        <a href="{% url 'asignar_rolProyecto' pk=Proyecto.id rl_pk=r.id %}"
+                                                           class="btn btn-info"><i
+                                                                class="fas fa-edit"></i></a>
+                                                    </div>
+                                                {% endif %}
                                             </td>
                                         </tr>
                                         </tbody>

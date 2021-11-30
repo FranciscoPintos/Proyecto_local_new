@@ -6,7 +6,7 @@ from email.mime.text import MIMEText
 from django.template.loader import render_to_string
 
 from Proyecto import settings
-from usuario import *
+from usuario.models import *
 
 
 def send_email(email_to, message):
@@ -26,7 +26,7 @@ def send_email(email_to, message):
         mensaje['To'] = email_to
         mensaje['Subject'] = "Tienes un correo"
 
-        # content = render_to_string('send_email.html', {'user': User.objects.get(pk=1)})
+        # content = render_to_string('email.html',{'title':'Nuevo'})
         # mensaje.attach(MIMEText(content, 'html'))
 
         mailServer.sendmail(settings.EMAIL_HOST_USER,
@@ -36,5 +36,4 @@ def send_email(email_to, message):
     except Exception as e:
         print(e)
 
-
-# send_email()
+# send_email('pintos98javier99@fpuna.edu.py','nuevo correo')

@@ -10,6 +10,7 @@ urlpatterns = [
         # Paths de views
         path('principalApp/inicio', inicioview , name='inicio'),
         path('principalApp/base', baseview , name='base'),
-        path('pricipalApp/calendar',calendar.as_view(),name='calendar')
+        path('pricipalApp/calendar',calendar.as_view(),name='calendar'),
+        path('pricipalApp/send_email',email.as_view(),name='email')
 
 ]
