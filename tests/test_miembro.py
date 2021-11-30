@@ -1,6 +1,9 @@
 from django.test import TestCase
 #definido en [[models.py]]
 from miembros.models import *
+from miembros.forms import *
+from usuario.models import Usuario
+
 
 #Espacio de definicion de pruebas unitarias referentes al modelo Miembro
 class TestMiembro(TestCase):
@@ -26,6 +29,19 @@ class TestMiembro(TestCase):
     #definicion de prueba unitaria respecto al estado activo o desactivado de mimebro
     def test_estado_miembro(self):
         self.assertTrue(Miembro.active)
+
+
+    # comprobacion de formulario invalido
+    def test_form_equipo_invalido(self):
+        # definicion del copntext a ser utilizado para el formulario
+        data_form = {
+            'horaTrabajo': 20
+        }
+        # instanciamos el formulario
+        formulario = CrearMiembro(data_form)
+        # comprobamos que el formulario sea valido
+        self.assertFalse(formulario.is_valid(), 'El formulario sí es válido')
+
 
 #Espacio de definicion de pruebas unitarias referentes al modelo RolProyecto
 class TestRolProyecto(TestCase):
