@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     'sprint',
     'equipo',
     'sprintPlanning',
+    'reportes',
 ]
 
 MIDDLEWARE = [

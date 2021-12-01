@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'reportes' %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+
+                        </div>
+                        <h3>Reportes - Proyectos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-9 justify-content-center">
+                                {% if object_list %}
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Proyecto</th>
+                                            <th>Ver</th>
+                                        </tr>
+                                        </thead>
+                                        {% for r in object_list %}
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <h5 class>{{ r.name }}</h5>
+                                                    </td>
+                                                    <td>
+                                                        <a type="submit" href="{% url 'listus' r.id %}"
+                                                           class="btn btn-danger"><i class="fas fa-eye"></i></a>
+                                                    </td>
+                                                </tr>
+
+                                                </tbody>
+
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    <div class="alert alert-danger mt-4"> No tiene proyectos</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
