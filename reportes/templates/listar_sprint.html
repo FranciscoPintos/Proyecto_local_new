@@ -25,12 +25,16 @@
                             <div class="col-sm-9 justify-content-center">
 
                                 <form method="POST"> {% csrf_token %}
-                                    fd
-                                    {{ form.proyectos }}
+                                    <div class="form-group">
+                                        <label>Proyectos:</label>
+                                        {{ form.proyectos }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Sprints:</label>
+                                        {{ form.Sprints }}
+                                    </div>
 
-                                    {{ form.Sprints }}
-
-{#                                    <input class="btn btn-success float-right" type="submit" value="enviar">#}
+                                    <input class="btn btn-success float-right" type="submit" value="enviar">
                                 </form>
 
                             </div>
@@ -42,12 +46,47 @@
         </div>
     </div>
     <script>
-        $(function () {
-            $('select[name="proyectos"]').on('change', function () {
-                alert('x');
+        let seleccion = document.getElementById("id_proyectos")
+        let select_sprint = document.getElementById('id_Sprints');
+        seleccion.addEventListener("change", (ev) => listar(ev));
 
-            });
-        });
+        function listar(ev) {
+            ev.preventDefault();
+            id = seleccion.options[seleccion.selectedIndex].value;
+
+            let options = '<option value="">--------1</option>';
+            $.ajax({
+                type: 'POST',
+                url: window.location.pathname,
+                data: {
+                    pk: id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (data, response) {
+                    console.log(data)
+                    var select = document.getElementById("id_Sprints");
+                    var length = select.options.length;
+                    for (i = length - 1; i >= 0; i--) {
+                        select.options[i] = null;
+                    }
+
+                    $.each(data, function (key, value) {
+                        let opcion = document.createElement("option");
+                        opcion.setAttribute("value",value.id);
+                        opcion.text = value.Nombre;
+                        select_sprint.add(opcion)
+                    });
+
+                    console.log(select_sprint)
+
+                },
+
+
+            })
+
+        }
+
+
     </script>
 {% endblock %}
 

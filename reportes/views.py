@@ -76,11 +76,16 @@ class Sprint_view(ListView):
         return context
 
     def post(self, request, *args, **kwargs):
-        data={}
-        try:
-            data=[]
-            for i in Sprint.objects.filter(proyecto_id=request.POST['id']):
-                data.append({'id':i.id,'Nombre':i.name})
-        except Exception as e:
-            data['error']=str(e)
-        return JsonResponse(data,safe=False)
+        if request.is_ajax():
+            data={}
+            try:
+                data=[]
+                for i in Sprint.objects.filter(proyecto_id=request.POST['pk']):
+                    data.append({'id':i.id,'Nombre':i.name})
+                print(data)
+            except Exception as e:
+                data['error']=str(e)
+            return JsonResponse(data,safe=False)
+        else:
+            print(request.POST)
+        return redirect('listsprint')
