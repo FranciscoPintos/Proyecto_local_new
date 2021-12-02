@@ -1372,6 +1372,14 @@
   }
 },
 {
+  "model": "sessions.session",
+  "pk": "t3nf5cwfp2ze7eo8dz3fb8ieeqce3se0",
+  "fields": {
+    "session_data": ".eJxVjE0KwyAUhO_iuoi_jXbXXESeT0VpMFB1VXr3mpJFuxmY-WbmRRyMnt1o8elKIDciyOU384CPWA8A23bEFBD3UTv9dk7c6H26WHtB6GWv67n6u8rQ8vxhQiVpPItBe5WUVwyl9mDVovA6geFRLJLxIAK3CTyzfCpHaaQAbTl5fwCyqDv6:1msVQB:dEmFL2W8z1zCyeym-SQ6UqNTr2vX3nytSNjjZdaESVg",
+    "expire_date": "2021-12-15T19:37:39.158Z"
+  }
+},
+{
   "model": "sites.site",
   "pk": 4,
   "fields": {
@@ -1440,7 +1448,7 @@
     "user": 2,
     "provider": "google",
     "uid": "101650378013258971914",
-    "last_login": "2021-11-30T20:16:18.285Z",
+    "last_login": "2021-12-01T19:37:39.080Z",
     "date_joined": "2021-11-24T02:31:29.856Z",
     "extra_data": "{\"id\": \"101650378013258971914\", \"email\": \"pintos98javier99@fpuna.edu.py\", \"verified_email\": true, \"name\": \"Francisco Javier Pintos Villar\", \"given_name\": \"Francisco Javier\", \"family_name\": \"Pintos Villar\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJwiHTR2oAtVPAJxtrKIZBIQG08OQzlomeIiCk3u=s96-c\", \"locale\": \"es\", \"hd\": \"fpuna.edu.py\"}"
   }
@@ -1487,9 +1495,9 @@
   "fields": {
     "app": 1,
     "account": 1,
-    "token": "ya29.a0ARrdaM-G2k3IV_Re0cDDBOP2MoU3Uh3Er0L2SptuTTv_9uTs-6UW2yBhhIMlbgzaV8AvuBglzxZAEm2IugGc4Qn9myv8dp30Q-xakBVuiG2L5Wilegq6jTjHZSja1t9v2-FgG2zniWf8MTiAPwAK_nvMNpueTg",
+    "token": "ya29.a0ARrdaM9Yzf8Oa_8V3Ho-DuRm6OBrCSrbrSpG-GdF23XzgbfzdCFL9_cf8vTRoyCw0oyew2jDF43Zrs2u_8MQBBfjQ5zI6CMtYDWLRtEgrO08Lha9reDDsMM9khKOlN5ZFt2hfb6t3iIRKgruC4B42lxLMaQ-Bw",
     "token_secret": "",
-    "expires_at": "2021-11-30T21:16:16.867Z"
+    "expires_at": "2021-12-01T20:37:37.703Z"
   }
 },
 {
@@ -1557,7 +1565,7 @@
   "pk": 2,
   "fields": {
     "password": "!CoNGz0N9kwmoZUo2g6cSUjzDTfvTptTw1lW57GNr",
-    "last_login": "2021-11-30T20:16:18.365Z",
+    "last_login": "2021-12-01T19:37:39.139Z",
     "is_superuser": false,
     "first_name": "Francisco Javier",
     "last_name": "Pintos Villar",

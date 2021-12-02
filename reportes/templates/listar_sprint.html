@@ -25,9 +25,12 @@
                             <div class="col-sm-9 justify-content-center">
 
                                 <form method="POST"> {% csrf_token %}
-                                    {{ form|crispy }}
+                                    fd
+                                    {{ form.proyectos }}
 
-                                    <input class="btn btn-success float-right" type="submit" value="enviar">
+                                    {{ form.Sprints }}
+
+{#                                    <input class="btn btn-success float-right" type="submit" value="enviar">#}
                                 </form>
 
                             </div>
@@ -38,5 +41,13 @@
             </div>
         </div>
     </div>
+    <script>
+        $(function () {
+            $('select[name="proyectos"]').on('change', function () {
+                alert('x');
+
+            });
+        });
+    </script>
 {% endblock %}
 

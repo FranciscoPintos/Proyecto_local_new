@@ -19,13 +19,14 @@ python manage.py makemigrations
 python manage.py migrate
 
 #RESET INCREMENT POSTGRESQL
-sudo -u postgres psql -d nombre_base
-use nombre_base;
+sudo -u postgres psql -d desarrollo;
+use desarrollo;
 delete from public.auth_permission;
 ALTER SEQUENCE public.auth_permission_id_seq RESTART WITH 1;
 delete from public.django_content_type;
 ALTER SEQUENCE public.django_content_type_id_seq RESTART WITH 1;
 
+\q
 
 #Cargar la base de datos*/
 

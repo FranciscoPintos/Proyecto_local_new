@@ -3,18 +3,24 @@ from django.http import request
 
 from usuario.models import Usuario
 from sprint.models import *
+from project.models import *
 
 
 
+class Proyecto_forms(forms.Form):
+    proyectos = forms.ModelChoiceField(queryset=Proyecto.objects.all(), widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
+    Sprints = forms.ModelChoiceField(queryset=Sprint.objects.none(), widget=forms.Select(attrs={
+        'class': 'form-control'
+    }))
 
-class Proyecto_forms(forms.ModelForm):
-    class Meta:
-        model = Proyecto
-        fields = ['name']
 
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        #self.fields["user"].queryset= Miembro.objects.filter(rol__project_id= self.kwargs['pk'])
+class Sprint_forms(forms.Form):
+    Sprints = forms.ModelChoiceField(queryset=Sprint.objects.all(),widget=forms.Select(attrs={
+        'class':'form-control'
+    }))
+
 
 
 
