@@ -73,7 +73,10 @@ def ver_burndownchart(request, pk, sp_pk):
     # generacion del eje x del burndownchart
     x1 = np.arange(0, dias+1, 1)
     # funcion del eje y
-    y1 = sp - (sp*x1/dias)
+    if dias == 0:
+        y1 = sp - (sp * x1 / (dias+1))
+    else:
+        y1 = sp - (sp*x1/dias)
 
     figura, ax1 = plt.subplots()
     ax1.plot(x1, y1, label='Linea ideal')
@@ -108,7 +111,10 @@ def ver_burndownchart(request, pk, sp_pk):
                 x2.append(j)
                 j = j + 1
             else:
-                while ((clave - fecha_inicio).days != j):
+                print(fecha_inicio)
+
+                print((clave - fecha_inicio).days)
+                while ((clave - fecha_inicio).days != j-1):
                     j = j + 1
                 x2.append(j)
         else:
