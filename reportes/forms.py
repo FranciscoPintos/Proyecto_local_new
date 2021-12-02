@@ -9,10 +9,10 @@ from project.models import *
 
 class Proyecto_forms(forms.Form):
     proyectos = forms.ModelChoiceField(queryset=Proyecto.objects.all(), widget=forms.Select(attrs={
-        'class': 'form-control'
+        'class': 'form-control select2'
     }))
     Sprints = forms.ModelChoiceField(queryset=Sprint.objects.none(), widget=forms.Select(attrs={
-        'class': 'form-control'
+        'class': 'form-control select2'
     }))
 
 
