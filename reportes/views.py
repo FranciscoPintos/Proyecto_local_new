@@ -88,4 +88,42 @@ class Sprint_view(ListView):
             return JsonResponse(data,safe=False)
         else:
             print(request.POST)
-        return redirect('listsprint')
+        return redirect('listsus',request.POST['proyectos'],request.POST['Sprints'])
+
+
+
+class SprintBacklog_Reporte_view(TemplateView):
+
+    template_name = 'SprintBackolog_reporte.html'
+
+    # def get_success_url(self):
+    #     Proyecto = self.kwargs['pk']
+    #     Sprint = self.kwargs['sp_pk']
+    #     return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sprint=Sprint.objects.get(id=self.kwargs['sp_pk'],proyecto_id=self.kwargs['pk'])
+        us=sprint.us.all()
+        context['sprint']=sprint
+        context['us']=us
+        print(context)
+        return context
+
+class Us_Reporte_view(TemplateView):
+
+    template_name = 'Us_reporte.html'
+
+    # def get_success_url(self):
+    #     Proyecto = self.kwargs['pk']
+    #     Sprint = self.kwargs['sp_pk']
+    #     return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        sprint=Sprint.objects.get(id=self.kwargs['sp_pk'],proyecto_id=self.kwargs['pk'])
+        us=sprint.us.all()
+        context['sprint']=sprint
+        context['us']=us
+        print(context)
+        return context

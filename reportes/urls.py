@@ -7,5 +7,6 @@ urlpatterns = [
     path('reportes/proyectos', Proyectos_view.as_view(), name='listProject'),
     path('reportes/proyectos/<int:pk>/PrdocutBacklog/', ProductBacklog_Reporte_view.as_view(), name='listus'),
     path('reportes/Sprint/', Sprint_view.as_view(), name='listsprint'),
+    path('reportes/proyectos/<int:pk>/sprint/<int:sp_pk>/backlog/', SprintBacklog_Reporte_view.as_view(), name='listsus'),
 
 ]
