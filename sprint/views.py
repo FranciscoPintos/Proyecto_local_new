@@ -71,7 +71,7 @@ def ver_burndownchart(request, pk, sp_pk):
     #dias = (fecha_fin-fecha_inicio).days
     dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110')
     # generacion del eje x del burndownchart
-    x1 = np.arange(0, dias+1, 1)
+    x1 = np.arange(0, dias+2, 1)
     # funcion del eje y
     if dias == 0:
         y1 = sp - (sp * x1 / (dias+1))
@@ -107,14 +107,14 @@ def ver_burndownchart(request, pk, sp_pk):
             aux = aux - valor
             y2.append(aux)
             print("La clave es: ", clave)
-            if ((clave - fecha_inicio).days == j):
+            if ((clave - fecha_inicio).days == j or (clave - fecha_inicio).days == 0):
                 x2.append(j)
                 j = j + 1
             else:
                 print(fecha_inicio)
 
                 print((clave - fecha_inicio).days)
-                while ((clave - fecha_inicio).days != j-1):
+                while ((clave - fecha_inicio).days != j):
                     j = j + 1
                 x2.append(j)
         else:
