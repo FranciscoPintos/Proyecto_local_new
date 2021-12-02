@@ -15,6 +15,9 @@ from django.urls import reverse
 # Importaciones para fechas
 import numpy as np
 
+import os
+import pwd
+
 from roles.mixins import *
 
 from sprint.models import *
@@ -44,13 +47,7 @@ def ver_burndownchart(request, pk, sp_pk):
     # falta agregar de que sprint viene
     us = Us.objects.filter(project=pk, user=user.id)
     tarea = Tarea.objects.filter(sprimt=sp_pk)
-    context = {
-        'Us': us,
-        'User': user,
-        'sprint': sprint,
-        'Tarea': tarea,
-        'Proyecto': proj,
-    }
+
 
 
     # PARAMETROS PARA EL GRAFICO DEL BURNDOWNCHART IDEAL
@@ -160,9 +157,16 @@ def ver_burndownchart(request, pk, sp_pk):
 
     ax1.grid()
     ax1.legend()
-
-    figura.savefig("sprint/static/img/burndownchart.png")
-
+    pwd = os.path.dirname(os.path.abspath(__file__))
+    figura.savefig(pwd + "/../static/img/burndownchart.png")
+    context = {
+        'Us': us,
+        'User': user,
+        'sprint': sprint,
+        'Tarea': tarea,
+        'Proyecto': proj,
+        'url_img': pwd + "/static/img/burndownchart.png",
+    }
 
     return render(request, 'burndown_chart.html', context=context)
 
