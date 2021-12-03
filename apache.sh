@@ -104,8 +104,13 @@ pip3 install matplotlib
 deactivate
 
 if [[ "$ENTORNO" == "desarrollo" ]]; then
+  sudo -u postgres psql << EOF
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
+EOF
 	source env/bin/activate
-	python3 manage.py runserver
+	python3 manage.py makemigrations
+	python3 manage.py migrate
 	deactivate
 	PGPASSWORD=admin
   # Borrar la base de datos y crear
@@ -115,8 +120,17 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
 EOF
   # Cargar base de datos
   psql -U postgres -d desarrollo < desarrollo.sql
+	python3 manage.py runserver
 
 elif [[ "$AMBIENTE" == "produccion" ]]; then
+  sudo -u postgres psql << EOF
+  DROP DATABASE produccion;
+  CREATE DATABASE produccion;
+EOF
+  source env/bin/activate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
+	deactivate
 # Establecer demonio para apache
   cat > /etc/apache2/sites-available/gestorproject.conf << EOF
 <VirtualHost *:80>
@@ -183,6 +197,7 @@ EOF
   cd $RUTA
   service apache2 restart
   # Dar permisos sobre el proyecto
-  chmod -R 777 "$RUTA"
 
 fi
+# Dar permisos sobre el proyecto
+chmod -R 777 "$RUTA"
