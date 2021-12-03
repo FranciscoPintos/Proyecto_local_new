@@ -109,6 +109,47 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
   DROP DATABASE desarrollo;
   CREATE DATABASE desarrollo;
 EOF
+
+cat > $RUTA/Poyecto/desarrollo.py << EOF
+from settings import *
+
+DEBUG = True
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'desarrollo',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432'
+
+
+    }
+}
+
+EOF
+
+  cat > $RUTA/Poyecto/wsgi.py << EOF
+"""
+WSGI config for Proyecto project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Proyecto.desarrollo')
+
+application = get_wsgi_application()
+
+EOF
+
 	source env/bin/activate
 	python3 manage.py makemigrations
 	python3 manage.py migrate
@@ -127,6 +168,46 @@ elif [[ "$ENTORNO" == "produccion" ]]; then
   sudo -u postgres psql << EOF
   DROP DATABASE produccion;
   CREATE DATABASE produccion;
+EOF
+
+cat > $RUTA/Poyecto/produccion.py << EOF
+from settings import *
+
+DEBUG = False
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'produccion',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5432'
+
+
+    }
+}
+
+EOF
+
+  cat > $RUTA/Poyecto/wsgi.py << EOF
+"""
+WSGI config for Proyecto project.
+
+It exposes the WSGI callable as a module-level variable named ``application``.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
+"""
+
+import os
+
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Proyecto.produccion')
+
+application = get_wsgi_application()
+
 EOF
   source env/bin/activate
 	python3 manage.py makemigrations
@@ -202,5 +283,6 @@ EOF
 fi
 # Dar permisos sobre el proyecto
 chmod -R 777 "$RUTA"
+exit
 git add .
 git commit -m "Changed to entorno"

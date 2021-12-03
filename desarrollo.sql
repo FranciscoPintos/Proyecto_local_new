@@ -1864,8 +1864,8 @@ l9qk9ok8qyytz2ibxqm6xd0p03kbs5l4	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjo
 cg9qr3tssgngmqhnew79v99pxjppzbeh	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIlg2cUN5Mkc4aloycSJdfQ:1kllCL:qFtywc4CiFIIcoX1tUGWgyUGvuv5N2svKUvKrfkcG7U	2020-12-20 00:58:57.115339-03
 i8coxhcckksmzg6zjug4m0usuinb1r38	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIkhJNDRnVVZUZ0dhNCJdfQ:1l8Emd:bYp9SG4dueMab4N9TpQAICEikS0i29gmghLhPt-QQgo	2021-02-20 01:01:19.041475-03
 5efbohqnoakygei7yx6mbfcj6w0pzn3w	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sImxvRlJRYnNDOThIRyJdfQ:1kkywZ:KMPqFaz2GQahkeHB0M_Ub6D5UZYRULndMn8BUgxwXYs	2020-12-17 21:27:27.488273-03
+kv4ax0i1dmw26seb48rknfodeeicku85	.eJxVjMEOwiAQRP-Fs2mwC1K86Y-QZWEDsaGJwMn471LTgx7nvZl5CYe9JddrfLocxFWAOP0yj_SIZRe4rjuekGjrpU3fzqHrdBsplpYJW97K_Vj9XSWsafwsVoLSmrU9K0aFMwJQCBqNiYrZqLggB89y9ACslB7AM2klLzNRsOL9Abb1PHQ:1mt8r3:qjXxVfiq15Y3KfO8JAqWL8V1SThHAp9nqguQhRNODc4	2021-12-17 10:44:01.542777-03
 ncbarhjf8dnkqlwlduo9ad14pbpdu7zt	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIkJDRHRWamlIWUJ5NiJdfQ:1kvvUe:h4C4Xqn2ku4ECfYxJnmkBk3D-t9vTbJoVGsVrgvluP8	2021-01-17 01:59:52.812049-03
-o8mxbkzshgal9sxkyx40t1fzw4i3cppx	.eJxVjMEOwiAQRP-FsyFbFiJ40x8h22UNxIYmFk7Gf5eaHvQ2M29mXipSbzn2TZ6xJHVRRp1-s5n4IXUHtCx7rIl57bXpb-fAm74OJ7UVplbWejtWf1eZtjx-WMDKPQCAgYQgZrJ8Bm8kEQREAmcJJiZr51FL6JCHZJ88eGcwqPcHqvU7wA:1mt0jp:ToCwWt-AsjjyAE5W5G-86SJ2lmLF-CxcSqgvdxSvSEc	2021-12-17 02:04:01.046385-03
 os8n9vqi6qiroel3d7e531hpy41w7kjj	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIm90aGNvM2FTS2M2dSJdfQ:1kvzTQ:GyzgGPuIy0MGq3FodAMQDVq2Awv9jRDUz6MV9Eq6FaY	2021-01-17 06:14:52.282636-03
 glx9mhx3i62r8pnpscb3tuncezf3h9a6	.eJxVjDsOwjAQRO_iGllx_A0dXCTaXa9li8iRsFMh7k6CUkA5b2beS8yw9TxvjZ9zieIqnLj8MgR6cD0KWJYDSyBat9rld3PWTd72xLUXgl7Wej9ff6oMLe8ezY7JuokIPMZxCoCk1JCcTWiNVgrYE3tjnbXKBUQNxqOJQek0DsGI9wfR5zxH:1mt1Rz:VyguRZEEnopKYJXwlNT36Uz61-xlJH9ljArdS8oPDgY	2021-12-17 02:49:39.524794-03
 \.
@@ -1888,6 +1888,7 @@ COPY public.equipo (id, capacidad, sprint_id) FROM stdin;
 1	624	1
 2	400	2
 3	64	3
+4	272	4
 \.
 
 
@@ -1901,6 +1902,8 @@ COPY public.equipo_miembros (id, equipo_id, miembro_id) FROM stdin;
 3	1	7
 4	2	6
 5	3	10
+6	4	9
+7	4	10
 \.
 
 
@@ -1938,6 +1941,13 @@ COPY public.historial_tarea (id, descripcion, hora, fecha_modificacion, tarea_id
 23	Vistas de Proyecto	2	2021-01-03 11:13:00-03	18	3
 25	Vistas de Product Backlog	4	2021-01-14 10:44:00-03	21	3
 26	Template de Administracion	2	2021-01-16 05:48:00-03	22	3
+28	Prueba de vistas de burdown	4	2021-01-18 10:49:13.281193-03	23	4
+29	Pruebas de vistas de roles	3	2021-01-20 13:50:00-03	25	4
+30	Prueba de vistas de US	3	2021-01-21 13:53:00-03	26	4
+31	Prueba de vistas de US	3	2021-01-21 13:53:00-03	27	4
+32	Test de vistas de cambio de roles	5	2021-01-23 14:05:00-03	28	4
+33	Test de vistas de estimaciones	2	2021-01-23 14:09:00-03	29	4
+34	Test de vistas de equipo	4	2021-01-25 14:10:00-03	30	4
 \.
 
 
@@ -1954,10 +1964,6 @@ COPY public.miembros (id, "horaTrabajo", activo, rol_id, user_id) FROM stdin;
 5	8	t	4	4
 6	8	t	4	3
 7	8	t	4	5
-9	8	t	5	3
-10	8	t	8	2
-11	8	t	8	4
-12	8	t	8	5
 15	8	t	9	4
 13	8	t	12	3
 14	8	t	12	2
@@ -1967,6 +1973,10 @@ COPY public.miembros (id, "horaTrabajo", activo, rol_id, user_id) FROM stdin;
 19	8	t	16	4
 20	8	t	16	5
 21	10	f	3	1
+11	8	t	5	4
+9	8	t	8	3
+10	8	t	8	2
+12	8	t	8	5
 \.
 
 
@@ -2483,10 +2493,10 @@ COPY public.roles_permisos (id, rol_id, permission_id) FROM stdin;
 
 COPY public.socialaccount_socialaccount (id, provider, uid, last_login, date_joined, extra_data, user_id) FROM stdin;
 4	google	114586346910533844068	2021-12-02 21:24:05.699978-03	2021-12-02 20:48:56.384303-03	{"id": "114586346910533844068", "email": "userprue2@gmail.com", "verified_email": true, "name": "Usuario Prueba", "given_name": "Usuario", "family_name": "Prueba", "picture": "https://lh3.googleusercontent.com/a/AATXAJxl1ID58A-7kIOb_gezZCp8K9d12c_2369A1p4E=s96-c", "locale": "es"}	5
-1	google	114859760729133515892	2021-12-03 02:41:53.393992-03	2021-12-02 20:43:55.073112-03	{"id": "114859760729133515892", "email": "userprueba1is2@gmail.com", "verified_email": true, "name": "User Prueba 1 IS2", "given_name": "User Prueba 1", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c", "locale": "es"}	2
-5	google	109790281120895607033	2021-12-03 02:49:39.48918-03	2021-12-02 20:52:21.053211-03	{"id": "109790281120895607033", "email": "gerenciaequipo09@gmail.com", "verified_email": true, "name": "Gestor_equipo09 is2", "given_name": "Gestor_equipo09", "family_name": "is2", "picture": "https://lh3.googleusercontent.com/a/AATXAJw9aZM9UWc6cuIgF1K0UHyxBPqw7jMZQdkNG_2k=s96-c", "locale": "es"}	6
 3	google	111176747050293652630	2021-12-03 01:26:23.954635-03	2021-12-02 20:48:26.659686-03	{"id": "111176747050293652630", "email": "userprue1@gmail.com", "verified_email": true, "name": "Usuario Prueba", "given_name": "Usuario", "family_name": "Prueba", "picture": "https://lh3.googleusercontent.com/a/AATXAJwffHcpF9Qb1OVRjwLpHhDEMyROvSdvdBJG7oia=s96-c", "locale": "es"}	4
-2	google	105675435886523813510	2021-12-03 02:15:24.281347-03	2021-12-02 20:44:01.397221-03	{"id": "105675435886523813510", "email": "userprueba2is2@gmail.com", "verified_email": true, "name": "User Prueba 2 IS2", "given_name": "User Prueba 2", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c", "locale": "es"}	3
+1	google	114859760729133515892	2021-12-03 10:31:13.977569-03	2021-12-02 20:43:55.073112-03	{"id": "114859760729133515892", "email": "userprueba1is2@gmail.com", "verified_email": true, "name": "User Prueba 1 IS2", "given_name": "User Prueba 1", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c", "locale": "es"}	2
+5	google	109790281120895607033	2021-12-03 10:32:51.698059-03	2021-12-02 20:52:21.053211-03	{"id": "109790281120895607033", "email": "gerenciaequipo09@gmail.com", "verified_email": true, "name": "Gestor_equipo09 is2", "given_name": "Gestor_equipo09", "family_name": "is2", "picture": "https://lh3.googleusercontent.com/a/AATXAJw9aZM9UWc6cuIgF1K0UHyxBPqw7jMZQdkNG_2k=s96-c", "locale": "es"}	6
+2	google	105675435886523813510	2021-12-03 10:44:01.487754-03	2021-12-02 20:44:01.397221-03	{"id": "105675435886523813510", "email": "userprueba2is2@gmail.com", "verified_email": true, "name": "User Prueba 2 IS2", "given_name": "User Prueba 2", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c", "locale": "es"}	3
 \.
 
 
@@ -2515,9 +2525,9 @@ COPY public.socialaccount_socialapp_sites (id, socialapp_id, site_id) FROM stdin
 COPY public.socialaccount_socialtoken (id, token, token_secret, expires_at, account_id, app_id) FROM stdin;
 4	ya29.a0ARrdaM8y99tF0jcAESICbUGphRfgEzO34IAGT8HnKas0XEvf07yGZRFVFS61cuyJ2VfzaPnPR2axfVB2IJJLKo5pwOhisdl4xGGnyo-Z6t5_lrz6AT3YNvqiQesQlHG3BVu6fg3tl4jW2bxF5Pc2qXyrE86a		2021-12-02 22:24:04.406857-03	4	1
 3	ya29.a0ARrdaM8guhQKCS20MVwrrGDfywxcsAdQnAkpo22Qe9mU_NM_Yl-cE_PPViyEAbb5Gad0Om1wBtZKtII4RJAhamxM4F6AT5P-FRMF7rPPz8R76qlZK3a4dzPycbTuUt3In1qoCqjvSuAkKx7m7HYBWsA4aVyXeA		2021-12-03 02:26:22.679379-03	3	1
-2	ya29.a0ARrdaM_y5ptJDBFA4mpcZNVWC6mbavXwEi57E0PzpBpx3gNOAADTrWhPl988ihyNJF1aZvNZcz2z41jzu4dPYgC32sdmZq2PPxJS2QHdKzUNGld6iG8xWJZSldYL7UfLsDBfh6aLPe5gWK1QkoRFvlfkVFz9		2021-12-03 03:15:23.009011-03	2	1
-1	ya29.a0ARrdaM8snRNbm-DYA_saLkx4x1PEV_PN9VwhOUDAPGXtg5pQB-QysBhbYAhi3ihZ9kNNlCwjuV8AHaBdqWVd1m_HtqTffdMqwkDugmj9IJQhVufn17fE6El2gCTlHlcPUwvJtjfb-qWrXqJRu-SD9jO6Qk0k		2021-12-03 03:41:52.101741-03	1	1
-5	ya29.a0ARrdaM_oSNXHwydon8yUoDiMjFrHtqOYmG12EuCQLbESIxsv0x9dS3pXpC9TJhSezM2YnpFCkVkzinRkYebuY9O7H5dElRA34ePUHvCz_10pHomkT5mOmiBCHPN_CleDIuIqCcJrcZtI27defp05YjTlu5X0		2021-12-03 03:49:38.179882-03	5	1
+1	ya29.a0ARrdaM9wWPNO5oIRF-N-7lqo8LciQ5XHQDU--M64wXnkLO72MzxxaCwAG5nEv3fw87e1QflBzH8cclLcp2QTOTzIfO-Wt8XnVQAazgDI1vAj4k9-bE9uRiGtADz8tpDCWktLSS2RMzqqpHY4IQyLvDkyLfdN2Q		2021-12-03 11:31:12.740771-03	1	1
+5	ya29.a0ARrdaM8xd0Mxumo6TXKL3bMt3XatLKytTc8IlNPAy9tO34DUoh_8WA63Go6nBlizsKBvYiOGQfri6Qs3Eo7CF7gEiVnlbWCh0dckL4hnzdDCTV-Qdy8J2h--fle6IbIXRggNn_F7LqWDozyrCo2VjitlFVfhuw		2021-12-03 11:32:50.45077-03	5	1
+2	ya29.a0ARrdaM-1fZLRt1w4bDanLJ4j5SrUQql3qpTl3BQzDVFn_PVHeMpXJgal8UANS5p7wX8vcMYI2q2kLxS9qofHxRGLUYWyDSvbCXmrf8K1B5bBkji4SDkXtyP1sAwxNlQgOIRG8K68Zhao87QJz6xqTrJUMxOn_g		2021-12-03 11:44:00.222522-03	2	1
 \.
 
 
@@ -2529,7 +2539,7 @@ COPY public.sprint (id, name, fecha_incio, fecha_fin, estado, proyecto_id) FROM 
 1	SPRINT 1 - P1	2020-12-03	2021-12-02	3	1
 2	SPRINT 2 - P1	2021-02-05	2021-03-30	3	1
 3	Sprint 1	2021-01-03	2021-01-17	3	2
-4	Sprint 2	2021-01-18	2021-02-06	1	2
+4	Sprint 2	2021-01-18	2021-02-06	2	2
 \.
 
 
@@ -2553,6 +2563,9 @@ COPY public.sprint_us (id, sprint_id, us_id) FROM stdin;
 13	3	17
 14	3	13
 15	3	15
+16	4	16
+17	4	14
+18	4	19
 \.
 
 
@@ -2564,7 +2577,7 @@ COPY public.sprintplanning (id, paso, sprint_id) FROM stdin;
 1	4	1
 2	4	2
 3	4	3
-4	2	4
+4	4	4
 \.
 
 
@@ -2591,6 +2604,13 @@ COPY public.tarea (id, descripcion, horas, fecha_creacion, ustory_id, sprimt_id)
 18	Vistas de Proyecto	2	2021-01-03 11:13:00-03	13	3
 21	Vistas de Product Backlog	4	2021-01-14 10:44:00-03	13	3
 22	Template de Administracion	2	2021-01-16 05:48:00-03	15	3
+23	Prueba de vistas de burdown	4	2021-01-18 10:49:13.281193-03	14	4
+25	Pruebas de vistas de roles	3	2021-01-20 13:50:00-03	14	4
+26	Prueba de vistas de US	3	2021-01-21 13:53:00-03	14	4
+27	Prueba de vistas de US	3	2021-01-21 13:53:00-03	14	4
+28	Test de vistas de cambio de roles	5	2021-01-23 14:05:00-03	14	4
+29	Test de vistas de estimaciones	2	2021-01-23 14:09:00-03	14	4
+30	Test de vistas de equipo	4	2021-01-25 14:10:00-03	14	4
 \.
 
 
@@ -2611,8 +2631,10 @@ COPY public.us (id, name, descripcion, prioridad, estimacionscrum, estimaciondes
 6	US5 P1	Al dejar su equipo, puede bloquear la pantalla para evitar que otras personas lo usen. Puede rápidamente cambiar de usuario sin necesidad de iniciar la sesión completamente para dar a alguien acceso al equipo. O bien, puede suspender o apagar el equipo desde el menú.	1	30	27	28	4	t	\N	1	6
 10	US10 P1	The lock screen means that you can see what is happening while your computer is locked, and it allows you to get a summary of what has been happening while you have been away. The lock screen provides useful information:	2	20	30	25	4	t	\N	1	6
 12	US 12 P1	Ayuda Guía de escritorio de Ubuntu » Escritorio › Aplicaciones y ventanas »\r\nAyuda Guía de escritorio de Ubuntu » Escritorio › Personalizar su escritorio » Notificaciones y la lista de notificaciones › Ocultar notificaciones en la pantalla de bloqueo »	3	15	15	15	4	t	\N	1	6
-14	Testear Vistas	Correr test de los views	2	\N	\N	\N	1	t	\N	2	\N
-16	Realizar script	Realizar script de poblacion	4	\N	\N	\N	1	t	\N	2	\N
+18	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	\N	\N	\N	1	t	\N	2	\N
+16	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	12	16	14	1	t	\N	2	10
+19	Testear Modelos	Test de models	1	16	14	15	1	t	\N	2	10
+14	Testear Vistas	Correr test de los views	2	20	20	20	2	t	\N	2	9
 13	Crear Vistas	Definir vistas de los diferentes modulos	4	12	20	16	4	t	\N	2	10
 15	Realizar Templates	Trabajo en html	3	20	20	20	4	t	\N	2	10
 17	Probar templates	Gestion de botones y permisos	2	15	25	20	4	t	\N	2	10
@@ -2736,6 +2758,16 @@ COPY public.us_historialus (id, name, descripcion, prioridad, estado, storypoint
 102	Crear Vistas	Definir vistas de los diferentes modulos	4	4	16	2021-12-03 02:50:37.223339-03	10	13	t	20	12	\N	3
 103	Realizar Templates	Trabajo en html	3	4	20	2021-12-03 02:50:38.452501-03	10	15	t	20	20	\N	3
 104	Probar templates	Gestion de botones y permisos	2	4	20	2021-12-03 02:50:40.093668-03	10	17	t	25	15	\N	3
+105	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	1	\N	2021-12-03 09:31:39.630128-03	2	18	t	\N	\N	\N	\N
+106	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	1	\N	2021-12-03 09:39:47.3317-03	2	16	t	\N	\N	\N	\N
+107	Testear Modelos	Test de models	1	1	\N	2021-12-03 10:26:14.119412-03	2	19	t	\N	\N	\N	\N
+108	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	1	\N	2021-12-03 10:28:48.813889-03	10	16	t	\N	12	\N	4
+109	Testear Vistas	Correr test de los views	2	1	\N	2021-12-03 10:29:13.409212-03	9	14	t	\N	20	\N	4
+110	Testear Modelos	Test de models	1	1	\N	2021-12-03 10:29:31.942162-03	10	19	t	\N	16	\N	4
+111	Testear Vistas	Correr test de los views	2	1	20	2021-12-03 10:30:59.646559-03	9	14	t	20	20	\N	4
+112	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	1	14	2021-12-03 10:32:32.678186-03	10	16	t	16	12	\N	4
+113	Testear Modelos	Test de models	1	1	15	2021-12-03 10:32:42.015948-03	10	19	t	14	16	\N	4
+114	Testear Vistas	Correr test de los views	2	2	20	2021-01-18 10:45:52.663106-03	9	14	t	20	20	\N	4
 \.
 
 
@@ -2747,9 +2779,9 @@ COPY public.usuario_usuario (id, password, last_login, is_superuser, first_name,
 1	pbkdf2_sha256$260000$BYPS7drSPuJNgrnWcDrxc9$K8ior06rwRKv/11fJVjC6Axx5aSbAsbNNAFpnWsC1aQ=	2021-12-02 20:52:33.656922-03	t			t	2021-12-02 20:39:02.015411-03	Admin	\N	\N	\N	admin@admin.com	\N	\N	\N	t	t		\N
 5	!RaLUnPdn2ts9MN4RfQNSUZmBdyZuITmaFed3W4Dk	2021-12-02 21:24:05.735545-03	f	Usuario	Prueba	t	2021-12-02 20:48:56.361921-03	usuario4	\N	\N	\N	userprue2@gmail.com	\N	\N	\N	t	f		\N
 4	!TMQLYmKwNWkS6WZuYmg31zzDXEq01PONn8x3pj7N	2021-12-03 01:26:23.972901-03	f	Usuario	Prueba	t	2021-12-02 20:48:26.60719-03	usuario	\N	\N	\N	userprue1@gmail.com	\N	\N	\N	t	f		\N
-3	!iPKYIulObhKgpEWQl8XGbj5cjmvVNjpGgindJMg4	2021-12-03 02:15:24.310507-03	f	User Prueba 2	IS2	t	2021-12-02 20:44:01.376153-03	user_prueba_2	\N	\N	\N	userprueba2is2@gmail.com	\N	\N	\N	t	f		\N
-2	!5jt1FxaOL314aPMGOrSjIMDpZ1ml7vlD9fZlvn9b	2021-12-03 02:41:53.427482-03	f	User Prueba 1	IS2	t	2021-12-02 20:43:55.033008-03	user_prueba_1	\N	\N	\N	userprueba1is2@gmail.com	\N	\N	\N	t	f		\N
-6	!rZlQltK4lWT5BJq7LlcnXVt2PxSr07JAAAIYiZk4	2021-12-03 02:49:39.519415-03	f	Gestor_equipo09	is2	t	2021-12-02 20:52:21.022459-03	gestor_equipo09	\N	\N	\N	gerenciaequipo09@gmail.com	\N	\N	\N	t	f		1
+2	!5jt1FxaOL314aPMGOrSjIMDpZ1ml7vlD9fZlvn9b	2021-12-03 10:31:14.001103-03	f	User Prueba 1	IS2	t	2021-12-02 20:43:55.033008-03	user_prueba_1	\N	\N	\N	userprueba1is2@gmail.com	\N	\N	\N	t	f		\N
+6	!rZlQltK4lWT5BJq7LlcnXVt2PxSr07JAAAIYiZk4	2021-12-03 10:32:51.717718-03	f	Gestor_equipo09	is2	t	2021-12-02 20:52:21.022459-03	gestor_equipo09	\N	\N	\N	gerenciaequipo09@gmail.com	\N	\N	\N	t	f		1
+3	!iPKYIulObhKgpEWQl8XGbj5cjmvVNjpGgindJMg4	2021-12-03 10:44:01.514277-03	f	User Prueba 2	IS2	t	2021-12-02 20:44:01.376153-03	user_prueba_2	\N	\N	\N	userprueba2is2@gmail.com	\N	\N	\N	t	f		\N
 \.
 
 
@@ -2843,14 +2875,14 @@ SELECT pg_catalog.setval('public.django_site_id_seq', 4, true);
 -- Name: equipo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.equipo_id_seq', 3, true);
+SELECT pg_catalog.setval('public.equipo_id_seq', 4, true);
 
 
 --
 -- Name: equipo_miembros_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.equipo_miembros_id_seq', 5, true);
+SELECT pg_catalog.setval('public.equipo_miembros_id_seq', 7, true);
 
 
 --
@@ -2864,7 +2896,7 @@ SELECT pg_catalog.setval('public.etiqueta_id_seq', 1, false);
 -- Name: historial_tarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_tarea_id_seq', 26, true);
+SELECT pg_catalog.setval('public.historial_tarea_id_seq', 34, true);
 
 
 --
@@ -2955,7 +2987,7 @@ SELECT pg_catalog.setval('public.sprint_id_seq', 4, true);
 -- Name: sprint_us_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sprint_us_id_seq', 15, true);
+SELECT pg_catalog.setval('public.sprint_us_id_seq', 18, true);
 
 
 --
@@ -2969,7 +3001,7 @@ SELECT pg_catalog.setval('public.sprintplanning_id_seq', 4, true);
 -- Name: tarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tarea_id_seq', 22, true);
+SELECT pg_catalog.setval('public.tarea_id_seq', 30, true);
 
 
 --
@@ -2983,14 +3015,14 @@ SELECT pg_catalog.setval('public.us_historialcomentarios_id_seq', 1, false);
 -- Name: us_historialus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.us_historialus_id_seq', 104, true);
+SELECT pg_catalog.setval('public.us_historialus_id_seq', 114, true);
 
 
 --
 -- Name: us_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.us_id_seq', 17, true);
+SELECT pg_catalog.setval('public.us_id_seq', 19, true);
 
 
 --
