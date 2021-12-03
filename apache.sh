@@ -104,7 +104,7 @@ pip3 install matplotlib
 deactivate
 
 if [[ "$ENTORNO" == "desarrollo" ]]; then
-	source venv/bin/activate
+	source env/bin/activate
 	python3 manage.py runserver
 	deactivate
 	PGPASSWORD=admin
