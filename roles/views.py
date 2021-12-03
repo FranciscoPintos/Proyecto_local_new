@@ -30,10 +30,8 @@ def roles(request):
 
     }
     if request.user.has_perm('add_rol'):
-        print('tiene permisosos')
         return render(request,'roles.html',context=context)
     else:
-        print('no tiene nada')
         return render(request,'roles.html',{'Rol':rol})
 
 def base_roles(request):

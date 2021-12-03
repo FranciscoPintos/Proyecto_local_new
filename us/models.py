@@ -9,6 +9,7 @@ from project.models import *
 from usuario.models import *
 # Create your models here.
 
+
 class Us(models.Model):
     dif_define = [
         (1, 'No urgente'), (2, 'Menos urgente'), (3, 'Media'), (4, 'Alta'), (5, 'Urgente'),
@@ -32,59 +33,65 @@ class Us(models.Model):
     )
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
     user=models.ForeignKey(Miembro, on_delete=models.CASCADE, blank=True, null=True)
+    #sprint=models.ForeignKey(Sprint, on_delete=models.CASCADE, blank=True, null=True)
     activo= models.BooleanField(default=True)
-    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null = True, blank=True)
+    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         super(Us, self).save(*args, **kwargs)
-        hu= HistorialUs()
-        us= Us.objects.get(id= self.id)
-        hu.ustory= us
+        hu = HistorialUs()
+        us = Us.objects.get(id=self.id)
+        hu.ustory = us
         hu.name = us.name
-        hu.descripcion= us.descripcion
-        hu.prioridad= us.prioridad
-        hu.estado= us.estado
-        hu.storypoints= us.storypoints
+        hu.descripcion = us.descripcion
+        hu.prioridad = us.prioridad
+        hu.estado = us.estado
+        hu.estimacionscrum = us.estimacionscrum
+        hu.estimaciondesarrollador = us.estimaciondesarrollador
+        hu.user = us.user
+        hu.activo = us.activo
+        hu.etiqueta = us.etiqueta
+        hu.storypoints = us.storypoints
         hu.save()
+
     def __str__(self):
         return '{}'.format(self.name)
 
     def toJSON(self):
         item = model_to_dict(self)
         return item
+
     def get_estado(self):
-        s=self.status[self.estado-1][1]
+        s = self.status[self.estado-1][1]
         return s
+
     def get_prioridad(self):
         prio=self.dif_define[self.prioridad-1][1]
         return prio
-    def set_estado(self,int):
-        self.estado=int
+
+    def set_estado(self, int):
+        self.estado = int
         return
+
     class Meta:
         verbose_name = 'Us'
         db_table = 'us'
         ordering = ['-prioridad', 'name']
-        permissions = (
-            ('add_usproductbacklog', 'Can add Us to Product Backlog'),
-            ('view_usproductbacklog', 'Can view Us to Product Backlog'),
-            ('delete_usproductbacklog', 'Can delete Us to Product Backlog'),
-            ('change_usproductbacklog', 'Can view Us to Product Backlog'),
-            ('valuate_us', 'Can calificate Us to Sprint Backlog'))
+        permissions = [('estimar_sprintplanning','Can valuate a US')]
 
-#definicion del modelo de de tabla Comentario
+# definicion del modelo de de tabla Comentario
 class Comentarios(models.Model):
-    #debe poseer un id como clave primaria
+    # debe poseer un id como clave primaria
     id = models.AutoField(primary_key=True)
-    #otro campo debe ser el comentario en sí
+    # otro campo debe ser el comentario en sí
     comentarios=models.CharField(max_length=2000)
-    #debe poder relacionarse con algún us por medio de una clave foránea
+    # debe poder relacionarse con algún us por medio de una clave foránea
     us = models.ForeignKey(Us, on_delete=models.CASCADE, blank=True, null=False)
-    #debe poder relacionarse con algún proyecto por medio de una clave foránea
+    # debe poder relacionarse con algún proyecto por medio de una clave foránea
     project = models.ForeignKey(Proyecto, on_delete=models.CASCADE, blank=True, null=False)
-    #debe poder relacionarse con algún usuario
+    # debe poder relacionarse con algún usuario
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, blank=True, null=False)
-    #para poder separar los comentarios eliminados de los que no han sido eliminados
+    # para poder separar los comentarios eliminados de los que no han sido eliminados
     activo = models.BooleanField(default=True)
 
     #metodo para guardar los valores en la bd
@@ -96,7 +103,7 @@ class Comentarios(models.Model):
         c = Comentarios.objects.get(id= self.id)
         #se trae el nombre del us
         us = Us.objects.get(id= self.us.id)
-        #se trae el nombre del protecto
+        #se trae el nombre del proyecto
         p = Proyecto.objects.get(id=self.project.id)
         #se trae el nombre del usuario
         cr = Usuario.objects.get(id=self.creador.id)
@@ -120,11 +127,6 @@ class Comentarios(models.Model):
         verbose_name = 'Comentarios'
         db_table = 'comentarios'
         ordering = ['id', 'creador']
-        permissions = (
-            ('add_comment', 'Can add Us to Product Backlog'),
-            ('view_comment', 'Can view Us to Product Backlog'),
-            ('delete_comment', 'Can delete Us to Product Backlog'),
-            ('modify_comment', 'Can modify comment'))
 
 class HistorialComentarios(models.Model):
     
@@ -137,13 +139,21 @@ class HistorialComentarios(models.Model):
     comentarios = models.CharField('Contenido del comentario', max_length=2000, null=True)
     creador = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
+    activo= models.BooleanField(null=True)
+
+from sprint.models import Sprint
 
 class HistorialUs(models.Model):
     ustory = models.ForeignKey(Us, on_delete=models.CASCADE, null=True)
     name = models.CharField('Nombre', max_length=50, unique=False)
     descripcion = models.CharField(max_length=2000)
+    estimacionscrum = models.PositiveIntegerField(null=True, blank=True)
+    estimaciondesarrollador = models.PositiveIntegerField(null=True, blank=True)
     prioridad = models.IntegerField()
     estado = models.IntegerField( )
     storypoints = models.PositiveIntegerField(null=True)
-    user= models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(Miembro, on_delete=models.CASCADE, null=True)
     fecha_modificacion = models.DateTimeField(verbose_name='Fecha de modificacion', blank=True, null=True, default=now)
+    activo= models.BooleanField(default=True)
+    etiqueta = models.ForeignKey(Etiqueta, on_delete=models.CASCADE, null=True, blank=True)
+    sprint = models.ForeignKey(Sprint, on_delete=models.CASCADE, null=True, blank=True)

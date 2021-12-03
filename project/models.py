@@ -11,7 +11,8 @@ class Proyecto(models.Model):
         ('E', 'Espera'),
         ('I', 'Iniciado'),
         ('P', 'Pausado'),
-        ('C', 'Cancelado')
+        ('C', 'Cancelado'),
+        ('F', 'Finalizado'),
     )
     name = models.CharField(max_length=50, verbose_name='Nombre', unique=True)
     creator = models.ForeignKey(Usuario, verbose_name='Creador', on_delete=models.CASCADE)
@@ -19,8 +20,7 @@ class Proyecto(models.Model):
     fecha_fin = models.DateField(verbose_name='Fecha de Finalización', blank=True, null=True)
     active = models.BooleanField(default=True)
     estado = models.CharField(max_length=20, choices=ESTADOS, default='E')
-    #miembros debe ser una relación desde la case Miembro
-
+    # miembros debe ser una relación desde la case Miembro
 
     def __str__(self):
         return self.name
@@ -32,6 +32,7 @@ class Proyecto(models.Model):
     class Meta:
         db_table = 'project'
         ordering = ['name']
+        permissions = [('start_proyecto', 'Can start a Project'),('end_proyecto', 'Can end a Project')]
 
     def save(self, *args, **kwargs):
         if self.fecha_inicio is not None and self.fecha_fin is not None:
@@ -42,9 +43,3 @@ class Proyecto(models.Model):
 
         super().save(*args, **kwargs)
 
-def set_can_buy_beer(sender, instance, **kwargs):
-    ''' Trigger body '''
-    if instance.age >= 21:
-        instance.can_buy_beer = True
-    else:
-        instance.can_buy_beer = False

@@ -94,13 +94,13 @@ class crear_equipo(LoginRequiredMixin, CreateView):
     def get_success_url(self):
         Proyecto = self.kwargs['pk']
         Sprint = self.kwargs['sp_pk']
-        # # Creacion de un equipo
-        # equipo = Equipo()
-        # # Asignacion del equipo al sprint
-        # equipo.sprint = Sprint.objects.get(id=self.kwargs['pk'])
-        # # Persistencia del equipo
-        # equipo.save()
-        return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        user = Miembro.objects.get(rol__project_id=self.kwargs['pk'], user=self.request.user.id)
+        # Si tiene permiso para agregar US al sprint
+        if user.has_perm('charge_sprintplanning'):
+            return reverse_lazy('sprintpaso3', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
+        # Si no tiene permiso se le redirige al sprint
+        else:
+            return reverse_lazy('sprintKanban', kwargs={'pk': Proyecto, 'sp_pk': Sprint})
 
     def get_context_data(self, **kwargs):
         context = super(crear_equipo, self).get_context_data(**kwargs)
@@ -185,7 +185,12 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
             data = form.save(commit=False)
             data.sprint = Sprint.objects.get(id=self.kwargs['sp_pk'])
             data.save()
+            equipo = Equipo.objects.get(id=self.kwargs['eq_pk'])
+
             form.save_m2m()
+            for us in Sprint.objects.get(id=self.kwargs['sp_pk']).us.all():
+                if us.user not in equipo.miembros.all():
+                    equipo.miembros.add(us.user)
             miembros = data.miembros.all()
             suma = 0
             for mi in miembros:
@@ -197,7 +202,7 @@ class edit_equipo(LoginRequiredMixin,UpdateView):
 
     def get_form_kwargs(self):
         kwargs = super(edit_equipo, self).get_form_kwargs()
-        kwargs['request'] = self.kwargs['pk']
+        kwargs['request'] = self.kwargs['eq_pk']
         return kwargs
 
 

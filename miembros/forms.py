@@ -50,6 +50,12 @@ class deleteMiembro(forms.ModelForm):
 
 
 class modificarProject(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.instance.estado == 'I':
+            self.fields['fecha_inicio'].widget.attrs.update({'readonly': 'readonly'})
+            self.fields['name'].widget.attrs.update({'readonly': 'readonly'})
+
     class Meta:
         model = Proyecto
         fields = [

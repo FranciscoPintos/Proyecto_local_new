@@ -1,0 +1,2654 @@
+
+[
+{
+  "model": "admin.logentry",
+  "pk": 1,
+  "fields": {
+    "action_time": "2021-11-03T03:20:20.427Z",
+    "user": 1,
+    "content_type": 10,
+    "object_id": "1",
+    "object_repr": "Aplicación OAuth",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 1,
+  "fields": {
+    "name": "Can add log entry",
+    "content_type": 1,
+    "codename": "add_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 2,
+  "fields": {
+    "name": "Can change log entry",
+    "content_type": 1,
+    "codename": "change_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 3,
+  "fields": {
+    "name": "Can delete log entry",
+    "content_type": 1,
+    "codename": "delete_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 4,
+  "fields": {
+    "name": "Can view log entry",
+    "content_type": 1,
+    "codename": "view_logentry"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 5,
+  "fields": {
+    "name": "Can add permission",
+    "content_type": 2,
+    "codename": "add_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 6,
+  "fields": {
+    "name": "Can change permission",
+    "content_type": 2,
+    "codename": "change_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 7,
+  "fields": {
+    "name": "Can delete permission",
+    "content_type": 2,
+    "codename": "delete_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 8,
+  "fields": {
+    "name": "Can view permission",
+    "content_type": 2,
+    "codename": "view_permission"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 9,
+  "fields": {
+    "name": "Can add group",
+    "content_type": 3,
+    "codename": "add_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 10,
+  "fields": {
+    "name": "Can change group",
+    "content_type": 3,
+    "codename": "change_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 11,
+  "fields": {
+    "name": "Can delete group",
+    "content_type": 3,
+    "codename": "delete_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 12,
+  "fields": {
+    "name": "Can view group",
+    "content_type": 3,
+    "codename": "view_group"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 13,
+  "fields": {
+    "name": "Can add content type",
+    "content_type": 4,
+    "codename": "add_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 14,
+  "fields": {
+    "name": "Can change content type",
+    "content_type": 4,
+    "codename": "change_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 15,
+  "fields": {
+    "name": "Can delete content type",
+    "content_type": 4,
+    "codename": "delete_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 16,
+  "fields": {
+    "name": "Can view content type",
+    "content_type": 4,
+    "codename": "view_contenttype"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 17,
+  "fields": {
+    "name": "Can add session",
+    "content_type": 5,
+    "codename": "add_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 18,
+  "fields": {
+    "name": "Can change session",
+    "content_type": 5,
+    "codename": "change_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 19,
+  "fields": {
+    "name": "Can delete session",
+    "content_type": 5,
+    "codename": "delete_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 20,
+  "fields": {
+    "name": "Can view session",
+    "content_type": 5,
+    "codename": "view_session"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 21,
+  "fields": {
+    "name": "Can add site",
+    "content_type": 6,
+    "codename": "add_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 22,
+  "fields": {
+    "name": "Can change site",
+    "content_type": 6,
+    "codename": "change_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 23,
+  "fields": {
+    "name": "Can delete site",
+    "content_type": 6,
+    "codename": "delete_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 24,
+  "fields": {
+    "name": "Can view site",
+    "content_type": 6,
+    "codename": "view_site"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 25,
+  "fields": {
+    "name": "Can add email address",
+    "content_type": 7,
+    "codename": "add_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 26,
+  "fields": {
+    "name": "Can change email address",
+    "content_type": 7,
+    "codename": "change_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 27,
+  "fields": {
+    "name": "Can delete email address",
+    "content_type": 7,
+    "codename": "delete_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 28,
+  "fields": {
+    "name": "Can view email address",
+    "content_type": 7,
+    "codename": "view_emailaddress"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 29,
+  "fields": {
+    "name": "Can add email confirmation",
+    "content_type": 8,
+    "codename": "add_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 30,
+  "fields": {
+    "name": "Can change email confirmation",
+    "content_type": 8,
+    "codename": "change_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 31,
+  "fields": {
+    "name": "Can delete email confirmation",
+    "content_type": 8,
+    "codename": "delete_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 32,
+  "fields": {
+    "name": "Can view email confirmation",
+    "content_type": 8,
+    "codename": "view_emailconfirmation"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 33,
+  "fields": {
+    "name": "Can add social account",
+    "content_type": 9,
+    "codename": "add_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 34,
+  "fields": {
+    "name": "Can change social account",
+    "content_type": 9,
+    "codename": "change_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 35,
+  "fields": {
+    "name": "Can delete social account",
+    "content_type": 9,
+    "codename": "delete_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 36,
+  "fields": {
+    "name": "Can view social account",
+    "content_type": 9,
+    "codename": "view_socialaccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 37,
+  "fields": {
+    "name": "Can add social application",
+    "content_type": 10,
+    "codename": "add_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 38,
+  "fields": {
+    "name": "Can change social application",
+    "content_type": 10,
+    "codename": "change_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 39,
+  "fields": {
+    "name": "Can delete social application",
+    "content_type": 10,
+    "codename": "delete_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 40,
+  "fields": {
+    "name": "Can view social application",
+    "content_type": 10,
+    "codename": "view_socialapp"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 41,
+  "fields": {
+    "name": "Can add social application token",
+    "content_type": 11,
+    "codename": "add_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 42,
+  "fields": {
+    "name": "Can change social application token",
+    "content_type": 11,
+    "codename": "change_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 43,
+  "fields": {
+    "name": "Can delete social application token",
+    "content_type": 11,
+    "codename": "delete_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 44,
+  "fields": {
+    "name": "Can view social application token",
+    "content_type": 11,
+    "codename": "view_socialtoken"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 45,
+  "fields": {
+    "name": "Can add holidaytime",
+    "content_type": 12,
+    "codename": "add_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 46,
+  "fields": {
+    "name": "Can change holidaytime",
+    "content_type": 12,
+    "codename": "change_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 47,
+  "fields": {
+    "name": "Can delete holidaytime",
+    "content_type": 12,
+    "codename": "delete_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 48,
+  "fields": {
+    "name": "Can view holidaytime",
+    "content_type": 12,
+    "codename": "view_holidaytime"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 49,
+  "fields": {
+    "name": "Can add user",
+    "content_type": 13,
+    "codename": "add_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 50,
+  "fields": {
+    "name": "Can change user",
+    "content_type": 13,
+    "codename": "change_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 51,
+  "fields": {
+    "name": "Can delete user",
+    "content_type": 13,
+    "codename": "delete_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 52,
+  "fields": {
+    "name": "Can view user",
+    "content_type": 13,
+    "codename": "view_usuario"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 53,
+  "fields": {
+    "name": "Can add Rol",
+    "content_type": 14,
+    "codename": "add_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 54,
+  "fields": {
+    "name": "Can change Rol",
+    "content_type": 14,
+    "codename": "change_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 55,
+  "fields": {
+    "name": "Can delete Rol",
+    "content_type": 14,
+    "codename": "delete_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 56,
+  "fields": {
+    "name": "Can view Rol",
+    "content_type": 14,
+    "codename": "view_rol"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 57,
+  "fields": {
+    "name": "Can add proyecto",
+    "content_type": 15,
+    "codename": "add_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 58,
+  "fields": {
+    "name": "Can change proyecto",
+    "content_type": 15,
+    "codename": "change_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 59,
+  "fields": {
+    "name": "Can delete proyecto",
+    "content_type": 15,
+    "codename": "delete_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 60,
+  "fields": {
+    "name": "Can view proyecto",
+    "content_type": 15,
+    "codename": "view_proyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 61,
+  "fields": {
+    "name": "Can add miembro",
+    "content_type": 16,
+    "codename": "add_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 62,
+  "fields": {
+    "name": "Can change miembro",
+    "content_type": 16,
+    "codename": "change_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 63,
+  "fields": {
+    "name": "Can delete miembro",
+    "content_type": 16,
+    "codename": "delete_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 64,
+  "fields": {
+    "name": "Can view miembro",
+    "content_type": 16,
+    "codename": "view_miembro"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 65,
+  "fields": {
+    "name": "Can add rol proyecto",
+    "content_type": 17,
+    "codename": "add_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 66,
+  "fields": {
+    "name": "Can change rol proyecto",
+    "content_type": 17,
+    "codename": "change_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 67,
+  "fields": {
+    "name": "Can delete rol proyecto",
+    "content_type": 17,
+    "codename": "delete_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 68,
+  "fields": {
+    "name": "Can view rol proyecto",
+    "content_type": 17,
+    "codename": "view_rolproyecto"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 69,
+  "fields": {
+    "name": "Can add Comentarios",
+    "content_type": 18,
+    "codename": "add_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 70,
+  "fields": {
+    "name": "Can change Comentarios",
+    "content_type": 18,
+    "codename": "change_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 71,
+  "fields": {
+    "name": "Can delete Comentarios",
+    "content_type": 18,
+    "codename": "delete_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 72,
+  "fields": {
+    "name": "Can view Comentarios",
+    "content_type": 18,
+    "codename": "view_comentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 73,
+  "fields": {
+    "name": "Can add Us to Product Backlog",
+    "content_type": 18,
+    "codename": "add_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 74,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 18,
+    "codename": "view_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 75,
+  "fields": {
+    "name": "Can delete Us to Product Backlog",
+    "content_type": 18,
+    "codename": "delete_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 76,
+  "fields": {
+    "name": "Can modify comment",
+    "content_type": 18,
+    "codename": "modify_comment"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 77,
+  "fields": {
+    "name": "Can add historial comentarios",
+    "content_type": 19,
+    "codename": "add_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 78,
+  "fields": {
+    "name": "Can change historial comentarios",
+    "content_type": 19,
+    "codename": "change_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 79,
+  "fields": {
+    "name": "Can delete historial comentarios",
+    "content_type": 19,
+    "codename": "delete_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 80,
+  "fields": {
+    "name": "Can view historial comentarios",
+    "content_type": 19,
+    "codename": "view_historialcomentarios"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 81,
+  "fields": {
+    "name": "Can add historial us",
+    "content_type": 20,
+    "codename": "add_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 82,
+  "fields": {
+    "name": "Can change historial us",
+    "content_type": 20,
+    "codename": "change_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 83,
+  "fields": {
+    "name": "Can delete historial us",
+    "content_type": 20,
+    "codename": "delete_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 84,
+  "fields": {
+    "name": "Can view historial us",
+    "content_type": 20,
+    "codename": "view_historialus"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 85,
+  "fields": {
+    "name": "Can add Us",
+    "content_type": 21,
+    "codename": "add_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 86,
+  "fields": {
+    "name": "Can change Us",
+    "content_type": 21,
+    "codename": "change_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 87,
+  "fields": {
+    "name": "Can delete Us",
+    "content_type": 21,
+    "codename": "delete_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 88,
+  "fields": {
+    "name": "Can view Us",
+    "content_type": 21,
+    "codename": "view_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 89,
+  "fields": {
+    "name": "Can add Us to Product Backlog",
+    "content_type": 21,
+    "codename": "add_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 90,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 21,
+    "codename": "view_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 91,
+  "fields": {
+    "name": "Can delete Us to Product Backlog",
+    "content_type": 21,
+    "codename": "delete_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 92,
+  "fields": {
+    "name": "Can view Us to Product Backlog",
+    "content_type": 21,
+    "codename": "change_usproductbacklog"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 93,
+  "fields": {
+    "name": "Can calificate Us to Sprint Backlog",
+    "content_type": 21,
+    "codename": "valuate_us"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 94,
+  "fields": {
+    "name": "Can add Tarea",
+    "content_type": 22,
+    "codename": "add_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 95,
+  "fields": {
+    "name": "Can change Tarea",
+    "content_type": 22,
+    "codename": "change_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 96,
+  "fields": {
+    "name": "Can delete Tarea",
+    "content_type": 22,
+    "codename": "delete_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 97,
+  "fields": {
+    "name": "Can view Tarea",
+    "content_type": 22,
+    "codename": "view_tarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 98,
+  "fields": {
+    "name": "Can add HistorialTarea",
+    "content_type": 23,
+    "codename": "add_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 99,
+  "fields": {
+    "name": "Can change HistorialTarea",
+    "content_type": 23,
+    "codename": "change_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 100,
+  "fields": {
+    "name": "Can delete HistorialTarea",
+    "content_type": 23,
+    "codename": "delete_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 101,
+  "fields": {
+    "name": "Can view HistorialTarea",
+    "content_type": 23,
+    "codename": "view_historialtarea"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 102,
+  "fields": {
+    "name": "Can add Etiqueta",
+    "content_type": 24,
+    "codename": "add_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 103,
+  "fields": {
+    "name": "Can change Etiqueta",
+    "content_type": 24,
+    "codename": "change_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 104,
+  "fields": {
+    "name": "Can delete Etiqueta",
+    "content_type": 24,
+    "codename": "delete_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 105,
+  "fields": {
+    "name": "Can view Etiqueta",
+    "content_type": 24,
+    "codename": "view_etiqueta"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 106,
+  "fields": {
+    "name": "Can add Sprint",
+    "content_type": 25,
+    "codename": "add_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 107,
+  "fields": {
+    "name": "Can change Sprint",
+    "content_type": 25,
+    "codename": "change_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 108,
+  "fields": {
+    "name": "Can delete Sprint",
+    "content_type": 25,
+    "codename": "delete_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 109,
+  "fields": {
+    "name": "Can view Sprint",
+    "content_type": 25,
+    "codename": "view_sprint"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 110,
+  "fields": {
+    "name": "Can add Equipo",
+    "content_type": 26,
+    "codename": "add_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 111,
+  "fields": {
+    "name": "Can change Equipo",
+    "content_type": 26,
+    "codename": "change_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 112,
+  "fields": {
+    "name": "Can delete Equipo",
+    "content_type": 26,
+    "codename": "delete_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 113,
+  "fields": {
+    "name": "Can view Equipo",
+    "content_type": 26,
+    "codename": "view_equipo"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 114,
+  "fields": {
+    "name": "Can add SprintPlanning",
+    "content_type": 27,
+    "codename": "add_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 115,
+  "fields": {
+    "name": "Can change SprintPlanning",
+    "content_type": 27,
+    "codename": "change_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 116,
+  "fields": {
+    "name": "Can delete SprintPlanning",
+    "content_type": 27,
+    "codename": "delete_sprintplanning"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 117,
+  "fields": {
+    "name": "Can view SprintPlanning",
+    "content_type": 27,
+    "codename": "view_sprintplanning"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 1,
+  "fields": {
+    "app_label": "admin",
+    "model": "logentry"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 2,
+  "fields": {
+    "app_label": "auth",
+    "model": "permission"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 3,
+  "fields": {
+    "app_label": "auth",
+    "model": "group"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 4,
+  "fields": {
+    "app_label": "contenttypes",
+    "model": "contenttype"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 5,
+  "fields": {
+    "app_label": "sessions",
+    "model": "session"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 6,
+  "fields": {
+    "app_label": "sites",
+    "model": "site"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 7,
+  "fields": {
+    "app_label": "account",
+    "model": "emailaddress"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 8,
+  "fields": {
+    "app_label": "account",
+    "model": "emailconfirmation"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 9,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialaccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 10,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialapp"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 11,
+  "fields": {
+    "app_label": "socialaccount",
+    "model": "socialtoken"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 12,
+  "fields": {
+    "app_label": "principalApp",
+    "model": "holidaytime"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 13,
+  "fields": {
+    "app_label": "usuario",
+    "model": "usuario"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 14,
+  "fields": {
+    "app_label": "roles",
+    "model": "rol"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 15,
+  "fields": {
+    "app_label": "project",
+    "model": "proyecto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 16,
+  "fields": {
+    "app_label": "miembros",
+    "model": "miembro"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 17,
+  "fields": {
+    "app_label": "miembros",
+    "model": "rolproyecto"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 18,
+  "fields": {
+    "app_label": "us",
+    "model": "comentarios"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 19,
+  "fields": {
+    "app_label": "us",
+    "model": "historialcomentarios"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 20,
+  "fields": {
+    "app_label": "us",
+    "model": "historialus"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 21,
+  "fields": {
+    "app_label": "us",
+    "model": "us"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 22,
+  "fields": {
+    "app_label": "tarea",
+    "model": "tarea"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 23,
+  "fields": {
+    "app_label": "tarea",
+    "model": "historialtarea"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 24,
+  "fields": {
+    "app_label": "etiqueta",
+    "model": "etiqueta"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 25,
+  "fields": {
+    "app_label": "sprint",
+    "model": "sprint"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
+  "fields": {
+    "app_label": "equipo",
+    "model": "equipo"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 27,
+  "fields": {
+    "app_label": "sprintPlanning",
+    "model": "sprintplanning"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kebt7msm8xg7nlwbu974nhwphu1lni2b",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAURP-FtWl4Q93pj5DLBQKxoYnAyvjvUtOFLufMzHkRB6NnN1p8uhLIlUhy-WUe8BHrUcC2HXgBxH3Uvnw3Z92W20yx9oLQy17v5-tPlaHl6bGM04hWM21CMCwqYZNkIJWf0AoUHnnyVHGr-BqpoCl4XIUxUlGjuSbvD6MjO14:1mj0uo:J2-X5TbbSt7ABA1lIruLMxQu1pVALo9Wpfqacu-90ks",
+    "expire_date": "2021-11-19T15:14:02.266Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "x4tx6snmiyo4snm9kkk8qc7va1aui98l",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAURP-FtSE8Wh7u7I-QywUCsaGJwMr474rpQpdzZuY8iYPRsxstPlwJ5EoEufwyD3iPdRaw7xNTQDxG7fS7OetGb58Uay8IvRx1O19_qgwtT4-QSqK3yIwFZbyRKckFlUhaWMGDiUFHxsEyrjVbVDKgrUfPEuPrqiV5vQGv2Tu-:1mj0nv:DeI0m5WcaTFQyiYUzF5qWJOtKPytzWg3ZjNN9zxFh6U",
+    "expire_date": "2021-11-19T15:06:55.748Z"
+  }
+},
+{
+  "model": "sites.site",
+  "pk": 4,
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "email": "pintos98javier99@fpuna.edu.py",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "email": "fpcreaciones@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "email": "userprueba1is2@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "account.emailaddress",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "email": "userprueba2is2@gmail.com",
+    "verified": true,
+    "primary": true
+  }
+},
+{
+  "model": "socialaccount.socialapp",
+  "pk": 1,
+  "fields": {
+    "provider": "google",
+    "name": "Aplicación OAuth",
+    "client_id": "96128541178-8hkdejl0g62hiurv8a71ah99uvls9up6.apps.googleusercontent.com",
+    "secret": "HZaQQ9N-W__8oaltWtQ_xquG",
+    "key": "",
+    "sites": [
+      4
+    ]
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "provider": "google",
+    "uid": "101650378013258971914",
+    "last_login": "2021-11-05T15:06:55.715Z",
+    "date_joined": "2021-11-03T03:20:36.394Z",
+    "extra_data": "{\"id\": \"101650378013258971914\", \"email\": \"pintos98javier99@fpuna.edu.py\", \"verified_email\": true, \"name\": \"Francisco Javier Pintos Villar\", \"given_name\": \"Francisco Javier\", \"family_name\": \"Pintos Villar\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJwiHTR2oAtVPAJxtrKIZBIQG08OQzlomeIiCk3u=s96-c\", \"locale\": \"es\", \"hd\": \"fpuna.edu.py\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "provider": "google",
+    "uid": "106413952047610284312",
+    "last_login": "2021-11-03T03:21:58.642Z",
+    "date_joined": "2021-11-03T03:21:58.642Z",
+    "extra_data": "{\"id\": \"106413952047610284312\", \"email\": \"fpcreaciones@gmail.com\", \"verified_email\": true, \"name\": \"Francisco Pintos\", \"given_name\": \"Francisco\", \"family_name\": \"Pintos\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJyqf1X7KLL1nDwu6nDfu488uODeMeA-TP5WCsol=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "provider": "google",
+    "uid": "114859760729133515892",
+    "last_login": "2021-11-05T15:14:02.241Z",
+    "date_joined": "2021-11-03T03:22:05.638Z",
+    "extra_data": "{\"id\": \"114859760729133515892\", \"email\": \"userprueba1is2@gmail.com\", \"verified_email\": true, \"name\": \"User Prueba 1 IS2\", \"given_name\": \"User Prueba 1\", \"family_name\": \"IS2\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialaccount",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "provider": "google",
+    "uid": "105675435886523813510",
+    "last_login": "2021-11-03T03:22:13.193Z",
+    "date_joined": "2021-11-03T03:22:13.193Z",
+    "extra_data": "{\"id\": \"105675435886523813510\", \"email\": \"userprueba2is2@gmail.com\", \"verified_email\": true, \"name\": \"User Prueba 2 IS2\", \"given_name\": \"User Prueba 2\", \"family_name\": \"IS2\", \"picture\": \"https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c\", \"locale\": \"es\"}"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 1,
+  "fields": {
+    "app": 1,
+    "account": 1,
+    "token": "ya29.a0ARrdaM8hNtgl8ZtzzmYtaUyppyVR4JjZj8JrFNtOnwwmlPOKKqv6nFjZvC_Th-72EZTz0IBNr65z5Gwauxte0roHMqU7wAX09HMH-0ZFBIt6zRbiZRHGHsB42xBf18p1HaNRNhjGMkQquzP36jtko6Q0f81uDQ",
+    "token_secret": "",
+    "expires_at": "2021-11-05T16:06:54.329Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 2,
+  "fields": {
+    "app": 1,
+    "account": 2,
+    "token": "ya29.a0ARrdaM8K7SZ7ipK56EFy6xtVOXHrj3jUBTzLlT1MsOLJ9AiUEYxD20Yy_qFI3MRhCQ1ByM-uY25OE11IAX7D-avoP5n_BpsacNjb6nCs5nb1ZV01JolW3UV2vEyp_QS-p4XynTfYry8i2Cp61KH9Z8eiZXlm",
+    "token_secret": "",
+    "expires_at": "2021-11-03T04:21:57.072Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 3,
+  "fields": {
+    "app": 1,
+    "account": 3,
+    "token": "ya29.a0ARrdaM-MDSJfnPdGXdvxxVakels_haTLVlC9DShB3CZwg5bTCgQZAwLtnS9_DQmmOWmFOoHDfC5VkxJeKLe0NVfxF9VgwBqfj1Uxfa8tsdEA7SGvez5R1u2arAVOvTiY19yDNe0tD3rD7HA845FQAPZyztjC",
+    "token_secret": "",
+    "expires_at": "2021-11-05T16:14:00.675Z"
+  }
+},
+{
+  "model": "socialaccount.socialtoken",
+  "pk": 4,
+  "fields": {
+    "app": 1,
+    "account": 4,
+    "token": "ya29.a0ARrdaM9RYHcjE6n26zXaVNWhbw-Dp6GqpTRFgVi4qYWsII4BD0PpXX-IQ0oE9RsU588dE6Dk1qxCzuJlsXvQ1id9_SetH3OfFgbi7UbtZf40jTuOh5sZUU9GcstWsvYj84eQBCc-UAGVZZiSlbYPMFaTWBHR",
+    "token_secret": "",
+    "expires_at": "2021-11-03T04:22:11.813Z"
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$260000$deo1dfssIzpajbMzTWeiA3$TUMD0kkgbjDDcjsi6grvi9YzE+355xrQwlWDk3S6bVk=",
+    "last_login": "2021-11-03T19:24:38.784Z",
+    "is_superuser": true,
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "date_joined": "2021-11-03T03:19:37.048Z",
+    "username": "Admin",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "admin@admin.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": true,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 2,
+  "fields": {
+    "password": "!i10D0obhx7qkAgzrt0L9z2HIAwOQesDqGcG2DtM2",
+    "last_login": "2021-11-05T15:06:55.743Z",
+    "is_superuser": false,
+    "first_name": "Francisco Javier",
+    "last_name": "Pintos Villar",
+    "is_active": true,
+    "date_joined": "2021-11-03T03:20:36.361Z",
+    "username": "francisco_javier",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "pintos98javier99@fpuna.edu.py",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 3,
+  "fields": {
+    "password": "!b5ySNCYPxu8QyQukYryUf9IquLZQbULGJyhfdhln",
+    "last_login": "2021-11-03T03:21:58.711Z",
+    "is_superuser": false,
+    "first_name": "Francisco",
+    "last_name": "Pintos",
+    "is_active": true,
+    "date_joined": "2021-11-03T03:21:58.583Z",
+    "username": "francisco",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "fpcreaciones@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 4,
+  "fields": {
+    "password": "!ZVjl4Gk2BWtHsZYjmyZTn69BnxVjIFgrbsOcmEPC",
+    "last_login": "2021-11-05T15:14:02.262Z",
+    "is_superuser": false,
+    "first_name": "User Prueba 1",
+    "last_name": "IS2",
+    "is_active": true,
+    "date_joined": "2021-11-03T03:22:05.580Z",
+    "username": "user_prueba_1",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "userprueba1is2@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "usuario.usuario",
+  "pk": 5,
+  "fields": {
+    "password": "!bRIZvpmg4kSxpR1HITXo4vLUK3uRmmGNhdgKitWl",
+    "last_login": "2021-11-03T03:22:13.235Z",
+    "is_superuser": false,
+    "first_name": "User Prueba 2",
+    "last_name": "IS2",
+    "is_active": true,
+    "date_joined": "2021-11-03T03:22:13.159Z",
+    "username": "user_prueba_2",
+    "names": null,
+    "lastname": null,
+    "ci": null,
+    "email": "userprueba2is2@gmail.com",
+    "fecha_nac": null,
+    "fecha_created": null,
+    "fecha_deleted": null,
+    "usuario_activo": true,
+    "usuario_administrador": false,
+    "rol": null,
+    "image": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 1,
+  "fields": {
+    "name": "Proyecto 1",
+    "creator": 2,
+    "fecha_inicio": "2021-11-02",
+    "fecha_fin": "2021-11-30",
+    "active": true,
+    "estado": "I"
+  }
+},
+{
+  "model": "project.proyecto",
+  "pk": 2,
+  "fields": {
+    "name": "Proyecto 2",
+    "creator": 2,
+    "fecha_inicio": "2021-11-04",
+    "fecha_fin": "2022-01-01",
+    "active": true,
+    "estado": "I"
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 1,
+  "fields": {
+    "project": 1,
+    "name": "Product Owner",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      73,
+      75,
+      76,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 2,
+  "fields": {
+    "project": 1,
+    "name": "Scrum Master",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 3,
+  "fields": {
+    "project": 1,
+    "name": "",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 4,
+  "fields": {
+    "project": 1,
+    "name": "Desarrollador",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 5,
+  "fields": {
+    "project": 2,
+    "name": "Product Owner",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      73,
+      75,
+      76,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 6,
+  "fields": {
+    "project": 2,
+    "name": "Scrum Master",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 7,
+  "fields": {
+    "project": 2,
+    "name": "",
+    "permisos": []
+  }
+},
+{
+  "model": "miembros.rolproyecto",
+  "pk": 8,
+  "fields": {
+    "project": 2,
+    "name": "Desarrollador",
+    "permisos": [
+      110,
+      111,
+      112,
+      113,
+      102,
+      103,
+      104,
+      105,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      46,
+      47,
+      48,
+      57,
+      58,
+      59,
+      60,
+      53,
+      54,
+      55,
+      56,
+      106,
+      107,
+      108,
+      109,
+      114,
+      115,
+      116,
+      117,
+      98,
+      99,
+      100,
+      101,
+      94,
+      95,
+      96,
+      97,
+      69,
+      73,
+      70,
+      71,
+      75,
+      76,
+      72,
+      74,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      89,
+      86,
+      92,
+      87,
+      91,
+      93,
+      88,
+      90,
+      49,
+      50,
+      51,
+      52
+    ]
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "rol": 2,
+    "horaTrabajo": 0,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 2,
+  "fields": {
+    "user": 3,
+    "rol": 4,
+    "horaTrabajo": 1100,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 3,
+  "fields": {
+    "user": 4,
+    "rol": 4,
+    "horaTrabajo": 10,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 4,
+  "fields": {
+    "user": 5,
+    "rol": 4,
+    "horaTrabajo": 5000,
+    "activo": true
+  }
+},
+{
+  "model": "miembros.miembro",
+  "pk": 5,
+  "fields": {
+    "user": 2,
+    "rol": 6,
+    "horaTrabajo": 0,
+    "activo": true
+  }
+},
+{
+  "model": "us.us",
+  "pk": 1,
+  "fields": {
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estimacionscrum": 10,
+    "estimaciondesarrollador": 12,
+    "storypoints": 11,
+    "estado": 4,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 2,
+  "fields": {
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estimacionscrum": 20,
+    "estimaciondesarrollador": 15,
+    "storypoints": 17,
+    "estado": 4,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 3,
+  "fields": {
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estimacionscrum": 50,
+    "estimaciondesarrollador": 10,
+    "storypoints": 30,
+    "estado": 1,
+    "project": 1,
+    "user": 3,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 4,
+  "fields": {
+    "name": "User Story 1",
+    "descripcion": "sdfsfsf sfsdfd",
+    "prioridad": 5,
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 2,
+    "user": null,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.us",
+  "pk": 5,
+  "fields": {
+    "name": "User Story 2",
+    "descripcion": "sdfsdg dgdfgdsfg dsfg dfsgd",
+    "prioridad": 2,
+    "estimacionscrum": null,
+    "estimaciondesarrollador": null,
+    "storypoints": null,
+    "estado": 1,
+    "project": 2,
+    "user": null,
+    "activo": true,
+    "etiqueta": null
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 1,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-03T19:22:04.005Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 2,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-03T19:22:20.625Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 3,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-03T19:22:35.614Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 4,
+  "fields": {
+    "ustory": 4,
+    "name": "User Story 1",
+    "descripcion": "sdfsfsf sfsdfd",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-04T21:51:37.627Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 5,
+  "fields": {
+    "ustory": 5,
+    "name": "User Story 2",
+    "descripcion": "sdfsdg dgdfgdsfg dsfg dfsgd",
+    "prioridad": 2,
+    "estado": 1,
+    "storypoints": null,
+    "user": 2,
+    "fecha_modificacion": "2021-11-04T21:51:52.347Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 6,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:40:52.343Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 7,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:41:01.742Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 8,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:41:07.029Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 9,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 1,
+    "storypoints": null,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:41:18.346Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 10,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 11,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:42:18.400Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 11,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 11,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:42:22.184Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 12,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:42:26.045Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 13,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 1,
+    "storypoints": 17,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:42:31.106Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 14,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 11,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:30.561Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 15,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 11,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:32.492Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 16,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:34.889Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 17,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 2,
+    "storypoints": 17,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:36.120Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 18,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 3,
+    "storypoints": 17,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:40.390Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 19,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:43:41.747Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 20,
+  "fields": {
+    "ustory": 1,
+    "name": "User Story 1",
+    "descripcion": "ersdfsdfsfsadds fgdfg",
+    "prioridad": 5,
+    "estado": 4,
+    "storypoints": 11,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:44:52.679Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 21,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T03:44:54.481Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 22,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:06:37.855Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 23,
+  "fields": {
+    "ustory": 2,
+    "name": "User Story 2",
+    "descripcion": "sfsdfgsdg dfgdgdsg dfgdg dgs",
+    "prioridad": 3,
+    "estado": 4,
+    "storypoints": 17,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:06:46.653Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 24,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:06:48.087Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 25,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:07:29.479Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 26,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 2,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:21:32.780Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 27,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 3,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:21:33.906Z"
+  }
+},
+{
+  "model": "us.historialus",
+  "pk": 28,
+  "fields": {
+    "ustory": 3,
+    "name": "User Story 3",
+    "descripcion": "fgsdfgd gdsfg dsfg dfg",
+    "prioridad": 5,
+    "estado": 1,
+    "storypoints": 30,
+    "user": null,
+    "fecha_modificacion": "2021-11-05T15:21:43.578Z"
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 1,
+  "fields": {
+    "name": "Sprint 1",
+    "proyecto": 1,
+    "fecha_incio": "2021-11-07",
+    "fecha_fin": "2021-11-16",
+    "estado": 2,
+    "us": [
+      1,
+      3,
+      2
+    ]
+  }
+},
+{
+  "model": "sprint.sprint",
+  "pk": 2,
+  "fields": {
+    "name": "Proyecto 1",
+    "proyecto": 1,
+    "fecha_incio": null,
+    "fecha_fin": null,
+    "estado": 1,
+    "us": []
+  }
+},
+{
+  "model": "equipo.equipo",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "capacidad": 43050,
+    "miembros": [
+      2,
+      3,
+      4
+    ]
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 1,
+  "fields": {
+    "sprint": 1,
+    "paso": 4
+  }
+},
+{
+  "model": "sprintPlanning.sprintplanning",
+  "pk": 2,
+  "fields": {
+    "sprint": 2,
+    "paso": 1
+  }
+}
+]

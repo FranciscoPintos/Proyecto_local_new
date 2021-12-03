@@ -11,6 +11,9 @@ from django.contrib.auth.models import User
 
 
 # Create your views here.
+from project.forms import ProyectoFormIniciado
+
+
 def AddRol(request, pk):
     if Miembro.objects.filter(user=request.user.id):
         user = Miembro.objects.get(rol__project_id=pk, user=request.user.id)
@@ -19,24 +22,26 @@ def AddRol(request, pk):
 
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
-        FormularioProyecto = CrearRol(request.POST)
-        nuevorol = FormularioProyecto.save(commit=False)
+        formulario_rol = CrearRol(request.POST)
+        nuevorol = formulario_rol.save(commit=False)
         nuevorol.project = Proyecto.objects.get(id=pk)
         nuevorol.save()
-        FormularioProyecto.save_m2m()
+        formulario_rol.save_m2m()
         return redirect('verRolesProyecto', pk)  # Este tiene que redirigir a proyecto
     else:
-        FormularioProyecto = CrearRol(request.POST)
-        return render(request, 'crearRolProyecto.html', {'formaProyecto': FormularioProyecto, 'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
-
+        formulario_rol = CrearRol(request.POST)
+        return render(request, 'crearRolProyecto.html', {'formaProyecto': formulario_rol,
+                                                         'Proyecto': Proyecto.objects.get(id=pk), 'permisos': permisos})
 
 
 def addMiembro(request, id):
+    # Permisos
     if Miembro.objects.filter(user=request.user.id):
+        # Obtener usuario
         user = Miembro.objects.get(rol__project_id=id, user=request.user.id)
     else:
         user = request.user
-
+    # Obtener permisos
     permisos = user.rol.list_permissions().order_by('id')
     proj = Proyecto.objects.get(id=id)
     if request.method == 'POST':
@@ -61,7 +66,7 @@ def addMiembro(request, id):
         # Crear formulario
         FormularioProyecto = CrearMiembro(request.GET)
         # Traer todos los usuarios menos los que ya son miembros activos del proyecto
-        FormularioProyecto.fields['user'].queryset = Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True)
+        FormularioProyecto.fields['user'].queryset = Usuario.objects.filter(miembro__rol__project_id=id, miembro__activo=False).union(Usuario.objects.exclude(miembro__rol__project_id=id, miembro__activo=True))
         # Cargar al html
         return render(request, 'addMiembro.html', {'miembro': FormularioProyecto, 'Proyecto': proj, 'permisos': permisos})
 
@@ -76,7 +81,6 @@ def verMiembro(request, id):
     ver = Miembro.objects.filter(rol__project_id=id, activo=True)
     proj = Proyecto.objects.get(id=id)
     user = request.user
-    print(ver)
     context = {
         'ver': ver,
         'Proyecto': proj,
@@ -135,7 +139,6 @@ def borrarMiembro(request):
     permisos = user.rol.list_permissions().order_by('id')
     if request.method == 'POST':
         FormularioProyecto = deleteMiembro(request.POST)
-        print(FormularioProyecto)
         form = FormularioProyecto.fields
         return redirect('verotravesmiembro')  # Este tiene que redirigir a proyecto
     else:
@@ -159,8 +162,9 @@ class modiProject(UpdateView):
 
     # Validación de la url
     def get_success_url(self):
+
         proj_id = self.kwargs['id']
-        return reverse_lazy("verProyecto", kwargs={'id': proj_id})
+        return reverse_lazy("verProyecto", kwargs={'pk': proj_id})
 
     def get_context_data(self, **kwargs):
         context = super(modiProject, self).get_context_data(**kwargs)
@@ -182,7 +186,6 @@ class modiProject(UpdateView):
         try:
             form.save()
         except ValueError as err:
-            print(err.args.__str__())
             error = err.args.__str__()
             messages.error(self.request, error)
             return self.render_to_response(self.get_context_data(form=form))

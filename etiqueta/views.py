@@ -85,7 +85,6 @@ def ver_etiquetas(request, pk):
         etiqueta = Etiqueta.objects.all().filter(proyecto_id=pk).exclude(activo=False)
         return render(request, 'ver_etiquetas.html', {'Proyecto': Proyecto.objects.get(id=pk), 'Etiqueta': etiqueta, 'permisos': permisos })
     except ValueError as err:
-        print("exec")
         error = err.args.__str__()
         messages.error(request, error)
         return redirect('exceptMiembro')

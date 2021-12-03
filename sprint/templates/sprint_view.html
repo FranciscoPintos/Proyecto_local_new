@@ -37,6 +37,21 @@
                                                    class="btn btn-info"><i class="fas fa-eye"></i></a>
                                             </div>
                                         </td>
+                                        <td><p class="m-2">
+                                            {% if s.estado == 1 %}
+                                                <i class="fas fa-angle-double-up"></i>
+                                                Planning
+                                            {% endif %}
+                                            {% if  s.estado == 2 %}
+                                                <i class="fas fa-angle-up"></i>
+                                                Activo
+                                            {% endif %}
+                                            {% if s.estado == 3 %}
+                                                <i class="fas fa-equals"></i>
+                                                Finalizado
+                                            {% endif %}
+
+                                        </p></td>
                                     </tr>
                                     </tbody>
                                 {% endfor %}
@@ -50,7 +65,7 @@
 
                     </div>
                     {% for i in permisos %}
-                        {% if i.codename == 'add_sprint' and Proyecto.estado == 'I' and  not create_no %}
+                        {% if i.codename == 'add_sprint' and Proyecto.estado == 'I' and create %}
                             <div class="card-footer">
                                 <div class="mt-6 mb-4 flex-md-row">
                                     <div class="col-3 offset-9 mt-3">

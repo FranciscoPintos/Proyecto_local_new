@@ -24,7 +24,7 @@
                             <div class="card bg-gradient-green text-white">
 
                                 <p class="m-2">
-                                    {% if Proyecto.estado == 'E'  %}
+                                    {% if Proyecto.estado == 'E' %}
                                         <i class="fas fa-angle-double-up"></i>
                                         Espera
                                     {% endif %}
@@ -32,7 +32,7 @@
                                         <i class="fas fa-angle-up"></i>
                                         Iniciado
                                     {% endif %}
-                                    {% if Proyecto.estado == 'P'%}
+                                    {% if Proyecto.estado == 'P' %}
                                         <i class="fas fa-equals"></i>
                                         Pausado
                                     {% endif %}
@@ -47,115 +47,157 @@
                         </div>
                         <h3> {{ Proyecto.name.upper }}</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class=" col-sm-3">
-                                <div class="card " style="height:30rem;">
-                                    <div class="text-center card-header bg-info">
-                                        <h3 class="card-title">
-                                            TO DO
-                                        </h3>
+                        <div class="card-body">
+                            {% if ProductBacklog %}
+                                <div class="row">
+                                    <div class=" col-sm-3">
+                                        <div class="card " style="height:30rem;">
+                                            <div class="text-center card-header bg-info">
+                                                <h3 class="card-title">
+                                                    TO DO
+                                                </h3>
+                                            </div>
+                                            <div class="card-body  overflow-auto caja" id="caja1">
+                                                {% for US in ProductBacklog %}
+                                                    {% if US.estado == 1 %}
+
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="card-body  overflow-auto caja" id="caja1">
-                                        {% for US in ProductBacklog %}
-                                            {% if US.estado == 1 %}
+                                    <div class=" col-sm-3">
+                                        <div class="card " style="height:30rem;">
+                                            <div class="text-center card-header bg-info">
+                                                <h3 class="card-title">
+                                                    DOING
+                                                </h3>
+                                            </div>
+                                            <div class="card-body overflow-auto caja" id="caja2">
+                                                {% for US in ProductBacklog %}
+                                                    {% if US.estado == 2 %}
 
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
 
-                                            {% endif %}
-                                        {% endfor %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-3">
+                                        <div class="card " style="height:30rem;">
+                                            <div class="text-center card-header bg-info">
+                                                <h3 class="card-title">
+                                                    QA
+                                                </h3>
+                                            </div>
+                                            <div class="card-body  overflow-auto caja" id="caja3">
+                                                {% for US in ProductBacklog %}
+                                                    {% if US.estado == 3 %}
+
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" col-sm-3">
+                                        <div class="card" style="height:30rem;">
+                                            <div class="text-center card-header bg-info">
+                                                <h3 class="card-title">
+                                                    DONE
+                                                </h3>
+                                            </div>
+                                            <div class="card-body overflow-auto caja" id="caja4">
+                                                {% for US in ProductBacklog %}
+                                                    {% if US.estado == 4 %}
+
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                            {{ US.set_estado.2 }}
+                                                        </div>
+
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class=" col-sm-3">
-                                <div class="card " style="height:30rem;">
-                                    <div class="text-center card-header bg-info">
-                                        <h3 class="card-title">
-                                            DOING
-                                        </h3>
-                                    </div>
-                                    <div class="card-body overflow-auto caja" id="caja2">
-                                        {% for US in ProductBacklog %}
-                                            {% if US.estado == 2 %}
-
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
-
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-sm-3">
-                                <div class="card " style="height:30rem;">
-                                    <div class="text-center card-header bg-info">
-                                        <h3 class="card-title">
-                                            QA
-                                        </h3>
-                                    </div>
-                                    <div class="card-body  overflow-auto caja" id="caja3">
-                                        {% for US in ProductBacklog %}
-                                            {% if US.estado == 3 %}
-
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
-
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
-                            <div class=" col-sm-3">
-                                <div class="card" style="height:30rem;">
-                                    <div class="text-center card-header bg-info">
-                                        <h3 class="card-title">
-                                            DONE
-                                        </h3>
-                                    </div>
-                                    <div class="card-body overflow-auto caja" id="caja4">
-                                        {% for US in ProductBacklog %}
-                                            {% if US.estado == 4 %}
-
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                        {{ US.set_estado.2 }}
-                                                    </div>
-
-                                            {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                </div>
-                            </div>
+                            {% else %}
+                                Product backlog vacío
+                            {% endif %}
                         </div>
+                    <div class="col-2 m-2">
+                        {% for i in permisos %}
+                            {% if i.codename == 'start_proyecto' %}
+                                {% if Proyecto.estado == 'E' and iniciar %}
+                                    <a href="{% url 'iniciarProyecto' Proyecto.id %}"
+                                       class="btn btn-lg btn-primary">
+                                        INICIAR
+                                        <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
+                                    </a>
+
+                                {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'end_proyecto' %}
+                                {% if Proyecto.estado == 'I' and finalizar %}
+                                    <a href="{% url 'finalizarProyecto' Proyecto.id %}"
+                                       class="btn btn-lg btn-primary">
+                                        FINALIZAR
+                                        <i class="fas fa-play-circle" title="Finalizar el proyecto"></i>
+                                    </a>
+
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
+
                     <div class="card-footer">
-                        <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
-                                {% for i in permisos %}
-                                    {% if i.codename == 'change_proyecto' %}
-                                        {% if Proyecto.estado == 'E' %}
-                                            <a href="{% url 'iniciarProyecto' Proyecto.id %}"
-                                               class="btn btn-lg btn-primary float-right">
-                                                INICIAR
-                                                <i class="fas fa-play-circle" title="Poner en marcha el proyecto"></i>
-                                            </a>
-                                        {% endif %}
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
+                        {% if Proyecto.estado == 'I' %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>fecha de inicio</th>
+
+                                    <th>fecha de finalización</th>
+
+                                    <th>Días Restantes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
+                                    <td>   {{ Proyecto.fecha_inicio }}</td>
+                                    <td>   {{ Proyecto.fecha_fin }}</td>
+                                    <td>   {{ dias }}</td>
+
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+
+
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
@@ -174,122 +216,139 @@
 
 
 
-    <script>
-        let To_do = document.getElementById("caja1")
-        let doing = document.getElementById("caja2");
-        let QA = document.getElementById("caja3");
-        let done = document.getElementById("caja4");
-
-
-        let UStory = document.getElementsByClassName("us");
-
-        To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        To_do.addEventListener("drop", (ev) => soltar1(ev));
-
-        doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        doing.addEventListener("drop", (ev) => soltar2(ev));
-
-        QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        QA.addEventListener("drop", (ev) => soltar3(ev));
-
-        done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        done.addEventListener("drop", (ev) => soltar4(ev));
-
-
-        for (var i = 0; i < UStory.length; i++) {
+{#    <script>#}
+{#        let To_do = document.getElementById("caja1")#}
+{#        let doing = document.getElementById("caja2");#}
+{#        let QA = document.getElementById("caja3");#}
+{#        let done = document.getElementById("caja4");#}
+{##}
+{##}
+{#        let UStory = document.getElementsByClassName("us");#}
+{##}
+{#        To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
+{#        To_do.addEventListener("drop", (ev) => soltar1(ev));#}
+{##}
+{#        doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
+{#        doing.addEventListener("drop", (ev) => soltar2(ev));#}
+{##}
+{#        QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
+{#        QA.addEventListener("drop", (ev) => soltar3(ev));#}
+{##}
+{#        done.addEventListener("dragover", (ev) => CambiarEstado1(ev));#}
+{#        done.addEventListener("drop", (ev) => soltar4(ev));#}
+{##}
+{##}
+{#        for (var i = 0; i < UStory.length; i++) {#}
             {#UStory[i].setAttribute("id", "Us" + i);#}
-            UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
-
-        }
-
-        function iniciarArrastre(ev) {
-            ev.dataTransfer.setData("idUs", ev.target.id);
-            console.log(ev.target.id);
-        }
-
-        function CambiarEstado1(ev) {
-            console.log("arrastrando");
-            ev.preventDefault();
-        }
-
-        function soltar1(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            To_do.appendChild(document.getElementById(data));
-
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'verProyecto' Proyecto.id %}",
-                data: {
-                    id: data,
-                    estado: 1,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-            });
-
-        }
-
-        function soltar2(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            doing.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'verProyecto' Proyecto.id %}",
-                data: {
-                    id: data,
-                    estado: 2,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-
-        }
-
-        function soltar3(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            QA.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'verProyecto' Proyecto.id %}",
-                data: {
-                    id: data,
-                    estado: 3,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-        }
-
-        function soltar4(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            done.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'verProyecto' Proyecto.id %}",
-                data: {
-                    id: data,
-                    estado: 4,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-        }
-    </script>
+{#            UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));#}
+{##}
+{#        }#}
+{##}
+{#        function iniciarArrastre(ev) {#}
+{#            ev.dataTransfer.setData("idUs", ev.target.id);#}
+{#            console.log(ev.target.id);#}
+{#        }#}
+{##}
+{#        function CambiarEstado1(ev) {#}
+{#            console.log("arrastrando");#}
+{#            ev.preventDefault();#}
+{#        }#}
+{##}
+{#        function soltar1(ev) {#}
+{#            ev.preventDefault();#}
+{#            let data = ev.dataTransfer.getData("idUs")#}
+{#            To_do.appendChild(document.getElementById(data));#}
+{##}
+{#            $.ajax({#}
+{#                type: 'POST',#}
+{#                url: "{% url 'verProyecto' Proyecto.id %}",#}
+{#                data: {#}
+{#                    id: data,#}
+{#                    estado: 1,#}
+{#                    'csrfmiddlewaretoken': '{{ csrf_token }}',#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    location.reload();#}
+{#                },#}
+{#            });#}
+{##}
+{#        }#}
+{##}
+{#        function soltar2(ev) {#}
+{#            ev.preventDefault();#}
+{#            let data = ev.dataTransfer.getData("idUs")#}
+{#            doing.appendChild(document.getElementById(data));#}
+{#            $.ajax({#}
+{#                type: 'POST',#}
+{#                url: "{% url 'verProyecto' Proyecto.id %}",#}
+{#                data: {#}
+{#                    id: data,#}
+{#                    estado: 2,#}
+{#                    'csrfmiddlewaretoken': '{{ csrf_token }}',#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    location.reload();#}
+{#                },#}
+{##}
+{#            })#}
+{##}
+{#        }#}
+{##}
+{#        function soltar3(ev) {#}
+{#            ev.preventDefault();#}
+{#            let data = ev.dataTransfer.getData("idUs")#}
+{#            QA.appendChild(document.getElementById(data));#}
+{#            $.ajax({#}
+{#                type: 'POST',#}
+{#                url: "{% url 'verProyecto' Proyecto.id %}",#}
+{#                data: {#}
+{#                    id: data,#}
+{#                    estado: 3,#}
+{#                    'csrfmiddlewaretoken': '{{ csrf_token }}',#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    location.reload();#}
+{#                },#}
+{##}
+{#            })#}
+{#        }#}
+{##}
+{#        function soltar4(ev) {#}
+{#            ev.preventDefault();#}
+{#            let data = ev.dataTransfer.getData("idUs")#}
+{#            done.appendChild(document.getElementById(data));#}
+{#            $.ajax({#}
+{#                type: 'POST',#}
+{#                url: "{% url 'verProyecto' Proyecto.id %}",#}
+{#                data: {#}
+{#                    id: data,#}
+{#                    estado: 4,#}
+{#                    'csrfmiddlewaretoken': '{{ csrf_token }}',#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    location.reload();#}
+{#                },#}
+{##}
+{#            })#}
+{#        }#}
+{##}
+{#        $("#iniciar").on("click", function (e) {#}
+{#            e.preventDefault();#}
+{#            $.ajax({#}
+{#                type: 'POST',#}
+{#                url: "{% url 'verProyecto' Proyecto.id %}",#}
+{#                data: {#}
+{#                    id: data,#}
+{#                    estado: 4,#}
+{#                    'csrfmiddlewaretoken': '{{ csrf_token }}',#}
+{#                },#}
+{#                success: function (response) {#}
+{#                    location.reload();#}
+{#                },#}
+{##}
+{#            })#}
+{#        });#}
+{#    </script>#}
 
 
 

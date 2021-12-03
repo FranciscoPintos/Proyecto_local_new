@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <br>
+    <br>
+    <br>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'reportes' %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+
+                        </div>
+                        <h3>Reportes - Proyectos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-9 justify-content-center">
+
+                                <form method="POST"> {% csrf_token %}
+                                    <div class="form-group">
+                                        <label>Proyectos:</label>
+                                        {{ form.proyectos }}
+                                    </div>
+
+                                    <input class="btn btn-success float-right" type="submit" value="enviar">
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let seleccion = document.getElementById("id_proyectos")
+        let select_sprint = document.getElementById('id_Sprints');
+        seleccion.addEventListener("change", (ev) => listar(ev));
+
+        function listar(ev) {
+            ev.preventDefault();
+            id = seleccion.options[seleccion.selectedIndex].value;
+
+            let options = '<option value="">--------1</option>';
+            $.ajax({
+                type: 'POST',
+                url: window.location.pathname,
+                data: {
+                    pk: id,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function (data, response) {
+                    console.log(data)
+                    var select = document.getElementById("id_Sprints");
+                    var length = select.options.length;
+                    for (i = length - 1; i >= 0; i--) {
+                        select.options[i] = null;
+                    }
+
+                    $.each(data, function (key, value) {
+                        let opcion = document.createElement("option");
+                        opcion.setAttribute("value",value.id);
+                        opcion.text = value.Nombre;
+                        select_sprint.add(opcion)
+                    });
+
+                    console.log(select_sprint)
+
+                },
+
+
+            })
+
+        }
+
+
+    </script>
+{% endblock %}
+

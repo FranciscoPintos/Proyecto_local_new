@@ -16,54 +16,87 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'misproyectos' user.id %}" class="btn btn-info">
+                            <a href="{% url 'sprintlist' Proyecto.id %}" class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
 
                         </div>
-                        <h3> {{ sprint.name }}</h3>
 
+                        <div class="btn-group btn-group-sm float-right">
+
+                            <div class="card bg-gradient-green text-white">
+
+                                <p class="m-2">
+                                    {% if sprint.estado == 1 %}
+                                        <i class="fas fa-angle-double-up"></i>
+                                        Planning
+                                    {% endif %}
+                                    {% if  sprint.estado == 2 %}
+                                        <i class="fas fa-angle-up"></i>
+                                        Activo
+                                    {% endif %}
+                                    {% if sprint.estado == 3 %}
+                                        <i class="fas fa-equals"></i>
+                                        Finalizado
+                                    {% endif %}
+
+                                </p>
+                            </div>
+                        </div>
+                        <h3> {{ sprint.name }}</h3>
+                        {% if sprint.fecha_fin < sprint.fecha_incio %}
+                            <br>
+                            <div class="alert alert-danger">Error en fechas</div>
+                            <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=sprint.id %}"
+                                       class="btn btn-primary">Cambiar Fecha</a>
+                        {% endif %}
                     </div>
                     <div class="card-header bg-gradient-info">
                         <!---->
                         {% for i in permisos %}
-                            {% if i.codename == 'view_sprintplanning' and sprint.estado == 1 %}
+                            {% if i.codename == 'change_sprint' and sprint.estado == 1 %}
 
                                 {% if paso == 1 %}
                                     <a href="{% url 'sprintpaso1' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'add_equipo' and sprint.estado == 1 %}
                                 {% if paso == 2 %}
 
                                     <a href="{% url 'create_equipo' Proyecto.id sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
 
                                 {% endif %}
-
+                            {% endif %}
+                            {% if i.codename == 'charge_sprintplanning' and sprint.estado == 1 %}
                                 {% if paso == 3 %}
                                     <a href="{% url 'sprintpaso3' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
+                            {% endif %}
+                            {% if i.codename == 'estimar_sprintplanning' and sprint.estado == 1 %}
                                 {% if paso == 4 %}
                                     <a href="{% url 'listado' pk=Proyecto.id sp_pk=sprint.id %}"
                                        class="btn btn-primary">Sprint Plannig</a>
                                 {% endif %}
-                                {#                                <a href="{% url 'contenedor_pasos' Proyecto.id sprint.id %}"#}
-                                {#                                   class="btn btn-primary">Sprint Planning</a>#}
-
-
-
-
-
                             {% endif %}
                             {% if tieneEquipo and i.codename == 'view_equipo' %}
                                 <a href="{% url 'listar_equipo' Proyecto.id sprint.id %}"
                                    class="btn btn-primary">Equipo</a>
                             {% endif %}
-                            {% if i.codename == 'view_usproductbacklog' %}
+                            {% if i.codename == 'view_sprintbacklog' %}
                                 <a href="{% url 'sprintbacklog' Proyecto.id  sprint.id %}"
                                    class="btn btn-primary">Sprint Backlog</a>
                             {% endif %}
+
+                            {% if sprint.estado != 1 %}
+                                {% if i.codename == 'view_burdownchart' %}
+                                    <a href="{% url 'burndown_chart' Proyecto.id sprint.id %}"
+                                    class="btn btn-primary">Burndown Chart</a>
+                                {% endif %}
+                            {% endif %}
+
                         {% endfor %}
 
                     </div>
@@ -78,15 +111,17 @@
                                     </div>
                                     <div class="card-body  overflow-auto caja" id="caja1">
                                         {% for US in ProductBacklog %}
-                                            {% if US.estado == 1 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
-                                                </a>
-                                            {% endif %}
+                                            {% for ht in historiales %}
+                                                {% if ht.ustory.id == US.id and ht.estado == 1 %}
+                                                    <a href="{% url 'detalle_us_sprimt' Proyecto.id sprint.id US.id %}">
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -100,15 +135,17 @@
                                     </div>
                                     <div class="card-body overflow-auto caja" id="caja2">
                                         {% for US in ProductBacklog %}
-                                            {% if US.estado == 2 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
-                                                </a>
-                                            {% endif %}
+                                            {% for ht in historiales %}
+                                                {% if ht.ustory.id == US.id and ht.estado == 2 %}
+                                                    <a href="{% url 'detalle_us_sprimt' Proyecto.id sprint.id US.id %}">
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -122,15 +159,17 @@
                                     </div>
                                     <div class="card-body  overflow-auto caja" id="caja3">
                                         {% for US in ProductBacklog %}
-                                            {% if US.estado == 3 %}
-                                                <a href="{% url 'detalle_us' Proyecto.id US.id %}">
-                                                    <div class="card-header bg-gradient-info mt-3 us"
-                                                         draggable="true" id="{{ US.id }}">
-                                                        {{ US.name }}
-                                                        {{ US.get_estado }}
-                                                    </div>
-                                                </a>
-                                            {% endif %}
+                                            {% for ht in historiales %}
+                                                {% if ht.ustory.id == US.id and ht.estado == 3 %}
+                                                    <a href="{% url 'detalle_us_sprimt' Proyecto.id sprint.id US.id %}">
+                                                        <div class="card-header bg-gradient-info mt-3 us"
+                                                             draggable="true" id="{{ US.id }}">
+                                                            {{ US.name }}
+                                                            {{ US.get_estado }}
+                                                        </div>
+                                                    </a>
+                                                {% endif %}
+                                            {% endfor %}
                                         {% endfor %}
                                     </div>
                                 </div>
@@ -145,15 +184,17 @@
                                         </div>
                                         <div class="card-body  overflow-auto caja" id="caja4">
                                             {% for US in ProductBacklog %}
-                                                {% if US.estado == 4 %}
-                                                    <a href="{% url 'detalle_us' Proyecto.id US.id %}">
-                                                        <div class="card-header bg-gradient-info mt-3 us"
-                                                             draggable="true" id="{{ US.id }}">
-                                                            {{ US.name }}
-                                                            {{ US.get_estado }}
-                                                        </div>
-                                                    </a>
-                                                {% endif %}
+                                                {% for ht in historiales %}
+                                                    {% if ht.ustory.id == US.id and ht.estado == 4 %}
+                                                        <a href="{% url 'detalle_us_sprimt' Proyecto.id sprint.id US.id %}">
+                                                            <div class="card-header bg-gradient-info mt-3 us"
+                                                                 draggable="true" id="{{ US.id }}">
+                                                                {{ US.name }}
+                                                                {{ US.get_estado }}
+                                                            </div>
+                                                        </a>
+                                                    {% endif %}
+                                                {% endfor %}
                                             {% endfor %}
                                         </div>
                                     </div>
@@ -162,14 +203,40 @@
                         </div>
                     </div>
                     <div class="card-footer">
+                        {% if Proyecto.estado == 'I' %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>fecha de inicio del Sprint</th>
+                                    <th>fecha de finalización del Sprint</th>
+                                    <th>Días Restantes</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>   {{ sprint.fecha_incio }}</td>
+                                    <td>   {{ sprint.fecha_fin }}</td>
+                                    <td>   {{ dias }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        {% endif %}
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="btn btn-sm float-right">
                                 {% for i in permisos %}
-                                    {% if i.codename == 'change_sprint' %}
-                                        {% if sprint.estado == 1  and iniciar%}
+                                    {% if i.codename == 'start_sprint' %}
+                                        {% if sprint.estado == 1  and iniciar %}
                                             <form action="" method="POST">
                                                 {% csrf_token %}
                                                 <input class="btn btn-primary" type="submit" value="Iniciar">
+                                            </form>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if i.codename == 'end_sprint' %}
+                                        {% if sprint.estado == 2  and finalizar %}
+                                            <form action="" method="POST">
+                                                {% csrf_token %}
+                                                <input class="btn btn-primary" type="submit" value="Finalizar">
                                             </form>
                                         {% endif %}
                                     {% endif %}
@@ -193,114 +260,95 @@
 
 
 
+    {% if sprint.estado == 2 %}
+        <script>
+            let To_do = document.getElementById("caja1")
+            let doing = document.getElementById("caja2");
+            let QA = document.getElementById("caja3");
 
-    <script>
-        let To_do = document.getElementById("caja1")
-        let doing = document.getElementById("caja2");
-        let QA = document.getElementById("caja3");
 
+            let UStory = document.getElementsByClassName("us");
 
-        let UStory = document.getElementsByClassName("us");
+            To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            To_do.addEventListener("drop", (ev) => soltar1(ev));
 
-        To_do.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        To_do.addEventListener("drop", (ev) => soltar1(ev));
+            doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            doing.addEventListener("drop", (ev) => soltar2(ev));
 
-        doing.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        doing.addEventListener("drop", (ev) => soltar2(ev));
+            QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+            QA.addEventListener("drop", (ev) => soltar3(ev));
+            {% if is_scrum %}
+                let done = document.getElementById("caja4");
+                done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
+                done.addEventListener("drop", (ev) => soltar4(ev));
+            {% endif %}
 
-        QA.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-        QA.addEventListener("drop", (ev) => soltar3(ev));
-        {% if is_scrum %}
-            let done = document.getElementById("caja4");
-            done.addEventListener("dragover", (ev) => CambiarEstado1(ev));
-            done.addEventListener("drop", (ev) => soltar4(ev));
-        {% endif %}
+            for (var i = 0; i < UStory.length; i++) {
+                {#UStory[i].setAttribute("id", "Us" + i);#}
+                UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
 
-        for (var i = 0; i < UStory.length; i++) {
-            {#UStory[i].setAttribute("id", "Us" + i);#}
-            UStory[i].addEventListener("dragstart", (ev) => iniciarArrastre(ev));
+            }
 
-        }
+            function iniciarArrastre(ev) {
+                ev.dataTransfer.setData("idUs", ev.target.id);
+                console.log(ev.target.id);
+            }
 
-        function iniciarArrastre(ev) {
-            ev.dataTransfer.setData("idUs", ev.target.id);
-            console.log(ev.target.id);
-        }
+            function CambiarEstado1(ev) {
+                console.log("arrastrando");
+                ev.preventDefault();
+            }
 
-        function CambiarEstado1(ev) {
-            console.log("arrastrando");
-            ev.preventDefault();
-        }
-
-        function soltar1(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            To_do.appendChild(document.getElementById(data));
-
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 1,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-            });
-
-        }
-
-        function soltar2(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            doing.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 2,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-
-        }
-
-        function soltar3(ev) {
-            ev.preventDefault();
-            let data = ev.dataTransfer.getData("idUs")
-            QA.appendChild(document.getElementById(data));
-            $.ajax({
-                type: 'POST',
-                url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
-                data: {
-                    id: data,
-                    estado: 3,
-                    'csrfmiddlewaretoken': '{{ csrf_token }}',
-                },
-                success: function (response) {
-                    location.reload();
-                },
-
-            })
-        }
-        {% if is_scrum %}
-            function soltar4(ev) {
+            function soltar1(ev) {
                 ev.preventDefault();
                 let data = ev.dataTransfer.getData("idUs")
-                done.appendChild(document.getElementById(data));
+                To_do.appendChild(document.getElementById(data));
+
                 $.ajax({
                     type: 'POST',
                     url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
                     data: {
                         id: data,
-                        estado: 4,
+                        estado: 1,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+                });
+
+            }
+
+            function soltar2(ev) {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("idUs")
+                doing.appendChild(document.getElementById(data));
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                    data: {
+                        id: data,
+                        estado: 2,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    },
+                    success: function (response) {
+                        location.reload();
+                    },
+
+                })
+
+            }
+
+            function soltar3(ev) {
+                ev.preventDefault();
+                let data = ev.dataTransfer.getData("idUs")
+                QA.appendChild(document.getElementById(data));
+                $.ajax({
+                    type: 'POST',
+                    url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                    data: {
+                        id: data,
+                        estado: 3,
                         'csrfmiddlewaretoken': '{{ csrf_token }}',
                     },
                     success: function (response) {
@@ -309,10 +357,29 @@
 
                 })
             }
-        {% endif %}
+            {% if is_scrum %}
+                function soltar4(ev) {
+                    ev.preventDefault();
+                    let data = ev.dataTransfer.getData("idUs")
+                    done.appendChild(document.getElementById(data));
+                    $.ajax({
+                        type: 'POST',
+                        url: "{% url 'sprintKanban' Proyecto.id sprint.id %}",
+                        data: {
+                            id: data,
+                            estado: 4,
+                            'csrfmiddlewaretoken': '{{ csrf_token }}',
+                        },
+                        success: function (response) {
+                            location.reload();
+                        },
+
+                    })
+                }
+            {% endif %}
 
 
-    </script>
-
+        </script>
+    {% endif %}
 
 {% endblock %}

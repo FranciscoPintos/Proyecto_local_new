@@ -12,8 +12,12 @@ urlpatterns = [
         path('project/listarProyectos/', ProyectosView, name='verProyectos' ),
         path('project/misProyectos/<int:id>', verProyectos, name='misproyectos'),
         path('project/exceptMiembro', exceptMimebro, name="exceptMiembro"),
-        path('project/<int:id>/verProyecto', verProyecto, name='verProyecto'),
-        path('project/iniciar/<int:id>' , iniciarProyecto, name='iniciarProyecto')
+        path('project/iniciar/<int:id>' , iniciarProyecto, name='iniciarProyecto'),
+        path('project/finalizar/<int:id>' , finalizarProyecto, name='finalizarProyecto'),
+
+        # path('project/<int:id>/verProyecto', verProyecto, name='verProyecto'),
+        path('project/<int:pk>/verProyecto', Proyect_view.as_view(), name='verProyecto'),
+
 
 
 ]

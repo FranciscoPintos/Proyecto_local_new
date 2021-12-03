@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <br>
+    <br>
+    <br>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-lg">
+                <div class="card">
+                    <div class="card-header bg-gradient-indigo text-center">
+                        <div class="btn-group btn-group-sm float-left">
+                            <a href="{% url 'reportes' %}" class="btn btn-info">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+
+                        </div>
+                        <h3>{{ sprint.name }} - User Stories</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-9 justify-content-center">
+                                {% if us %}
+                                    <table class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Estado</th>
+                                            <th>Horas trabajadas</th>
+                                            <th>Usuario</th>
+                                        </tr>
+                                        </thead>
+                                        {% for r in list %}
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <h5 class>{{ r.Nombre }}</h5>
+                                                </td>
+                                                <td>
+
+                                                    <div class="btn-group btn-group-sm ">
+                                                        <div class="card bg-gradient-green text-white">
+                                                            <p class="m-2">
+                                                               {{ r.Estado }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h5>{{ r.horas }}</h5>
+                                                </td>
+                                                <td>
+                                                    <h5>{{ r.user}}</h5>
+                                                </td>
+
+                                            </tr>
+
+                                            </tbody>
+
+                                        {% endfor %}
+                                    </table>
+                                {% else %}
+                                    <div class="alert alert-danger mt-4"> No tiene User Stories</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

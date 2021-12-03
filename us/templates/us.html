@@ -75,18 +75,27 @@
                                                     </div>
                                                 </div>
                                                 <div class="btn-group btn-group-sm float-right">
-                                                    <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}"
-                                                       class="btn btn-info"><i
-                                                            class="fas fa-edit"></i></a>
-                                                    <a type="submit"
-                                                       href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id %}"
-                                                       class="btn btn-danger"><i
-                                                            class="fas fa-trash"></i></a>
+                                                    {% if u.estado == 1 and not u.storypoints %}
+
+                                                        {% for permiso in permisos %}
+                                                            {% if permiso.codename == 'change_us' %}
+                                                                <a href="{% url 'edit_us' pk=Proyecto.id us_pk=u.id %}"
+                                                                   class="btn btn-info"><i
+                                                                        class="fas fa-edit"></i></a>
+                                                            {% endif %}
+                                                            {% if permiso.codename == 'delete_us' %}
+                                                                <a type="submit"
+                                                                   href="{% url 'delete_us' pk=Proyecto.id us_pk=u.id %}"
+                                                                   class="btn btn-danger"><i
+                                                                        class="fas fa-trash"></i></a>
+                                                            {% endif %}
+                                                        {% endfor %}
 {#                                                    <a type="submit"#}
 {#                                                       href="{% url 'ver_comentarios' pk=Proyecto.id us_pk=u.id %}"#}
 {#                                                       class="btn btn-success">#}
 {#                                                        Comentarios#}
-{#                                                    </a>#}
+{#                                                    </a> #}
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
@@ -99,13 +108,19 @@
 
                     </div>
                     <div class="card-footer">
-                        <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'crear_us' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
-                                    Crear User Story
-                                </a>
-                            </div>
-                        </div>
+                        {% if Proyecto.estado == 'I' %}
+                            {% for permiso in permisos %}
+                                {% if permiso.codename == 'add_us' %}
+                                    <div class="mt-6 mb-4 flex-md-row">
+                                        <div class="col-3 offset-9 mt-3">
+                                            <a href="{% url 'crear_us' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
+                                                Crear User Story
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                 </div>
             </div>

@@ -9,10 +9,11 @@ class crearTarea(forms.ModelForm):
     class Meta:
         model = Tarea
         fields = '__all__'
-        exclude=['ustory','fecha_creacion']
+        exclude=['ustory','sprimt']
         labels = {
-            'horas': 'Horas',
+            'horas': 'Horas trabajadas',
             'descripcion': 'Descripción',
+            'fecha:creacion': 'Fecha de realizacion',
         }
         widgets = {
             'descripcion': forms.Textarea(
@@ -23,6 +24,7 @@ class crearTarea(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
+            'fecha_creacion': forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control  datetimepicker'}),
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
@@ -31,10 +33,11 @@ class editarTarea(forms.ModelForm):
     class Meta:
         model = Tarea
         fields = '__all__'
-        exclude=['ustory','fecha_creacion']
+        exclude=['ustory','sprimt']
         labels = {
             'horas': 'Horas',
             'descripcion': 'Descripción',
+            'fecha:creacion': 'Fecha de realizacion',
         }
         widgets = {
             'descripcion': forms.Textarea(
@@ -45,6 +48,7 @@ class editarTarea(forms.ModelForm):
                     'class':'form-control'
                 }
             ),
+            'fecha_creacion': forms.TextInput(attrs={'type': 'datetime-local', 'class': 'form-control  datetimepicker'}),
         }
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)

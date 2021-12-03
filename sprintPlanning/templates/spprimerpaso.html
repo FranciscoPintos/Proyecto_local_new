@@ -35,6 +35,33 @@
                             </form>
                         </div>
                     </div>
+                    <div class="card-footer">
+                        {% if Proyecto.estado == 'I' %}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>fecha de inicio del proyecto</th>
+
+                                    <th>fecha de finalización del proyecto</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+
+                                    <td>   {{ Proyecto.fecha_inicio }}</td>
+                                    <td>   {{ Proyecto.fecha_fin }}</td>
+
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+
+
+                        {% endif %}
+
+                    </div>
                 </div>
             </div>
         </div>

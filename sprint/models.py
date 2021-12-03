@@ -3,7 +3,8 @@ from django import forms
 from django.forms import model_to_dict
 from django.utils.timezone import now
 
-from us.models import *
+from project.models import Proyecto
+from us.models import Us
 
 
 
@@ -19,7 +20,7 @@ class Sprint(models.Model):
     # Fecha fin
     fecha_fin = models.DateField(null=True)
     status = [
-        (1, 'To Do'), (2, 'Doing'), (3, 'Done'),
+        (1, 'Planning'), (2, 'Activo'), (3, 'Finalizado'),
     ]
     estado = models.IntegerField(
         choices=status,
@@ -37,5 +38,9 @@ class Sprint(models.Model):
     class Meta:
         verbose_name = 'Sprint'
         db_table = 'sprint'
-        ordering = ['name']
-        # permissions = ['charge_sprintplanning', 'Can add Us to Sprint Backlog']
+        ordering = ['estado']
+        permissions = [('charge_sprintplanning', 'Can add Us to Sprint Backlog'),
+                       ('view_sprintbacklog', 'Can view Sprint Backlog'),
+                       ('view_burdownchart', 'Can view Burdownchart'),
+                       ('start_sprint', 'Can start Sprint'),
+                       ('end_sprint', 'Can finalize a Sprint')]

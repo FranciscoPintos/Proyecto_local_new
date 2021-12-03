@@ -1,5 +1,15 @@
+from http import HTTPStatus
+from sprint.urls import *
+from django.test import Client
 from django.test import TestCase
 from sprint.models import *
+from sprint.forms import *
+from project.models import *
+from us.models import *
+import datetime
+"""
+    Módulo de definición de pruebas unitarias con respecto a la aplicación Sprint
+"""
 
 
 class TestSprint(TestCase):
@@ -27,3 +37,26 @@ class TestSprint(TestCase):
     # Espacio de definicion de prueba unitaria para el estado del sprint
     def test_estado_sprint(self):
         self.assertEqual(Sprint.estado, 1, 'El estado del sprint no coincide')
+
+    # Probamos si un formulario es válido
+    def test_form_crear_sprint_valido(self):
+        # definimos los datos necesarios para el formulario
+        fecha_inicio = datetime.datetime.now().today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=5)
+        data_form = {
+            'id': 1,
+            'name': 'Sprint_1',
+            'us': Us.objects.filter(id=1),
+            'proyecto': Proyecto.objects.filter(id=1),
+            'fecha_inicio': fecha_inicio,
+            'fecha_fin': fecha_fin,
+            'estado': 1
+        }
+        # instanciamos la clase del formulario de creacion de sprint
+        formulario = crearSprintForm(data_form)
+        # comprobamos si es o no válido
+        self.assertTrue(formulario.is_valid(), 'El formulario no es válido')
+
+
+
+

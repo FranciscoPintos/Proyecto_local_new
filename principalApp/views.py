@@ -14,29 +14,11 @@ def inicioview(request):
     user = request.user
     perm_proyecto_ver = user.has_perm('view_proyecto')
     perm_roles_ver = user.has_perm('view_rol')
-    print(perm_proyecto_ver)
     context = {
         'perm_proyectos_ver': perm_proyecto_ver,
         'perm_roles_ver': perm_roles_ver,
     }
     return render(request, 'inicio.html', context=context)
-    # user = request.user
-    # perm_proyecto_ver = user.has_perm('view_proyecto')
-    # perm_roles_ver = user.has_perm('view_rol')
-    #
-    # try:
-    #     pk = Miembro.objects.get(user_id=us.id).rol.project.id
-    #     proj = Proyecto.objects.filter(id=pk)
-    #     context = {
-    #         'Proyectos': proj,
-    #         'perm_proyectos_ver': perm_proyecto_ver,
-    #         'perm_roles_ver': perm_roles_ver,
-    #     }
-    #     print(context)
-    #     return render(request, 'inicio.html', context=context)
-    # except Exception as e:
-    #     print(e)
-    #     return render(request, 'inicio.html')
 
 
 def baseview(request):
@@ -47,5 +29,7 @@ class calendar(TemplateView):
     template_name = 'calendar.html'
 
 
+class email(TemplateView):
+    template_name = 'send_email.html'
 def pr(request):
     return render(request, "principalApp/pr.html")

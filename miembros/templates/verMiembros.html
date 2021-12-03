@@ -28,12 +28,16 @@
                                                 <h5 class="card-title">
                                                     <i class="far fa-circle"></i>
                                                     {{ r.user }}
-                                                    {% if not r.rol.name == 'Scrum Master' and not r.rol.name == 'Product Owner' %}
-                                                        <div class="btn-group btn-group-sm ">
-                                                            <a type="submit" href="{% url 'eliminado' Proyecto.id r.id %}"
-                                                               class="btn btn-danger"><i
-                                                                    class="fas fa-trash"></i></a>
-                                                        </div>
+                                                    {% if not r.rol.name == 'Scrum Master' and not r.rol.name == 'Product Owner' and not r.rol.name == 'Desarrollador'%}
+                                                        {% for permiso in permisos %}
+                                                            {% if permiso.codename == 'delete_miembro' %}
+                                                                <div class="btn-group btn-group-sm ">
+                                                                    <a type="submit" href="{% url 'eliminado' Proyecto.id r.id %}"
+                                                                       class="btn btn-danger"><i
+                                                                            class="fas fa-trash"></i></a>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endfor %}
                                                     {% endif %}
                                                 </h5>
                                             </td>
@@ -46,15 +50,19 @@
                         {% endif %}
 
                     </div>
-                    <div class="card-footer">
-                        <div class="mt-6 mb-4 flex-md-row">
-                            <div class="col-3 offset-9 mt-3">
-                                <a href="{% url 'agregarMiembro' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
-                                    Agregar miembros
-                                </a>
+                {% for permiso in permisos %}
+                    {% if permiso.codename == 'add_miembro' %}
+                        <div class="card-footer">
+                            <div class="mt-6 mb-4 flex-md-row">
+                                <div class="col-3 offset-9 mt-3">
+                                    <a href="{% url 'agregarMiembro' Proyecto.id %}" class="btn btn-lg btn-primary float-right">
+                                        Agregar miembros
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    {% endif %}
+                {% endfor %}
                 </div>
             </div>
         </div>
