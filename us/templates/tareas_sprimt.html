@@ -11,7 +11,8 @@
                 <div class="card">
                     <div class="card-header bg-gradient-indigo text-center">
                         <div class="btn-group btn-group-sm float-left">
-                            <a href="{% url 'detalle_us_sprimt' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}" class="btn btn-info">
+                            <a href="{% url 'detalle_us_sprimt' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}"
+                               class="btn btn-info">
                                 <i class="fas fa-chevron-left"></i>
                             </a>
                         </div>
@@ -25,11 +26,11 @@
                                     <th>Descripcion</th>
 
                                     <th>Horas</th>
+                                    {% if Proyecto.estado != 'F' %}
+                                        <th>Editar</th>
 
-                                    <th>Editar</th>
-
-                                    <th>Borrar</th>
-
+                                        <th>Borrar</th>
+                                    {% endif %}
                                     <th>Historial</th>
                                 </tr>
                                 </thead>
@@ -38,21 +39,21 @@
                                     <tr>
                                         <td><h5 class="card-title">{{ tr.descripcion }}</h5></td>
                                         <td><h5 class="card-title">{{ tr.horas }}</h5></td>
-                                        {% if tr.sprimt.id == sprimt.id %}
+                                        {% if tr.sprimt.id == sprimt.id and Proyecto.estado != 'F' %}
                                             <td class=" py-0 align-middle">
                                                 <a href="{% url 'editar_tarea' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id tr_pk=tr.id %}"
                                                    class="btn btn-info"><i
                                                         class="fas fa-edit"></i></a>
                                             </td>
                                         {% endif %}
-                                        {% if tr.sprimt.id == sprimt.id %}
+                                        {% if tr.sprimt.id == sprimt.id and Proyecto.estado != 'F' %}
                                             <td>
                                                 <a type="submit"
                                                    href="{% url 'borrar_tarea' pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id tr_pk=tr.id %}"
                                                    class="btn btn-danger"><i
                                                         class="fas fa-trash"></i></a>
                                             </td>
-                                        {% else%}
+                                        {% else %}
                                             <td></td>
                                         {% endif %}
                                         <td>
@@ -74,7 +75,7 @@
                         <div class="mt-6 mb-4 flex-md-row">
                             <div class="col-3 offset-9 mt-3">
                                 {% for p in permisos %}
-                                    {% if p.codename == 'add_tarea' and not is_scrum and sprimt.estado == 2 and Us.estado == 2%}
+                                    {% if p.codename == 'add_tarea' and not is_scrum and sprimt.estado == 2 and Us.estado == 2 %}
                                         <a href="{% url 'crear_tarea'  pk=Proyecto.id sp_pk=sprimt.id us_pk=Us.id %}"
                                            class="btn btn-lg btn-primary float-right">
                                             Cargar Tarea

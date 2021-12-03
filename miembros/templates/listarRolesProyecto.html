@@ -61,12 +61,12 @@
                     <div class="card-footer">
                         <div class="float-right">
                             {% for permiso in permisos %}
-                                {% if permiso.codename == 'add_rolproyecto' %}
+                                {% if permiso.codename == 'add_rolproyecto' and Proyecto.estado != 'F'%}
                                     <a href="{% url 'agregarRolProyecto' Proyecto.id %}" class="btn btn-primary">
                                         Crear Rol
                                     </a>
                                 {% endif %}
-                                {% if permiso.codename == 'asignar_rolproyecto' %}
+                                {% if permiso.codename == 'asignar_rolproyecto' and Proyecto.estado != 'F' %}
                                     <a href="{% url 'roles_miembros' Proyecto.id%}"
                                        class="btn btn-primary">
                                         Asignar Rol
