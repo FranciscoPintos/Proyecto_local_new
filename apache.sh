@@ -110,7 +110,7 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
   CREATE DATABASE desarrollo;
 EOF
 
-cat > "$RUTA/Poyecto/desarrollo.py" << EOF
+cat > "Poyecto/desarrollo.py" << EOF
 from settings import *
 
 DEBUG = True
@@ -130,7 +130,7 @@ DATABASES = {
 
 EOF
 
-  cat > "$RUTA/Poyecto/wsgi.py" << EOF
+  cat > "Poyecto/wsgi.py" << EOF
 """
 WSGI config for Proyecto project.
 
@@ -170,7 +170,7 @@ elif [[ "$ENTORNO" == "produccion" ]]; then
   CREATE DATABASE produccion;
 EOF
 
-cat > "$RUTA/Poyecto/produccion.py" << EOF
+cat > "Poyecto/produccion.py" << EOF
 from settings import *
 
 DEBUG = False
@@ -190,7 +190,7 @@ DATABASES = {
 
 EOF
 
-  cat > "$RUTA/Poyecto/wsgi.py" << EOF
+  cat > "Poyecto/wsgi.py" << EOF
 """
 WSGI config for Proyecto project.
 
