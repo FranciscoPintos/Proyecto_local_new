@@ -110,7 +110,7 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
   CREATE DATABASE desarrollo;
 EOF
 
-cat > "desarrollo.py" << EOF
+cat > "Proyecto/desarrollo.py" << EOF
 from settings import *
 
 DEBUG = True
@@ -130,9 +130,8 @@ DATABASES = {
 
 EOF
 
-cd "Proyecto"
 
-  cat > "wsgi.py" << EOF
+  cat > "Proyecto/wsgi.py" << EOF
 """
 WSGI config for Proyecto project.
 
@@ -163,7 +162,6 @@ EOF
   CREATE DATABASE desarrollo;
 EOF
 
-cd ".."
   # Cargar base de datos
   psql -U postgres -d desarrollo < desarrollo.sql
 	python3 manage.py runserver
@@ -176,7 +174,7 @@ EOF
 
 cd "Proyecto"
 
-cat > "produccion.py" << EOF
+cat > "Proyecto/produccion.py" << EOF
 from settings import *
 
 DEBUG = False
@@ -196,7 +194,7 @@ DATABASES = {
 
 EOF
 
-  cat > "wsgi.py" << EOF
+  cat > "Proyecto/wsgi.py" << EOF
 """
 WSGI config for Proyecto project.
 
@@ -214,7 +212,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Proyecto.produccion')
 
 application = get_wsgi_application()
 
-cd ".."
 
 EOF
   source env/bin/activate
