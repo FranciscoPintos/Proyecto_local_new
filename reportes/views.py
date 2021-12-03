@@ -159,21 +159,21 @@ class Us_Reporte_view(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        sprint = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=2)
-        us = sprint.us.all()
+        try:
+            sprint = Sprint.objects.get(proyecto_id=self.kwargs['pk'], estado=2)
+            us = sprint.us.all()
 
-        list = []
-        for i in us:
-            suma = 0
-            for t in Tarea.objects.filter(sprimt_id=sprint.id, ustory_id=i.id):
-                suma += t.horas
+            list = []
+            for i in us:
+                suma = 0
+                for t in Tarea.objects.filter(sprimt_id=sprint.id, ustory_id=i.id):
+                    suma += t.horas
 
-            list.append({'Nombre': i.name, 'Estado': i.get_estado(), 'horas': suma, 'user': i.user})
-
-
-
-        context['list'] = list
-        context['sprint'] = sprint
-        context['us'] = us
+                list.append({'Nombre': i.name, 'Estado': i.get_estado(), 'horas': suma, 'user': i.user})
+            context['list'] = list
+            context['sprint'] = sprint
+            context['us'] = us
+        except Exception as e:
+            print(e)
         print(context)
         return context
