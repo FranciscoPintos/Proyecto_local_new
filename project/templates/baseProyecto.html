@@ -43,7 +43,7 @@
                         </a>
                     {% endblock %}
                 {% endif %}
-                {% if i.codename == 'change_proyecto' %}
+                {% if i.codename == 'change_proyecto' and Proyecto.estado != 'F' %}
                     {% block modificarProyecto %}
                         <a href={% url 'modificar' Proyecto.id %}>
                             <div class="opcion">
