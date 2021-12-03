@@ -1582,6 +1582,7 @@ COPY public.account_emailaddress (id, email, verified, "primary", user_id) FROM 
 3	userprue1@gmail.com	t	t	4
 4	userprue2@gmail.com	t	t	5
 5	gerenciaequipo09@gmail.com	t	t	6
+6	everfgmolinas@fpuna.edu.py	t	t	7
 \.
 
 
@@ -1864,8 +1865,8 @@ l9qk9ok8qyytz2ibxqm6xd0p03kbs5l4	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjo
 cg9qr3tssgngmqhnew79v99pxjppzbeh	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIlg2cUN5Mkc4aloycSJdfQ:1kllCL:qFtywc4CiFIIcoX1tUGWgyUGvuv5N2svKUvKrfkcG7U	2020-12-20 00:58:57.115339-03
 i8coxhcckksmzg6zjug4m0usuinb1r38	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIkhJNDRnVVZUZ0dhNCJdfQ:1l8Emd:bYp9SG4dueMab4N9TpQAICEikS0i29gmghLhPt-QQgo	2021-02-20 01:01:19.041475-03
 5efbohqnoakygei7yx6mbfcj6w0pzn3w	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sImxvRlJRYnNDOThIRyJdfQ:1kkywZ:KMPqFaz2GQahkeHB0M_Ub6D5UZYRULndMn8BUgxwXYs	2020-12-17 21:27:27.488273-03
-kv4ax0i1dmw26seb48rknfodeeicku85	.eJxVjMEOwiAQRP-Fs2mwC1K86Y-QZWEDsaGJwMn471LTgx7nvZl5CYe9JddrfLocxFWAOP0yj_SIZRe4rjuekGjrpU3fzqHrdBsplpYJW97K_Vj9XSWsafwsVoLSmrU9K0aFMwJQCBqNiYrZqLggB89y9ACslB7AM2klLzNRsOL9Abb1PHQ:1mt8r3:qjXxVfiq15Y3KfO8JAqWL8V1SThHAp9nqguQhRNODc4	2021-12-17 10:44:01.542777-03
 ncbarhjf8dnkqlwlduo9ad14pbpdu7zt	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIkJDRHRWamlIWUJ5NiJdfQ:1kvvUe:h4C4Xqn2ku4ECfYxJnmkBk3D-t9vTbJoVGsVrgvluP8	2021-01-17 01:59:52.812049-03
+puz33yg4021yx97clfpzkhwxif1jfk5k	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sInQ2TjQwTGRvWHZyRyJdfQ:1lCP7l:Jkot0metBMrzleAJnJaxC4INlLQJG1EJsEN7XY69Q5o	2021-03-03 12:52:21.533092-03
 os8n9vqi6qiroel3d7e531hpy41w7kjj	eyJzb2NpYWxhY2NvdW50X3N0YXRlIjpbeyJwcm9jZXNzIjoibG9naW4iLCJzY29wZSI6IiIsImF1dGhfcGFyYW1zIjoiIn0sIm90aGNvM2FTS2M2dSJdfQ:1kvzTQ:GyzgGPuIy0MGq3FodAMQDVq2Awv9jRDUz6MV9Eq6FaY	2021-01-17 06:14:52.282636-03
 glx9mhx3i62r8pnpscb3tuncezf3h9a6	.eJxVjDsOwjAQRO_iGllx_A0dXCTaXa9li8iRsFMh7k6CUkA5b2beS8yw9TxvjZ9zieIqnLj8MgR6cD0KWJYDSyBat9rld3PWTd72xLUXgl7Wej9ff6oMLe8ezY7JuokIPMZxCoCk1JCcTWiNVgrYE3tjnbXKBUQNxqOJQek0DsGI9wfR5zxH:1mt1Rz:VyguRZEEnopKYJXwlNT36Uz61-xlJH9ljArdS8oPDgY	2021-12-17 02:49:39.524794-03
 \.
@@ -1889,6 +1890,8 @@ COPY public.equipo (id, capacidad, sprint_id) FROM stdin;
 2	400	2
 3	64	3
 4	272	4
+5	208	5
+6	192	6
 \.
 
 
@@ -1904,6 +1907,10 @@ COPY public.equipo_miembros (id, equipo_id, miembro_id) FROM stdin;
 5	3	10
 6	4	9
 7	4	10
+8	5	9
+9	5	10
+10	6	13
+11	6	14
 \.
 
 
@@ -1948,6 +1955,23 @@ COPY public.historial_tarea (id, descripcion, hora, fecha_modificacion, tarea_id
 32	Test de vistas de cambio de roles	5	2021-01-23 14:05:00-03	28	4
 33	Test de vistas de estimaciones	2	2021-01-23 14:09:00-03	29	4
 34	Test de vistas de equipo	4	2021-01-25 14:10:00-03	30	4
+35	Script de pruebas	6	2021-01-20 15:28:00-03	31	4
+38	Script de documentacion	1	2021-02-01 15:31:00-03	33	4
+39	Script de poblacion	6	2021-02-04 15:32:00-03	34	4
+40	Prueba de modelo de Usuario	1	2021-01-21 15:33:00-03	35	4
+41	Test modelo de proyecto	2	2021-01-28 15:35:00-03	36	4
+42	Test modelo de us	8	2021-02-03 15:35:00-03	37	4
+43	Creaacion de base de datos	3	2021-02-19 15:47:00-03	38	5
+44	Creacion de proyectos y miembros	5	2021-02-25 15:47:00-03	39	5
+46	Creacion de permisos	6	2021-02-22 15:48:00-03	41	5
+47	Creacion de sprints	4	2021-02-26 15:49:00-03	42	5
+49	Creacion de us	6	2021-03-02 15:51:00-03	44	5
+50	Test de US	4	2021-02-24 15:53:00-03	45	5
+51	Test de permisos	9	2021-03-03 15:53:00-03	46	5
+52	Prueba de luces	2	2021-12-03 13:15:04.553343-03	47	6
+53	Prueba de ventanas	4	2021-12-04 16:15:00-03	48	6
+55	Pruebas de velocidad	2	2021-12-03 13:18:07.764016-03	50	6
+56	Pruebas de velocidad punta	4	2021-12-06 16:19:00-03	51	6
 \.
 
 
@@ -1993,10 +2017,10 @@ COPY public."principalApp_holidaytime" (id, holiday_date) FROM stdin;
 --
 
 COPY public.project (id, name, fecha_inicio, fecha_fin, active, estado, creator_id) FROM stdin;
-3	Proyecto 3	2021-05-11	2021-09-30	t	E	6
 4	Proyecto 4	2021-08-13	2022-01-21	t	E	6
 1	Proyecto 1	2021-03-31	2021-07-16	t	F	6
-2	Proyecto 2	2021-01-02	2021-05-31	t	I	6
+2	Proyecto 2	2021-03-17	2021-05-31	t	F	6
+3	Proyecto 3	2021-11-17	2022-01-01	t	I	6
 \.
 
 
@@ -2494,9 +2518,10 @@ COPY public.roles_permisos (id, rol_id, permission_id) FROM stdin;
 COPY public.socialaccount_socialaccount (id, provider, uid, last_login, date_joined, extra_data, user_id) FROM stdin;
 4	google	114586346910533844068	2021-12-02 21:24:05.699978-03	2021-12-02 20:48:56.384303-03	{"id": "114586346910533844068", "email": "userprue2@gmail.com", "verified_email": true, "name": "Usuario Prueba", "given_name": "Usuario", "family_name": "Prueba", "picture": "https://lh3.googleusercontent.com/a/AATXAJxl1ID58A-7kIOb_gezZCp8K9d12c_2369A1p4E=s96-c", "locale": "es"}	5
 3	google	111176747050293652630	2021-12-03 01:26:23.954635-03	2021-12-02 20:48:26.659686-03	{"id": "111176747050293652630", "email": "userprue1@gmail.com", "verified_email": true, "name": "Usuario Prueba", "given_name": "Usuario", "family_name": "Prueba", "picture": "https://lh3.googleusercontent.com/a/AATXAJwffHcpF9Qb1OVRjwLpHhDEMyROvSdvdBJG7oia=s96-c", "locale": "es"}	4
-1	google	114859760729133515892	2021-12-03 10:31:13.977569-03	2021-12-02 20:43:55.073112-03	{"id": "114859760729133515892", "email": "userprueba1is2@gmail.com", "verified_email": true, "name": "User Prueba 1 IS2", "given_name": "User Prueba 1", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c", "locale": "es"}	2
-5	google	109790281120895607033	2021-12-03 10:32:51.698059-03	2021-12-02 20:52:21.053211-03	{"id": "109790281120895607033", "email": "gerenciaequipo09@gmail.com", "verified_email": true, "name": "Gestor_equipo09 is2", "given_name": "Gestor_equipo09", "family_name": "is2", "picture": "https://lh3.googleusercontent.com/a/AATXAJw9aZM9UWc6cuIgF1K0UHyxBPqw7jMZQdkNG_2k=s96-c", "locale": "es"}	6
-2	google	105675435886523813510	2021-12-03 10:44:01.487754-03	2021-12-02 20:44:01.397221-03	{"id": "105675435886523813510", "email": "userprueba2is2@gmail.com", "verified_email": true, "name": "User Prueba 2 IS2", "given_name": "User Prueba 2", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c", "locale": "es"}	3
+1	google	114859760729133515892	2021-12-03 13:17:13.590779-03	2021-12-02 20:43:55.073112-03	{"id": "114859760729133515892", "email": "userprueba1is2@gmail.com", "verified_email": true, "name": "User Prueba 1 IS2", "given_name": "User Prueba 1", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJztPtNhN46ocdmT_2qT3oz-zqkOzTwEkL4xdhLb=s96-c", "locale": "es"}	2
+2	google	105675435886523813510	2021-12-03 13:19:40.51901-03	2021-12-02 20:44:01.397221-03	{"id": "105675435886523813510", "email": "userprueba2is2@gmail.com", "verified_email": true, "name": "User Prueba 2 IS2", "given_name": "User Prueba 2", "family_name": "IS2", "picture": "https://lh3.googleusercontent.com/a/AATXAJxTY924CdT45YhF1sWTsUfI0doUuK8c3e-fSh_c=s96-c", "locale": "es"}	3
+6	google	106540917061946581900	2021-12-03 13:23:49.651381-03	2021-12-03 13:23:49.6514-03	{"id": "106540917061946581900", "email": "everfgmolinas@fpuna.edu.py", "verified_email": true, "name": "Ever Fernando Garay Molinas", "given_name": "Ever Fernando", "family_name": "Garay Molinas", "picture": "https://lh3.googleusercontent.com/a/AATXAJybu-apnEI9-02FvpOXdFm2ghjRGnmcC3nlgCk-=s96-c", "locale": "es", "hd": "fpuna.edu.py"}	7
+5	google	109790281120895607033	2021-12-03 13:24:01.039063-03	2021-12-02 20:52:21.053211-03	{"id": "109790281120895607033", "email": "gerenciaequipo09@gmail.com", "verified_email": true, "name": "Gestor_equipo09 is2", "given_name": "Gestor_equipo09", "family_name": "is2", "picture": "https://lh3.googleusercontent.com/a/AATXAJw9aZM9UWc6cuIgF1K0UHyxBPqw7jMZQdkNG_2k=s96-c", "locale": "es"}	6
 \.
 
 
@@ -2525,9 +2550,10 @@ COPY public.socialaccount_socialapp_sites (id, socialapp_id, site_id) FROM stdin
 COPY public.socialaccount_socialtoken (id, token, token_secret, expires_at, account_id, app_id) FROM stdin;
 4	ya29.a0ARrdaM8y99tF0jcAESICbUGphRfgEzO34IAGT8HnKas0XEvf07yGZRFVFS61cuyJ2VfzaPnPR2axfVB2IJJLKo5pwOhisdl4xGGnyo-Z6t5_lrz6AT3YNvqiQesQlHG3BVu6fg3tl4jW2bxF5Pc2qXyrE86a		2021-12-02 22:24:04.406857-03	4	1
 3	ya29.a0ARrdaM8guhQKCS20MVwrrGDfywxcsAdQnAkpo22Qe9mU_NM_Yl-cE_PPViyEAbb5Gad0Om1wBtZKtII4RJAhamxM4F6AT5P-FRMF7rPPz8R76qlZK3a4dzPycbTuUt3In1qoCqjvSuAkKx7m7HYBWsA4aVyXeA		2021-12-03 02:26:22.679379-03	3	1
-1	ya29.a0ARrdaM9wWPNO5oIRF-N-7lqo8LciQ5XHQDU--M64wXnkLO72MzxxaCwAG5nEv3fw87e1QflBzH8cclLcp2QTOTzIfO-Wt8XnVQAazgDI1vAj4k9-bE9uRiGtADz8tpDCWktLSS2RMzqqpHY4IQyLvDkyLfdN2Q		2021-12-03 11:31:12.740771-03	1	1
-5	ya29.a0ARrdaM8xd0Mxumo6TXKL3bMt3XatLKytTc8IlNPAy9tO34DUoh_8WA63Go6nBlizsKBvYiOGQfri6Qs3Eo7CF7gEiVnlbWCh0dckL4hnzdDCTV-Qdy8J2h--fle6IbIXRggNn_F7LqWDozyrCo2VjitlFVfhuw		2021-12-03 11:32:50.45077-03	5	1
-2	ya29.a0ARrdaM-1fZLRt1w4bDanLJ4j5SrUQql3qpTl3BQzDVFn_PVHeMpXJgal8UANS5p7wX8vcMYI2q2kLxS9qofHxRGLUYWyDSvbCXmrf8K1B5bBkji4SDkXtyP1sAwxNlQgOIRG8K68Zhao87QJz6xqTrJUMxOn_g		2021-12-03 11:44:00.222522-03	2	1
+1	ya29.a0ARrdaM-lMfluVtdINF5_7A9eZVkERfbzt9Wm6g2NSxOEnoRN3Lcael40OTrrihdilZNoK8u4xnTkeba9VQmjqjYyTxk3Lb2-rSZOxxGAVB7M5EV18d4eknlivGPkc57hWlxASh_CHmfDq_d6aqZF_LfRUw2IuQ		2021-12-03 14:17:12.345826-03	1	1
+2	ya29.a0ARrdaM8SJDjIGaA9X0f-kFgLgnRxI9gGRw1SQsMTFWDjnLZVwdskUr_F-b1-eZS3st4MqOZ82f_PZLojpO6V9W83zYugxG5FhjxazDWuON5HRHHwfe79hsIKTBlRpij6Q2tir758MZxmnFHTYgrU4GiDZnz9zQ		2021-12-03 14:19:39.226664-03	2	1
+6	ya29.a0ARrdaM9sWf1qqdw4yrf3GbPlFqAh2457qOjO3uxoAkdfHwcLkjASxEwJf9bvEmRqBfEFgj2-7C62buFryMsxlXsFELyojJqMJH5eKdf_7y2W7nGEhdIcjcX293SLiGVUDO4sullX088Qm0XZMgZvIi1TZxW55g		2021-12-03 14:23:48.336576-03	6	1
+5	ya29.a0ARrdaM_BxalWLEheQNQ-7O6-z9MjSUpskH7C7255fkDv6SpYv8ReR-L6MBw0C2XCUnEqJr6RM1_ttKEA2VzB0ZQMKah0I5W8jRWTfKPc9wPdL3IK51_4Ept27OOJAa0Op77-1mT4HpLGukUl6rYF1mOtAv-ZQg		2021-12-03 14:23:59.791935-03	5	1
 \.
 
 
@@ -2539,7 +2565,9 @@ COPY public.sprint (id, name, fecha_incio, fecha_fin, estado, proyecto_id) FROM 
 1	SPRINT 1 - P1	2020-12-03	2021-12-02	3	1
 2	SPRINT 2 - P1	2021-02-05	2021-03-30	3	1
 3	Sprint 1	2021-01-03	2021-01-17	3	2
-4	Sprint 2	2021-01-18	2021-02-06	2	2
+4	Sprint 2	2021-01-18	2021-02-06	3	2
+5	Sprint 3	2021-02-17	2021-03-04	3	2
+6	Sprint 1	2021-12-03	2021-12-17	2	3
 \.
 
 
@@ -2566,6 +2594,11 @@ COPY public.sprint_us (id, sprint_id, us_id) FROM stdin;
 16	4	16
 17	4	14
 18	4	19
+19	5	18
+20	5	19
+21	6	20
+22	6	21
+23	6	22
 \.
 
 
@@ -2578,6 +2611,8 @@ COPY public.sprintplanning (id, paso, sprint_id) FROM stdin;
 2	4	2
 3	4	3
 4	4	4
+5	4	5
+6	4	6
 \.
 
 
@@ -2611,6 +2646,23 @@ COPY public.tarea (id, descripcion, horas, fecha_creacion, ustory_id, sprimt_id)
 28	Test de vistas de cambio de roles	5	2021-01-23 14:05:00-03	14	4
 29	Test de vistas de estimaciones	2	2021-01-23 14:09:00-03	14	4
 30	Test de vistas de equipo	4	2021-01-25 14:10:00-03	14	4
+31	Script de pruebas	6	2021-01-20 15:28:00-03	16	4
+33	Script de documentacion	1	2021-02-01 15:31:00-03	16	4
+34	Script de poblacion	6	2021-02-04 15:32:00-03	16	4
+35	Prueba de modelo de Usuario	1	2021-01-21 15:33:00-03	19	4
+36	Test modelo de proyecto	2	2021-01-28 15:35:00-03	19	4
+37	Test modelo de us	8	2021-02-03 15:35:00-03	19	4
+38	Creaacion de base de datos	3	2021-02-19 15:47:00-03	18	5
+39	Creacion de proyectos y miembros	5	2021-02-25 15:47:00-03	18	5
+41	Creacion de permisos	6	2021-02-22 15:48:00-03	18	5
+42	Creacion de sprints	4	2021-02-26 15:49:00-03	18	5
+44	Creacion de us	6	2021-03-02 15:51:00-03	18	5
+45	Test de US	4	2021-02-24 15:53:00-03	19	5
+46	Test de permisos	9	2021-03-03 15:53:00-03	19	5
+47	Prueba de luces	2	2021-12-03 13:15:04.553343-03	21	6
+48	Prueba de ventanas	4	2021-12-04 16:15:00-03	21	6
+50	Pruebas de velocidad	2	2021-12-03 13:18:07.764016-03	22	6
+51	Pruebas de velocidad punta	4	2021-12-06 16:19:00-03	22	6
 \.
 
 
@@ -2631,13 +2683,18 @@ COPY public.us (id, name, descripcion, prioridad, estimacionscrum, estimaciondes
 6	US5 P1	Al dejar su equipo, puede bloquear la pantalla para evitar que otras personas lo usen. Puede rápidamente cambiar de usuario sin necesidad de iniciar la sesión completamente para dar a alguien acceso al equipo. O bien, puede suspender o apagar el equipo desde el menú.	1	30	27	28	4	t	\N	1	6
 10	US10 P1	The lock screen means that you can see what is happening while your computer is locked, and it allows you to get a summary of what has been happening while you have been away. The lock screen provides useful information:	2	20	30	25	4	t	\N	1	6
 12	US 12 P1	Ayuda Guía de escritorio de Ubuntu » Escritorio › Aplicaciones y ventanas »\r\nAyuda Guía de escritorio de Ubuntu » Escritorio › Personalizar su escritorio » Notificaciones y la lista de notificaciones › Ocultar notificaciones en la pantalla de bloqueo »	3	15	15	15	4	t	\N	1	6
-18	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	\N	\N	\N	1	t	\N	2	\N
-16	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	12	16	14	1	t	\N	2	10
-19	Testear Modelos	Test de models	1	16	14	15	1	t	\N	2	10
-14	Testear Vistas	Correr test de los views	2	20	20	20	2	t	\N	2	9
+14	Testear Vistas	Correr test de los views	2	20	20	20	4	t	\N	2	9
 13	Crear Vistas	Definir vistas de los diferentes modulos	4	12	20	16	4	t	\N	2	10
 15	Realizar Templates	Trabajo en html	3	20	20	20	4	t	\N	2	10
 17	Probar templates	Gestion de botones y permisos	2	15	25	20	4	t	\N	2	10
+23	US 4	Pruebas de frenos	4	\N	\N	\N	1	t	\N	3	\N
+24	Pruebas de llantas	Mejoras o informoes de llantas	3	\N	\N	\N	1	t	\N	3	\N
+16	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	12	16	14	4	t	\N	2	10
+19	Testear Modelos	Test de models	5	16	6	11	4	t	\N	2	9
+18	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	24	30	27	4	t	\N	2	10
+20	Us 1	Pruebas de motores	2	12	12	12	1	t	\N	3	13
+21	Us 2	Pruebas de electronica	3	13	13	13	2	t	\N	3	13
+22	Us 3	Pruebas de rendimiento	2	10	10	10	2	t	\N	3	14
 \.
 
 
@@ -2710,6 +2767,7 @@ COPY public.us_historialus (id, name, descripcion, prioridad, estado, storypoint
 54	US 4 P1	Reloj, calendario, citas y notificaciones\r\nPulse en el reloj en el centro de la barra superior para ver la fecha actual, un calendario mensual y una lista de sus próximas citas. También puede abrir el calendario pulsando Súper+M. Puede acceder a la configuración de fecha y hora y abrir totalmente su calendario directamente desde el menú.	2	1	17	2021-12-03 01:00:21.891706-03	6	5	t	20	15	\N	2
 55	US10 P1	The lock screen means that you can see what is happening while your computer is locked, and it allows you to get a summary of what has been happening while you have been away. The lock screen provides useful information:	2	1	25	2021-12-03 01:00:26.561759-03	6	10	t	30	20	\N	2
 56	US5 P1	Al dejar su equipo, puede bloquear la pantalla para evitar que otras personas lo usen. Puede rápidamente cambiar de usuario sin necesidad de iniciar la sesión completamente para dar a alguien acceso al equipo. O bien, puede suspender o apagar el equipo desde el menú.	1	1	28	2021-12-03 01:00:32.506089-03	6	6	t	27	30	\N	2
+118	Testear Modelos	Test de models	1	2	15	2021-12-03 12:33:05.28942-03	10	19	t	14	16	\N	4
 57	US 2 P1	Para acceder a sus ventanas y aplicaciones, pulse el botón Actividades, o simplemente lleve el puntero del ratón a la esquina superior izquierda activa. También puede pulsar la tecla Super en su teclado. Puede ver sus ventanas y aplicaciones en la vista de actividades. También puede empezar a escribir para buscar aplicaciones, archivos o carpetas y en la web.	4	2	50	2021-02-07 01:02:13.375223-03	6	2	t	50	50	\N	2
 58	US11 P1	To unlock your computer, click once with your mouse or touchpad, or press Esc or Enter. This will reveal the login screen, where you can enter your password to unlock. Alternatively, just start typing your password and the login screen will be automatically shown as you type. You can also switch users at the bottom right of the login screen if your system is configured for more than one.	4	2	10	2021-02-07 01:02:14.43573-03	6	11	t	10	10	\N	2
 59	US 6 P1	El menú de aplicación, situado junto al botón de Actividades, muestra el nombre de la aplicación activa junto con su icono y proporciona un acceso rápido a las ventanas y los detalles de la aplicación, así como a un elemento para salir.	3	2	15	2021-02-07 01:02:17.114952-03	6	4	t	16	15	\N	2
@@ -2729,6 +2787,7 @@ COPY public.us_historialus (id, name, descripcion, prioridad, estado, storypoint
 73	US5 P1	Al dejar su equipo, puede bloquear la pantalla para evitar que otras personas lo usen. Puede rápidamente cambiar de usuario sin necesidad de iniciar la sesión completamente para dar a alguien acceso al equipo. O bien, puede suspender o apagar el equipo desde el menú.	1	3	28	2021-02-07 01:02:36.386304-03	6	6	t	27	30	\N	2
 74	US 4 P1	Reloj, calendario, citas y notificaciones\r\nPulse en el reloj en el centro de la barra superior para ver la fecha actual, un calendario mensual y una lista de sus próximas citas. También puede abrir el calendario pulsando Súper+M. Puede acceder a la configuración de fecha y hora y abrir totalmente su calendario directamente desde el menú.	2	3	17	2021-02-07 01:02:37.660539-03	6	5	t	20	15	\N	2
 75	US 4 P1	Reloj, calendario, citas y notificaciones\r\nPulse en el reloj en el centro de la barra superior para ver la fecha actual, un calendario mensual y una lista de sus próximas citas. También puede abrir el calendario pulsando Súper+M. Puede acceder a la configuración de fecha y hora y abrir totalmente su calendario directamente desde el menú.	2	3	17	2021-02-07 01:02:39.616651-03	6	5	t	20	15	\N	2
+117	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	3	14	2021-12-03 12:32:57.574459-03	10	16	t	16	12	\N	4
 76	US 2 P1	Para acceder a sus ventanas y aplicaciones, pulse el botón Actividades, o simplemente lleve el puntero del ratón a la esquina superior izquierda activa. También puede pulsar la tecla Super en su teclado. Puede ver sus ventanas y aplicaciones en la vista de actividades. También puede empezar a escribir para buscar aplicaciones, archivos o carpetas y en la web.	4	4	50	2021-12-03 01:03:56.396697-03	6	2	t	50	50	\N	2
 77	US 12 P1	Ayuda Guía de escritorio de Ubuntu » Escritorio › Aplicaciones y ventanas »\r\nAyuda Guía de escritorio de Ubuntu » Escritorio › Personalizar su escritorio » Notificaciones y la lista de notificaciones › Ocultar notificaciones en la pantalla de bloqueo »	3	4	15	2021-12-03 01:03:57.424864-03	6	12	t	15	15	\N	2
 78	US 6 P1	El menú de aplicación, situado junto al botón de Actividades, muestra el nombre de la aplicación activa junto con su icono y proporciona un acceso rápido a las ventanas y los detalles de la aplicación, así como a un elemento para salir.	3	4	15	2021-12-03 01:03:58.732805-03	6	4	t	16	15	\N	2
@@ -2768,6 +2827,35 @@ COPY public.us_historialus (id, name, descripcion, prioridad, estado, storypoint
 112	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	1	14	2021-12-03 10:32:32.678186-03	10	16	t	16	12	\N	4
 113	Testear Modelos	Test de models	1	1	15	2021-12-03 10:32:42.015948-03	10	19	t	14	16	\N	4
 114	Testear Vistas	Correr test de los views	2	2	20	2021-01-18 10:45:52.663106-03	9	14	t	20	20	\N	4
+115	Testear Vistas	Correr test de los views	2	3	20	2021-12-03 12:27:13.705863-03	9	14	t	20	20	\N	4
+116	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	2	14	2021-12-03 12:28:23.605455-03	10	16	t	16	12	\N	4
+119	Realizar script	Realizar scripts de entornos, pruebas, documentacion	4	4	14	2021-02-06 12:37:12.470596-03	10	16	t	16	12	\N	4
+120	Testear Vistas	Correr test de los views	2	4	20	2021-02-06 12:37:18.578363-03	9	14	t	20	20	\N	4
+121	Testear Modelos	Test de models	5	1	15	2021-02-06 12:37:21.92122-03	\N	19	t	14	16	\N	4
+122	Testear Modelos	Test de models	5	1	15	2021-02-06 12:39:21.08413-03	9	19	t	14	16	\N	5
+123	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	1	\N	2021-02-06 12:40:20.885893-03	10	18	t	\N	24	\N	5
+124	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	1	27	2021-12-03 12:43:01.607456-03	10	18	t	30	24	\N	5
+125	Testear Modelos	Test de models	5	1	11	2021-12-03 12:44:14.725701-03	9	19	t	6	16	\N	5
+126	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	2	27	2021-12-03 12:46:35.302036-03	10	18	t	30	24	\N	5
+127	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	3	27	2021-02-17 12:51:51.682782-03	10	18	t	30	24	\N	5
+128	Testear Modelos	Test de models	5	2	11	2021-12-03 12:53:10.676903-03	9	19	t	6	16	\N	5
+129	Testear Modelos	Test de models	5	3	11	2021-02-17 12:56:43.536144-03	9	19	t	6	16	\N	5
+130	Testear Modelos	Test de models	5	4	11	2021-12-03 12:58:35.229542-03	9	19	t	6	16	\N	5
+131	Poblar bases de datos	Crear modelos de bases de datos con datos previos	3	4	27	2021-12-03 12:58:45.119227-03	10	18	t	30	24	\N	5
+132	Us 1	Pruebas de motores	2	1	\N	2021-11-17 13:02:12.851148-03	3	20	t	\N	\N	\N	\N
+133	Us 2	Pruebas de electronica	3	1	\N	2021-11-17 13:03:09.664134-03	3	21	t	\N	\N	\N	\N
+134	Us 3	Pruebas de rendimiento	2	1	\N	2021-11-17 13:04:12.14434-03	3	22	t	\N	\N	\N	\N
+135	US 4	Pruebas de frenos	4	1	\N	2021-11-17 13:05:06.068325-03	3	23	t	\N	\N	\N	\N
+136	Pruebas de llantas	Mejoras o informoes de llantas	3	1	\N	2021-11-17 13:05:48.113845-03	3	24	t	\N	\N	\N	\N
+137	Us 2	Pruebas de electronica	3	1	\N	2021-11-17 13:08:47.793124-03	13	21	t	\N	13	\N	6
+138	Us 1	Pruebas de motores	2	1	\N	2021-11-17 13:09:00.501381-03	13	20	t	\N	12	\N	6
+139	Us 3	Pruebas de rendimiento	2	1	\N	2021-11-17 13:09:16.969922-03	14	22	t	\N	10	\N	6
+140	Us 3	Pruebas de rendimiento	2	1	10	2021-11-17 13:10:39.78505-03	14	22	t	10	10	\N	6
+141	Us 2	Pruebas de electronica	3	1	13	2021-11-17 13:11:31.955575-03	13	21	t	13	13	\N	6
+142	Us 1	Pruebas de motores	2	1	12	2021-11-17 13:11:37.179736-03	13	20	t	12	12	\N	6
+143	Us 1	Pruebas de motores	2	1	12	2021-11-17 13:11:37.230466-03	13	20	t	12	12	\N	6
+144	Us 2	Pruebas de electronica	3	2	13	2021-12-03 13:14:26.155862-03	13	21	t	13	13	\N	6
+145	Us 3	Pruebas de rendimiento	2	2	10	2021-12-03 13:17:39.73245-03	14	22	t	10	10	\N	6
 \.
 
 
@@ -2778,10 +2866,11 @@ COPY public.us_historialus (id, name, descripcion, prioridad, estado, storypoint
 COPY public.usuario_usuario (id, password, last_login, is_superuser, first_name, last_name, is_active, date_joined, username, names, lastname, ci, email, fecha_nac, fecha_created, fecha_deleted, usuario_activo, usuario_administrador, image, rol_id) FROM stdin;
 1	pbkdf2_sha256$260000$BYPS7drSPuJNgrnWcDrxc9$K8ior06rwRKv/11fJVjC6Axx5aSbAsbNNAFpnWsC1aQ=	2021-12-02 20:52:33.656922-03	t			t	2021-12-02 20:39:02.015411-03	Admin	\N	\N	\N	admin@admin.com	\N	\N	\N	t	t		\N
 5	!RaLUnPdn2ts9MN4RfQNSUZmBdyZuITmaFed3W4Dk	2021-12-02 21:24:05.735545-03	f	Usuario	Prueba	t	2021-12-02 20:48:56.361921-03	usuario4	\N	\N	\N	userprue2@gmail.com	\N	\N	\N	t	f		\N
+7	!QFECrH7DiivOc6qrTlzXW0aq2ifIqKuULl5Gpc7S	2021-12-03 13:23:49.690471-03	f	Ever Fernando	Garay Molinas	t	2021-12-03 13:23:49.61657-03	ever_fernando	\N	\N	\N	everfgmolinas@fpuna.edu.py	\N	\N	\N	t	f		\N
+6	!rZlQltK4lWT5BJq7LlcnXVt2PxSr07JAAAIYiZk4	2021-12-03 13:24:01.066477-03	f	Gestor_equipo09	is2	t	2021-12-02 20:52:21.022459-03	gestor_equipo09	\N	\N	\N	gerenciaequipo09@gmail.com	\N	\N	\N	t	f		1
 4	!TMQLYmKwNWkS6WZuYmg31zzDXEq01PONn8x3pj7N	2021-12-03 01:26:23.972901-03	f	Usuario	Prueba	t	2021-12-02 20:48:26.60719-03	usuario	\N	\N	\N	userprue1@gmail.com	\N	\N	\N	t	f		\N
-2	!5jt1FxaOL314aPMGOrSjIMDpZ1ml7vlD9fZlvn9b	2021-12-03 10:31:14.001103-03	f	User Prueba 1	IS2	t	2021-12-02 20:43:55.033008-03	user_prueba_1	\N	\N	\N	userprueba1is2@gmail.com	\N	\N	\N	t	f		\N
-6	!rZlQltK4lWT5BJq7LlcnXVt2PxSr07JAAAIYiZk4	2021-12-03 10:32:51.717718-03	f	Gestor_equipo09	is2	t	2021-12-02 20:52:21.022459-03	gestor_equipo09	\N	\N	\N	gerenciaequipo09@gmail.com	\N	\N	\N	t	f		1
-3	!iPKYIulObhKgpEWQl8XGbj5cjmvVNjpGgindJMg4	2021-12-03 10:44:01.514277-03	f	User Prueba 2	IS2	t	2021-12-02 20:44:01.376153-03	user_prueba_2	\N	\N	\N	userprueba2is2@gmail.com	\N	\N	\N	t	f		\N
+2	!5jt1FxaOL314aPMGOrSjIMDpZ1ml7vlD9fZlvn9b	2021-12-03 13:17:13.611281-03	f	User Prueba 1	IS2	t	2021-12-02 20:43:55.033008-03	user_prueba_1	\N	\N	\N	userprueba1is2@gmail.com	\N	\N	\N	t	f		\N
+3	!iPKYIulObhKgpEWQl8XGbj5cjmvVNjpGgindJMg4	2021-12-03 13:19:40.537612-03	f	User Prueba 2	IS2	t	2021-12-02 20:44:01.376153-03	user_prueba_2	\N	\N	\N	userprueba2is2@gmail.com	\N	\N	\N	t	f		\N
 \.
 
 
@@ -2805,7 +2894,7 @@ COPY public.usuario_usuario_user_permissions (id, usuario_id, permission_id) FRO
 -- Name: account_emailaddress_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.account_emailaddress_id_seq', 5, true);
+SELECT pg_catalog.setval('public.account_emailaddress_id_seq', 6, true);
 
 
 --
@@ -2875,14 +2964,14 @@ SELECT pg_catalog.setval('public.django_site_id_seq', 4, true);
 -- Name: equipo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.equipo_id_seq', 4, true);
+SELECT pg_catalog.setval('public.equipo_id_seq', 6, true);
 
 
 --
 -- Name: equipo_miembros_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.equipo_miembros_id_seq', 7, true);
+SELECT pg_catalog.setval('public.equipo_miembros_id_seq', 11, true);
 
 
 --
@@ -2896,7 +2985,7 @@ SELECT pg_catalog.setval('public.etiqueta_id_seq', 1, false);
 -- Name: historial_tarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.historial_tarea_id_seq', 34, true);
+SELECT pg_catalog.setval('public.historial_tarea_id_seq', 56, true);
 
 
 --
@@ -2952,7 +3041,7 @@ SELECT pg_catalog.setval('public.roles_permisos_id_seq', 10, true);
 -- Name: socialaccount_socialaccount_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.socialaccount_socialaccount_id_seq', 5, true);
+SELECT pg_catalog.setval('public.socialaccount_socialaccount_id_seq', 6, true);
 
 
 --
@@ -2973,35 +3062,35 @@ SELECT pg_catalog.setval('public.socialaccount_socialapp_sites_id_seq', 1, true)
 -- Name: socialaccount_socialtoken_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.socialaccount_socialtoken_id_seq', 5, true);
+SELECT pg_catalog.setval('public.socialaccount_socialtoken_id_seq', 6, true);
 
 
 --
 -- Name: sprint_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sprint_id_seq', 4, true);
+SELECT pg_catalog.setval('public.sprint_id_seq', 6, true);
 
 
 --
 -- Name: sprint_us_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sprint_us_id_seq', 18, true);
+SELECT pg_catalog.setval('public.sprint_us_id_seq', 23, true);
 
 
 --
 -- Name: sprintplanning_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sprintplanning_id_seq', 4, true);
+SELECT pg_catalog.setval('public.sprintplanning_id_seq', 6, true);
 
 
 --
 -- Name: tarea_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.tarea_id_seq', 30, true);
+SELECT pg_catalog.setval('public.tarea_id_seq', 51, true);
 
 
 --
@@ -3015,14 +3104,14 @@ SELECT pg_catalog.setval('public.us_historialcomentarios_id_seq', 1, false);
 -- Name: us_historialus_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.us_historialus_id_seq', 114, true);
+SELECT pg_catalog.setval('public.us_historialus_id_seq', 145, true);
 
 
 --
 -- Name: us_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.us_id_seq', 19, true);
+SELECT pg_catalog.setval('public.us_id_seq', 24, true);
 
 
 --
@@ -3036,7 +3125,7 @@ SELECT pg_catalog.setval('public.usuario_usuario_groups_id_seq', 1, false);
 -- Name: usuario_usuario_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuario_usuario_id_seq', 6, true);
+SELECT pg_catalog.setval('public.usuario_usuario_id_seq', 7, true);
 
 
 --
