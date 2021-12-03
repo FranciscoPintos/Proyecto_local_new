@@ -47,11 +47,16 @@ for var in $DIFERENCIAS; do
     git stash push -u "$var"
     STASH_produccion=true
   fi
+  if [[ $var == "requirements.txt" ]]; then
+    git stash push -u "$var"
+    STASH_requirements=true
+  fi
 done
 git checkout $TAG
 git restore --source $BRANCH_ACTUAL -- "apache.sh"
 git restore --source $BRANCH_ACTUAL -- "desarrollo.sql"
 git restore --source $BRANCH_ACTUAL -- "produccion.sql"
+git restore --source $BRANCH_ACTUAL -- "requirements.txt"
 if [ "$STASH_script" = true ]; then
 	git add "apache.sh"
 	git stash pop
@@ -67,7 +72,11 @@ if [ "$STASH_produccion" = true ]; then
 	git stash pop
 	git restore --staged "produccion.sql"
 fi
-
+if [ "$STASH_requirements" = true ]; then
+	git add "produccion.sql"
+	git stash pop
+	git restore --staged "requirements.txt"
+fi
 
 # Actualizar paquetes
 apt-get update
@@ -83,8 +92,8 @@ virtualenv env
 source env/bin/activate
 RUTA=$(pwd)
 # Instalar dependencias
-pip3 install django
 pip install -r requirements.txt
+pip3 install django
 pip3 install django-allauth
 pip3 install django-crispy_forms
 pip3 install psycopg2
@@ -95,8 +104,13 @@ pip3 install matplotlib
 deactivate
 
 if [[ "$ENTORNO" == "desarrollo" ]]; then
-	source venv/bin/activate
-	python3 manage.py runserver
+  sudo -u postgres psql << EOF
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
+EOF
+	source env/bin/activate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
 	deactivate
 	PGPASSWORD=admin
   # Borrar la base de datos y crear
@@ -106,8 +120,17 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
 EOF
   # Cargar base de datos
   psql -U postgres -d desarrollo < desarrollo.sql
+	python3 manage.py runserver
 
-elif [[ "$AMBIENTE" == "produccion" ]]; then
+elif [[ "$ENTORNO" == "produccion" ]]; then
+  sudo -u postgres psql << EOF
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
+EOF
+  source env/bin/activate
+	python3 manage.py makemigrations
+	python3 manage.py migrate
+	deactivate
 # Establecer demonio para apache
   cat > /etc/apache2/sites-available/gestorproject.conf << EOF
 <VirtualHost *:80>
@@ -142,11 +165,11 @@ EOF
   PGPASSWORD=admin
   # Borrar la base de datos y crear
   sudo -u postgres psql << EOF
-  DROP DATABASE produccion;
-  CREATE DATABASE produccion;
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
 EOF
   # Cargar base de datos
-  psql -U postgres -d produccion < produccion.sql
+  psql -U postgres -d desarrollo < produccion.sql
 
   # Ir a ruta de sitios de apache
   cd "/etc/apache2/sites-available"
@@ -174,6 +197,9 @@ EOF
   cd $RUTA
   service apache2 restart
   # Dar permisos sobre el proyecto
-  chmod -R 777 "$RUTA"
 
 fi
+# Dar permisos sobre el proyecto
+chmod -R 777 "$RUTA"
+git add .
+git commit -m "Changed to entorno"
