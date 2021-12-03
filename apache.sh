@@ -97,6 +97,7 @@ pip3 install django
 pip3 install django-allauth
 pip3 install django-crispy_forms
 pip3 install psycopg2
+pip3 install pycco
 pip3 install django-crum
 pip3 install numpy
 pip3 install matplotlib
