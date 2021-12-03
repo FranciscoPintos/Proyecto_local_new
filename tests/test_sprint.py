@@ -39,7 +39,7 @@ class TestSprint(TestCase):
         self.assertEqual(Sprint.estado, 1, 'El estado del sprint no coincide')
 
     # Probamos si un formulario es válido
-    def test_form_crear_sprint_valido(self):
+    def test_form_crear_sprint_valido_1(self):
         # definimos los datos necesarios para el formulario
         fecha_inicio = datetime.datetime.now().today()
         fecha_fin = fecha_inicio + datetime.timedelta(days=5)
@@ -56,7 +56,57 @@ class TestSprint(TestCase):
         formulario = crearSprintForm(data_form)
         # comprobamos si es o no válido
         self.assertTrue(formulario.is_valid(), 'El formulario no es válido')
+        # comprobamos si es posible guardar el formulario
+        self.assertTrue(formulario.save(), 'No se pudo guardar el formulario')
+
+    # Probamos otro formulario válido
+    def test_form_crear_sprint_valido_2(self):
+        # definimos los datos necesarios para el formulario
+        fecha_inicio = datetime.datetime.now().today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=10)
+        data_form = {
+            'id': 2,
+            'name': 'Sprint_2',
+            'us': Us.objects.filter(id=2),
+            'proyecto': Proyecto.objects.filter(id=2),
+            'fecha_inicio': fecha_inicio,
+            'fecha_fin': fecha_fin,
+            'estado': 1
+        }
+        # instanciamos la clase del formulario de creacion de sprint
+        formulario = crearSprintForm(data_form)
+        # comprobamos si es o no válido
+        self.assertTrue(formulario.is_valid(), 'El formulario no es válido')
+        # comprobamos si es posible guardar el formulario
+        self.assertTrue(formulario.save(), 'No se pudo guardar el formulario')
 
 
+    # Probamos un formulario invalido
+    # este formulario es invalido por falta de datos en el data_form
+    def test_form_crear_sprint_invalido_1(self):
+        # definimos los datos necesarios para el formulario
+        fecha_inicio = datetime.datetime.now().today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=5)
+        # aqui definimos un data_form invalido para el formulario
+        data_form = {
+
+        }
+        # instanciamos la clase del formulario de creacion de sprint
+        formulario = crearSprintForm(data_form)
+        # comprobamos si es o no válido
+        self.assertFalse(formulario.is_valid(), 'El formulario sí es válido')
 
 
+    # Probamos un formulario invalido
+    # este formulario es invalido por falta de datos en el data_form
+    def test_form_crear_sprint_invalido_2(self):
+        # definimos los datos necesarios para el formulario
+        fecha_inicio = datetime.datetime.now().today()
+        fecha_fin = fecha_inicio + datetime.timedelta(days=5)
+        # aqui definimos un data_form invalido para el formulario
+        data_form = {
+            'id': 3
+        }
+        # instanciamos la clase del formulario de creacion de sprint
+        formulario = crearSprintForm(data_form)
+        # comprobamos si es o no válido
