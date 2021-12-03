@@ -107,16 +107,8 @@ def ver_burndownchart(request, pk, sp_pk):
             aux = aux - valor
             y2.append(aux)
             print("La clave es: ", clave)
-            if ((clave - fecha_inicio).days == j or (clave - fecha_inicio).days == 0):
-                x2.append(j)
-                j = j + 1
-            else:
-                print(fecha_inicio)
+            x2.append((clave - fecha_inicio).days)
 
-                print((clave - fecha_inicio).days)
-                while ((clave - fecha_inicio).days != j):
-                    j = j + 1
-                x2.append(j)
         else:
             # cambiamos la fecha fin
             print(type(fecha_fin))
@@ -127,7 +119,7 @@ def ver_burndownchart(request, pk, sp_pk):
             # luego recalculamos los dias que contiene el sprint
             dias = np.busday_count(fecha_inicio, fecha_fin, weekmask='1111110') + 1
             # generacion del eje x del burndownchart
-            x1 = np.arange(0, dias + 1, 1)
+            x1 = np.arange(0, dias + 2, 1)
             print("nuevo dias: ", dias)
             print("x1: ", x1)
             # funcion del eje y
@@ -141,13 +133,8 @@ def ver_burndownchart(request, pk, sp_pk):
             aux = aux - valor
             y2.append(aux)
             print("La clave es: ", clave)
-            if ((clave - fecha_inicio).days == j):
-                x2.append(j)
-                j = j + 1
-            else:
-                while ((clave - fecha_inicio).days != j):
-                    j = j + 1
-                x2.append(j)
+            x2.append((clave - fecha_inicio).days)
+
 
 
     print(x2)
