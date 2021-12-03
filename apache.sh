@@ -122,7 +122,7 @@ EOF
   psql -U postgres -d desarrollo < desarrollo.sql
 	python3 manage.py runserver
 
-elif [[ "$AMBIENTE" == "produccion" ]]; then
+elif [[ "$ENTORNO" == "produccion" ]]; then
   sudo -u postgres psql << EOF
   DROP DATABASE produccion;
   CREATE DATABASE produccion;
