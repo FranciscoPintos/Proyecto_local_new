@@ -128,8 +128,8 @@ EOF
 
 elif [[ "$ENTORNO" == "produccion" ]]; then
   sudo -u postgres psql << EOF
-  DROP DATABASE produccion;
-  CREATE DATABASE produccion;
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
 EOF
 
 
@@ -172,11 +172,11 @@ EOF
   PGPASSWORD=admin
   # Borrar la base de datos y crear
   sudo -u postgres psql << EOF
-  DROP DATABASE produccion;
-  CREATE DATABASE produccion;
+  DROP DATABASE desarrollo;
+  CREATE DATABASE desarrollo;
 EOF
   # Cargar base de datos
-  psql -U postgres -d produccion < produccion.sql
+  psql -U postgres -d desarrollo < produccion.sql
 
   # Ir a ruta de sitios de apache
   cd "/etc/apache2/sites-available"
