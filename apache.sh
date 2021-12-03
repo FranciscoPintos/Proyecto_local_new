@@ -172,7 +172,6 @@ elif [[ "$ENTORNO" == "produccion" ]]; then
   CREATE DATABASE produccion;
 EOF
 
-cd "Proyecto"
 
 cat > "Proyecto/produccion.py" << EOF
 from settings import *
