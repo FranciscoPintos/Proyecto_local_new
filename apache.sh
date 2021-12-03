@@ -47,11 +47,16 @@ for var in $DIFERENCIAS; do
     git stash push -u "$var"
     STASH_produccion=true
   fi
+  if [[ $var == "requirements.txt" ]]; then
+    git stash push -u "$var"
+    STASH_requirements=true
+  fi
 done
 git checkout $TAG
 git restore --source $BRANCH_ACTUAL -- "apache.sh"
 git restore --source $BRANCH_ACTUAL -- "desarrollo.sql"
 git restore --source $BRANCH_ACTUAL -- "produccion.sql"
+git restore --source $BRANCH_ACTUAL -- "requirements.txt"
 if [ "$STASH_script" = true ]; then
 	git add "apache.sh"
 	git stash pop
@@ -67,7 +72,11 @@ if [ "$STASH_produccion" = true ]; then
 	git stash pop
 	git restore --staged "produccion.sql"
 fi
-
+if [ "$STASH_requirements" = true ]; then
+	git add "produccion.sql"
+	git stash pop
+	git restore --staged "requirements.txt"
+fi
 
 # Actualizar paquetes
 apt-get update
@@ -83,8 +92,8 @@ virtualenv env
 source env/bin/activate
 RUTA=$(pwd)
 # Instalar dependencias
-pip3 install django
 pip install -r requirements.txt
+pip3 install django
 pip3 install django-allauth
 pip3 install django-crispy_forms
 pip3 install psycopg2
