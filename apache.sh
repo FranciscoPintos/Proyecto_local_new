@@ -110,46 +110,6 @@ if [[ "$ENTORNO" == "desarrollo" ]]; then
   CREATE DATABASE desarrollo;
 EOF
 
-cat > "Proyecto/desarrollo.py" << EOF
-from settings import *
-
-DEBUG = True
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'desarrollo',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432'
-
-
-    }
-}
-
-EOF
-
-
-  cat > "Proyecto/wsgi.py" << EOF
-"""
-WSGI config for Proyecto project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
-"""
-
-import os
-
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Proyecto.desarrollo')
-
-application = get_wsgi_application()
-
-EOF
 
 	source env/bin/activate
 	python3 manage.py makemigrations
@@ -173,46 +133,7 @@ elif [[ "$ENTORNO" == "produccion" ]]; then
 EOF
 
 
-cat > "Proyecto/produccion.py" << EOF
-from settings import *
 
-DEBUG = False
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'produccion',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432'
-
-
-    }
-}
-
-EOF
-
-  cat > "Proyecto/wsgi.py" << EOF
-"""
-WSGI config for Proyecto project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.2/howto/deployment/wsgi/
-"""
-
-import os
-
-from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Proyecto.produccion')
-
-application = get_wsgi_application()
-
-
-EOF
   source env/bin/activate
 	python3 manage.py makemigrations
 	python3 manage.py migrate
