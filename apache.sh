@@ -86,6 +86,8 @@ apt-get install python3-pip apache2 libapache2-mod-wsgi-py3
 pip3 install
 # Borrar si existe algun entorno
 rm -r env
+#Instalación de gestor de entorno virtuales
+pip3 install virtualenv
 # Crear entorno
 virtualenv env
 # Acceder al entorno
@@ -96,7 +98,11 @@ pip install -r requirements.txt
 pip3 install django
 pip3 install django-allauth
 pip3 install django-crispy_forms
-pip3 install psycopg2
+pip3 list --outdated
+pip3 install --upgrade wheel
+pip3 install --upgrade setuptools
+apt-get install libssl-dev
+pip3 install psycopg2-binary
 pip3 install pycco
 pip3 install django-crum
 pip3 install numpy
@@ -128,8 +134,8 @@ EOF
 
 elif [[ "$ENTORNO" == "produccion" ]]; then
   sudo -u postgres psql << EOF
-  DROP DATABASE desarrollo;
-  CREATE DATABASE desarrollo;
+  DROP DATABASE produccion;
+  CREATE DATABASE produccion;
 EOF
 
 
@@ -172,11 +178,11 @@ EOF
   PGPASSWORD=admin
   # Borrar la base de datos y crear
   sudo -u postgres psql << EOF
-  DROP DATABASE desarrollo;
-  CREATE DATABASE desarrollo;
+  DROP DATABASE produccion;
+  CREATE DATABASE produccion;
 EOF
   # Cargar base de datos
-  psql -U postgres -d desarrollo < produccion.sql
+  psql -U postgres -d produccion < produccion.sql
 
   # Ir a ruta de sitios de apache
   cd "/etc/apache2/sites-available"
