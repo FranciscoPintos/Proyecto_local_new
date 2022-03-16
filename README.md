@@ -1,29 +1,20 @@
 # ProyectoIS2-Equipo09
-Desarrollo del proyecto aquí
+En el archivo "Proyecto/db.py" establezca el usuario y contraseña de su Postgresql
 
-Para ejecutar abra la terminar remota copie y pegue
-```
-/home/ever/Proyectos/ProyectoIS2-Equipo09/env/bin/python /home/ever/Proyectos/ProyectoIS2-Equipo09/manage.py runserver 8000
-```
-para ejecutar en su maquina  
-```
-python manage.py runserver
-```
+Para ejecutar abra la terminar y ejecute el script `apache.sh` con permisos de administrador  
+Seleccione un entorno y un tag a ejecutar
 
-## Librerias
+- ## Entorno de producción
 
-psycopg2 - Usado para conectar a la base de datos de Postgresql
-```
-pip install psycopg2
-```
-numpy - Usado para cantidad de dias entre fechas
-```
-pip install numpy
-```
+Abra su navegador en la página [Gestorproject](http://www.gestorproject.com/)
 
-## Observaciones de implementación
+- ## Entorno de desarrollo
 
-Como postgresql aún no está configurado en su totalidad, asegurese que en settings.py la variable "Database" esté de la siguente manera  
-```
-DATABASES = db.SQLITE
-```
+Actualmente en revisión
+
+## Usuario administrador
+
+Usuario: `Admin`  
+Contraseña: `admin`  
+
+Una vez ingresado como Administrador dirigirse a la url [Inicio](http://www.gestorproject.com/principalApp/inicio)
